@@ -1,0 +1,13 @@
+services:
+
+  db:
+    volumes:
+      - ./database:/var/lib/mysql
+
+  # dcru phpqa /tools/php-cs-fixer fix /project/src --config=/project/.php-cs-fixer.php
+  # dcru phpqa /tools/phpstan analyse src --level=max
+  phpqa:
+    image: jakzal/phpqa:php8.3
+    working_dir: /project
+    volumes:
+      - .:/project
