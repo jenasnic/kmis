@@ -1,0 +1,68 @@
+@use './color';
+@use './media';
+@use './fonts';
+@use './icons';
+
+body {
+  background-color: color.$background-default-color;
+  font-family: fonts.$text-default-font;
+  font-size: 15px;
+  text-align: justify;
+}
+
+* {
+  color: color.$text-default-color;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: color.$primary-color;
+  outline: 0;
+  text-decoration: none;
+
+  > i {
+    color: color.$primary-color;
+  }
+}
+
+p {
+  font-size: 1.3em;
+  line-height: 1.8em;
+  margin-bottom: 20px;
+
+  &.note {
+    color: color.$primary-color;
+    text-align: center;
+  }
+}
+
+img {
+  border: none;
+}
+
+h1, h2, h3 {
+  font-family: fonts.$text-title-font;
+}
+
+ul, li {
+  list-style: none;
+}
+
+@for $i from 1 through 5 {
+  .m-top-#{$i} {
+    margin-top: #{$i * 10}px;
+  }
+
+  .m-right-#{$i} {
+    margin-right: #{$i * 10}px;
+  }
+
+  .m-bottom-#{$i} {
+    margin-bottom: #{$i * 10}px;
+  }
+
+  .m-left-#{$i} {
+    margin-left: #{$i * 10}px;
+  }
+}

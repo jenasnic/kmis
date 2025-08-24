@@ -1,0 +1,27 @@
+@use '../color';
+
+footer {
+  align-items: center;
+  background-color: color.$background-dark-color;
+  display: flex;
+  height: 70px;
+  justify-content: center;
+
+  > a {
+    color: color.$white;
+    padding: 0 20px;
+    text-align: left;
+
+    &:not(:last-child) {
+      &:after {
+        background-color: color.$white;
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 1px;
+        height: 100%;
+      }
+    }
+  }
+}

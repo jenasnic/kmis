@@ -1,0 +1,21 @@
+{% block subject %}[KMIS] Validation inscription{% endblock %}
+
+{% block html %}
+Bonjour,<br/>
+<p>Merci de valider votre inscription en cliquant <a href="{{ confirmLink }}">ici</a>.</p>
+<p>Cordialement</p>
+<p>L'équipe KMIS</p>
+<img src="{{ absolute_url(asset('build/images/sign.png')) }}" alt="KMIS" style="width: 200px;" />
+{% endblock %}
+
+{% block text %}
+Bonjour,
+
+Merci de valider votre inscription en copiant/collant sur le lien ci-dessous dans votre navigateur :
+
+{{ confirmLink }}
+
+Cordialement
+
+L'équipe KMIS
+{% endblock %}

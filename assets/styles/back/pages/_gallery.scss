@@ -1,0 +1,44 @@
+@use '../bulma/variables' as bulma;
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+
+  .gallery__adherent {
+    background-color: bulma.$background;
+    border: 3px solid;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &--male {
+      border-color: bulma.$blue;
+    }
+
+    &--female {
+      border-color: bulma.$red;
+    }
+
+    > .picture {
+      height: 150px;
+      margin-bottom: 10px;
+      width: 120px;
+
+      > img {
+        border: 1px solid bulma.$body-background-color;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        width: 100%;
+      }
+    }
+
+    > .firstName, .lastName {
+      text-align: center;
+    }
+  }
+}

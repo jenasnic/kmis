@@ -1,0 +1,12 @@
+<div class="table-container">
+    <table class="table is-striped is-hoverable is-fullwidth">
+        <thead>
+            <tr>
+                {% block thead %}{% endblock %}
+            </tr>
+        </thead>
+        <tbody class="list"{% if isDraggable is defined and isDraggable == true %} data-sortable{% endif %}>
+            {% block tbody %}{% endblock %}
+        </tbody>
+    </table>
+</div>

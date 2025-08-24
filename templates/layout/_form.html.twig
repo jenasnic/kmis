@@ -1,0 +1,144 @@
+{% use 'form_div_layout.html.twig' %}
+
+{%- block form_row -%}
+  {%- set widget_attr = {} -%}
+  {%- if help is not empty -%}
+    {%- set widget_attr = {attr: {'aria-describedby': id ~"_help"}} -%}
+  {%- endif -%}
+  <div{% with {attr: row_attr|merge({'class': 'form-group'})} %}{{ block('attributes') }}{% endwith %}>
+    {{- form_label(form) -}}
+    {{- form_widget(form, widget_attr) -}}
+    {{- form_errors(form) -}}
+    {{- form_help(form) -}}
+  </div>
+{%- endblock -%}
+
+{%- block form_errors -%}
+  {%- if errors|length > 0 -%}
+    <ul class="form-errors has-text-danger">
+      {%- for error in errors -%}
+        <li>{{ error.message }}</li>
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+{%- endblock form_errors -%}
+
+{%- block form_widget_simple -%}
+  {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' input')|trim}) -%}
+  {{ parent() }}
+{%- endblock form_widget_simple -%}
+
+{%- block textarea_widget -%}
+  {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' textarea')|trim}) -%}
+  {{ parent() }}
+{%- endblock textarea_widget -%}
+
+{% block wysiwyg_widget %}
+  <div class="container-wysiwyg{% if small_size %} container-wysiwyg--small{% endif %}">
+    {{ form_widget(form, {attr: {class: 'wysiwyg'}}) }}
+  </div>
+{% endblock %}
+
+{%- block button_widget -%}
+  {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' button')|trim}) -%}
+  {{ parent() }}
+{%- endblock button_widget -%}
+
+{%- block choice_widget_expanded -%}
+  {%- set attr = attr|merge({'class': 'radio-wrapper'}) -%}
+  {{ parent() }}
+{%- endblock choice_widget_expanded -%}
+
+{%- block choice_widget_collapsed -%}
+  <div class="select">
+    {{ parent() }}
+  </div>
+{%- endblock choice_widget_collapsed -%}
+
+{%- block checkbox_row -%}
+  {%- set widget_attr = {} -%}
+  {%- if help is not empty -%}
+    {%- set widget_attr = {attr: {'aria-describedby': id ~"_help"}} -%}
+  {%- endif -%}
+  <div{% with {attr: row_attr|merge({'class': 'form-group form-group--checkbox'})} %}{{ block('attributes') }}{% endwith %}>
+    {{- form_widget(form, widget_attr) -}}
+    {{- form_label(form) -}}
+    {{- form_help(form) -}}
+    {{- form_errors(form) -}}
+  </div>
+{%- endblock -%}
+
+{% block masked_widget %}
+  {{ form_widget(form, {'attr' : attr|merge({ 'data-mask-input': mask})}) }}
+{% endblock %}
+
+{% block number_widget %}
+  {{ form_widget(form, {'attr' : attr|merge({
+    'data-number-input': true,
+    'data-number-min': min,
+    'data-number-max': max,
+    'data-number-radix': radix,
+    'data-number-scale': scale,
+    'data-number-separator': separator,
+  })}) }}
+{% endblock %}
+
+{%- block bulma_file_widget -%}
+  {%- set attr = attr|merge({'class': 'file-input'}) -%}
+  <div class="file">
+    <label class="file-label" data-input-file="data-input-file">
+      <input type="file" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+      <span class="file-cta">
+        <span class="file-icon"><i class="icon-upload"></i></span>
+        <span class="file-label">{{ 'global.browse'|trans }}</span>
+      </span>
+      <span class="file-name">
+          {% if value is not empty %}{{ value }}{% endif %}
+      </span>
+    </label>
+    {% if download_uri is defined %}
+      <a href="{{ download_uri }}" target="_blank" class="button download">
+        <span class="icon"><i class="icon-download"></i></span>
+      </a>
+    {% endif %}
+  </div>
+{%- endblock bulma_file_widget -%}
+
+{% block google_captcha_row %}
+  <div class="form-group captcha-wrapper">
+    <div class="g-recaptcha" data-sitekey="{{ site_key }}"></div>
+    <div class="captcha-error">{{ form_errors(form) }}</div>
+  </div>
+{% endblock %}
+
+{% block collection_widget %}
+  {{ form_errors(form) }}
+  <ul
+    id="{{ form.vars.id }}_form"
+    class="collection-type"
+    data-collection-type="li"
+    {% if (allow_add) %}
+      data-prototype="{{ form_row(form.vars.prototype)|e('html_attr') }}"
+      data-prototype-name="{{ prototype.vars['name']|default('__name__') }}"
+      data-trigger-add="{{ 'global.add'|trans }}"
+    {% endif %}
+    {% if (allow_delete) %}
+      data-trigger-remove="{{ 'global.delete'|trans }}"
+      data-trigger-remove-confirm="{{ 'global.confirmDelete'|trans }}"
+    {% endif %}
+  >
+    {% if (allow_add) %}
+      <button class="button is-success add-item">
+        <span class="icon is-small">
+          <i class="icon-more"></i>
+        </span>
+        <span>{{ 'global.add'|trans }}</span>
+      </button>
+    {% endif %}
+    {% for child in form %}
+      <li class="collection-type-item">
+        {{ form_row(child) }}
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

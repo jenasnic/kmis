@@ -1,0 +1,33 @@
+###> IDE & tools ###
+.buildpath
+.idea
+.project
+.settings
+.php_cs.cache
+.php-cs-fixer.cache
+compose.override.yaml
+yarn.lock
+###< IDE & tools ###
+
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+
+###> project ###
+/upload/*
+!/upload/.gitignore
+!/upload/news/.gitignore
+###< upload ###
+
+###> symfony/webpack-encore-bundle ###
+/node_modules/
+/public/build/
+npm-debug.log
+yarn-error.log
+###< symfony/webpack-encore-bundle ###

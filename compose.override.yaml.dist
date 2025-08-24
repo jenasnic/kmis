@@ -4,6 +4,15 @@ services:
     volumes:
       - ./database:/var/lib/mysql
 
+  mailbox:
+    image: mailhog/mailhog
+    ports:
+      - '8081:8025'
+
+  node:
+    ports:
+      - '9000:9000'
+
   # dcru phpqa /tools/php-cs-fixer fix /project/src --config=/project/.php-cs-fixer.php
   # dcru phpqa /tools/phpstan analyse src --level=max
   phpqa:

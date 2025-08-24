@@ -1,0 +1,53 @@
+{% block subject %}[KMIS] Réinscription validée{% endblock %}
+
+{% block html %}
+Bonjour {{ registration.adherent.getFullName() }},<br/>
+<p>Merci pour votre réinscription au KMIS.</p>
+<p>Pour régler votre cotisation {{ registration.season.getDisplayLabel() }} d'un montant de {{ amountToPay }}€, vous pouvez :</p>
+<ul>
+    <li>Régler le montant de votre cotisation par chèque (à l'ordre du KMIS) ou en espèce directement auprès des membres du bureau.</li>
+    <li>Effectuer un virement en précisant votre nom/prénom (RIB disponible <a href="{{ absolute_url('/iban_kmis.pdf') }}" target="_blank">ici</a>).</li>
+    <li>
+        Utiliser la plateforme <a href="https://www.helloasso.com/associations/krav-maga-impact-system/adhesions/adhesion-kmis-2024-2025" target="_blank">HelloAsso</a>
+        {%- if discountCode is not null %}
+            (pour bénéficier de votre réduction Pass'Sport, utiliser le code de réduction "{{ discountCode }}")
+        {%- endif %}.
+    </li>
+</ul>
+<p><strong>Information Assurance aux licenciés</strong></p>
+<p>Si lors de votre demande de licence vous avez choisi d’adhérer à l’assurance « GARANTIES DE BASE ACCIDENTS CORPORELS » proposée par la FFK, consultez sur ffkarate.fr toutes les conditions relatives à :</p>
+<ul>
+    <li>votre assurance « Individuelle accident »</li>
+    <li>votre assurance « Responsabilité civile »</li>
+</ul>
+<p><strong>Pratique sur tatamis, pour les équipements nécessaires : demandez conseils aux instructeurs.</strong></p>
+<p>Cordialement</p>
+<p>L'équipe KMIS</p>
+<img src="{{ absolute_url(asset('build/images/sign.png')) }}" alt="KMIS" style="width: 200px;" />
+{% endblock %}
+
+{% block text %}
+Bonjour {{ registration.adherent.getFullName() }},
+
+Merci pour votre réinscription au KMIS.
+
+Pour régler votre cotisation {{ registration.season.getDisplayLabel() }} d'un montant de {{ amountToPay }}€, vous pouvez :
+
+- Régler le montant de votre cotisation par chèque (à l'ordre du KMIS) ou en espèce directement auprès des membres du bureau.
+- Effectuer un virement en précisant votre nom/prénom (RIB disponible ici : {{ absolute_url('/iban_kmis.pdf') }}.
+- Utiliser la plateforme HelloAsso à l'adresse suivante : https://www.helloasso.com/associations/krav-maga-impact-system/adhesions/adhesion-kmis-2024-2025
+  {%- if discountCode is not null %} (pour bénéficier de votre réduction Pass'Sport, utiliser le code de réduction "{{ discountCode }}"){%- endif %}.
+
+Information Assurance aux licenciés
+
+Si lors de votre demande de licence vous avez choisi d’adhérer à l’assurance « GARANTIES DE BASE ACCIDENTS CORPORELS » proposée par la FFK, consultez sur ffkarate.fr toutes les conditions relatives à :</p>
+
+- votre assurance « Individuelle accident »
+- votre assurance « Responsabilité civile »
+
+Pratique sur tatamis, pour les équipements nécessaires : demandez conseils aux instructeurs.
+
+Cordialement
+
+L'équipe KMIS
+{% endblock %}

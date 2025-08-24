@@ -22,3 +22,9 @@ services:
       MARIADB_ROOT_PASSWORD: root
     ports:
       - '3306:3306'
+
+  node:
+    image: node:16-alpine
+    working_dir: /home/node/app
+    volumes:
+      - .:/home/node/app

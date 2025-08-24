@@ -1,0 +1,51 @@
+@use '../color';
+@use '../media';
+
+$default-margin: 50px;
+
+.section {
+  line-height: 1.5em;
+  margin: $default-margin auto 2 * $default-margin auto;
+  max-width: 976px;
+
+  @include media.below(md) {
+    padding: 0 $default-margin;
+  }
+
+  @include media.below(sm) {
+    padding: 0 30px;
+  }
+
+  h2, h3 {
+    color: color.$text-dark-color;
+    font-size: 6rem;
+    line-height: 6rem;
+
+    @include media.below(sm) {
+      font-size: 4rem;
+      line-height: 4rem;
+    }
+  }
+
+  h2 {
+    margin-bottom: $default-margin;
+    text-align: center;
+  }
+
+  h3 {
+    font-size: 4rem;
+    line-height: 4rem;
+    margin: $default-margin 0 30px 0;
+    text-align: left;
+
+    &.subtitle {
+      margin: -30px 0 50px;
+      text-align: center;
+    }
+
+    @include media.below(sm) {
+      font-size: 3rem;
+      line-height: 3rem;
+    }
+  }
+}

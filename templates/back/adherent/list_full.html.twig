@@ -1,0 +1,93 @@
+{% extends 'layout/_back.html.twig' %}
+
+{% block body %}
+
+    <h2 class="subtitle">{{ 'back.adherent.list.full'|trans }} - {{ registrations|length }} {{ 'back.adherent.list.count'|trans }}</h2>
+
+    <div data-grid="data-grid" class="grid-adherent">
+
+        <nav class="level">
+            <div class="level-left">
+                <div class="level-item">
+                    <div class="field has-addons">
+                        <p class="control has-icons-left">
+                            <input
+                                id="input-search-id"
+                                class="search input"
+                                type="text"
+                                autofocus="autofocus"
+                                placeholder="{{ 'global.search'|trans }}"
+                                data-search='["firstName", "lastName", "email"]'
+                            />
+                            <span class="icon is-small is-left">
+                                <i class="icon-search"></i>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        {% embed 'back/components/_table.html.twig' %}
+
+        {% block thead %}
+            <th></th>
+            <th>
+                {{ 'back.adherent.list.header.lastName'|trans }}
+                <div class="sort" data-sort="lastName"></div>
+            </th>
+            <th>
+                {{ 'back.adherent.list.header.firstName'|trans }}
+                <div class="sort" data-sort="firstName"></div>
+            </th>
+            <th>{{ 'back.adherent.list.header.phone'|trans }}</th>
+            <th>{{ 'back.adherent.list.header.email'|trans }}</th>
+            <th>{{ 'back.adherent.list.header.season'|trans }}</th>
+            <th>{{ 'back.adherent.list.header.verified'|trans }}</th>
+            <th></th>
+        {% endblock %}
+
+        {% block tbody %}
+            {% for registration in registrations %}
+                <tr>
+                    <td class="gender gender--{{ registration['gender']|lower }}"><i class="icon-user"></i></td>
+                    <td class="lastName">{{ registration['lastName'] }}</td>
+                    <td class="firstName">{{ registration['firstName'] }}</td>
+                    <td>{{ registration['phone'] }}</td>
+                    <td class="email">{{ registration['email'] }}</td>
+                    <td>{{ registration['seasonLabel'] }}</td>
+                    <td>
+                        {% if registration['registrationVerified'] %}
+                            <span class="icon has-text-primary"><i class="icon-checkmark"></i></span>
+                        {% else %}
+                            <span class="icon has-text-warning"><i class="icon-cross"></i></span>
+                        {% endif %}
+                    </td>
+                    <td class="action">
+                        <div class="action-wrapper">
+                            <a href="{{ path('bo_adherent_edit', {'adherent': registration['adherentId']}) }}" class="button is-primary">
+                                <span class="icon"><i class="icon-pencil"></i></span>
+                            </a>
+                            <form
+                                data-confirm
+                                data-confirm-message="{{ 'global.confirmDelete'|trans }}"
+                                action="{{ path('bo_adherent_delete', {'adherent': registration['adherentId']}) }}"
+                                method="POST"
+                            >
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete-'~registration['adherentId']) }}" />
+                                <input type="hidden" name="full-list" value="true" />
+                                <button type="submit" class="button is-danger">
+                                    <span class="icon"><i class="icon-cross"></i></span>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% endblock %}
+
+    {% endembed %}
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+@use '../media';
+
+$gap: 5px;
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  &.col-x1, &.col-md-1, &.col-sm-1 {
+    > * {
+      min-width: 100%;
+      width: 100%;
+    }
+  }
+
+  @for $i from 2 through 6 {
+    &.col-x#{$i} {
+      > * {
+        min-width: calc((100% / #{$i}) - (#{$gap} * #{$i}));
+        width: calc((100% / #{$i}) - (#{$gap} * #{$i}));
+      }
+    }
+  }
+
+  @include media.below(md) {
+    @for $i from 2 through 6 {
+      &.col-md-x#{$i} {
+        > * {
+          min-width: calc((100% / #{$i}) - (#{$gap} * #{$i}));
+          width: calc((100% / #{$i}) - (#{$gap} * #{$i}));
+        }
+      }
+    }
+  }
+
+  @include media.below(sm) {
+    @for $i from 2 through 6 {
+      &.col-sm-x#{$i} {
+        > * {
+          min-width: calc((100% / #{$i}) - (#{$gap} * #{$i}));
+          width: calc((100% / #{$i}) - (#{$gap} * #{$i}));
+        }
+      }
+    }
+  }
+}

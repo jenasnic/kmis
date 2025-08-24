@@ -1,0 +1,127 @@
+{% extends 'layout/_back.html.twig' %}
+
+{% block body %}
+
+    <h2 class="subtitle">{{ registrations|length }} {{ 'back.adherent.list.count'|trans }}</h2>
+
+    <div data-grid="data-grid" class="grid-adherent">
+
+        <nav class="level">
+            <div class="level-left">
+                <div class="level-item">
+                    <div class="field has-addons">
+                        <p class="control has-icons-left">
+                            <input
+                                id="input-search-id"
+                                class="search input"
+                                type="text"
+                                autofocus="autofocus"
+                                placeholder="{{ 'global.search'|trans }}"
+                                data-search='["firstName", "lastName", "email"]'
+                            />
+                            <span class="icon is-small is-left">
+                                <i class="icon-search"></i>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                {% for filter in filters %}
+                    <p class="level-item">
+                        <a href="{{ path('bo_adherent_list', {'filter': filter}) }}" class="button is-outlined is-info">{{ ('back.adherent.list.filter.'~filter)|trans }}</a>
+                    </p>
+                {% endfor %}
+            </div>
+            <div class="level-right">
+                <p class="level-item">
+                    <a href="{{ path('bo_export_adherent') }}" target="_blank" class="button is-primary">
+                        <span>{{ 'global.export'|trans }}</span>
+                        <span class="icon is-small">
+                            <i class="icon-export"></i>
+                        </span>
+                    </a>
+                </p>
+                <p class="level-item">
+                    <a href="{{ path('bo_registration_new') }}" class="button is-primary">
+                        <span>{{ 'back.adherent.list.action.add'|trans }}</span>
+                        <span class="icon is-small">
+                            <i class="icon-more"></i>
+                        </span>
+                    </a>
+                </p>
+            </div>
+        </nav>
+
+        <nav class="level">
+            <div class="level-left">
+                {% for season in seasons %}
+                    <p class="level-item">
+                        {% if season.id == currentSeason.id %}
+                            <span class="button is-warning">{{ season.displayLabel }}</span>
+                        {% else %}
+                            <a href="{{ path('bo_adherent_by_season_list', {'season': season.id}) }}" class="button is-info">{{ season.displayLabel }}</a>
+                        {% endif %}
+                    </p>
+                {% endfor %}
+            </div>
+        </nav>
+
+        {% embed 'back/components/_table.html.twig' %}
+
+        {% block thead %}
+            <th></th>
+            <th>
+                {{ 'back.adherent.list.header.lastName'|trans }}
+                <div class="sort" data-sort="lastName"></div>
+            </th>
+            <th>
+                {{ 'back.adherent.list.header.firstName'|trans }}
+                <div class="sort" data-sort="firstName"></div>
+            </th>
+            <th>{{ 'back.adherent.list.header.phone'|trans }}</th>
+            <th>{{ 'back.adherent.list.header.email'|trans }}</th>
+            <th class="has-text-centered">{{ 'back.adherent.list.header.reEnrollment'|trans }}</th>
+            <th class="has-text-centered">{{ 'back.adherent.list.header.sold'|trans }}</th>
+            <th></th>
+        {% endblock %}
+
+        {% block tbody %}
+            {% for registration in registrations %}
+                <tr>
+                    <td class="gender gender--{{ registration['gender']|lower }}"><i class="icon-user"></i></td>
+                    <td class="lastName">{{ registration['lastName'] }}</td>
+                    <td class="firstName">{{ registration['firstName'] }}</td>
+                    <td>{{ registration['phone'] }}</td>
+                    <td class="email">{{ registration['email'] }}</td>
+                    <td class="has-text-centered">
+                        {% if registration['reEnrollment'] %}
+                            <span class="icon has-text-primary"><i class="icon-checkmark"></i></span>
+                        {% else %}
+                            <span class="icon has-text-warning"><i class="icon-cross"></i></span>
+                        {% endif %}
+                    </td>
+                    <td class="has-text-centered">
+                        {% if registration['totalPaid'] < registration['toPay'] %}
+                            <span class="icon has-text-warning"><i class="icon-cross"></i></span>
+                        {% else %}
+                            <span class="icon has-text-primary"><i class="icon-checkmark"></i></span>
+                        {% endif %}
+                    </td>
+                    <td class="action">
+                        <a href="{{ path('bo_adherent_edit', {'adherent': registration['adherentId']}) }}" class="button is-primary">
+                            <span class="icon"><i class="icon-pencil"></i></span>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% endblock %}
+
+        {% endembed %}
+
+    </div>
+
+    <div class="is-flex is-justify-content-flex-end mt-5">
+        <a href="{{ path('bo_adherent_full_list') }}" class="button is-info">{{ 'global.seeAll'|trans }}</a>
+    </div>
+
+
+{% endblock %}

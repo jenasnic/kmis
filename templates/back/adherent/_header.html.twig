@@ -1,0 +1,69 @@
+<nav class="level">
+    <div class="level-left">
+        {% if adherent.id is null %}
+            <h1 class="title center">{{ 'back.adherent.edit.new'|trans }}</h1>
+        {% else %}
+            <h1 class="title"><span class="gender--{{ adherent.gender|lower }}"><i class="icon-user"></i></span> {{ adherent.firstName }} {{ adherent.lastName }}</h1>
+        {% endif %}
+    </div>
+    <div class="level-right">
+        <p class="level-item">
+            <a href="{{ path('bo_adherent_list') }}" class="button is-outlined">
+                <span>{{ 'global.back'|trans }}</span>
+                <span class="icon"><i class="icon-back"></i></span>
+            </a>
+        </p>
+        {% if not registration.season.active %}
+            <p class="level-item">
+                <a href="{{ path('bo_re_enrollment', {'registration': registration.id}) }}" class="button is-primary">
+                    <span>{{ 'global.reEnrollment'|trans }}</span>
+                    <span class="icon"><i class="icon-clipboard"></i></span>
+                </a>
+            </p>
+        {% endif %}
+        {% if not registration.verified %}
+            <p class="level-item">
+                <form
+                    data-confirm
+                    data-confirm-message="{{ 'global.confirmVerify'|trans }}"
+                    action="{{ path('bo_registration_verify', {'registration': registration.id}) }}"
+                    method="POST"
+                >
+                    <input type="hidden" name="_token" value="{{ csrf_token('verify-'~registration.id) }}" />
+                    <button type="submit" class="button is-warning">
+                        <span>{{ 'global.verify'|trans }}</span>
+                        <span class="icon"><i class="icon-checkmark"></i></span>
+                    </button>
+                </form>
+            </p>
+        {% endif %}
+        <p class="level-item">
+            <form
+                data-confirm
+                data-confirm-message="{{ 'global.confirmDelete'|trans }}"
+                action="{{ path('bo_adherent_delete', {'adherent': adherent.id}) }}"
+                method="POST"
+            >
+                <input type="hidden" name="_token" value="{{ csrf_token('delete-'~adherent.id) }}" />
+                <button type="submit" class="button is-danger">
+                    <span>{{ 'global.delete'|trans }}</span>
+                    <span class="icon"><i class="icon-cross"></i></span>
+                </button>
+            </form>
+        </p>
+    </div>
+</nav>
+
+<div class="tabs is-centered is-boxed">
+    <ul>
+        <li{% if current == 'adherent' %} class="is-active"{% endif %}>
+            <a href="{{ path('bo_adherent_edit', {'adherent': adherent.id}) }}">{{ 'back.adherent.tab.adherent'|trans }}</a>
+        </li>
+        <li{% if current == 'registration' %} class="is-active"{% endif %}>
+            <a href="{{ path('bo_registration_edit', {'registration': registration.id}) }}">{{ 'back.adherent.tab.registration'|trans }}</a>
+        </li>
+        <li{% if current == 'payments' %} class="is-active"{% endif %}>
+            <a href="{{ path('bo_payment_list_for_adherent', {'adherent': adherent.id}) }}">{{ 'back.adherent.tab.payments'|trans }}</a>
+        </li>
+    </ul>
+</div>

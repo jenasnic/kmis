@@ -1,0 +1,46 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+parameters:
+    locale: 'fr'
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+        bind:
+            $uploadPath: '%kernel.project_dir%/upload/'
+            $mailerSender: '%env(string:MAILER_SENDER)%'
+            $mailerContact: '%env(string:MAILER_CONTACT)%'
+            $mailerMaxPacketSize: '%env(int:MAILER_MAX_PACKET_SIZE)%'
+            $googleCaptchaSiteKey: '%env(string:GOOGLE_CAPTCHA_SITE_KEY)%'
+            $googleCaptchaPrivateKey: '%env(string:GOOGLE_CAPTCHA_PRIVATE_KEY)%'
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Domain/Command/**/*Command.php'
+            - '../src/Domain/Export/'
+            - '../src/Entity/'
+            - '../src/Enum/'
+            - '../src/Exception/'
+            - '../src/Form/DataMapper/'
+            - '../src/Form/DataTransformer/'
+            - '../src/Helper/'
+            - '../src/Kernel.php'
+            - '../src/ValueObject/'
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
+
+    App\Service\Email\EmailBuilderFactory: ~
+
+    App\Service\Email\EmailBuilder:
+        factory: ['@App\Service\Email\EmailBuilderFactory', 'createEmailBuilder']

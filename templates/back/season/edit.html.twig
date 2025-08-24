@@ -1,0 +1,46 @@
+{% extends 'layout/_back.html.twig' %}
+
+{% form_theme form 'back/season/_form.html.twig' %}
+
+{% block body %}
+
+    <h1 class="title">{{ 'back.season.edit.title'|trans }} {{ season.getDisplayLabel() }}</h1>
+
+    {% if season.id is not null and not season.active %}
+        <div class="is-flex is-flex-direction-row is-justify-content-flex-end is-align-content-center m-bottom-2">
+            <form
+                data-confirm
+                data-confirm-message="{{ 'back.season.edit.confirmActivate'|trans }}"
+                action="{{ path('bo_season_activate', {'season': season.id}) }}"
+                method="POST"
+            >
+                <input type="hidden" name="_token" value="{{ csrf_token('activate-'~season.id) }}" />
+                <button type="submit" class="button is-danger">{{ 'global.activate'|trans }}</button>
+            </form>
+        </div>
+    {% endif %}
+
+    {{ form_start(form, {'attr': {'id': 'season-form'}}) }}
+    <div class="notification is-warning">{{ 'back.season.form.help'|trans }}</div>
+    <div class="columns">
+        <div class="column">
+            {{ form_row(form.startDate) }}
+        </div>
+        <div class="column">
+            {{ form_row(form.endDate) }}
+        </div>
+    </div>
+    <div class="columns">
+        <div class="column">
+            {{ form_row(form.priceOptions) }}
+        </div>
+    </div>
+    <div class="is-flex is-flex-direction-row is-justify-content-flex-end is-align-content-center">
+        <div class="block">
+            <a href="{{ path('bo_season_list') }}" class="button is-outlined">{{ 'global.cancel'|trans }}</a>
+            <button type="submit" class="button is-primary">{{ 'global.validate'|trans }}</button>
+        </div>
+    </div>
+    {{ form_end(form) }}
+
+{% endblock %}
