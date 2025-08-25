@@ -4,6 +4,7 @@ namespace App\Entity\Payment;
 
 use App\Entity\Season;
 use App\Repository\Payment\PriceOptionRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PriceOptionRepository::class)]
@@ -11,16 +12,16 @@ class PriceOption
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: Types::INTEGER)]
     private ?int $id = null;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: Types::STRING, length: 255)]
     private string $label;
 
-    #[ORM\Column(type: 'float')]
+    #[ORM\Column(type: Types::FLOAT)]
     private float $amount;
 
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: Types::INTEGER)]
     private int $rank = 0;
 
     #[ORM\ManyToOne(targetEntity: Season::class, inversedBy: 'priceOptions')]

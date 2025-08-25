@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Helper\StringHelper;
 use App\Repository\AdherentRepository;
 use App\ValueObject\Address;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -14,36 +15,36 @@ class Adherent
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: Types::INTEGER)]
     private ?int $id = null;
 
-    #[ORM\Column(type: 'string', length: 55)]
+    #[ORM\Column(type: Types::STRING, length: 55)]
     #[Assert\NotBlank]
     private ?string $firstName = null;
 
-    #[ORM\Column(type: 'string', length: 55)]
+    #[ORM\Column(type: Types::STRING, length: 55)]
     #[Assert\NotBlank]
     private ?string $lastName = null;
 
-    #[ORM\Column(type: 'string', length: 55)]
+    #[ORM\Column(type: Types::STRING, length: 55)]
     #[Assert\NotNull]
     private ?string $gender = null;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     #[Assert\NotNull]
     private ?\DateTime $birthDate = null;
 
-    #[ORM\Column(type: 'string', length: 55, nullable: true)]
+    #[ORM\Column(type: Types::STRING, length: 55, nullable: true)]
     #[Assert\NotBlank]
     #[Assert\Regex('/^[\d\s]{14}$/')]
     private ?string $phone = null;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: Types::STRING, length: 255)]
     #[Assert\NotBlank]
     #[Assert\Email]
     private ?string $email = null;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     private ?string $pseudonym = null;
 
     #[ORM\Embedded(class: Address::class)]
@@ -51,10 +52,10 @@ class Adherent
     #[Assert\Valid]
     private ?Address $address = null;
 
-    #[ORM\Column(type: 'boolean')]
+    #[ORM\Column(type: Types::BOOLEAN)]
     private bool $reEnrollmentToNotify = false;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     private ?string $pictureUrl = null;
 
     private ?UploadedFile $pictureFile = null;

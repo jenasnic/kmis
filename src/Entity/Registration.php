@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Payment\PriceOption;
 use App\Repository\RegistrationRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -13,57 +14,57 @@ class Registration
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: Types::INTEGER)]
     private ?int $id = null;
 
-    #[ORM\Column(type: 'text', nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $comment = null;
 
-    #[ORM\Column(type: 'text', nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $privateNote = null;
 
-    #[ORM\Column(type: 'text', length: 55, nullable: true)]
+    #[ORM\Column(type: Types::TEXT, length: 55, nullable: true)]
     private ?string $licenceNumber = null;
 
-    #[ORM\Column(type: 'datetime', nullable: true)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTime $licenceDate = null;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     private ?string $medicalCertificateUrl = null;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     private ?string $licenceFormUrl = null;
 
-    #[ORM\Column(type: 'boolean')]
+    #[ORM\Column(type: Types::BOOLEAN)]
     private bool $usePassCitizen = false;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     private ?string $passCitizenUrl = null;
 
-    #[ORM\Column(type: 'boolean')]
+    #[ORM\Column(type: Types::BOOLEAN)]
     private bool $usePassSport = false;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     private ?string $passSportUrl = null;
 
-    #[ORM\Column(type: 'boolean')]
+    #[ORM\Column(type: Types::BOOLEAN)]
     private bool $useCCAS = false;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private \DateTime $registeredAt;
 
-    #[ORM\Column(type: 'boolean')]
+    #[ORM\Column(type: Types::BOOLEAN)]
     #[Assert\NotNull]
     private ?bool $copyrightAuthorization = null;
 
-    #[ORM\Column(type: 'boolean')]
+    #[ORM\Column(type: Types::BOOLEAN)]
     private bool $withLegalRepresentative = false;
 
-    #[ORM\Column(type: 'string', length: 55)]
+    #[ORM\Column(type: Types::STRING, length: 55)]
     #[Assert\NotNull]
     private ?string $registrationType = null;
 
-    #[ORM\Column(type: 'boolean')]
+    #[ORM\Column(type: Types::BOOLEAN)]
     private bool $reEnrollment = false;
 
     #[ORM\OneToOne(targetEntity: LegalRepresentative::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
@@ -94,7 +95,7 @@ class Registration
     #[ORM\JoinColumn(nullable: false)]
     protected Season $season;
 
-    #[ORM\Column(type: 'boolean')]
+    #[ORM\Column(type: Types::BOOLEAN)]
     private bool $verified = false;
 
     private ?UploadedFile $medicalCertificateFile = null;

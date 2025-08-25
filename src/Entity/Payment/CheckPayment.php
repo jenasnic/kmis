@@ -4,6 +4,7 @@ namespace App\Entity\Payment;
 
 use App\Enum\PaymentTypeEnum;
 use App\Repository\Payment\CheckPaymentRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -11,11 +12,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table(name: 'payment_check')]
 class CheckPayment extends AbstractPayment
 {
-    #[ORM\Column(type: 'string', length: 55)]
+    #[ORM\Column(type: Types::STRING, length: 55)]
     #[Assert\NotBlank]
     private ?string $number = null;
 
-    #[ORM\Column(type: 'datetime', nullable: true)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     protected ?\DateTime $cashingDate = null;
 
     public function getNumber(): ?string

@@ -5,12 +5,13 @@ namespace App\Entity\Payment;
 use App\Entity\Adherent;
 use App\Entity\Season;
 use App\Repository\Payment\PaymentRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PaymentRepository::class)]
 #[ORM\InheritanceType(value: 'JOINED')]
-#[ORM\DiscriminatorColumn(name: 'type', type: 'string')]
+#[ORM\DiscriminatorColumn(name: 'type', type: Types::STRING)]
 #[ORM\DiscriminatorMap([
     'ancv' => AncvPayment::class,
     'cash' => CashPayment::class,
@@ -25,18 +26,18 @@ abstract class AbstractPayment
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: Types::INTEGER)]
     protected ?int $id = null;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     #[Assert\NotNull]
     protected \DateTime $date;
 
-    #[ORM\Column(type: 'float')]
+    #[ORM\Column(type: Types::FLOAT)]
     #[Assert\GreaterThan(0)]
     protected ?float $amount = null;
 
-    #[ORM\Column(type: 'text', nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     protected ?string $comment = null;
 
     #[ORM\ManyToOne(targetEntity: Adherent::class)]

@@ -3,16 +3,17 @@
 namespace App\Entity;
 
 use App\Repository\ConfigurationRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ConfigurationRepository::class)]
 class Configuration
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'string', length: 55)]
+    #[ORM\Column(type: Types::STRING, length: 55)]
     private string $code;
 
-    #[ORM\Column(type: 'text')]
+    #[ORM\Column(type: Types::TEXT)]
     private string $value;
 
     public function __construct(string $code, string $value)
