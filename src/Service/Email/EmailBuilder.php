@@ -10,9 +10,9 @@ class EmailBuilder
     private Email $email;
 
     public function __construct(
-        protected Environment $twig,
-        protected string $mailerSender,
-        protected string $mailerContact,
+        private readonly Environment $twig,
+        private readonly string $mailerSender,
+        private readonly string $mailerContact,
     ) {
         $this->email = new Email();
     }

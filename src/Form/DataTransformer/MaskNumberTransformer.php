@@ -9,8 +9,9 @@ use Symfony\Component\Form\DataTransformerInterface;
  */
 class MaskNumberTransformer implements DataTransformerInterface
 {
-    public function __construct(protected int $floatPrecision)
-    {
+    public function __construct(
+        private readonly int $floatPrecision,
+    ) {
     }
 
     public function transform(mixed $value): mixed

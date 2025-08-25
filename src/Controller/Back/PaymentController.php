@@ -38,10 +38,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class PaymentController extends AbstractController
 {
     public function __construct(
-        protected TranslatorInterface $translator,
-        protected SeasonRepository $seasonRepository,
-        protected PaymentRepository $paymentRepository,
-        protected RegistrationRepository $registrationRepository,
+        private readonly TranslatorInterface $translator,
+        private readonly SeasonRepository $seasonRepository,
+        private readonly PaymentRepository $paymentRepository,
+        private readonly RegistrationRepository $registrationRepository,
     ) {
     }
 

@@ -7,8 +7,9 @@ use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 
 class FileCleaner
 {
-    public function __construct(protected PropertyAccessorInterface $propertyAccessor)
-    {
+    public function __construct(
+        private readonly PropertyAccessorInterface $propertyAccessor,
+    ) {
     }
 
     public function cleanEntity(object $entity, ?string $type = null): void

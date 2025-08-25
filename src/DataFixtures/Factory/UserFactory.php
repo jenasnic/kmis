@@ -22,8 +22,9 @@ final class UserFactory extends PersistentProxyObjectFactory
 
     private int $counter = 0;
 
-    public function __construct(protected UserPasswordHasherInterface $passwordHasher)
-    {
+    public function __construct(
+        private readonly UserPasswordHasherInterface $passwordHasher,
+    ) {
         parent::__construct();
 
         $this->faker = Factory::create('fr_FR');

@@ -8,8 +8,8 @@ use Symfony\Component\Mime\Email;
 class EmailSender
 {
     public function __construct(
-        protected MailerInterface $mailer,
-        protected EmailBuilderFactory $emailBuilderFactory,
+        private readonly MailerInterface $mailer,
+        private readonly EmailBuilderFactory $emailBuilderFactory,
     ) {
     }
 

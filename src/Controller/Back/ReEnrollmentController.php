@@ -20,13 +20,13 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class ReEnrollmentController extends AbstractController
 {
     public function __construct(
-        protected TranslatorInterface $translator,
-        protected SeasonRepository $seasonRepository,
-        protected ReEnrollmentTokenRepository $reEnrollmentTokenRepository,
-        protected ReEnrollmentNotifier $reEnrollmentNotifier,
-        protected ReEnrollmentHandler $reEnrollmentHandler,
-        protected FileCleaner $fileCleaner,
-        protected int $mailerMaxPacketSize,
+        private readonly TranslatorInterface $translator,
+        private readonly SeasonRepository $seasonRepository,
+        private readonly ReEnrollmentTokenRepository $reEnrollmentTokenRepository,
+        private readonly ReEnrollmentNotifier $reEnrollmentNotifier,
+        private readonly ReEnrollmentHandler $reEnrollmentHandler,
+        private readonly FileCleaner $fileCleaner,
+        private readonly int $mailerMaxPacketSize,
     ) {
     }
 

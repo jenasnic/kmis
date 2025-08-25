@@ -8,8 +8,9 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 class GoogleCaptchaValidator extends ConstraintValidator
 {
-    public function __construct(protected GoogleCaptchaValidation $googleCaptchaValidation)
-    {
+    public function __construct(
+        private readonly GoogleCaptchaValidation $googleCaptchaValidation,
+    ) {
     }
 
     public function validate(mixed $value, Constraint $constraint): void

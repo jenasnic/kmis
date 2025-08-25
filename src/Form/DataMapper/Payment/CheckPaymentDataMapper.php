@@ -11,8 +11,8 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 class CheckPaymentDataMapper implements DataMapperInterface
 {
     public function __construct(
-        protected Adherent $adherent,
-        protected Season $season,
+        private readonly Adherent $adherent,
+        private readonly Season $season,
     ) {
     }
 

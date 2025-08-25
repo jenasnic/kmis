@@ -21,7 +21,7 @@ use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 class RegistrationController extends AbstractController
 {
     public function __construct(
-        protected TranslatorInterface $translator,
+        private readonly TranslatorInterface $translator,
     ) {
     }
 

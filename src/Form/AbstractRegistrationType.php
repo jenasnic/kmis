@@ -25,8 +25,9 @@ use Symfony\Component\Validator\Constraints\NotNull;
 
 abstract class AbstractRegistrationType extends AbstractType
 {
-    public function __construct(protected RouterInterface $router)
-    {
+    public function __construct(
+        protected RouterInterface $router,
+    ) {
     }
 
     abstract protected function showPassSportHelp(): bool;

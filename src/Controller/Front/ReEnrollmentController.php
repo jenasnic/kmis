@@ -25,10 +25,10 @@ class ReEnrollmentController extends AbstractController
     protected const RE_ENROLLMENT_TOKEN = 're_enrollment_token';
 
     public function __construct(
-        protected RequestStack $requestStack,
-        protected TranslatorInterface $translator,
-        protected FileCleaner $fileCleaner,
-        protected ReEnrollmentTokenRepository $reEnrollmentTokenRepository,
+        private readonly RequestStack $requestStack,
+        private readonly TranslatorInterface $translator,
+        private readonly FileCleaner $fileCleaner,
+        private readonly ReEnrollmentTokenRepository $reEnrollmentTokenRepository,
     ) {
     }
 

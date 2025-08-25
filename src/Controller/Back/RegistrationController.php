@@ -20,8 +20,9 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegistrationController extends AbstractController
 {
-    public function __construct(protected TranslatorInterface $translator)
-    {
+    public function __construct(
+        private readonly TranslatorInterface $translator,
+    ) {
     }
 
     #[Route('/adherent/nouvelle-inscription', name: 'bo_registration_new', methods: ['GET', 'POST', 'PATCH'])]

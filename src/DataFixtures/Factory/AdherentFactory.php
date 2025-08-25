@@ -25,8 +25,8 @@ final class AdherentFactory extends PersistentProxyObjectFactory
     private AsciiSlugger $slugger;
 
     public function __construct(
-        protected Filesystem $filesystem,
-        protected string $uploadPath,
+        private readonly Filesystem $filesystem,
+        private readonly string $uploadPath,
     ) {
         parent::__construct();
 

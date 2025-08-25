@@ -14,8 +14,8 @@ use Symfony\Component\RateLimiter\RateLimiterFactory;
 final class ResetLimiterCommand extends Command
 {
     public function __construct(
-        protected RateLimiterFactory $loginLimiter,
-        protected RateLimiterFactory $emailLimiter,
+        private readonly RateLimiterFactory $loginLimiter,
+        private readonly RateLimiterFactory $emailLimiter,
     ) {
         parent::__construct();
     }

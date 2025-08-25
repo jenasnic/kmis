@@ -9,8 +9,9 @@ use App\Repository\SeasonRepository;
 
 class RegistrationFactory
 {
-    public function __construct(protected SeasonRepository $seasonRepository)
-    {
+    public function __construct(
+        private readonly SeasonRepository $seasonRepository,
+    ) {
     }
 
     /**

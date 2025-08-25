@@ -12,8 +12,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class ConfigurationController extends AbstractController
 {
     public function __construct(
-        protected TranslatorInterface $translator,
-        protected ConfigurationManager $configurationManager,
+        private readonly TranslatorInterface $translator,
+        private readonly ConfigurationManager $configurationManager,
     ) {
     }
 

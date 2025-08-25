@@ -10,8 +10,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class GoogleCaptchaType extends AbstractType
 {
-    public function __construct(protected string $googleCaptchaSiteKey)
-    {
+    public function __construct(
+        private readonly string $googleCaptchaSiteKey,
+    ) {
     }
 
     public function buildView(FormView $view, FormInterface $form, array $options): void

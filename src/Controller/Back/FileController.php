@@ -15,8 +15,7 @@ class FileController extends AbstractController
 {
     private AsciiSlugger $slugger;
 
-    public function __construct(protected string $uploadPath)
-    {
+    public function __construct() {
         $this->slugger = new AsciiSlugger('fr_FR');
     }
 

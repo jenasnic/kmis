@@ -17,8 +17,9 @@ use Symfony\Component\Validator\Constraints\File;
 
 class NewsType extends AbstractType
 {
-    public function __construct(protected RouterInterface $router)
-    {
+    public function __construct(
+        private readonly RouterInterface $router,
+    ) {
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void

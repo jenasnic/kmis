@@ -15,8 +15,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class PaymentCsvExport extends AbstractCsvExport
 {
     public function __construct(
-        protected TranslatorInterface $translator,
-        protected PaymentRepository $paymentRepository,
+        private readonly TranslatorInterface $translator,
+        private readonly PaymentRepository $paymentRepository,
     ) {
     }
 

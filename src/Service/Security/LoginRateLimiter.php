@@ -12,10 +12,10 @@ use Symfony\Component\Security\Http\SecurityRequestAttributes;
 class LoginRateLimiter extends AbstractRequestRateLimiter
 {
     public function __construct(
-        protected RateLimiterFactory $loginLimiter,
-        protected RateLimiterFactory $emailLimiter,
-        protected EmailSender $emailSender,
-        protected string $mailerContact,
+        private readonly RateLimiterFactory $loginLimiter,
+        private readonly RateLimiterFactory $emailLimiter,
+        private readonly EmailSender $emailSender,
+        private readonly string $mailerContact,
     ) {
     }
 

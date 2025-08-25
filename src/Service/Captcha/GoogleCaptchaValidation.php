@@ -8,9 +8,9 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 class GoogleCaptchaValidation
 {
     public function __construct(
-        protected RequestStack $requestStack,
-        protected HttpClientInterface $googleCaptchaClient,
-        protected string $googleCaptchaPrivateKey,
+        private readonly RequestStack $requestStack,
+        private readonly HttpClientInterface $googleCaptchaClient,
+        private readonly string $googleCaptchaPrivateKey,
     ) {
     }
 

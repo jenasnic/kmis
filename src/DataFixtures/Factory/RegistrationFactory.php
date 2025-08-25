@@ -19,8 +19,8 @@ final class RegistrationFactory extends PersistentProxyObjectFactory
     private Generator $faker;
 
     public function __construct(
-        protected Filesystem $filesystem,
-        protected string $uploadPath,
+        private readonly Filesystem $filesystem,
+        private readonly string $uploadPath,
     ) {
         parent::__construct();
 

@@ -19,9 +19,9 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class NewsController extends AbstractController
 {
     public function __construct(
-        protected NewsRepository $newsRepository,
-        protected TranslatorInterface $translator,
-        protected EntityManagerInterface $entityManager,
+        private readonly NewsRepository $newsRepository,
+        private readonly TranslatorInterface $translator,
+        private readonly EntityManagerInterface $entityManager,
     ) {
     }
 

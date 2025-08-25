@@ -20,10 +20,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class AdherentController extends AbstractController
 {
     public function __construct(
-        protected SeasonRepository $seasonRepository,
-        protected AdherentRepository $adherentRepository,
-        protected RegistrationRepository $registrationRepository,
-        protected TranslatorInterface $translator,
+        private readonly SeasonRepository $seasonRepository,
+        private readonly AdherentRepository $adherentRepository,
+        private readonly RegistrationRepository $registrationRepository,
+        private readonly TranslatorInterface $translator,
     ) {
     }
 

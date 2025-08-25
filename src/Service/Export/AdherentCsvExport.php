@@ -10,8 +10,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class AdherentCsvExport extends AbstractCsvExport
 {
     public function __construct(
-        protected TranslatorInterface $translator,
-        protected RegistrationRepository $registrationRepository,
+        private readonly TranslatorInterface $translator,
+        private readonly RegistrationRepository $registrationRepository,
     ) {
     }
 

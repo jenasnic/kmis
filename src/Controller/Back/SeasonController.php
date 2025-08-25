@@ -21,11 +21,11 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class SeasonController extends AbstractController
 {
     public function __construct(
-        protected TranslatorInterface $translator,
-        protected SeasonRepository $seasonRepository,
-        protected AdherentRepository $adherentRepository,
-        protected ReEnrollmentTokenRepository $reEnrollmentTokenRepository,
-        protected ConfigurationManager $configurationManager,
+        private readonly TranslatorInterface $translator,
+        private readonly SeasonRepository $seasonRepository,
+        private readonly AdherentRepository $adherentRepository,
+        private readonly ReEnrollmentTokenRepository $reEnrollmentTokenRepository,
+        private readonly ConfigurationManager $configurationManager,
     ) {
     }
 
