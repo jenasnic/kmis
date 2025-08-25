@@ -75,15 +75,11 @@ class RegistrationController extends AbstractController
             $confirmRegistrationHandler->handle(new ConfirmRegistrationCommand($registration, $request));
 
             $this->addFlash('info', $this->translator->trans('front.registration.validation.success'));
-        } catch (HandlerFailedException $exception) {
-            $previous = $exception->getPrevious();
-            if ($previous instanceof VerifyEmailExceptionInterface) {
-                $this->addFlash('error', $this->translator->trans($previous->getReason(), [], 'VerifyEmailBundle'));
+        } catch (VerifyEmailExceptionInterface $exception) {
+            // @todo: test errors X3!
+            $this->addFlash('error', $this->translator->trans($exception->getReason(), [], 'VerifyEmailBundle'));
 
-                return $this->redirectToRoute('app_registration');
-            } else {
-                throw $exception;
-            }
+            return $this->redirectToRoute('app_registration');
         }
 
         return $this->redirectToRoute('app_home');

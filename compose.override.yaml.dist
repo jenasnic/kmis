@@ -7,7 +7,7 @@ services:
   mailbox:
     image: mailhog/mailhog
     ports:
-      - '8081:8025'
+      - '8025:8025'
 
   node:
     ports:

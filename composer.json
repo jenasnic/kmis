@@ -13,7 +13,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.4",
         "doctrine/orm": "^3.5",
         "phpstan/phpdoc-parser": "^2.2",
-        "symfony/apache-pack": "*",
+        "symfony/apache-pack": "^1.0",
         "symfony/asset": "7.3.*",
         "symfony/console": "7.3.*",
         "symfony/dotenv": "7.3.*",
@@ -97,17 +97,17 @@
         }
     },
     "require-dev": {
-        "doctrine/doctrine-fixtures-bundle": "*",
-        "phpstan/extension-installer": "*",
-        "phpstan/phpstan": "*",
-        "phpstan/phpstan-doctrine": "*",
-        "phpstan/phpstan-symfony": "*",
+        "doctrine/doctrine-fixtures-bundle": "^4.1",
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan": "^2.1",
+        "phpstan/phpstan-doctrine": "^2.0",
+        "phpstan/phpstan-symfony": "^2.0",
         "symfony/browser-kit": "7.3.*",
         "symfony/css-selector": "7.3.*",
         "symfony/debug-bundle": "7.3.*",
         "symfony/maker-bundle": "^1.0",
         "symfony/stopwatch": "7.3.*",
         "symfony/web-profiler-bundle": "7.3.*",
-        "zenstruck/foundry": "*"
+        "zenstruck/foundry": "^2.6"
     }
 }

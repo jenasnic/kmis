@@ -21,6 +21,9 @@ use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\NotNull;
 
+/**
+ * @template-extends AbstractType<Adherent>
+ */
 class AdherentType extends AbstractType
 {
     public function __construct(
@@ -30,6 +33,9 @@ class AdherentType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        /** @var bool $forKmis */
+        $forKmis = $options['kmis_version'];
+
         $builder
             ->add('firstName', TextType::class, [
                 'disabled' => $options['re_enrollment'],
@@ -61,11 +67,14 @@ class AdherentType extends AbstractType
             ->add('address', AddressType::class, [
                 'label' => false,
             ])
-            ->add('reEnrollmentToNotify', CheckboxType::class, [
+        ;
+
+        if ($forKmis) {
+            $builder->add('reEnrollmentToNotify', CheckboxType::class, [
                 'required' => false,
                 'help' => 'form.adherent.reEnrollmentToNotifyHelp',
-            ])
-        ;
+            ]);
+        }
 
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($options) {
             $form = $event->getForm();

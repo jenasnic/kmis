@@ -12,6 +12,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * @template-extends AbstractType<Address>
+ */
 class AddressType extends AbstractType implements DataMapperInterface
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -35,6 +38,9 @@ class AddressType extends AbstractType implements DataMapperInterface
         ]);
     }
 
+    /**
+     * @param \Traversable<FormInterface<string|null>> $forms
+     */
     public function mapDataToForms($viewData, \Traversable $forms): void
     {
         if (null === $viewData) {
@@ -53,6 +59,9 @@ class AddressType extends AbstractType implements DataMapperInterface
         $forms['city']->setData($viewData->getCity());
     }
 
+    /**
+     * @param \Traversable<FormInterface<string|null>> $forms
+     */
     public function mapFormsToData(\Traversable $forms, &$viewData): void
     {
         $forms = iterator_to_array($forms);

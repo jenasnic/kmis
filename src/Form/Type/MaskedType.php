@@ -14,6 +14,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * Allows to define a field with pattern mask input.
  *
  * @see https://imask.js.org/guide.html#masked-pattern
+ *
+ * @template-extends AbstractType<string>
  */
 class MaskedType extends AbstractType
 {

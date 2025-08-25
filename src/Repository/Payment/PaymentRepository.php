@@ -70,13 +70,12 @@ class PaymentRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return Generator<AbstractPayment>>
+     * @return \Generator<AbstractPayment>
      */
     public function findForExport(int $seasonId): \Generator
     {
         $result = $this->findForSeason($seasonId);
 
-        /** @var AbstractPayment $item */
         foreach ($result as $item) {
             yield $item;
         }

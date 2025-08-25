@@ -115,6 +115,9 @@ class NewRegistrationType extends AbstractRegistrationType
         return true;
     }
 
+    /**
+     * @param FormInterface<Registration> $form
+     */
     protected function toggleMedicalCertificate(FormInterface $form, string $registrationType, bool $forKmis): void
     {
         $fileConstraints = [

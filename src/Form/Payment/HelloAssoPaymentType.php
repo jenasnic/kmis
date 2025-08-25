@@ -10,6 +10,9 @@ use Symfony\Component\Form\DataMapperInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * @template-extends AbstractPaymentType<HelloAssoPayment>
+ */
 class HelloAssoPaymentType extends AbstractPaymentType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void

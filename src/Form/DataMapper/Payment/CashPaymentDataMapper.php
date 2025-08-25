@@ -7,6 +7,7 @@ use App\Entity\Payment\CashPayment;
 use App\Entity\Season;
 use Symfony\Component\Form\DataMapperInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
+use Symfony\Component\Form\FormInterface;
 
 class CashPaymentDataMapper implements DataMapperInterface
 {
@@ -18,6 +19,7 @@ class CashPaymentDataMapper implements DataMapperInterface
 
     /**
      * @param CashPayment|null $viewData
+     * @param \Traversable<FormInterface<mixed>> $forms
      */
     public function mapDataToForms($viewData, \Traversable $forms): void
     {
@@ -33,6 +35,7 @@ class CashPaymentDataMapper implements DataMapperInterface
     }
 
     /**
+     * @param \Traversable<FormInterface<mixed>> $forms
      * @param CashPayment|null $viewData
      */
     public function mapFormsToData(\Traversable $forms, &$viewData): void

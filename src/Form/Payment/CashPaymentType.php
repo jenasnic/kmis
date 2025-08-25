@@ -10,6 +10,9 @@ use Symfony\Component\Form\DataMapperInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * @template-extends AbstractPaymentType<CashPayment>
+ */
 class CashPaymentType extends AbstractPaymentType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void

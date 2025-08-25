@@ -15,10 +15,10 @@ use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
  */
 final class AdherentFactory extends PersistentProxyObjectFactory
 {
-    private string $malePicture = __DIR__.'/data/male.jpg';
-    private string $femalePicture = __DIR__.'/data/female.jpg';
+    private string $malePicture;
+    private string $femalePicture;
 
-    private int $counter = 0;
+    private int $counter;
 
     private Generator $faker;
 
@@ -29,6 +29,10 @@ final class AdherentFactory extends PersistentProxyObjectFactory
         private readonly string $uploadPath,
     ) {
         parent::__construct();
+
+        $this->malePicture = __DIR__.'/data/male.jpg';
+        $this->femalePicture = __DIR__.'/data/female.jpg';
+        $this->counter = 0;
 
         $this->faker = Factory::create('fr_FR');
         $this->slugger = new AsciiSlugger('fr_FR');

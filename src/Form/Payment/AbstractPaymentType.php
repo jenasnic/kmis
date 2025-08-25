@@ -3,6 +3,7 @@
 namespace App\Form\Payment;
 
 use App\Entity\Adherent;
+use App\Entity\Payment\AbstractPayment;
 use App\Entity\Season;
 use App\Form\Type\NumberType;
 use Symfony\Component\Form\AbstractType;
@@ -12,6 +13,11 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * @template T of AbstractPayment
+ *
+ * @template-extends AbstractType<T>
+ */
 abstract class AbstractPaymentType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void

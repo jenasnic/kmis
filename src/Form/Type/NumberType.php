@@ -14,6 +14,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * Allows to define a number input using mask input.
  *
  * @see https://imask.js.org/guide.html#masked-number
+ *
+ * @template-extends AbstractType<string>
  */
 class NumberType extends AbstractType
 {

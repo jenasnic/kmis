@@ -14,7 +14,7 @@ use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
  */
 final class RegistrationFactory extends PersistentProxyObjectFactory
 {
-    private string $fileModel = __DIR__.'/data/test.pdf';
+    private string $fileModel;
 
     private Generator $faker;
 
@@ -23,6 +23,8 @@ final class RegistrationFactory extends PersistentProxyObjectFactory
         private readonly string $uploadPath,
     ) {
         parent::__construct();
+
+        $this->fileModel = __DIR__.'/data/test.pdf';
 
         $this->faker = Factory::create('fr_FR');
     }

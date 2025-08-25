@@ -12,6 +12,9 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * @template-extends AbstractType<Season>
+ */
 class SeasonType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void

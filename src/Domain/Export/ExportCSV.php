@@ -27,7 +27,7 @@ class ExportCSV
     }
 
     /**
-     * @param array<string, string> $line
+     * @param array<array-key, string> $line
      */
     public function add(array $line): void
     {

@@ -23,6 +23,9 @@ use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\NotNull;
 
+/**
+ * @template-extends AbstractType<Registration>
+ */
 abstract class AbstractRegistrationType extends AbstractType
 {
     public function __construct(
@@ -118,6 +121,7 @@ abstract class AbstractRegistrationType extends AbstractType
     }
 
     /**
+     * @param FormBuilderInterface<Registration|null> $builder
      * @param array<string, mixed> $options
      */
     protected function addInternalFields(FormBuilderInterface $builder, array $options): void
@@ -139,6 +143,9 @@ abstract class AbstractRegistrationType extends AbstractType
         ;
     }
 
+    /**
+     * @param FormInterface<Registration> $form
+     */
     protected function processPassField(FormInterface $form, bool $usePass, string $checkboxFieldName, string $uploadFieldName, ?string $downloadUri = null): void
     {
         $passOptions = [
@@ -171,6 +178,9 @@ abstract class AbstractRegistrationType extends AbstractType
         $this->togglePass($form, $uploadFieldName, $usePass, $downloadUri);
     }
 
+    /**
+     * @param FormInterface<Registration> $form
+     */
     protected function toggleLegalRepresentative(FormInterface $form, bool $state): void
     {
         if (!$state) {
@@ -182,6 +192,9 @@ abstract class AbstractRegistrationType extends AbstractType
         $form->add('legalRepresentative', LegalRepresentativeType::class);
     }
 
+    /**
+     * @param FormInterface<Registration> $form
+     */
     protected function togglePass(FormInterface $form, string $fieldName, bool $state, ?string $downloadUri = null): void
     {
         if (!$state) {

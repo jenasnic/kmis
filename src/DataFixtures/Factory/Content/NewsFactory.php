@@ -13,7 +13,7 @@ use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
  */
 final class NewsFactory extends PersistentProxyObjectFactory
 {
-    private string $newsPicture = __DIR__.'/../data/news.jpg';
+    private string $newsPicture;
 
     private Generator $faker;
 
@@ -22,6 +22,8 @@ final class NewsFactory extends PersistentProxyObjectFactory
         private readonly string $uploadPath,
     ) {
         parent::__construct();
+
+        $this->newsPicture = __DIR__.'/../data/news.jpg';
 
         $this->faker = Factory::create('fr_FR');
     }

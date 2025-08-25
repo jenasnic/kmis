@@ -9,6 +9,9 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * @template-extends AbstractType<News>
+ */
 class NewsListType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void

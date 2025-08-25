@@ -1,13 +1,18 @@
 parameters:
     level: max
     symfony:
-        container_xml_path: ./var/cache/dev/App_KernelDevDebugContainer.xml
-        constant_hassers: false
+        containerXmlPath: ./var/cache/dev/App_KernelDevDebugContainer.xml
+        constantHassers: false
     ignoreErrors:
         -
             message: '/(.*)type mapping mismatch(.*)database expects(.*)/'
             path: **/Entity/**.php
+        -
+            message: '/(.*)never assigns null to &\$viewData so it can be removed from the by-ref type(.*)/'
+            path: **/Form/**.php
+        -
+            message: '/(.*)is assigned outside of the constructor(.*)/'
+            path: **/DataFixtures/Factory/**.php
     excludePaths:
     doctrine:
         objectManagerLoader: tests/object-manager.php
-        searchOtherMethodsForQueryBuilderBeginning: true

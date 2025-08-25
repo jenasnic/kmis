@@ -13,6 +13,9 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * @template-extends AbstractType<NewPaymentCommand>
+ */
 class NewPaymentType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -71,6 +74,9 @@ class NewPaymentType extends AbstractType
         ]);
     }
 
+    /**
+     * @param FormInterface<NewPaymentCommand> $form
+     */
     private function togglePaymentMode(FormInterface $form, Adherent $adherent, Season $season, ?string $mode): void
     {
         if (!$mode) {

@@ -20,17 +20,22 @@ final class UserFactory extends PersistentProxyObjectFactory
 
     private AsciiSlugger $slugger;
 
-    private int $counter = 0;
+    private int $counter;
 
     public function __construct(
         private readonly UserPasswordHasherInterface $passwordHasher,
     ) {
         parent::__construct();
 
+        $this->counter = 0;
+
         $this->faker = Factory::create('fr_FR');
         $this->slugger = new AsciiSlugger('fr_FR');
     }
 
+    /**
+     * @return array<string|bool>
+     */
     protected function defaults(): array|callable
     {
         $firstName = $this->faker->firstName();
@@ -55,6 +60,7 @@ final class UserFactory extends PersistentProxyObjectFactory
     protected function initialize(): static
     {
         return $this->afterInstantiate(function (User $user, array $attributes) {
+            /** @var array{password: string} $attributes */
             $user->setPassword($this->passwordHasher->hashPassword($user, $attributes['password']));
         });
     }

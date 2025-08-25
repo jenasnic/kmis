@@ -8,6 +8,9 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * @template-extends AbstractType<string>
+ */
 class WysiwygType extends AbstractType
 {
     public function buildView(FormView $view, FormInterface $form, array $options): void

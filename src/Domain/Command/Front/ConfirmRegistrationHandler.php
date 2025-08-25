@@ -6,6 +6,7 @@ use App\Enum\DiscountCodeEnum;
 use App\Service\Email\EmailBuilder;
 use App\Service\Email\EmailSender;
 use Doctrine\ORM\EntityManagerInterface;
+use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 use SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface;
 
 final class ConfirmRegistrationHandler
@@ -18,6 +19,9 @@ final class ConfirmRegistrationHandler
     ) {
     }
 
+    /**
+     * @throws VerifyEmailExceptionInterface
+     */
     public function handle(ConfirmRegistrationCommand $command): void
     {
         $registration = $command->registration;

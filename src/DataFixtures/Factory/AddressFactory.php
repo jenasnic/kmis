@@ -18,8 +18,10 @@ final class AddressFactory
         $department = FakerAddress::department();
         $departmentNumber = (string) array_key_first($department);
 
+        /** @var string $streetPrefix */
+        $streetPrefix = FakerAddress::streetPrefix();
         $defaultAttributes = [
-            'street' => sprintf('%u %s %s %s', $faker->numberBetween(1, 50), FakerAddress::streetPrefix(), $faker->firstName(), $faker->lastName()),
+            'street' => sprintf('%u %s %s %s', $faker->numberBetween(1, 50), $streetPrefix, $faker->firstName(), $faker->lastName()),
             'zipCode' => str_pad($departmentNumber, 5, '0'),
             'city' => $faker->city(),
         ];
