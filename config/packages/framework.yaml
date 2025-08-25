@@ -1,12 +1,19 @@
 # see https://symfony.com/doc/current/reference/configuration/framework.html
 framework:
     secret: '%env(APP_SECRET)%'
+    csrf_protection: true
+    http_method_override: true
 
     # Note that the session will be started ONLY if you read or write from it.
     session: true
 
     #esi: true
     #fragments: true
+
+    http_client:
+        scoped_clients:
+            google_captcha.client:
+                base_uri: 'https://www.google.com/recaptcha/api/'
 
 when@test:
     framework:
