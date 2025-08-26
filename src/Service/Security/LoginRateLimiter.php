@@ -41,7 +41,6 @@ class LoginRateLimiter extends AbstractRequestRateLimiter
 
     protected function getLimiters(Request $request): array
     {
-
         $username = $request->attributes->get(SecurityRequestAttributes::LAST_USERNAME, '');
         if (!is_string($username)) {
             throw new \LogicException('invalid username');

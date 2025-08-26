@@ -15,7 +15,8 @@ class FileController extends AbstractController
 {
     private AsciiSlugger $slugger;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->slugger = new AsciiSlugger('fr_FR');
     }
 

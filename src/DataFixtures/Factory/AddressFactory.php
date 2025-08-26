@@ -3,8 +3,8 @@
 namespace App\DataFixtures\Factory;
 
 use App\ValueObject\Address;
-use Faker\Provider\fr_FR\Address as FakerAddress;
 use Faker\Factory;
+use Faker\Provider\fr_FR\Address as FakerAddress;
 
 final class AddressFactory
 {

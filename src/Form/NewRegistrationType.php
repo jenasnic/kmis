@@ -58,7 +58,6 @@ class NewRegistrationType extends AbstractRegistrationType
                 'constraints' => $fileConstraints,
             ];
 
-            //
             if (!$forKmis && !empty($registration->getSeason()->getLicenceLink())) {
                 $fieldOptions['help'] = 'form.newRegistration.licenceFormFileHelp';
                 $fieldOptions['help_html'] = true;
@@ -66,7 +65,6 @@ class NewRegistrationType extends AbstractRegistrationType
             }
 
             $form->add('licenceFormFile', BulmaFileType::class, $fieldOptions);
-
         });
 
         if ($forKmis) {
