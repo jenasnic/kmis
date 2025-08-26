@@ -1,419 +1,312 @@
-global:
-  activate: Activer
-  add: Ajouter
-  back: Retour
-  browse: Parcourir
-  cancel: Annuler
-  confirmVerify: Confirmer la vérification ?
-  confirmDelete: Confirmer la suppression ?
-  confirmEnable: Confirmer l'activation ?
-  confirmDisable: Confirmer la désactivation ?
-  delete: Supprimer
-  export: Exporter
-  login: Se connecter
-  logout: Se déconnecter
-  more: En savoir plus
-  no: Non
-  preview: Prévisualiser
-  reEnrollment: Réinscrire
-  save: Enregistrer
-  search: Rechercher
-  seeAll: Voir tout
-  validate: Valider
-  verify: Verifier
-  yes: Oui
+global.activate: Activer
+global.add: Ajouter
+global.back: Retour
+global.browse: Parcourir
+global.cancel: Annuler
+global.confirmVerify: Confirmer la vérification ?
+global.confirmDelete: Confirmer la suppression ?
+global.confirmEnable: Confirmer l'activation ?
+global.confirmDisable: Confirmer la désactivation ?
+global.delete: Supprimer
+global.export: Exporter
+global.login: Se connecter
+global.logout: Se déconnecter
+global.more: En savoir plus
+global.no: Non
+global.preview: Prévisualiser
+global.reEnrollment: Réinscrire
+global.save: Enregistrer
+global.search: Rechercher
+global.seeAll: Voir tout
+global.validate: Valider
+global.verify: Verifier
+global.yes: Oui
 
-enum:
+enum.gender.FEMALE: Femme
+enum.gender.MALE: Homme
 
-  gender:
-    FEMALE: Femme
-    MALE: Homme
+enum.passSport.PASS_CITIZEN: Pass'sport (15€)
+enum.passSport.PASS_SPORT: Pass'sport (50€)
+enum.passSport.BOTH: Double pass (70€)
 
-  passSport:
-    PASS_CITIZEN: Pass'sport (15€)
-    PASS_SPORT: Pass'sport (50€)
-    BOTH: Double pass (70€)
+enum.paymentType.ANCV: Chèque ANCV
+enum.paymentType.CASH: Espèce
+enum.paymentType.CHECK: Chèque
+enum.paymentType.DISCOUNT: Remise
+enum.paymentType.HELLO_ASSO: HelloAsso
+enum.paymentType.TRANSFER: Virement
+enum.paymentType.PASS: Pass'Sport
 
-  paymentType:
-    ANCV: Chèque ANCV
-    CASH: Espèce
-    CHECK: Chèque
-    DISCOUNT: Remise
-    HELLO_ASSO: HelloAsso
-    TRANSFER: Virement
-    PASS: Pass'Sport
+enum.registrationType.ADULT: Adulte
+enum.registrationType.MINOR: Mineur
+enum.registrationType.COMPETITOR: Compétiteur
 
-  registrationType:
-    ADULT: Adulte
-    MINOR: Mineur
-    COMPETITOR: Compétiteur
+login.password: Mot de passe
+login.title: Connexion
+login.username: Login
 
-login:
-  password: Mot de passe
-  title: Connexion
-  username: Login
+back.adherent.edit.success: Adhérent mis à jour
+back.adherent.edit.title: Fiche adhérent
+back.adherent.edit.new: Nouvel adhérent
+back.adherent.delete.success: Adhérent supprimé
+back.adherent.list.full: Liste complète
+back.adherent.list.count: Adhérent(s)
+back.adherent.list.filter.FEMALE: Femmes
+back.adherent.list.filter.MALE: Hommes
+back.adherent.list.filter.YOUNG: Ados
+back.adherent.list.filter.ALL: Tous
+back.adherent.list.action.add: Nouvelle inscription
+back.adherent.list.header.email: E-Mail
+back.adherent.list.header.firstName: Prénom
+back.adherent.list.header.lastName: Nom
+back.adherent.list.header.phone: Téléphone
+back.adherent.list.header.reEnrollment: Réinscription
+back.adherent.list.header.registeredAt: Date insc.
+back.adherent.list.header.season: Saison
+back.adherent.list.header.sold: Cotisation
+back.adherent.list.header.verified: Validation
+back.adherent.tab.adherent: Adherent
+back.adherent.tab.payments: Paiements
+back.adherent.tab.registration: Fiche inscription
 
-back:
+back.menu.adherent: Adhérents
+back.menu.dashboard: Dashboard
+back.menu.gallery: Trombinoscope
+back.menu.news: Actualites
+back.menu.payment: Cotisations
+back.menu.season: Saisons
 
-  adherent:
-    edit:
-      success: Adhérent mis à jour
-      title: Fiche adhérent
-      new: Nouvel adhérent
-    delete:
-      success: Adhérent supprimé
-    list:
-      full: Liste complète
-      count: Adhérent(s)
-      filter:
-        FEMALE: Femmes
-        MALE: Hommes
-        YOUNG: Ados
-        ALL: Tous
-      action:
-        add: Nouvelle inscription
-      header:
-        email: E-Mail
-        firstName: Prénom
-        lastName: Nom
-        phone: Téléphone
-        reEnrollment: Réinscription
-        registeredAt: Date insc.
-        season: Saison
-        sold: Cotisation
-        verified: Validation
-    tab:
-      adherent: Adherent
-      payments: Paiements
-      registration: Fiche inscription
+back.news.edit.success: Actualité mise à jour
+back.news.edit.title: Actualité
+back.news.edit.new: Nouvelle actualité
+back.news.delete.success: Actualité supprimée
+back.news.list.count: Actualité(s)
+back.news.list.action.add: Nouvelle actualité
+back.news.list.header.title: Titre
+back.news.list.header.active: Publiée
+back.news.list.header.picture: Image
+back.news.list.order.success: Ordre des actualités mis à jour
+back.news.preview.title: Prévisualisation actualité
 
-  menu:
-    adherent: Adhérents
-    dashboard: Dashboard
-    gallery: Trombinoscope
-    news: Actualites
-    payment: Cotisations
-    season: Saisons
+back.payment.grid.action.new: Ajouter un paiement
+back.payment.grid.header.adherent: Adherent
+back.payment.grid.header.amount: Montant
+back.payment.grid.header.date: Date
+back.payment.grid.header.season: Saison
+back.payment.grid.header.type: Type
+back.payment.grid.info.isSold: Cotisation %year% soldée
+back.payment.grid.info.toPay: 'Reste à régler sur cotisation %year% : %amount% €'
+back.payment.grid.title: Liste des paiements
+back.payment.new.title: Nouveau paiement
+back.payment.new.success: Paiement ajouté
+back.payment.edit.title: Paiement
+back.payment.edit.success: Paiement mis à jour
+back.payment.view.title: Paiement
+back.payment.delete.success: Paiement supprimé
 
-  news:
-    edit:
-      success: Actualité mise à jour
-      title: Actualité
-      new: Nouvelle actualité
-    delete:
-      success: Actualité supprimée
-    list:
-      count: Actualité(s)
-      action:
-        add: Nouvelle actualité
-      header:
-        title: Titre
-        active: Publiée
-        picture: Image
-      order:
-        success: Ordre des actualités mis à jour
-    preview:
-      title: Prévisualisation actualité
+back.priceOption.form.amount: Montant
+back.priceOption.form.label: Nom de la formule
 
-  payment:
-    grid:
-      action:
-        new: Ajouter un paiement
-      header:
-        adherent: Adherent
-        amount: Montant
-        date: Date
-        season: Saison
-        type: Type
-      info:
-        isSold : Cotisation %year% soldée
-        toPay : 'Reste à régler sur cotisation %year% : %amount% €'
-      title: Liste des paiements
-    new:
-      title: Nouveau paiement
-      success: Paiement ajouté
-    edit:
-      title: Paiement
-      success: Paiement mis à jour
-    view:
-      title: Paiement
-    delete:
-      success: Paiement supprimé
+back.registration.edit.success: Fiche inscription mise à jour
+back.registration.edit.title: Fiche inscription
+back.registration.edit.season: Saison
+back.registration.new.success: Nouvelle inscription créée
+back.registration.new.title: Nouvelle inscription
+back.registration.new.season: Saison
+back.registration.reEnrollment.title: Réinscription
+back.registration.reEnrollment.success: Réinscription validée
+back.registration.reEnrollment.error: Vous ne pouvez pas procéder à la réinscription
+back.registration.reEnrollment.clearToken.button: Supprimer les tokens de réinscription expirés
+back.registration.reEnrollment.clearToken.message: Les tokens de réinscription expirés ont été supprimés
+back.registration.reEnrollment.notify.button: Envoyer les prochaines notifications
+back.registration.reEnrollment.notify.confirm: Confirmer l'envoi des notifications
+back.registration.reEnrollment.notify.message: Les mails de réinscription ont bien été envoyés (%count% mails)
+back.registration.automaticSend.enableButton: Activer les envois automatiques
+back.registration.automaticSend.enableMessage: Les envois automatiques ont été activés (5 mails toutes les 30 minutes)
+back.registration.automaticSend.disableButton: Désactiver les envois automatiques
+back.registration.automaticSend.disableMessage: Les envois automatiques ont été désactivés
+back.registration.verify.success: Inscription vérifiée
 
-  priceOption:
-    form:
-      amount: Montant
-      label: Nom de la formule
+back.season.activate.success: Saison sportive activée
+back.season.activate.missingSeason: Vous devez définir la saison sportive active
+back.season.edit.title: Saison sportive
+back.season.edit.success: Saison sportive mise à jour
+back.season.edit.confirmActivate: En activant la saison, les adherents recevront un email de réinscription. Êtes-vous sûr de vouloir continuer ?
+back.season.form.help: Les dates de début et fin de la saison sont utilisées pour définir la période d'ouverture des inscriptions. En dehors de cette période, l'entrée de menu "Inscription" ne sera pas affichée.
+back.season.form.startDate: Début
+back.season.form.endDate: Fin
+back.season.form.addPriceOption: Ajouter une formule
+back.season.form.licenceLink: Lien de téléchargement du formulaire de licence pour la saison
+back.season.form.paymentLink: Lien vers la plate-forme de paiement (hellopass)
+back.season.grid.action.add: Nouvelle saison
+back.season.grid.header.active: Active
+back.season.grid.header.endDate: Fin
+back.season.grid.header.label: Saison
+back.season.grid.header.startDate: Début
+back.season.new.alreadyExist: La saison sportive existe déjà pour cette année.
 
-  registration:
-    edit:
-      success: Fiche inscription mise à jour
-      title: Fiche inscription
-      season: Saison
-    new:
-      success: Nouvelle inscription créée
-      title: Nouvelle inscription
-      season: Saison
-    reEnrollment:
-      title: Réinscription
-      success: Réinscription validée
-      error: Vous ne pouvez pas procéder à la réinscription
-      clearToken:
-        button: Supprimer les tokens de réinscription expirés
-        message: Les tokens de réinscription expirés ont été supprimés
-      notify:
-        button: Envoyer les prochaines notifications
-        confirm: Confirmer l'envoi des notifications
-        message: Les mails de réinscription ont bien été envoyés (%count% mails)
-    automaticSend:
-      enableButton: Activer les envois automatiques
-      enableMessage: Les envois automatiques ont été activés (5 mails toutes les 30 minutes)
-      disableButton: Désactiver les envois automatiques
-      disableMessage: Les envois automatiques ont été désactivés
-    verify:
-      success: Inscription vérifiée
+back.gallery.title: Trombinoscope
 
-  season:
-    activate:
-      success: Saison sportive activée
-      missingSeason: Vous devez définir la saison sportive active
-    edit:
-      title: Saison sportive
-      success: Saison sportive mise à jour
-      confirmActivate: En activant la saison, les adherents recevront un email de réinscription. Êtes-vous sûr de vouloir continuer ?
-    form:
-      help: Les dates de début et fin de la saison sont utilisées pour définir la période d'ouverture des inscriptions. En dehors de cette période, l'entrée de menu "Inscription" ne sera pas affichée.
-      startDate: Début
-      endDate: Fin
-      addPriceOption: Ajouter une formule
-    grid:
-      action:
-        add: Nouvelle saison
-      header:
-        active: Active
-        endDate: Fin
-        label: Saison
-        startDate: Début
-    new:
-      alreadyExist: La saison sportive existe déjà pour cette année.
+form.adherent.address: Adresse
+form.adherent.birthDate: Date de naissance
+form.adherent.city: Ville
+form.adherent.email: E-Mail
+form.adherent.firstName: Prénom
+form.adherent.gender: Sexe
+form.adherent.lastName: Nom
+form.adherent.phone: Téléphone
+form.adherent.pictureFile: Photo
+form.adherent.pictureFileHelp: Votre photo est déjà disponible, vous pouvez ainsi laisser ce champ vide ou si vous le souhaitez en charger une nouvelle.
+form.adherent.pseudonym: Pseudo Facebook
+form.adherent.pseudonymHelp: Pour intégrer le <a href="https://www.facebook.com/groups/807864253572677/" target="_blank">groupe Facebook</a> privé du club
+form.adherent.reEnrollmentToNotify: Notification de désinscription
+form.adherent.reEnrollmentToNotifyHelp: Cocher pour relancer le mail de résincription ou décocher pour ignorer la relance de désinscription.
+form.adherent.street: Adresse
+form.adherent.zipCode: Code postal
 
-  gallery:
-    title: Trombinoscope
+form.contact.email: Votre email
+form.contact.message: Message
+form.contact.success: Votre demande a bien été envoyée.
 
-form:
+form.documents.label: Documents à fournir
 
-  adherent:
-    address: Adresse
-    birthDate: Date de naissance
-    city: Ville
-    email: E-Mail
-    firstName: Prénom
-    gender: Sexe
-    lastName: Nom
-    phone: Téléphone
-    pictureFile: Photo
-    pictureFileHelp: Votre photo est déjà disponible, vous pouvez ainsi laisser ce champ vide ou si vous le souhaitez en charger une nouvelle.
-    pseudonym: Pseudo Facebook
-    pseudonymHelp: Pour intégrer le <a href="https://www.facebook.com/groups/807864253572677/" target="_blank">groupe Facebook</a> privé du club
-    reEnrollmentToNotify: Notification de désinscription
-    reEnrollmentToNotifyHelp: Cocher pour relancer le mail de résincription ou décocher pour ignorer la relance de désinscription.
-    street: Adresse
-    zipCode: Code postal
+form.emergency.emergency: Personne à contacter en cas d'urgence
+form.emergency.firstName: Prénom
+form.emergency.lastName: Nom
+form.emergency.phone: Téléphone
 
-  contact:
-    email: Votre email
-    message: Message
-    success: Votre demande a bien été envoyée.
+form.legalRepresentative.legalRepresentative: Représentant légal
+form.legalRepresentative.firstName: Prénom
+form.legalRepresentative.lastName: Nom
 
-  documents:
-    label: Documents à fournir
+form.newPayment.mode: Mode de paiement
+form.newPayment.modePlaceholder: Sélectionnez un moyen de paiement
 
-  emergency:
-    emergency: Personne à contacter en cas d'urgence
-    firstName: Prénom
-    lastName: Nom
-    phone: Téléphone
+form.newRegistration.agreement: |
+  Je certifie que les renseignements figurant sur le formulaire d'inscription sont exacts et complets.<br/>
+  J'ai bien pris connaissance que : <ul>
+  <li>L'adhésion au club entraîne obligatoirement la prise de la licence FFKDA</li>
+  <li>L'adhésion au club KMIS implique l’acceptation des <a href="/statuts_kmis.pdf" target="_blank">statuts</a></li>
+  <li>Tout titulaire d’une licence fédérale s’engage à respecter les Statuts et Règlements de la FFK</li>
+  </ul>
+form.newRegistration.comment: Commentaire (problème de santé ou autre)
+form.newRegistration.copyrightAuthorization: J’autorise le club KMIS à reproduire et communiquer mon image prise dans le cadre de ses activités, sous toutes formes et tous supports.
+form.newRegistration.licenceDate: Date de la licence
+form.newRegistration.licenceFormFile: Formulaire de demande de licence
+form.newRegistration.licenceNumber: N° de licence
+form.newRegistration.licenceFormFileHelp: Vous pouvez télécharger un exemplaire du formulaire <a href="%licenceLink%" target="_blank">ici</a> ou obtenir un formulaire auprès des membres du bureau.
+form.newRegistration.medicalCertificateFile.default: Certificat médical
+form.newRegistration.medicalCertificateFile.forMinor: Certificat médical ou attestation sur l'honneur
+form.newRegistration.medicalCertificateFileHelp: Certificat médical ou attestation sur l’honneur. Pour les informations sur les documents à fournir, consultez la <a href='https://www.ffkarate.fr/espace-licencies/certificat-medical/' target='_blank'>note d’information</a>.
+form.newRegistration.passCitizenFile: Document d'elligibilité au Pass'Sports Citoyen
+form.newRegistration.passSportFile: Document d'elligibilité au Pass'Sports
+form.newRegistration.privateNote: Notes privée KMIS
+form.newRegistration.usePassCitizen: Utiliser le Pass'Sports Citoyen (15€)
+form.newRegistration.usePassSport: Utiliser le Pass'Sports (70€)
+form.newRegistration.useCCAS: Aide du CCAS (10€)
+form.newRegistration.purpose: Objectif
+form.newRegistration.priceOption: Formule
+form.newRegistration.registeredAt: Inscrit le
+form.newRegistration.withLegalRepresentative: Dans le cas d'une personne mineure, merci de renseigner le représentant légal
 
-  legalRepresentative:
-    legalRepresentative: Représentant légal
-    firstName: Prénom
-    lastName: Nom
+form.news.active: Publiée
+form.news.content: Contenu
+form.news.details: Informations complémentaires
+form.news.pictureFile: Image
+form.news.title: Titre
 
-  newPayment:
-    mode: Mode de paiement
-    modePlaceholder: Sélectionnez un moyen de paiement
+form.payment.ancv.date: Date
+form.payment.ancv.amount: Montant
+form.payment.ancv.comment: Commentaire
+form.payment.ancv.number: N° ANCV
+form.payment.cash.date: Date
+form.payment.cash.amount: Montant
+form.payment.cash.comment: Commentaire
+form.payment.check.date: Date
+form.payment.check.amount: Montant
+form.payment.check.comment: Commentaire
+form.payment.check.number: N° chèque
+form.payment.check.cashingDate: Date d'encaissement
+form.payment.discount.date: Date
+form.payment.discount.amount: Montant
+form.payment.discount.comment: Commentaire
+form.payment.discount.discount: Libellé de la remise
+form.payment.helloAsso.date: Date
+form.payment.helloAsso.amount: Montant
+form.payment.helloAsso.comment: Commentaire
+form.payment.pass.date: Date
+form.payment.pass.amount: Montant
+form.payment.pass.comment: Commentaire
+form.payment.pass.number: N° Pass'Sport
+form.payment.transfer.date: Date
+form.payment.transfer.amount: Montant
+form.payment.transfer.comment: Commentaire
+form.payment.transfer.label: Libellé
 
-  newRegistration:
-    agreement: "Je certifie que les renseignements figurant sur le formulaire d'inscription sont exacts et complets.<br/>
-    J'ai bien pris connaissance que :
-    <ul>
-    <li>L'adhésion au club entraîne obligatoirement la prise de la licence FFKDA</li>
-    <li>L'adhésion au club KMIS implique l’acceptation des <a href=\"/statuts_kmis.pdf\" target=\"_blank\">statuts</a></li>
-    <li>Tout titulaire d’une licence fédérale s’engage à respecter les Statuts et Règlements de la FFK</li>
-    </ul>"
-    comment: Commentaire (problème de santé ou autre)
-    copyrightAuthorization: J’autorise le club KMIS à reproduire et communiquer mon image prise dans le cadre de ses activités, sous toutes formes et tous supports.
-    licenceDate: Date de la licence
-    licenceFormFile: Formulaire de demande de licence
-    licenceNumber: N° de licence
-    licenceFormFileHelp: Vous pouvez télécharger un exemplaire du formulaire <a href="https://www.ffkarate.fr/wp-content/uploads/2025/07/DEMANDE_LICENCE_INTERNET_2025-2026_MD.pdf" target="_blank">ici</a> ou obtenir un formulaire auprès des membres du bureau.
-    medicalCertificateFile:
-      default: Certificat médical
-      forMinor: Certificat médical ou attestation sur l'honneur
-    medicalCertificateFileHelp: "Certificat médical ou attestation sur l’honneur.
-    Pour les informations sur les documents à fournir, consultez la <a href='https://www.ffkarate.fr/espace-licencies/certificat-medical/' target='_blank'>note d’information</a>."
-    passCitizenFile: Document d'elligibilité au Pass'Sports Citoyen
-    passSportFile: Document d'elligibilité au Pass'Sports
-    privateNote: Notes privée KMIS
-    usePassCitizen: Utiliser le Pass'Sports Citoyen (15€)
-    usePassSport: Utiliser le Pass'Sports (70€)
-    useCCAS: Aide du CCAS (10€)
-    purpose: Objectif
-    priceOption: Formule
-    registeredAt: Inscrit le
-    withLegalRepresentative: Dans le cas d'une personne mineure, merci de renseigner le représentant légal
+form.registration.comment: Commentaire de l'adhérent
+form.registration.copyrightAuthorization: Droit à l'image
+form.registration.internalLabel: Informations complémentaires KMIS
+form.registration.licenceDate: Date de la licence
+form.registration.licenceFormFile: Formulaire de demande de licence
+form.registration.licenceNumber: N° de licence
+form.registration.medicalCertificateFile: Certificat médical ou attestation sur l'honneur
+form.registration.passCitizenFile: Document d'elligibilité au Pass'sport
+form.registration.passSportFile: Document d'elligibilité au Pass'sport Citoyen
+form.registration.priceOption: Formule
+form.registration.privateNote: Notes privée KMIS
+form.registration.purpose: Objectif
+form.registration.registeredAt: Date d'inscription
+form.registration.usePassCitizen: Utiliser le Pass'Sports Citoyen (15€)
+form.registration.usePassCitizenHelp: Éligibilité et conditions d’utilisations <a href="https://www.oise.fr/les-pass-citoyens-du-conseil-departemental-de-loise/le-passsports-citoyen" target="_blank">ici</a> (sélectionner discipline "Karaté" et commune du club "Mogneville").
+form.registration.usePassSport: Utiliser le Pass'Sports (70€)
+form.registration.usePassSportHelp: Éligibilité et conditions d’utilisations <a href="https://www.sports.gouv.fr/pratiques-sportives/sports-pour-tous/pass-sport/" target="_blank">ici</a>.
+form.registration.useCCAS: Aide du CCAS (10€)
+form.registration.useCCASHelp: 10 € pour les - de 18 ans résidant à Villers-sous-Saint-Leu
+form.registration.withLegalRepresentative: Dans le cas d'une personne mineur, merci de renseigner le représentant légal
 
-  news:
-    active: Publiée
-    content: Contenu
-    details: Informations complémentaires
-    pictureFile: Image
-    title: Titre
+form.reEnrollment.email: Confirmer votre email
 
-  payment:
-    ancv:
-      date: Date
-      amount: Montant
-      comment: Commentaire
-      number: N° ANCV
-    cash:
-      date: Date
-      amount: Montant
-      comment: Commentaire
-    check:
-      date: Date
-      amount: Montant
-      comment: Commentaire
-      number: N° chèque
-      cashingDate: Date d'encaissement
-    discount:
-      date: Date
-      amount: Montant
-      comment: Commentaire
-      discount: Libellé de la remise
-    helloAsso:
-      date: Date
-      amount: Montant
-      comment: Commentaire
-    pass:
-      date: Date
-      amount: Montant
-      comment: Commentaire
-      number: N° Pass'Sport
-    transfer:
-      date: Date
-      amount: Montant
-      comment: Commentaire
-      label: Libellé
+form.wysiwyg.help: Taper 'Enter' pour créer un nouveau paragraphe, 'Shift + Enter' pour réaliser un simple saut de ligne.
 
-  registration:
-    comment: Commentaire de l'adhérent
-    copyrightAuthorization: Droit à l'image
-    internalLabel: Informations complémentaires KMIS
-    licenceDate: Date de la licence
-    licenceFormFile: Formulaire de demande de licence
-    licenceNumber: N° de licence
-    medicalCertificateFile: Certificat médical ou attestation sur l'honneur
-    passCitizenFile: Document d'elligibilité au Pass'sport
-    passSportFile: Document d'elligibilité au Pass'sport Citoyen
-    priceOption: Formule
-    privateNote: Notes privée KMIS
-    purpose: Objectif
-    registeredAt: Date d'inscription
-    usePassCitizen: Utiliser le Pass'Sports Citoyen (15€)
-    usePassCitizenHelp: Éligibilité et conditions d’utilisations <a href="https://www.oise.fr/les-pass-citoyens-du-conseil-departemental-de-loise/le-passsports-citoyen" target="_blank">ici</a> (sélectionner discipline "Karaté" et commune du club "Mogneville").
-    usePassSport: Utiliser le Pass'Sports (70€)
-    usePassSportHelp: Éligibilité et conditions d’utilisations <a href="https://www.sports.gouv.fr/pratiques-sportives/sports-pour-tous/pass-sport/" target="_blank">ici</a>.
-    useCCAS: Aide du CCAS (10€)
-    useCCASHelp: 10 € pour les - de 18 ans résidant à Villers-sous-Saint-Leu
-    withLegalRepresentative: Dans le cas d'une personne mineur, merci de renseigner le représentant légal
+front.contact.header.title: Contact
+front.contact.page.title: Contactez-nous
 
-  reEnrollment:
-    email: Confirmer votre email
+front.home.section.club: Présentation
+front.home.section.practicalInfo: Infos pratiques
+front.home.section.sporting: Disciplines
 
-  wysiwyg:
-    help: Taper 'Enter' pour créer un nouveau paragraphe, 'Shift + Enter' pour réaliser un simple saut de ligne.
+front.home.sporting.cardioTraining.title: Cardio Fit
+front.home.sporting.defenseWomen.title: Defense Femmes
+front.home.sporting.defenseTeenager.title: Krav Maga Ados
+front.home.sporting.kmDefense.title: Self Defense
+front.home.sporting.kmixMma.title: KMix-MMA
+front.home.sporting.kmTraining.title: Krav Maga
+front.home.sporting.kravChildren.title: Krav Maga Enfants
 
-front:
+front.footer.link.cookie: Gestion des cookies
+front.footer.link.privacy: Protection des données
+front.footer.link.google: Référencement Google gratuit
 
-  contact:
-    header:
-      title: Contact
-    page:
-      title: Contactez-nous
+front.menu.item.contact: Contact
+front.menu.item.home: Accueil
+front.menu.item.news: Actualités
+front.menu.item.registration: Inscription
+front.menu.item.sporting: Disciplines
 
-  home:
-    section:
-      club: Présentation
-      practicalInfo: Infos pratiques
-      sporting: Disciplines
-    sporting:
-      cardioTraining:
-        title: Cardio Fit
-      defenseWomen:
-        title: Defense Femmes
-      defenseTeenager:
-        title: Krav Maga Ados
-      kmDefense:
-        title: Self Defense
-      kmixMma:
-        title: KMix-MMA
-      kmTraining:
-        title: Krav Maga
-      kravChildren:
-        title: Krav Maga Enfants
+front.news.header.title: Actualités
 
-  footer:
-    link:
-      cookie: Gestion des cookies
-      privacy: Protection des données
-      google: Référencement Google gratuit
+front.privacy.header.title: Protection des données
 
-  menu:
-    item:
-      contact: Contact
-      home: Accueil
-      news: Actualités
-      registration: Inscription
-      sporting: Disciplines
+front.registration.header.title: Inscription
+front.registration.page.title: Formulaire d'inscription
+front.registration.new.noActiveSeason: La période d'inscription n'est pas encore ouverte.
+front.registration.new.success: Merci pour votre inscription.<br/>Vous allez recevoir un email de confirmation pour valider votre inscription.
+front.registration.validation.success: Votre inscription a bien été validée.
 
-  news:
-    header:
-      title: Actualités
+front.reEnrollment.header.title: Réinscription
+front.reEnrollment.success: Votre réinscription a bien été prise en compte.<br/>Le KMIS vous remercie et vous dit à bientôt.
+front.reEnrollment.error: Token de réinscription invalide ou adresse email incorrecte.
+front.reEnrollment.expired: Le lien de réinscription n'est plus valide.<br/>Veuillez contacter les membres du bureau pour vous réinscrire.
+front.reEnrollment.noSeason: La nouvelle saison sportive n'a pas encore été ouverte.<br/>Revenez plus tard pour vous réinscrire.
 
-  privacy:
-    header:
-      title: Protection des données
-
-  registration:
-    header:
-      title: Inscription
-    page:
-      title: Formulaire d'inscription
-    new:
-      noActiveSeason: La période d'inscription n'est pas encore ouverte.
-      success: Merci pour votre inscription.<br/>Vous allez recevoir un email de confirmation pour valider votre inscription.
-    validation:
-      success: Votre inscription a bien été validée.
-
-  reEnrollment:
-    header:
-      title: Réinscription
-    success: Votre réinscription a bien été prise en compte.<br/>Le KMIS vous remercie et vous dit à bientôt.
-    error: Token de réinscription invalide ou adresse email incorrecte.
-    expired: Le lien de réinscription n'est plus valide.<br/>Veuillez contacter les membres du bureau pour vous réinscrire.
-    noSeason: La nouvelle saison sportive n'a pas encore été ouverte.<br/>Revenez plus tard pour vous réinscrire.
-
-  sporting:
-    header:
-      title: Disciplines
+front.sporting.header.title: Disciplines

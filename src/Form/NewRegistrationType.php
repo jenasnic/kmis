@@ -42,17 +42,32 @@ class NewRegistrationType extends AbstractRegistrationType
         }
 
         $builder
-            ->add('licenceFormFile', BulmaFileType::class, [
-                'required' => !$forKmis,
-                'constraints' => $fileConstraints,
-                'help' => !$forKmis ? 'form.newRegistration.licenceFormFileHelp' : null,
-                'help_html' => true,
-            ])
             ->add('adherent', AdherentType::class, [
                 're_enrollment' => $options['re_enrollment'],
-                'kmis_version' => $options['kmis_version'],
+                'kmis_version' => $forKmis,
             ])
         ;
+
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($fileConstraints, $forKmis) {
+            /** @var Registration $registration */
+            $registration = $event->getData();
+            $form = $event->getForm();
+
+            $fieldOptions = [
+                'required' => !$forKmis,
+                'constraints' => $fileConstraints,
+            ];
+
+            //
+            if (!$forKmis && !empty($registration->getSeason()->getLicenceLink())) {
+                $fieldOptions['help'] = 'form.newRegistration.licenceFormFileHelp';
+                $fieldOptions['help_html'] = true;
+                $fieldOptions['help_translation_parameters'] = ['%licenceLink%' => $registration->getSeason()->getLicenceLink()];
+            }
+
+            $form->add('licenceFormFile', BulmaFileType::class, $fieldOptions);
+
+        });
 
         if ($forKmis) {
             $builder->add('medicalCertificateFile', BulmaFileType::class, [
@@ -80,7 +95,7 @@ class NewRegistrationType extends AbstractRegistrationType
             );
         }
 
-        if ($options['kmis_version']) {
+        if ($forKmis) {
             $this->addInternalFields($builder, $options);
         } else {
             $builder

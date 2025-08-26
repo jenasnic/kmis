@@ -59,6 +59,7 @@ final class ConfirmRegistrationHandler
                 'registration' => $command->registration,
                 'discountCode' => $discountCode,
                 'amountToPay' => $amountToPay,
+                'paymentLink' => $registration->getSeason()->getPaymentLink(),
             ])
             ->fromDefault()
             ->to($adherentEmail)

@@ -51,6 +51,7 @@ final class ReEnrollmentHandler
                     'registration' => $registration,
                     'discountCode' => $discountCode,
                     'amountToPay' => $amountToPay,
+                    'paymentLink' => $registration->getSeason()->getPaymentLink(),
                 ])
                 ->fromDefault()
                 ->to($adherentEmail)

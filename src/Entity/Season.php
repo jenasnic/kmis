@@ -32,10 +32,16 @@ class Season
     #[Assert\NotNull]
     private ?\DateTime $endDate = null;
 
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
+    private ?string $paymentLink = null;
+
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
+    private ?string $licenceLink = null;
+
     /**
      * @var Collection<int, PriceOption>
      */
-    #[ORM\OneToMany(mappedBy: 'season', targetEntity: PriceOption::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: PriceOption::class, mappedBy: 'season', cascade: ['persist', 'remove'], orphanRemoval: true)]
     #[ORM\OrderBy(['rank' => 'ASC'])]
     private Collection $priceOptions;
 
@@ -89,6 +95,30 @@ class Season
     public function setEndDate(?\DateTime $endDate): self
     {
         $this->endDate = $endDate;
+
+        return $this;
+    }
+
+    public function getPaymentLink(): ?string
+    {
+        return $this->paymentLink;
+    }
+
+    public function setPaymentLink(?string $paymentLink): self
+    {
+        $this->paymentLink = $paymentLink;
+
+        return $this;
+    }
+
+    public function getLicenceLink(): ?string
+    {
+        return $this->licenceLink;
+    }
+
+    public function setLicenceLink(?string $licenceLink): self
+    {
+        $this->licenceLink = $licenceLink;
 
         return $this;
     }
