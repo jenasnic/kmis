@@ -2,11 +2,12 @@
 
 namespace App\Entity\Content;
 
+use App\Repository\Content\LocationRepository;
 use App\ValueObject\Address;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: LocationRepository::class)]
 class Location
 {
     #[ORM\Id]

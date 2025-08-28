@@ -2,11 +2,12 @@
 
 namespace App\Entity\Content;
 
+use App\Repository\Content\SportingRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: SportingRepository::class)]
 class Sporting
 {
     public const PICTURE_FOLDER = 'sporting/';

@@ -2,12 +2,13 @@
 
 namespace App\Entity\Content;
 
+use App\Repository\Content\CalendarRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: CalendarRepository::class)]
 class Calendar
 {
     #[ORM\Id]
