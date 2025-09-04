@@ -22,6 +22,14 @@ global.validate: Valider
 global.verify: Verifier
 global.yes: Oui
 
+enum.dayOfWeek.MONDAY: Lundi
+enum.dayOfWeek.TUESDAY: Mardi
+enum.dayOfWeek.WEDNESDAY: Mercredi
+enum.dayOfWeek.THURSDAY: Jeudi
+enum.dayOfWeek.FRIDAY: Vendredi
+enum.dayOfWeek.SATURDAY: Samedi
+enum.dayOfWeek.SUNDAY: Dimanche
+
 enum.gender.FEMALE: Femme
 enum.gender.MALE: Homme
 
@@ -164,6 +172,10 @@ form.adherent.reEnrollmentToNotifyHelp: Cocher pour relancer le mail de résincr
 form.adherent.street: Adresse
 form.adherent.zipCode: Code postal
 
+form.calendar.day: Jour
+form.calendar.location: Lieu
+form.calendar.schedule: Programmation
+
 form.contact.email: Votre email
 form.contact.message: Message
 form.contact.success: Votre demande a bien été envoyée.
@@ -178,6 +190,13 @@ form.emergency.phone: Téléphone
 form.legalRepresentative.legalRepresentative: Représentant légal
 form.legalRepresentative.firstName: Prénom
 form.legalRepresentative.lastName: Nom
+
+form.location.name: Lieu
+form.location.address: Adresse
+form.location.latitude: latitude
+form.location.longitude: longitude
+form.location.localization: Lien google
+form.location.active: Actif
 
 form.newPayment.mode: Mode de paiement
 form.newPayment.modePlaceholder: Sélectionnez un moyen de paiement
@@ -265,6 +284,18 @@ form.registration.useCCASHelp: 10 € pour les - de 18 ans résidant à Villers-
 form.registration.withLegalRepresentative: Dans le cas d'une personne mineur, merci de renseigner le représentant légal
 
 form.reEnrollment.email: Confirmer votre email
+
+form.schedule.start: Début
+form.schedule.end: Fin
+form.schedule.detail: Texte libre
+form.schedule.sporting: Discipline
+
+form.sporting.active: Publiée
+form.sporting.content: Contenu
+form.sporting.name: Nom
+form.sporting.pictureFile: Image
+form.sporting.tagline: Phrase d'accroche
+form.sporting.taglineHelp: Utilisée dans le diaporama de la page d'accueil
 
 form.wysiwyg.help: Taper 'Enter' pour créer un nouveau paragraphe, 'Shift + Enter' pour réaliser un simple saut de ligne.
 

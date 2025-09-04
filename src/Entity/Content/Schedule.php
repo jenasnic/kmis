@@ -27,6 +27,10 @@ class Schedule
     #[ORM\JoinColumn(nullable: true, onDelete: 'CASCADE')]
     private ?Sporting $sporting = null;
 
+    #[ORM\ManyToOne(targetEntity: Calendar::class)]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
+    private ?Calendar $calendar = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -76,6 +80,18 @@ class Schedule
     public function setSporting(?Sporting $sporting): self
     {
         $this->sporting = $sporting;
+
+        return $this;
+    }
+
+    public function getCalendar(): ?Calendar
+    {
+        return $this->calendar;
+    }
+
+    public function setCalendar(?Calendar $calendar): self
+    {
+        $this->calendar = $calendar;
 
         return $this;
     }

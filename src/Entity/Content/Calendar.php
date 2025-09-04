@@ -2,6 +2,7 @@
 
 namespace App\Entity\Content;
 
+use App\Enum\DayOfWeekEnum;
 use App\Repository\Content\CalendarRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -16,17 +17,17 @@ class Calendar
     #[ORM\Column(type: Types::INTEGER)]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::STRING, length: 55, nullable: false)]
-    private ?string $day = null;
+    #[ORM\Column(type: Types::STRING, length: 55, nullable: false, enumType: DayOfWeekEnum::class)]
+    private ?DayOfWeekEnum $day = null;
 
     #[ORM\ManyToOne(targetEntity: Location::class)]
     #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
-    private ?Location $program = null;
+    private ?Location $location = null;
 
     /**
      * @var Collection<int, Schedule>
      */
-    #[ORM\OneToMany(targetEntity: Schedule::class, mappedBy: 'program')]
+    #[ORM\OneToMany(targetEntity: Schedule::class, mappedBy: 'calendar')]
     #[ORM\OrderBy(['start' => 'ASC'])]
     private Collection $schedules;
 
@@ -40,26 +41,26 @@ class Calendar
         return $this->id;
     }
 
-    public function getDay(): ?string
+    public function getDay(): ?DayOfWeekEnum
     {
         return $this->day;
     }
 
-    public function setDay(?string $day): self
+    public function setDay(?DayOfWeekEnum $day): self
     {
         $this->day = $day;
 
         return $this;
     }
 
-    public function getProgram(): ?Location
+    public function getLocation(): ?Location
     {
-        return $this->program;
+        return $this->location;
     }
 
-    public function setProgram(?Location $program): self
+    public function setLocation(?Location $location): self
     {
-        $this->program = $program;
+        $this->location = $location;
 
         return $this;
     }
