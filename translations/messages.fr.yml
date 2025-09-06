@@ -79,9 +79,20 @@ back.adherent.tab.registration: Fiche inscription
 
 back.gallery.title: Trombinoscope
 
+back.location.edit.success: Localisation mise à jour
+back.location.edit.title: Localisation
+back.location.edit.new: Nouvelle localisation
+back.location.delete.success: Localisation supprimée
+back.location.list.count: Localisation(s)
+back.location.list.action.add: Nouvelle localisation
+back.location.list.header.title: Titre
+back.location.list.header.active: Activée
+back.location.list.order.success: Ordre des localisations mis à jour
+
 back.menu.adherent: Adhérents
 back.menu.dashboard: Dashboard
 back.menu.gallery: Trombinoscope
+back.menu.location: Localisations
 back.menu.news: Actualites
 back.menu.payment: Cotisations
 back.menu.season: Saisons
@@ -202,12 +213,15 @@ form.legalRepresentative.legalRepresentative: Représentant légal
 form.legalRepresentative.firstName: Prénom
 form.legalRepresentative.lastName: Nom
 
-form.location.name: Lieu
-form.location.address: Adresse
-form.location.latitude: latitude
-form.location.longitude: longitude
-form.location.localization: Lien google
 form.location.active: Actif
+form.location.address: Adresse
+form.location.city: Ville
+form.location.latitude: latitude
+form.location.localization: Lien google
+form.location.longitude: longitude
+form.location.name: Lieu
+form.location.street: Adresse
+form.location.zipCode: Code postal
 
 form.newPayment.mode: Mode de paiement
 form.newPayment.modePlaceholder: Sélectionnez un moyen de paiement

@@ -5,6 +5,7 @@ namespace App\Form\Content;
 use App\Entity\Content\Location;
 use App\Form\Type\AddressType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -22,7 +23,7 @@ class LocationType extends AbstractType
             ->add('latitude', TextType::class)
             ->add('longitude', TextType::class)
             ->add('localization', TextType::class)
-            ->add('active', TextType::class)
+            ->add('active', CheckboxType::class, ['required' => false])
         ;
     }
 
