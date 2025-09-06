@@ -58,7 +58,7 @@ class PriceOptionDataMapper implements DataMapperInterface
             $viewData->setAmount($amount);
             $viewData->setRank($rank);
         } catch (\Exception $e) {
-            throw new TransformationFailedException('Unable to map data for pass payment', 0, $e);
+            throw new TransformationFailedException('Unable to map data for price option', 0, $e);
         }
     }
 }

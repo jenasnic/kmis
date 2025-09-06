@@ -20,7 +20,7 @@ class Schedule
     #[ORM\Column(type: Types::STRING, length: 15)]
     private ?string $end = null;
 
-    #[ORM\Column(type: Types::STRING, length: 255)]
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     private ?string $detail = null;
 
     #[ORM\ManyToOne(targetEntity: Sporting::class)]
@@ -29,7 +29,12 @@ class Schedule
 
     #[ORM\ManyToOne(targetEntity: Calendar::class)]
     #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
-    private ?Calendar $calendar = null;
+    private Calendar $calendar;
+
+    public function __construct(Calendar $calendar)
+    {
+        $this->calendar = $calendar;
+    }
 
     public function getId(): ?int
     {
@@ -94,5 +99,10 @@ class Schedule
         $this->calendar = $calendar;
 
         return $this;
+    }
+
+    public function displaySchedule(): string
+    {
+        return sprintf('%s - %s', $this->start, $this->end);
     }
 }

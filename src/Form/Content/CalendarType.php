@@ -4,13 +4,17 @@ namespace App\Form\Content;
 
 use App\Entity\Content\Calendar;
 use App\Entity\Content\Location;
+use App\Entity\Season;
 use App\Enum\DayOfWeekEnum;
+use App\Form\Payment\PriceOptionType;
 use App\Form\Type\EnumType;
 use App\Repository\Content\LocationRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -29,15 +33,26 @@ class CalendarType extends AbstractType
                     return $locationRepository->createQueryBuilder('location')->orderBy('location.rank');
                 },
             ])
-            ->add('schedule', CollectionType::class, [
+        ;
+
+
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+            /** @var Calendar $calendar */
+            $calendar = $event->getData();
+
+            $event->getForm()->add('schedules', CollectionType::class, [
                 'label' => false,
-                'entry_type' => LocationType::class,
-                'entry_options' => ['label' => false],
+                'entry_type' => ScheduleType::class,
+                'entry_options' => [
+                    'label' => false,
+                    'calendar' => $calendar,
+                ],
                 'block_prefix' => 'calendar_schedule_list',
                 'allow_add' => true,
                 'allow_delete' => true,
-            ])
-        ;
+            ]);
+        });
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

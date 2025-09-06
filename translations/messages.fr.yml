@@ -77,6 +77,18 @@ back.adherent.tab.adherent: Adherent
 back.adherent.tab.payments: Paiements
 back.adherent.tab.registration: Fiche inscription
 
+back.calendar.edit.success: Planning mis à jour
+back.calendar.edit.title: Planning
+back.calendar.edit.new: Nouveau planning
+back.calendar.delete.success: Planning supprimé
+back.calendar.list.count: Planning(s)
+back.calendar.list.action.add: Nouveau planning
+back.calendar.list.header.day: Jour
+back.calendar.list.header.location: Lieu
+back.calendar.list.header.schedules: Horaires
+back.calendar.form.addSchedule: Ajouter un horaire
+back.calendar.form.schedule.help: Sélectionnez une discipline OU saisissez un texte libre (possibilité d'inclure des balises HTML).
+
 back.gallery.title: Trombinoscope
 
 back.location.edit.success: Localisation mise à jour
@@ -90,6 +102,7 @@ back.location.list.header.active: Activée
 back.location.list.order.success: Ordre des localisations mis à jour
 
 back.menu.adherent: Adhérents
+back.menu.calendar: Planning
 back.menu.dashboard: Dashboard
 back.menu.gallery: Trombinoscope
 back.menu.location: Localisations

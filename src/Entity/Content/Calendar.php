@@ -17,7 +17,7 @@ class Calendar
     #[ORM\Column(type: Types::INTEGER)]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::STRING, length: 55, nullable: false, enumType: DayOfWeekEnum::class)]
+    #[ORM\Column(type: Types::INTEGER, nullable: false, enumType: DayOfWeekEnum::class)]
     private ?DayOfWeekEnum $day = null;
 
     #[ORM\ManyToOne(targetEntity: Location::class)]
@@ -27,7 +27,7 @@ class Calendar
     /**
      * @var Collection<int, Schedule>
      */
-    #[ORM\OneToMany(targetEntity: Schedule::class, mappedBy: 'calendar')]
+    #[ORM\OneToMany(targetEntity: Schedule::class, mappedBy: 'calendar', cascade: ['persist', 'remove'], orphanRemoval: true)]
     #[ORM\OrderBy(['start' => 'ASC'])]
     private Collection $schedules;
 
@@ -87,5 +87,12 @@ class Calendar
         $this->schedules->removeElement($schedule);
 
         return $this;
+    }
+
+    public function displaySchedules(): string
+    {
+        $schedulesAsString = array_map(fn (Schedule $schedule) => $schedule->displaySchedule(), $this->schedules->toArray());
+
+        return implode(' / ', $schedulesAsString);
     }
 }
