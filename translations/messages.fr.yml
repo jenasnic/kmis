@@ -77,12 +77,15 @@ back.adherent.tab.adherent: Adherent
 back.adherent.tab.payments: Paiements
 back.adherent.tab.registration: Fiche inscription
 
+back.gallery.title: Trombinoscope
+
 back.menu.adherent: Adhérents
 back.menu.dashboard: Dashboard
 back.menu.gallery: Trombinoscope
 back.menu.news: Actualites
 back.menu.payment: Cotisations
 back.menu.season: Saisons
+back.menu.sporting: Disciplines
 
 back.news.edit.success: Actualité mise à jour
 back.news.edit.title: Actualité
@@ -153,7 +156,15 @@ back.season.grid.header.label: Saison
 back.season.grid.header.startDate: Début
 back.season.new.alreadyExist: La saison sportive existe déjà pour cette année.
 
-back.gallery.title: Trombinoscope
+back.sporting.edit.success: Discipline mise à jour
+back.sporting.edit.title: Discipline
+back.sporting.edit.new: Nouvelle discipline
+back.sporting.delete.success: Discipline supprimée
+back.sporting.list.count: Discipline(s)
+back.sporting.list.action.add: Nouvelle discipline
+back.sporting.list.header.title: Titre
+back.sporting.list.header.active: Activée
+back.sporting.list.order.success: Ordre des disciplines mis à jour
 
 form.adherent.address: Adresse
 form.adherent.birthDate: Date de naissance

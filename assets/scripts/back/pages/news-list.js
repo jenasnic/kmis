@@ -1,10 +1,3 @@
-const orderingNewsList = (form) => {
-  const ranks = form.querySelectorAll('td.draggable input[data-rank]');
-  ranks.forEach((rank, index) => {
-    rank.value = index.toString();
-  });
-};
-
 const initializePreviewButton = (button) => {
   button.addEventListener('click', (event) => {
     event.preventDefault();
@@ -14,14 +7,6 @@ const initializePreviewButton = (button) => {
     modal.classList.add('is-active');
   });
 }
-
-const initializeNewsListForm = (form) => {
-  form.addEventListener('submit', () => {
-    orderingNewsList(form);
-  });
-
-  form.querySelectorAll('button[data-preview-url]').forEach(initializePreviewButton)
-};
 
 const initializeModalPreview = () => {
   const modal = document.getElementById('modal-preview');
@@ -35,6 +20,6 @@ const initializeModalPreview = () => {
 const newsListForm = document.getElementById('news-list-form');
 
 if (newsListForm) {
-  initializeNewsListForm(newsListForm);
+  newsListForm.querySelectorAll('button[data-preview-url]').forEach(initializePreviewButton)
   initializeModalPreview();
 }

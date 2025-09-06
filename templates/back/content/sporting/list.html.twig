@@ -1,0 +1,76 @@
+{% extends 'layout/_back.html.twig' %}
+
+{% block body %}
+
+    <h2 class="subtitle">{{ sportingCount }} {{ 'back.sporting.list.count'|trans }}</h2>
+
+    <div data-grid="data-grid">
+
+        <nav class="level">
+            <div class="level-left"></div>
+            <div class="level-right">
+                <p class="level-item">
+                    <a href="{{ path('bo_sporting_new') }}" class="button is-primary">
+                        <span>{{ 'back.sporting.list.action.add'|trans }}</span>
+                        <span class="icon is-small">
+                            <i class="icon-more"></i>
+                        </span>
+                    </a>
+                </p>
+            </div>
+        </nav>
+
+        {{ form_start(form) }}
+
+        {% embed 'back/components/_table.html.twig' with {'isDraggable': true} %}
+
+        {% block thead %}
+            <th class="full">{{ 'back.sporting.list.header.title'|trans }}</th>
+            <th class="has-text-centered">{{ 'back.sporting.list.header.active'|trans }}</th>
+            <th></th>
+        {% endblock %}
+
+        {% block tbody %}
+            {% if sportingCount > 0 %}
+                {% for i in 0..(sportingCount-1) %}
+                    <tr>
+                        <td class="draggable">
+                            {{ form.children[i].vars.data.name }}
+                            {{ form_row(form.children[i].rank, {'attr': {'data-rank': ''}}) }}
+                        </td>
+                        <td class="has-text-centered">
+                            {{ form_row(form.children[i].active) }}
+                        </td>
+                        <td class="action">
+                            <div class="action-wrapper">
+                                <a href="{{ path('bo_sporting_edit', {'sporting': form.children[i].vars.data.id}) }}" class="button is-primary">
+                                    <span class="icon"><i class="icon-pencil"></i></span>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        {% endblock %}
+
+    {% endembed %}
+
+    <div class="is-flex is-flex-direction-row is-justify-content-flex-end is-align-content-center">
+        <div class="block">
+            <button type="submit" class="button is-primary">{{ 'global.save'|trans }}</button>
+        </div>
+    </div>
+
+    {{ form_end(form) }}
+
+    </div>
+
+    <div id="modal-preview" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <iframe id="iframe-preview"></iframe>
+        </div>
+        <button class="modal-close is-large"></button>
+    </div>
+
+{% endblock %}

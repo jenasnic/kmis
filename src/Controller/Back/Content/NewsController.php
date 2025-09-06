@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Controller\Back;
+namespace App\Controller\Back\Content;
 
 use App\Domain\Command\Back\Content\SaveNewsCommand;
 use App\Domain\Command\Back\Content\SaveNewsHandler;
 use App\Entity\Content\News;
+use App\Form\Content\ManagedListType;
 use App\Form\Content\NewsListType;
 use App\Form\Content\NewsType;
 use App\Repository\Content\NewsRepository;
@@ -30,14 +31,9 @@ class NewsController extends AbstractController
     {
         $newsList = $this->newsRepository->findAllOrdered();
 
-        $form = $this->createForm(CollectionType::class, $newsList, [
-            'label' => false,
-            'entry_type' => NewsListType::class,
-            'entry_options' => [
-                'label' => false,
-            ],
-            'allow_add' => false,
-            'allow_delete' => false,
+        $form = $this->createForm(ManagedListType::class, $newsList, [
+            'entityClass' => News::class,
+            'withActive' => true,
         ]);
 
         $form->handleRequest($request);
@@ -49,7 +45,7 @@ class NewsController extends AbstractController
             return $this->redirectToRoute('bo_news_list');
         }
 
-        return $this->render('back/news/list.html.twig', [
+        return $this->render('back/content/news/list.html.twig', [
             'form' => $form->createView(),
             'newsCount' => count($newsList),
         ]);
@@ -79,7 +75,7 @@ class NewsController extends AbstractController
             return $this->redirectToRoute('bo_news_list');
         }
 
-        return $this->render('back/news/edit.html.twig', [
+        return $this->render('back/content/news/edit.html.twig', [
             'form' => $form->createView(),
             'news' => $news,
         ]);
@@ -100,6 +96,6 @@ class NewsController extends AbstractController
     #[Route('/actualites/previsualier/{news}', name: 'bo_news_preview', methods: ['GET'])]
     public function preview(News $news): Response
     {
-        return $this->render('back/news/preview.html.twig', ['news' => $news]);
+        return $this->render('back/content/news/preview.html.twig', ['news' => $news]);
     }
 }
