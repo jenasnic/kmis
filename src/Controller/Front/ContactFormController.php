@@ -5,6 +5,7 @@ namespace App\Controller\Front;
 use App\Domain\Command\Front\ContactFormCommand;
 use App\Domain\Command\Front\ContactFormHandler;
 use App\Form\ContactFormType;
+use App\Service\Provider\ScheduleProvider;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,7 +18,8 @@ class ContactFormController extends AbstractController
     public function contact(
         Request $request,
         TranslatorInterface $translator,
-        ContactFormHandler $contactFormHandler
+        ScheduleProvider $scheduleProvider,
+        ContactFormHandler $contactFormHandler,
     ): Response {
         $contactForm = new ContactFormCommand();
         $form = $this->createForm(ContactFormType::class, $contactForm);
@@ -34,6 +36,7 @@ class ContactFormController extends AbstractController
 
         return $this->render('front/contact.html.twig', [
             'form' => $form->createView(),
+            'schedules' => $scheduleProvider->forContact(),
         ]);
     }
 }

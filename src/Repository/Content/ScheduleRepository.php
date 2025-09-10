@@ -18,9 +18,9 @@ class ScheduleRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return array<int, array<Schedule>>
+     * @return array<Schedule>
      */
-    public function getSchedulesIndexedBySporting(): array
+    public function findOrderedSchedulesWithSporting(): array
     {
         $queryBuilder = $this->createQueryBuilder('schedule');
 
@@ -33,13 +33,6 @@ class ScheduleRepository extends ServiceEntityRepository
             ->addOrderBy('location.rank', 'ASC')
         ;
 
-        $schedules = $queryBuilder->getQuery()->getResult();
-
-        $result = [];
-        foreach ($schedules as $schedule) {
-            $result[$schedule->getSporting()->getId()][] = $schedule;
-        }
-
-        return $result;
+        return $queryBuilder->getQuery()->getResult();
     }
 }

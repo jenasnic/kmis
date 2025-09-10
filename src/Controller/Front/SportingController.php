@@ -3,8 +3,8 @@
 namespace App\Controller\Front;
 
 use App\Entity\Content\Sporting;
-use App\Repository\Content\ScheduleRepository;
 use App\Repository\Content\SportingRepository;
+use App\Service\Provider\ScheduleProvider;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -14,11 +14,11 @@ class SportingController extends AbstractController
     #[Route('/disciplines', name: 'app_sporting')]
     public function index(
         SportingRepository $sportingRepository,
-        ScheduleRepository $scheduleRepository,
+        ScheduleProvider $scheduleProvider,
     ): Response {
         return $this->render('front/sporting.html.twig', [
             'sportings' => $sportingRepository->findOrdered(),
-            'schedules' => $scheduleRepository->getSchedulesIndexedBySporting(),
+            'schedules' => $scheduleProvider->forSporting(),
         ]);
     }
 
