@@ -4,6 +4,7 @@ namespace App\Entity\Content;
 
 use App\Repository\Content\LocationRepository;
 use App\ValueObject\Address;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -35,6 +36,13 @@ class Location
 
     #[ORM\Column(type: Types::INTEGER)]
     private int $rank = 0;
+
+    /**
+     * @var Collection<int, Schedule>
+     */
+    #[ORM\OneToMany(targetEntity: Calendar::class, mappedBy: 'location', cascade: ['remove'], orphanRemoval: true)]
+    #[ORM\OrderBy(['day' => 'ASC'])]
+    private Collection $calendars;
 
     public function getId(): ?int
     {
@@ -123,5 +131,10 @@ class Location
         $this->rank = $rank;
 
         return $this;
+    }
+
+    public function getCalendars(): Collection
+    {
+        return $this->calendars;
     }
 }

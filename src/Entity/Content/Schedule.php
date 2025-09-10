@@ -101,8 +101,16 @@ class Schedule
         return $this;
     }
 
-    public function displaySchedule(): string
+    public function displaySchedule(bool $withDetail = false): string
     {
-        return sprintf('%s - %s', $this->start, $this->end);
+        $info = null;
+        if ($withDetail) {
+            $info = (null !== $this->sporting) ? $this->sporting->getName() : $this->detail;
+        }
+
+        return ($withDetail && null !== $info)
+            ? sprintf('%s - %s : %s', $this->start, $this->end, $info)
+            : sprintf('%s - %s', $this->start, $this->end)
+        ;
     }
 }

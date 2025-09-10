@@ -19,10 +19,10 @@ class LocationType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('address', AddressType::class)
-            ->add('latitude', TextType::class)
-            ->add('longitude', TextType::class)
-            ->add('localization', TextType::class)
+            ->add('address', AddressType::class, ['with_street_2' => true])
+            ->add('latitude', TextType::class, ['required' => false])
+            ->add('longitude', TextType::class, ['required' => false])
+            ->add('localization', TextType::class, ['required' => false])
             ->add('active', CheckboxType::class, ['required' => false])
         ;
     }

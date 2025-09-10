@@ -12,6 +12,10 @@ class Address
     #[Assert\NotBlank]
     private ?string $street;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\NotBlank]
+    private ?string $street2;
+
     #[ORM\Column(type: 'string', length: 25, nullable: true)]
     #[Assert\NotBlank]
     private ?string $zipCode;
@@ -22,10 +26,12 @@ class Address
 
     public function __construct(
         ?string $street = null,
+        ?string $street2 = null,
         ?string $zipCode = null,
         ?string $city = null,
     ) {
         $this->street = $street;
+        $this->street2 = $street2;
         $this->zipCode = $zipCode;
         $this->city = $city;
     }
@@ -33,6 +39,11 @@ class Address
     public function getStreet(): ?string
     {
         return $this->street;
+    }
+
+    public function getStreet2(): ?string
+    {
+        return $this->street2;
     }
 
     public function getZipCode(): ?string
@@ -47,6 +58,9 @@ class Address
 
     public function __toString(): string
     {
-        return sprintf('%s - %s %s', $this->street, $this->zipCode, $this->city);
+        return empty($this->street2)
+            ? sprintf('%s - %s %s', $this->street, $this->zipCode, $this->city)
+            : sprintf('%s - %s - %s %s', $this->street, $this->street2, $this->zipCode, $this->city)
+        ;
     }
 }

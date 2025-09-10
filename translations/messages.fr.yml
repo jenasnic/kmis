@@ -233,7 +233,8 @@ form.location.latitude: latitude
 form.location.localization: Lien google
 form.location.longitude: longitude
 form.location.name: Lieu
-form.location.street: Adresse
+form.location.street: Adresse ligne 1
+form.location.street2: Adresse ligne 2
 form.location.zipCode: Code postal
 
 form.newPayment.mode: Mode de paiement
