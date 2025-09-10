@@ -18,115 +18,26 @@
 {% block body %}
 
     <div class="sporting-wrapper">
-
-        <div id="defense-adulte" class="section">
-            <h2 data-aos="zoom-out" data-aos-duration="1000">Krav Maga Adultes</h2>
-            <div class="sporting">
-                <div class="sporting__image with-background" data-aos="zoom-in" data-aos-duration="1200">
-                    <img src="{{ asset('build/images/km_defense.webp') }}" alt="Krav Maga Adultes"/>
+        {% for sporting in sportings %}
+            <div id="{{ sporting.id }}" class="section">
+                <h2 data-aos="zoom-out" data-aos-duration="1000">{{ sporting.name }}</h2>
+                <div class="sporting">
+                    <div class="sporting__image with-background" data-aos="zoom-in" data-aos-duration="1200">
+                        <img src="{{ path('app_sporting_picture', {'sporting': sporting.id}) }}" alt="{{ sporting.name }}"/>
+                    </div>
+                    <div class="sporting__content">
+                        {{ sporting.content }}
+                    </div>
                 </div>
-                <div class="sporting__content">
-                    <p>Le Krav Maga Adultes n’est pas un sport de combat comme les autres : c’est une méthode de défense réaliste, rapide à maîtriser et conçue pour fonctionner quand ça compte vraiment – dans la vraie vie.</p>
-                    <p>Ici, pas de chorégraphies. Pas de fioritures. Juste des gestes simples, puissants et instinctifs pour se protéger et protéger ceux qu’on aime.</p>
-                    <p><b>Pourquoi le Krav Maga ?</b></p>
-                    <ul>
-                        <li>Parce que chaque seconde compte dans une situation critique.</li>
-                        <li>Parce que vous voulez des réflexes fiables et une confiance totale en vous.</li>
-                        <li>Parce qu’il est temps de développer votre force physique et mentale en même temps.</li>
-                    </ul>
-                    <p><b>Au programme</b></p>
-                    <ul>
-                        <li>Techniques de défense : frappes variées, saisies, menaces, armes, sol… tout est couvert.</li>
-                        <li>Réactivité immédiate : savoir analyser, agir et finir la situation vite.</li>
-                        <li>Condition physique et mental d’acier : endurance, sang-froid, détermination.</li>
-                    </ul>
-                </div>
+                {% if schedules[sporting.id] is defined %}
+                    <div class="sporting-reminder">
+                        {% for schedule in schedules[sporting.id] %}
+                            <div>Cours le {{ schedule.calendar.day|trans }} : {{ schedule.displaySchedule() }} à <strong itemprop="addressLocality">{{ schedule.calendar.location.name }}</strong></div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
-            <div class="sporting-reminder">
-                <div>Cours le lundi : 20h00 - 21h30 à <strong itemprop="addressLocality">Liancourt</strong></div>
-                <div>Cours le jeudi : 20h00 - 21h30 à <strong itemprop="addressLocality">Précy-sur-Oise</strong></div>
-            </div>
-        </div>
-
-        <div id="kmix-mma" class="section">
-            <h2 data-aos="zoom-out" data-aos-duration="1000">KMix-MMA</h2>
-            <div class="sporting">
-                <div class="sporting__image with-background" data-aos="zoom-in" data-aos-duration="1200">
-                    <img src="{{ asset('build/images/kmix_mma.webp') }}" alt="KMix-MMA"/>
-                </div>
-                <div class="sporting__content">
-                    <p>Le but ici n’est pas uniquement de former des combattants à entrer dans une cage, mais de préparer et donner des armes complémentaires pour faire face à une agression, notamment lorsque les premières actions ne donnent pas l’effet escompté.</p>
-                    <p>Il faut alors pouvoir passer en mode combat : disposer d’une boxe pieds-poings efficace pour décourager ou mettre KO rapidement, d’une lutte performante pour amener au sol un individu plus fort en boxe, ou éviter d’être soi-même projeté dans une situation délicate, et enfin d’un grappling complet pour contrôler ou mettre un terme au problème une fois au sol.</p>
-                    <p>Cette approche, en plus d’être utile en situation réelle, constitue également une excellente base pour ceux qui souhaitent s’engager dans la compétition. Le panel des techniques est extrêmement riche, varié et complémentaire aux disciplines de défense.</p>
-                    <p>Entraînez-vous comme vous voulez vous défendre... ou combattre.</p>
-                </div>
-            </div>
-            <div class="sporting-reminder">
-                <div>Cours le lundi : 19h00 - 21h00 à <strong itemprop="addressLocality">Liancourt</strong></div>
-                <div>Cours le vendredi : 19h30 - 21h30 à <strong itemprop="addressLocality">Villers-Sous-Saint-Leu</strong></div>
-            </div>
-        </div>
-
-        <div id="defense-ados" class="section">
-            <h2 data-aos="zoom-out" data-aos-duration="1000">Krav Maga Ados</h2>
-            <div class="sporting">
-                <div class="sporting__image with-background" data-aos="zoom-in" data-aos-duration="1200">
-                    <img src="{{ asset('build/images/defense_teenager.webp') }}" alt="Krav Maga Ados"/>
-                </div>
-                <div class="sporting__content">
-                    <p>La self defense s’adresse aussi aux adolescents. Au collège, au lycée ou à l’extérieur, les agressions peuvent être rencontrées, parfois même à l'origine de camarades. Réagir face aux différents degrés d’agressions en adaptant son comportement et ses gestes est nécessaire.</p>
-                    <p>Adaptée aux problématiques des plus jeunes, la discipline accompagnera leur évolution. Travail de la condition physique et mentale, mise en confiance, amélioration des réflexes et réactions, les ingrédients sont réunis pour apprendre à se défendre.</p>
-                    <p>On s'adresse à toi : Si tu es adolescent et que cette discipline t’intrigue ou te motive, tu sais à quelle porte frapper : rejoins-nous. Le KMIS est à tes côtés pour te faire progresser.</p>
-                    <p>Entraînez-vous comme vous voulez vous défendre.</p>
-                </div>
-            </div>
-            <div class="sporting-reminder">
-                <div>Cours le lundi : 19h00 - 20h00 à <strong>Liancourt</strong></div>
-                <div>Cours le jeudi : 19h00 - 20h00 à <strong>Précy-sur-Oise</strong></div>
-            </div>
-        </div>
-
-        <div id="elite" class="section">
-            <h2 data-aos="zoom-out" data-aos-duration="1000">Cours élite</h2>
-            <div class="sporting">
-                <div class="sporting__image with-background" data-aos="zoom-in" data-aos-duration="1200">
-                    <img src="{{ asset('build/images/km_training.webp') }}" alt="Cour élite"/>
-                </div>
-                <div class="sporting__content">
-                    <p>Ce cours s’adresse aux pratiquants expérimentés qui souhaitent franchir un cap dans leur pratique du MMA. L’objectif est clair : approfondir les connaissances techniques, développer des stratégies de combat avancées, et préparer efficacement les compétitions.</p>
-                    <p><b>Au programme</b></p>
-                    <ul>
-                        <li>Travail technique ciblé en boxe, lutte et grappling, avec un focus sur les enchaînements spécifiques au MMA.</li>
-                        <li>Études stratégiques : analyse de styles, adaptation en fonction des adversaires, gestion du rythme et du temps de combat.</li>
-                        <li>Sparring intensif et encadré, avec des mises en situation réalistes pour tester les acquis et affiner les réflexes.</li>
-                        <li>Préparation physique et mentale, indispensable pour performer en compétition.</li>
-                    </ul>
-                    <p>Ce cours est pensé comme un véritable laboratoire du combattant, où chaque séance vise à renforcer les points forts, corriger les faiblesses et construire une approche cohérente du combat.</p>
-                    <p>Rejoignez le cours élite et entrez dans une dynamique de performance.</p>
-                </div>
-            </div>
-            <div class="sporting-reminder">
-                <div>Cours le mercredi : 20h00 - 22h00 à <strong>Liancourt</strong></div>
-            </div>
-        </div>
-
-        <div id="cardio-fit-krav" class="section">
-            <h2 data-aos="zoom-out" data-aos-duration="1000">Cardio Fit</h2>
-            <div class="sporting">
-                <div class="sporting__image with-background" data-aos="zoom-in" data-aos-duration="1200">
-                    <img src="{{ asset('build/images/cardio_fit_krav.webp') }}" alt="Cardio Fit"/>
-                </div>
-                <div class="sporting__content">
-                    <p>Un cours dédié à l’amélioration de la condition physique et au dépassement de soi qui s’adapte à tous pour réaliser la répétition de plus, la seconde d’exercice de plus, celle qui peut vous sauver. Dans la rue, la condition physique et la volonté de ne pas lâcher  sont primordiales : pour courir plus vite, frapper plus fort, combattre ou contrôler plus longtemps, elle est une véritable alliée. Renforcement musculaire, cardiovasculaire et mental, la formule est complète.</p>
-                    <p>Sous forme d’ateliers ou de circuits, cette activité promet sueur, dépassement et bonne humeur sur une playlist musicale conçue pour vous motiver.</p>
-                    <p>Entraînez-vous comme vous voulez vous défendre.</p>
-                </div>
-            </div>
-            <div class="sporting-reminder">
-                <div>Cours le mercredi : 19h00 - 20h00 à <strong>Liancourt</strong></div>
-            </div>
-        </div>
-
+        {% endfor %}
     </div>
 
 {% endblock %}
