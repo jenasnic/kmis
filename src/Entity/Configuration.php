@@ -13,10 +13,10 @@ class Configuration
     #[ORM\Column(type: Types::STRING, length: 55)]
     private string $code;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private string $value;
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $value;
 
-    public function __construct(string $code, string $value)
+    public function __construct(string $code, ?string $value = null)
     {
         $this->code = $code;
         $this->value = $value;
@@ -27,12 +27,12 @@ class Configuration
         return $this->code;
     }
 
-    public function getValue(): string
+    public function getValue(): ?string
     {
         return $this->value;
     }
 
-    public function setValue(string $value): self
+    public function setValue(?string $value): self
     {
         $this->value = $value;
 

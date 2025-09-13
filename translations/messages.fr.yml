@@ -103,6 +103,7 @@ back.location.list.order.success: Ordre des localisations mis à jour
 
 back.menu.adherent: Adhérents
 back.menu.calendar: Planning
+back.menu.text: Contenus
 back.menu.dashboard: Dashboard
 back.menu.gallery: Trombinoscope
 back.menu.location: Localisations
@@ -190,6 +191,9 @@ back.sporting.list.header.title: Titre
 back.sporting.list.header.active: Activée
 back.sporting.list.order.success: Ordre des disciplines mis à jour
 
+back.text.save.success: Contenus mis à jour
+back.text.title: Contenus du site
+
 form.adherent.address: Adresse
 form.adherent.birthDate: Date de naissance
 form.adherent.city: Ville
@@ -210,6 +214,9 @@ form.adherent.zipCode: Code postal
 form.calendar.day: Jour
 form.calendar.location: Lieu
 form.calendar.schedule: Programmation
+
+form.configurationText.homePresentation: Texte de présentation (page d'acceuil)
+form.configurationText.contact: Texte du formulaire de contact
 
 form.contact.email: Votre email
 form.contact.message: Message
