@@ -4,6 +4,7 @@ namespace App\Service\Subscriber;
 
 use App\Entity\Adherent;
 use App\Entity\Content\News;
+use App\Entity\Content\Sporting;
 use App\Entity\Registration;
 use Doctrine\Bundle\DoctrineBundle\EventSubscriber\EventSubscriberInterface;
 use Doctrine\ORM\Events;
@@ -53,6 +54,10 @@ class RemoveFileSubscriber implements EventSubscriberInterface
             if (null !== $object->getPassSportUrl()) {
                 $this->filesToRemove[] = $object->getPassSportUrl();
             }
+        }
+
+        if ($object instanceof Sporting && null !== $object->getPictureUrl()) {
+            $this->filesToRemove[] = $object->getPictureUrl();
         }
     }
 
