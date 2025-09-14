@@ -2,24 +2,22 @@
 
 namespace App\Domain\Command\Front;
 
-use App\Entity\Registration;
+use App\Domain\Command\AbstractRegistrationHandler;
 use App\Enum\DiscountCodeEnum;
-use App\Enum\FileTypeEnum;
 use App\Service\Email\EmailBuilder;
 use App\Service\Email\EmailSender;
-use App\Service\File\FileCleaner;
-use App\Service\File\FileUploader;
+use App\Service\File\FileManager;
 use Doctrine\ORM\EntityManagerInterface;
 
-final class ReEnrollmentHandler
+final class ReEnrollmentHandler extends AbstractRegistrationHandler
 {
     public function __construct(
+        FileManager $fileManager,
         private readonly EntityManagerInterface $entityManager,
         private readonly EmailBuilder $emailBuilder,
         private readonly EmailSender $emailSender,
-        private readonly FileUploader $fileUploader,
-        private readonly FileCleaner $fileCleaner,
     ) {
+        parent::__construct($fileManager);
     }
 
     public function handle(ReEnrollmentCommand $command): void
@@ -60,33 +58,6 @@ final class ReEnrollmentHandler
             ;
 
             $this->emailSender->sendEmail($email);
-        }
-    }
-
-    private function processUpload(Registration $registration): void
-    {
-        $pictureFile = $registration->getAdherent()->getPictureFile();
-        if (null !== $pictureFile) {
-            $this->fileCleaner->cleanEntity($registration->getAdherent(), FileTypeEnum::PICTURE);
-            $registration->getAdherent()->setPictureUrl($this->fileUploader->upload($pictureFile));
-        }
-
-        if (null !== $registration->getMedicalCertificateFile()) {
-            $registration->setMedicalCertificateUrl($this->fileUploader->upload($registration->getMedicalCertificateFile()));
-        }
-
-        if (null !== $registration->getLicenceFormFile()) {
-            $registration->setLicenceFormUrl($this->fileUploader->upload($registration->getLicenceFormFile()));
-        }
-
-        // @todo : check if usePassCitizen is true?
-        if (null !== $registration->getPassCitizenFile()) {
-            $registration->setPassCitizenUrl($this->fileUploader->upload($registration->getPassCitizenFile()));
-        }
-
-        // @todo : check if usePassSport is true?
-        if (null !== $registration->getPassSportFile()) {
-            $registration->setPassSportUrl($this->fileUploader->upload($registration->getPassSportFile()));
         }
     }
 }

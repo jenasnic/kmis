@@ -12,6 +12,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: RegistrationRepository::class)]
 class Registration
 {
+    public const DOCUMENT_FOLDER = 'registration';
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: Types::INTEGER)]
@@ -86,7 +88,7 @@ class Registration
     #[Assert\Valid]
     private ?Emergency $emergency = null;
 
-    #[ORM\OneToOne(targetEntity: Adherent::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
+    #[ORM\OneToOne(targetEntity: Adherent::class, inversedBy: 'registration', cascade: ['persist'], orphanRemoval: true)]
     #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     #[Assert\Valid]
     private Adherent $adherent;

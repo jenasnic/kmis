@@ -13,7 +13,6 @@ class Address
     private ?string $street;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    #[Assert\NotBlank]
     private ?string $street2;
 
     #[ORM\Column(type: 'string', length: 25, nullable: true)]

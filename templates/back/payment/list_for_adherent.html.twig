@@ -5,20 +5,19 @@
     {% include 'back/adherent/_header.html.twig' with {
         'current': 'payments',
         'adherent': adherent,
-        'registration': registration,
     } %}
 
     <h1 class="title">{{ 'back.payment.grid.title'|trans }}</h1>
 
-    {% if (registration.season.id == currentSeason.id) %}
+    {% if (adherent.registration.season.id == currentSeason.id) %}
         {% if not contributionSold %}
             <div class="notification is-warning">
-                <div class="is-size-4 mb-2">{{ registration.priceOption.label }} - {{ registration.priceOption.amount }}€</div>
+                <div class="is-size-4 mb-2">{{ adherent.registration.priceOption.label }} - {{ adherent.registration.priceOption.amount }}€</div>
                 {{ 'back.payment.grid.info.toPay'|trans({'%year%': currentSeason.getDisplayLabel(), '%amount%': amountToPay}) }}
             </div>
         {% else %}
             <div class="notification is-success">
-                <div class="is-size-4 mb-2">{{ registration.priceOption.label }} - {{ registration.priceOption.amount }}€</div>
+                <div class="is-size-4 mb-2">{{ adherent.registration.priceOption.label }} - {{ adherent.registration.priceOption.amount }}€</div>
                 {{ 'back.payment.grid.info.isSold'|trans({'%year%': currentSeason.getDisplayLabel()}) }}
             </div>
         {% endif %}

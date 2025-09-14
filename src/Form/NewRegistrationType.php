@@ -152,7 +152,7 @@ class NewRegistrationType extends AbstractRegistrationType
         $isForMinor = RegistrationTypeEnum::MINOR === $registrationType;
 
         $form->add('medicalCertificateFile', BulmaFileType::class, [
-            'label' => $isForMinor ? 'form.newRegistration.medicalCertificateFile.forMinor' : 'form.newRegistration.medicalCertificateFile.default',
+            'label' => $isForMinor ? 'form.newRegistration.medicalCertificateFile.forMinor' : 'form.newRegistration.medicalCertificateFile',
             'required' => !$forKmis,
             'constraints' => $fileConstraints,
             'help' => (!$forKmis && $isForMinor) ? 'form.newRegistration.medicalCertificateFileHelp' : null,

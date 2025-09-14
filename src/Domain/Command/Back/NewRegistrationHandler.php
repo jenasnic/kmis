@@ -2,16 +2,17 @@
 
 namespace App\Domain\Command\Back;
 
-use App\Entity\Registration;
+use App\Domain\Command\AbstractRegistrationHandler;
 use App\Repository\RegistrationRepository;
-use App\Service\File\FileUploader;
+use App\Service\File\FileManager;
 
-final class NewRegistrationHandler
+final class NewRegistrationHandler extends AbstractRegistrationHandler
 {
     public function __construct(
+        FileManager $fileManager,
         private readonly RegistrationRepository $registrationRepository,
-        private readonly FileUploader $fileUploader,
     ) {
+        parent::__construct($fileManager);
     }
 
     public function handle(NewRegistrationCommand $command): void
@@ -21,16 +22,5 @@ final class NewRegistrationHandler
         $this->processUpload($registration);
 
         $this->registrationRepository->add($registration, true);
-    }
-
-    private function processUpload(Registration $registration): void
-    {
-        if (null !== $registration->getAdherent()->getPictureFile()) {
-            $registration->getAdherent()->setPictureUrl($this->fileUploader->upload($registration->getAdherent()->getPictureFile()));
-        }
-
-        if (null !== $registration->getMedicalCertificateFile()) {
-            $registration->setMedicalCertificateUrl($this->fileUploader->upload($registration->getMedicalCertificateFile()));
-        }
     }
 }

@@ -33,7 +33,8 @@ final class NewsFactory extends PersistentProxyObjectFactory
      */
     protected function defaults(): array|callable
     {
-        $filePath = $this->uploadPath.News::PICTURE_FOLDER.str_replace('.', '', uniqid('', true)).'.jpg';
+        $fileName = str_replace('.', '', uniqid('', true)).'.jpg';
+        $filePath = $this->uploadPath.News::PICTURE_FOLDER.DIRECTORY_SEPARATOR.$fileName;
         $this->filesystem->copy($this->newsPicture, $filePath);
 
         return [
@@ -41,7 +42,7 @@ final class NewsFactory extends PersistentProxyObjectFactory
             'content' => $this->faker->text(),
             'details' => $this->faker->words(3, true),
             'active' => $this->faker->boolean(80),
-            'pictureUrl' => $filePath,
+            'pictureUrl' => $fileName,
         ];
     }
 

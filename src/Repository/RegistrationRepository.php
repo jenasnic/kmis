@@ -34,24 +34,6 @@ class RegistrationRepository extends ServiceEntityRepository
         }
     }
 
-    public function getForAdherent(int $adherentId): Registration
-    {
-        $registration = $this
-            ->createQueryBuilder('registration')
-            ->innerJoin('registration.adherent', 'adherent')
-            ->andWhere('adherent.id = :adherentId')
-            ->setParameter('adherentId', $adherentId)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-
-        if (!$registration instanceof Registration) {
-            throw new \LogicException(sprintf('no registration for adherent %d', $adherentId));
-        }
-
-        return $registration;
-    }
-
     /**
      * @return \Generator<Registration>
      */

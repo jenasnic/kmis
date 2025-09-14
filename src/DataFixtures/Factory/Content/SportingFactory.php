@@ -33,7 +33,8 @@ final class SportingFactory extends PersistentProxyObjectFactory
      */
     protected function defaults(): array|callable
     {
-        $filePath = $this->uploadPath.Sporting::PICTURE_FOLDER.str_replace('.', '', uniqid('', true)).'.jpg';
+        $fileName = str_replace('.', '', uniqid('', true)).'.jpg';
+        $filePath = $this->uploadPath.Sporting::PICTURE_FOLDER.DIRECTORY_SEPARATOR.$fileName;
         $this->filesystem->copy($this->sportingPicture, $filePath);
 
         return [
@@ -41,7 +42,7 @@ final class SportingFactory extends PersistentProxyObjectFactory
             'name' => $this->faker->words(2, true),
             'tagline' => $this->faker->words(6, true),
             'content' => $this->faker->text(),
-            'pictureUrl' => $filePath,
+            'pictureUrl' => $fileName,
         ];
     }
 

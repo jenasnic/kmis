@@ -27,7 +27,6 @@ use App\Form\Payment\PassPaymentType;
 use App\Form\Payment\TransferPaymentType;
 use App\Helper\FloatHelper;
 use App\Repository\Payment\PaymentRepository;
-use App\Repository\RegistrationRepository;
 use App\Repository\SeasonRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -41,7 +40,6 @@ class PaymentController extends AbstractController
         private readonly TranslatorInterface $translator,
         private readonly SeasonRepository $seasonRepository,
         private readonly PaymentRepository $paymentRepository,
-        private readonly RegistrationRepository $registrationRepository,
     ) {
     }
 
@@ -81,9 +79,15 @@ class PaymentController extends AbstractController
             return $this->redirectToRoute('bo_season_list');
         }
 
+        $registration = $adherent->getRegistration();
+        if (null === $registration) {
+            $this->addFlash('warning', $this->translator->trans('back.payment.list.missingRegistration'));
+
+            return $this->redirectToRoute('bo_adherent_list');
+        }
+
         /** @var int $adherentId */
         $adherentId = $adherent->getId();
-        $registration = $this->registrationRepository->getForAdherent($adherentId);
         $payments = $this->paymentRepository->findForAdherent($adherentId);
 
         $amountToPay = 0;
@@ -102,7 +106,6 @@ class PaymentController extends AbstractController
         return $this->render('back/payment/list_for_adherent.html.twig', [
             'payments' => $payments,
             'adherent' => $adherent,
-            'registration' => $registration,
             'currentSeason' => $season,
             'amountToPay' => $amountToPay,
             'contributionSold' => FloatHelper::equals($amountToPay, 0),

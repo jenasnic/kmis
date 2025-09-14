@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 #[ORM\Entity(repositoryClass: SportingRepository::class)]
 class Sporting
 {
-    public const PICTURE_FOLDER = 'sporting/';
+    public const PICTURE_FOLDER = 'sporting';
 
     #[ORM\Id]
     #[ORM\GeneratedValue]

@@ -4,6 +4,7 @@ namespace App\Controller\Front;
 
 use App\Entity\Content\Sporting;
 use App\Repository\Content\SportingRepository;
+use App\Service\File\FileManager;
 use App\Service\Provider\ScheduleProvider;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,12 +24,14 @@ class SportingController extends AbstractController
     }
 
     #[Route('/image-discipline/{sporting}', name: 'app_sporting_picture')]
-    public function picture(Sporting $sporting): Response
+    public function picture(FileManager $fileManager, Sporting $sporting): Response
     {
-        if (null === $sporting->getPictureUrl()) {
+        $file = $fileManager->download($sporting, 'pictureUrl');
+
+        if (null === $file) {
             throw $this->createNotFoundException();
         }
 
-        return $this->file($sporting->getPictureUrl());
+        return $this->file($file);
     }
 }
