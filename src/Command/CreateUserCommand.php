@@ -58,11 +58,9 @@ final class CreateUserCommand extends Command
                 throw new \LogicException('invalid password');
             }
 
-            $user = new User();
+            $user = new User($email);
             $user
-                ->setEmail($email)
                 ->setRole(RoleEnum::ROLE_ADMIN)
-                ->setEnabled(true)
                 ->setPassword($this->passwordHasher->hashPassword($user, $password))
             ;
 

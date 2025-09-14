@@ -20,7 +20,7 @@ class Calendar
     #[ORM\Column(type: Types::INTEGER, enumType: DayOfWeekEnum::class)]
     private DayOfWeekEnum $day;
 
-    #[ORM\ManyToOne(targetEntity: Location::class)]
+    #[ORM\ManyToOne(targetEntity: Location::class, inversedBy: 'calendars')]
     #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private ?Location $location = null;
 

@@ -20,7 +20,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(type: Types::STRING, length: 255, unique: true)]
-    private ?string $email = null;
+    private string $email;
 
     #[ORM\Column(type: Types::STRING, length: 255)]
     private ?string $password = null;
@@ -29,11 +29,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private string $role;
 
     #[ORM\Column(type: Types::BOOLEAN)]
-    private bool $enabled;
+    private bool $enabled = true;
 
-    public function __construct()
+    public function __construct(string $email)
     {
-        $this->enabled = false;
+        $this->email = $email;
         $this->role = RoleEnum::ROLE_USER;
     }
 
@@ -42,12 +42,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->id;
     }
 
-    public function getEmail(): ?string
+    public function getEmail(): string
     {
         return $this->email;
     }
 
-    public function setEmail(?string $email): self
+    public function setEmail(string $email): self
     {
         $this->email = $email;
 
@@ -59,7 +59,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->password;
     }
 
-    public function setPassword(?string $password): self
+    public function setPassword(string $password): self
     {
         $this->password = $password;
 

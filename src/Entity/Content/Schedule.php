@@ -27,7 +27,7 @@ class Schedule
     #[ORM\JoinColumn(nullable: true, onDelete: 'CASCADE')]
     private ?Sporting $sporting = null;
 
-    #[ORM\ManyToOne(targetEntity: Calendar::class)]
+    #[ORM\ManyToOne(targetEntity: Calendar::class, inversedBy: 'schedules')]
     #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private Calendar $calendar;
 
