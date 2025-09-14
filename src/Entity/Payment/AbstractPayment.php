@@ -4,6 +4,7 @@ namespace App\Entity\Payment;
 
 use App\Entity\Adherent;
 use App\Entity\Season;
+use App\Enum\PaymentTypeEnum;
 use App\Repository\Payment\PaymentRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -106,5 +107,5 @@ abstract class AbstractPayment
         return $this->season;
     }
 
-    abstract public function getPaymentType(): string;
+    abstract public function getPaymentType(): PaymentTypeEnum;
 }

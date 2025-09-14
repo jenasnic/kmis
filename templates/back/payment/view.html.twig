@@ -30,7 +30,7 @@
         </div>
     </nav>
 
-    <h1 class="title">{{ 'back.payment.view.title'|trans }} - {{ ('enum.paymentType.'~payment.paymentType)|trans }}</h1>
+    <h1 class="title">{{ 'back.payment.view.title'|trans }} - {{ payment.paymentType|trans }}</h1>
 
     {{ form(form) }}
 

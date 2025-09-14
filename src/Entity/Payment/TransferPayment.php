@@ -28,7 +28,7 @@ class TransferPayment extends AbstractPayment
         return $this;
     }
 
-    public function getPaymentType(): string
+    public function getPaymentType(): PaymentTypeEnum
     {
         return PaymentTypeEnum::TRANSFER;
     }

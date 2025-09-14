@@ -68,7 +68,7 @@
                 {% for payment in payments %}
                     <tr>
                         <td>{{ payment.date|date('d/m/Y') }}</td>
-                        <td class="type">{{ ('enum.paymentType.'~payment.paymentType)|trans }}</td>
+                        <td class="type">{{ payment.paymentType|trans }}</td>
                         <td>{{ payment.amount|number_format(2, ',' , ' ') }}</td>
                         <td class="adherent">{{ payment.adherent.fullName }}</td>
                         <td class="action">

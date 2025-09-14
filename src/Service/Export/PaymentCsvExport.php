@@ -61,7 +61,7 @@ class PaymentCsvExport extends AbstractCsvExport
         /** @var array<int, string> $line */
         $line = [
             $data->getDate()->format('d/m/Y'),
-            $this->translator->trans('enum.paymentType.'.$data->getPaymentType()),
+            $data->getPaymentType()->trans($this->translator),
             number_format($amount, 2, ',', ' '),
             $data->getAdherent()->getFullName(),
             ($data instanceof AncvPayment) ? $data->getNumber() : '',

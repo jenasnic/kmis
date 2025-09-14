@@ -28,7 +28,7 @@ class AncvPayment extends AbstractPayment
         return $this;
     }
 
-    public function getPaymentType(): string
+    public function getPaymentType(): PaymentTypeEnum
     {
         return PaymentTypeEnum::ANCV;
     }

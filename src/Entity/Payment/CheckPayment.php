@@ -43,7 +43,7 @@ class CheckPayment extends AbstractPayment
         return $this;
     }
 
-    public function getPaymentType(): string
+    public function getPaymentType(): PaymentTypeEnum
     {
         return PaymentTypeEnum::CHECK;
     }

@@ -52,7 +52,7 @@
                 <tr>
                     <td>{{ payment.date|date('d/m/Y') }}</td>
                     <td>{{ payment.amount|number_format(2, ',' , ' ') }}</td>
-                    <td>{{ ('enum.paymentType.'~payment.paymentType)|trans }}</td>
+                    <td>{{ payment.paymentType|trans }}</td>
                     <td>{{ payment.season.getDisplayLabel() }}</td>
                     <td class="action">
                         <a href="{{ path('bo_payment_view', {'payment': payment.id}) }}" class="button is-info">

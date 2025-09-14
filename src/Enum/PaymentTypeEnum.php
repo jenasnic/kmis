@@ -2,29 +2,25 @@
 
 namespace App\Enum;
 
-class PaymentTypeEnum
-{
-    public const ANCV = 'ANCV';
-    public const CASH = 'CASH';
-    public const CHECK = 'CHECK';
-    public const DISCOUNT = 'DISCOUNT';
-    public const HELLO_ASSO = 'HELLO_ASSO';
-    public const PASS = 'PASS';
-    public const TRANSFER = 'TRANSFER';
+use Symfony\Contracts\Translation\TranslatorInterface;
 
-    /**
-     * @return array<string>
-     */
-    public static function getAll(): array
+enum PaymentTypeEnum: string implements TranslatableEnumInterface
+{
+    case ANCV = 'ANCV';
+    case CASH = 'CASH';
+    case CHECK = 'CHECK';
+    case DISCOUNT = 'DISCOUNT';
+    case HELLO_ASSO = 'HELLO_ASSO';
+    case PASS = 'PASS';
+    case TRANSFER = 'TRANSFER';
+
+    public function trans(TranslatorInterface $translator, ?string $locale = null): string
     {
-        return [
-            self::ANCV,
-            self::CASH,
-            self::CHECK,
-            self::DISCOUNT,
-            self::HELLO_ASSO,
-            self::PASS,
-            self::TRANSFER,
-        ];
+        return $translator->trans($this->getTranslationKey());
+    }
+
+    public function getTranslationKey(): string
+    {
+        return 'enum.paymentType.'.$this->name;
     }
 }

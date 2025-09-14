@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Table(name: 'payment_cash')]
 class CashPayment extends AbstractPayment
 {
-    public function getPaymentType(): string
+    public function getPaymentType(): PaymentTypeEnum
     {
         return PaymentTypeEnum::CASH;
     }
