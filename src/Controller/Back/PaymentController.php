@@ -48,12 +48,16 @@ class PaymentController extends AbstractController
     #[Route('/paiements/{season}', name: 'bo_payment_list_for_season', methods: ['GET'])]
     public function listForSeason(?Season $season = null): Response
     {
-        $season ??= $this->seasonRepository->getActiveSeason();
-
         if (null === $season) {
-            $this->addFlash('warning', $this->translator->trans('back.season.activate.missingSeason'));
+            $defaultSeason = $this->seasonRepository->getActiveSeason();
 
-            return $this->redirectToRoute('bo_season_list');
+            if (null === $defaultSeason) {
+                $this->addFlash('warning', $this->translator->trans('back.season.activate.missingSeason'));
+
+                return $this->redirectToRoute('bo_season_list');
+            }
+
+            return $this->redirectToRoute('bo_payment_list_for_season', ['season' => $defaultSeason->getId()]);
         }
 
         /** @var int $seasonId */

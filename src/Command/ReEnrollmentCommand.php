@@ -3,7 +3,7 @@
 namespace App\Command;
 
 use App\Repository\SeasonRepository;
-use App\Service\Configuration\ConfigurationManager;
+use App\Service\Configuration\AutomaticSendManager;
 use App\Service\Notifier\ReEnrollmentNotifier;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -16,7 +16,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 final class ReEnrollmentCommand extends Command
 {
     public function __construct(
-        private readonly ConfigurationManager $configurationManager,
+        private readonly AutomaticSendManager $automaticSendManager,
         private readonly SeasonRepository $seasonRepository,
         private readonly ReEnrollmentNotifier $reEnrollmentNotifier,
         private readonly int $mailerMaxPacketSize,
@@ -36,7 +36,7 @@ final class ReEnrollmentCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
-        if (!$this->configurationManager->isAutomaticSendEnable()) {
+        if (!$this->automaticSendManager->isAutomaticSendEnable()) {
             $io->warning('Automatic enrollment notification is disabled.');
 
             return self::INVALID;

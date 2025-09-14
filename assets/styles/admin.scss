@@ -8,5 +8,7 @@
 
 @use './back/pages/gallery';
 @use './back/pages/adherent';
-@use './back/pages/news-list';
 @use './back/pages/season-form';
+
+@use './back/pages/content/news-list';
+@use './back/pages/content/calendar-form';

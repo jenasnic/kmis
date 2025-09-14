@@ -117,13 +117,11 @@
 .sessions {
   display: flex;
   font-size: 1rem;
-  justify-content: space-between;
+  justify-content: center;
   margin-bottom: 50px;
   width: 100%;
-
-  &--center {
-    justify-content: center;
-  }
+  flex-wrap: wrap;
+  gap: 50px 60px;
 
   @include media.below(md) {
     align-items: center;

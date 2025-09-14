@@ -15,4 +15,15 @@ class ConfigurationRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Configuration::class);
     }
+
+    public function getOrCreate(string $key): Configuration
+    {
+        $configuration = $this->find($key);
+
+        if (null === $configuration) {
+            $configuration = new Configuration($key);
+        }
+
+        return $configuration;
+    }
 }

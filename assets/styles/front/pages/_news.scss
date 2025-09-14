@@ -108,6 +108,10 @@
               line-height: 2rem;
             }
 
+            ul, li {
+              text-align: left;
+            }
+
             @include media.below(sm) {
               font-size: 0.7rem;
 

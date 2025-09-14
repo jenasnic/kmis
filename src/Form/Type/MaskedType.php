@@ -21,6 +21,7 @@ class MaskedType extends AbstractType
 {
     public const PHONE_MASK = '00 00 00 00 00';
     public const ZIP_CODE_MASK = '00 000';
+    public const TIME_MASK = '0[0]h00';
 
     /**
      * @param array<string, mixed> $options

@@ -1,0 +1,62 @@
+{% extends 'layout/_back.html.twig' %}
+
+{% block body %}
+
+    <nav class="level">
+        <div class="level-left">
+            {% if sporting.id is null %}
+                <h1 class="title">{{ 'back.sporting.edit.new'|trans }}</h1>
+            {% else %}
+                <h1 class="title">{{ 'back.sporting.edit.title'|trans }}</h1>
+            {% endif %}
+        </div>
+        <div class="level-right">
+            <p class="level-item">
+                <a href="{{ path('bo_sporting_list') }}" class="button is-outlined">
+                    <span>{{ 'global.back'|trans }}</span>
+                    <span class="icon"><i class="icon-back"></i></span>
+                </a>
+            </p>
+            {% if sporting.id is not null %}
+                <p class="level-item">
+                    <form
+                        data-confirm
+                        data-confirm-message="{{ 'global.confirmDelete'|trans }}"
+                        action="{{ path('bo_sporting_delete', {'sporting': sporting.id}) }}"
+                        method="POST"
+                    >
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete-'~sporting.id) }}" />
+                        <button type="submit" class="button is-danger">
+                            <span>{{ 'global.delete'|trans }}</span>
+                            <span class="icon"><i class="icon-cross"></i></span>
+                        </button>
+                    </form>
+                </p>
+            {% endif %}
+        </div>
+    </nav>
+
+    {{ form_start(form) }}
+    <div class="columns">
+        <div class="column">{{ form_row(form.active) }}</div>
+    </div>
+    <div class="columns">
+        <div class="column">{{ form_row(form.name) }}</div>
+    </div>
+    <div class="columns">
+        <div class="column">{{ form_row(form.tagline) }}</div>
+    </div>
+    <div class="columns">
+        <div class="column">{{ form_row(form.content) }}</div>
+    </div>
+    <div class="columns">
+        <div class="column">{{ form_row(form.pictureFile) }}</div>
+    </div>
+    <div class="is-flex is-flex-direction-row is-justify-content-flex-end is-align-content-center">
+        <div class="block">
+            <button type="submit" class="button is-primary">{{ 'global.validate'|trans }}</button>
+        </div>
+    </div>
+    {{ form_end(form) }}
+
+{% endblock %}

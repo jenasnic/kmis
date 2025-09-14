@@ -1,10 +1,14 @@
+{#
+@var App\Entity\Content\Sporting sporting
+#}
+
 <div class="sporting-slide">
-    <div class="title">{{ title }}</div>
+    <div class="title">{{ sporting.name }}</div>
     <div class="content-wrapper with-background">
-        <img src="{{ image }}" alt="{{ title }}">
+        <img src="{{ path('app_sporting_picture', {'sporting': sporting.id}) }}" alt="{{ sporting.name }}">
         <div class="content with-overlay">
-            <div>{{ content }}</div>
-            <a href="{{ link }}" class="link-icon-button">{{ 'global.more'|trans }} <i class="icon-search"></i></a>
+            <div>{{ sporting.tagline }}</div>
+            <a href="{{ path('app_sporting')~'#'~sporting.id }}" class="link-icon-button">{{ 'global.more'|trans }} <i class="icon-search"></i></a>
         </div>
     </div>
 </div>

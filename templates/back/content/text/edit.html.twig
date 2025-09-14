@@ -1,0 +1,25 @@
+{% extends 'layout/_back.html.twig' %}
+
+{% block body %}
+
+    <nav class="level">
+        <div class="level-left">
+            <h1 class="title">{{ 'back.text.title'|trans }}</h1>
+        </div>
+    </nav>
+
+    {{ form_start(form) }}
+    <div class="columns">
+        <div class="column">{{ form_row(form.homePresentation) }}</div>
+    </div>
+    <div class="columns">
+        <div class="column">{{ form_row(form.contact) }}</div>
+    </div>
+    <div class="is-flex is-flex-direction-row is-justify-content-flex-end is-align-content-center">
+        <div class="block">
+            <button type="submit" class="button is-primary">{{ 'global.validate'|trans }}</button>
+        </div>
+    </div>
+    {{ form_end(form) }}
+
+{% endblock %}

@@ -4,6 +4,7 @@ namespace App\DataFixtures\Factory;
 
 use App\Entity\Payment\PriceOption;
 use App\Entity\Registration;
+use App\Enum\RegistrationTypeEnum;
 use Faker\Factory;
 use Faker\Generator;
 use Symfony\Component\Filesystem\Filesystem;
@@ -75,6 +76,7 @@ final class RegistrationFactory extends PersistentProxyObjectFactory
             'privateNote' => $this->faker->text(),
             'purpose' => PurposeFactory::random()->_real(),
             'registeredAt' => $registeredAt,
+            'registrationType' => $this->faker->randomElement(RegistrationTypeEnum::getAll()),
             'usePassCitizen' => $usePassCitizen,
             'usePassSport' => $usePassSport,
             'verified' => $this->faker->boolean(80),

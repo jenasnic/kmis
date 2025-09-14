@@ -1,23 +1,29 @@
+{#
+@var App\Entity\Content\Location location
+#}
+
 <div class="session">
     <div class="session__city">
-        <div class="name">{{ city }}</div>
-        <a href="{{ mapLink }}" class="link-icon-button" target="_blank">Localisation <i class="icon-location"></i></a>
+        <div class="name">{{ location.name }}</div>
+        {% if location.localization is not empty %}
+            <a href="{{ location.localization }}" class="link-icon-button" target="_blank">Localisation <i class="icon-location"></i></a>
+        {% endif %}
         <div class="address" itemscope itemtype="https://schema.org/PostalAddress">
             <span itemprop="streetAddress">
-                {{ addressStreet1 }}
-                {% if addressStreet2 %}<br/>{{ addressStreet2 }}{% endif %}
+                {{ location.address.street }}
+                {% if location.address.street2 %}<br/>{{ location.address.street2 }}{% endif %}
             </span><br/>
-            <span itemprop="postalCode">{{ addressZipCode }}</span> <span itemprop="addressLocality">{{ city }}</span>
+            <span itemprop="postalCode">{{ location.address.zipCode }}</span> <span itemprop="addressLocality">{{ location.address.city }}</span>
             <meta itemprop="addressRegion" content="Oise" />
         </div>
     </div>
     <ul class="session__time">
-    {% for day, schedules in planning %}
+    {% for calendar in location.calendars %}
         <li>
-            {{ day }}
+            {{ calendar.day|trans }}
             <ul>
-            {% for schedule in schedules %}
-                <li>{{ schedule|raw }}</li>
+            {% for schedule in calendar.schedules %}
+                <li>{{ schedule.displaySchedule(true) }}</li>
             {% endfor %}
             </ul>
         </li>

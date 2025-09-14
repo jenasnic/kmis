@@ -1,0 +1,53 @@
+{% extends 'layout/_back.html.twig' %}
+
+{% block body %}
+
+    <h2 class="subtitle">{{ calendars|length }} {{ 'back.calendar.list.count'|trans }}</h2>
+
+    <div data-grid="data-grid">
+
+        <nav class="level">
+            <div class="level-left"></div>
+            <div class="level-right">
+                <p class="level-item">
+                    <a href="{{ path('bo_calendar_new') }}" class="button is-primary">
+                        <span>{{ 'back.calendar.list.action.add'|trans }}</span>
+                        <span class="icon is-small">
+                            <i class="icon-more"></i>
+                        </span>
+                    </a>
+                </p>
+            </div>
+        </nav>
+
+        {% embed 'back/components/_table.html.twig' %}
+
+        {% block thead %}
+            <th>{{ 'back.calendar.list.header.day'|trans }}</th>
+            <th class="half">{{ 'back.calendar.list.header.location'|trans }}</th>
+            <th class="half">{{ 'back.calendar.list.header.schedules'|trans }}</th>
+            <th></th>
+        {% endblock %}
+
+        {% block tbody %}
+            {% for calendar in calendars %}
+                <tr>
+                    <td>{{ calendar.day|trans }}</td>
+                    <td>{{ calendar.location.name }}</td>
+                    <td>{{ calendar.displaySchedules() }}</td>
+                    <td class="action">
+                        <div class="action-wrapper">
+                            <a href="{{ path('bo_calendar_edit', {'calendar': calendar.id}) }}" class="button is-primary">
+                                <span class="icon"><i class="icon-pencil"></i></span>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% endblock %}
+
+        {% endembed %}
+
+    </div>
+
+{% endblock %}

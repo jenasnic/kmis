@@ -27,14 +27,22 @@ class AddressType extends AbstractType implements DataMapperInterface
             ->add('city', TextType::class)
             ->setDataMapper($this)
         ;
+
+        if ($options['with_street_2']) {
+            $builder->add('street2', TextType::class, ['required' => false]);
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
+        $resolver->setDefined('with_street_2');
+        $resolver->setAllowedTypes('with_street_2', 'bool');
+
         $resolver->setDefaults([
             'data_class' => Address::class,
             'empty_data' => null,
             'error_bubbling' => false,
+            'with_street_2' => false,
         ]);
     }
 
@@ -57,6 +65,10 @@ class AddressType extends AbstractType implements DataMapperInterface
         $forms['street']->setData($viewData->getStreet());
         $forms['zipCode']->setData($viewData->getZipCode());
         $forms['city']->setData($viewData->getCity());
+
+        if (array_key_exists('street2', $forms)) {
+            $forms['street2']->setData($viewData->getStreet2());
+        }
     }
 
     /**
@@ -78,8 +90,14 @@ class AddressType extends AbstractType implements DataMapperInterface
             /** @var string|null $city */
             $city = $forms['city']->getData();
 
-            $viewData = new Address($street, $zipCode, $city);
-        } catch (\TypeError $error) {
+            $street2 = null;
+            if (array_key_exists('street2', $forms)) {
+                /** @var string|null $street2 */
+                $street2 = $forms['street2']->getData();
+            }
+
+            $viewData = new Address($street, $street2, $zipCode, $city);
+        } catch (\TypeError) {
             if ($allEmpty) {
                 $viewData = null;
             } else {

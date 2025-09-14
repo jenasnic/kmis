@@ -2,14 +2,20 @@
 @use '../icons';
 
 .wysiwyg-content {
-  li {
-    padding-left: 30px;
+  ul {
+    font-size: 1.3rem;
+    line-height: 1.8em;
+    margin-bottom: 20px;
 
-    &:before {
-      @include icons.icon(icons.$icon-checkmark);
-      color: color.$primary-color;
-      font-size: 0.8em;
-      margin-right: 10px;
+    li {
+      padding-left: 30px;
+
+      &:before {
+        @include icons.icon(icons.$icon-checkmark);
+        color: color.$primary-color;
+        font-size: 0.8em;
+        margin-right: 10px;
+      }
     }
   }
 }

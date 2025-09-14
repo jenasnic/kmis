@@ -6,9 +6,9 @@ use App\Entity\Configuration;
 use App\Repository\ConfigurationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
-class ConfigurationManager
+class AutomaticSendManager
 {
-    private const AUTOMATIC_SEND = 'AUTOMATIC_SEND';
+    public const AUTOMATIC_SEND = 'AUTOMATIC_SEND';
 
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
@@ -45,16 +45,11 @@ class ConfigurationManager
     {
         $value = $state ? 'ACTIVE' : 'INACTIVE';
 
-        /** @var Configuration|null $configuration */
-        $configuration = $this->configurationRepository->find(self::AUTOMATIC_SEND);
-        if (null === $configuration) {
-            $configuration = new Configuration(self::AUTOMATIC_SEND, $value);
+        $configuration = $this->configurationRepository->getOrCreate(self::AUTOMATIC_SEND);
 
-            $this->entityManager->persist($configuration);
-        } else {
-            $configuration->setValue($value);
-        }
+        $configuration->setValue($value);
 
+        $this->entityManager->persist($configuration);
         $this->entityManager->flush();
     }
 }

@@ -31,6 +31,7 @@ final class AddressFactory
 
         return new Address(
             $attributes['street'],
+            null,
             $attributes['zipCode'],
             $attributes['city'],
         );

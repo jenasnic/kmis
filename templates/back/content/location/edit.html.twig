@@ -1,0 +1,70 @@
+{% extends 'layout/_back.html.twig' %}
+
+{% block body %}
+
+    <nav class="level">
+        <div class="level-left">
+            {% if location.id is null %}
+                <h1 class="title">{{ 'back.location.edit.new'|trans }}</h1>
+            {% else %}
+                <h1 class="title">{{ 'back.location.edit.title'|trans }}</h1>
+            {% endif %}
+        </div>
+        <div class="level-right">
+            <p class="level-item">
+                <a href="{{ path('bo_location_list') }}" class="button is-outlined">
+                    <span>{{ 'global.back'|trans }}</span>
+                    <span class="icon"><i class="icon-back"></i></span>
+                </a>
+            </p>
+            {% if location.id is not null %}
+                <p class="level-item">
+                    <form
+                        data-confirm
+                        data-confirm-message="{{ 'global.confirmDelete'|trans }}"
+                        action="{{ path('bo_location_delete', {'location': location.id}) }}"
+                        method="POST"
+                    >
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete-'~location.id) }}" />
+                        <button type="submit" class="button is-danger">
+                            <span>{{ 'global.delete'|trans }}</span>
+                            <span class="icon"><i class="icon-cross"></i></span>
+                        </button>
+                    </form>
+                </p>
+            {% endif %}
+        </div>
+    </nav>
+
+    {{ form_start(form) }}
+    <div class="columns">
+        <div class="column">{{ form_row(form.active) }}</div>
+    </div>
+    <div class="columns">
+        <div class="column">{{ form_row(form.name) }}</div>
+    </div>
+    <div class="columns">
+        <div class="column">{{ form_row(form.address.street) }}</div>
+    </div>
+    <div class="columns">
+        <div class="column">{{ form_row(form.address.street2) }}</div>
+    </div>
+    <div class="columns">
+        <div class="column">{{ form_row(form.address.zipCode) }}</div>
+        <div class="column">{{ form_row(form.address.city) }}</div>
+    </div>
+    <div class="columns">
+        <div class="column">{{ form_row(form.latitude) }}</div>
+        <div class="column">{{ form_row(form.longitude) }}</div>
+    </div>
+    <div class="columns">
+        <div class="column">{{ form_row(form.localization) }}</div>
+    </div>
+    <div class="is-flex is-flex-direction-row is-justify-content-flex-end is-align-content-center">
+        <div class="block">
+            <button type="submit" class="button is-primary">{{ 'global.validate'|trans }}</button>
+        </div>
+    </div>
+    {{ form_end(form) }}
+
+{% endblock %}

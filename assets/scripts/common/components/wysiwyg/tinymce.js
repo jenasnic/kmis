@@ -1,4 +1,4 @@
-import tinyMCE, { Editor } from 'tinymce/tinymce';
+import tinyMCE from 'tinymce/tinymce';
 import './fr_FR';
 import 'tinymce/icons/default';
 import 'tinymce/themes/silver';
@@ -40,15 +40,16 @@ export const bindWysiwyg = textarea => {
     },
     browser_spellcheck: true,
     contextmenu: false,
-    setup: (editor) => {
-      editor.ui.registry.addButton('testButton', {
-        text: 'Test',
-        icon: 'warning',
-        tooltip: 'Fonctionnalité de test',
-        onAction: function (_) {
-          editor.insertContent('<div class="wysiwyg-test" data-test="test"></div>');
-        }
-      });
-    },
+    // // Uncomment to add button with specific behavior!
+    // setup: (editor) => {
+    //   editor.ui.registry.addButton('testButton', {
+    //     text: 'Test',
+    //     icon: 'warning',
+    //     tooltip: 'Fonctionnalité de test',
+    //     onAction: function (_) {
+    //       editor.insertContent('<div class="wysiwyg-test" data-test="test"></div>');
+    //     }
+    //   });
+    // },
   });
 };
