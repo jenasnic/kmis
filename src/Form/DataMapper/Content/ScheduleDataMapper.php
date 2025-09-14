@@ -22,7 +22,6 @@ class ScheduleDataMapper implements DataMapperInterface
     public function mapDataToForms(mixed $viewData, \Traversable $forms): void
     {
         if (!$viewData instanceof Schedule) {
-            //            dd('aaa', $viewData);
             return;
         }
 

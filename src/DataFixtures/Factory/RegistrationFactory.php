@@ -35,10 +35,12 @@ final class RegistrationFactory extends PersistentProxyObjectFactory
      */
     protected function defaults(): array|callable
     {
-        $medicalCertificatePath = $this->uploadPath.str_replace('.', '', uniqid('', true)).'.pdf';
+        $medicalCertificateFileName = str_replace('.', '', uniqid('', true)).'.pdf';
+        $medicalCertificatePath = $this->uploadPath.Registration::DOCUMENT_FOLDER.DIRECTORY_SEPARATOR.$medicalCertificateFileName;
         $this->filesystem->copy($this->fileModel, $medicalCertificatePath);
 
-        $licenceFormPath = $this->uploadPath.str_replace('.', '', uniqid('', true)).'.pdf';
+        $licenceFormFileName = str_replace('.', '', uniqid('', true)).'.pdf';
+        $licenceFormPath = $this->uploadPath.Registration::DOCUMENT_FOLDER.DIRECTORY_SEPARATOR.$licenceFormFileName;
         $this->filesystem->copy($this->fileModel, $licenceFormPath);
 
         $registeredAt = $this->faker->dateTimeBetween('-2 months', '-1 week');
@@ -53,11 +55,13 @@ final class RegistrationFactory extends PersistentProxyObjectFactory
         $usePassSport = $this->faker->boolean(30);
 
         if ($usePassCitizen) {
-            $passCitizenPath = $this->uploadPath.str_replace('.', '', uniqid('', true)).'.pdf';
+            $passCitizenFileName = str_replace('.', '', uniqid('', true)).'.pdf';
+            $passCitizenPath = $this->uploadPath.Registration::DOCUMENT_FOLDER.DIRECTORY_SEPARATOR.$passCitizenFileName;
             $this->filesystem->copy($this->fileModel, $passCitizenPath);
         }
         if ($usePassSport) {
-            $passSportPath = $this->uploadPath.str_replace('.', '', uniqid('', true)).'.pdf';
+            $passSportFileName = str_replace('.', '', uniqid('', true)).'.pdf';
+            $passSportPath = $this->uploadPath.Registration::DOCUMENT_FOLDER.DIRECTORY_SEPARATOR.$passSportFileName;
             $this->filesystem->copy($this->fileModel, $passSportPath);
         }
 
@@ -68,11 +72,11 @@ final class RegistrationFactory extends PersistentProxyObjectFactory
             'emergency' => EmergencyFactory::new(),
             'legalRepresentative' => $withLegalRepresentative ? LegalRepresentativeFactory::new() : null,
             'licenceDate' => $registeredAt,
-            'licenceFormUrl' => $licenceFormPath,
+            'licenceFormUrl' => $licenceFormFileName,
             'licenceNumber' => $this->faker->numberBetween(100000, 999999),
-            'medicalCertificateUrl' => $medicalCertificatePath,
-            'passCitizenUrl' => $usePassCitizen ? $passCitizenPath : null,
-            'passSportUrl' => $usePassSport ? $passSportPath : null,
+            'medicalCertificateUrl' => $medicalCertificateFileName,
+            'passCitizenUrl' => $usePassCitizen ? $passCitizenFileName : null,
+            'passSportUrl' => $usePassSport ? $passSportFileName : null,
             'privateNote' => $this->faker->text(),
             'purpose' => PurposeFactory::random()->_real(),
             'registeredAt' => $registeredAt,

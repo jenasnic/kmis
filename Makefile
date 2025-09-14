@@ -85,6 +85,12 @@ deploy:
 	$(DOCKER_USER) $(NPM_BIN) install
 	$(DOCKER_USER) $(NPM_BIN) run build --prod
 
+.PHONY: remove-fixtures-files
+remove-fixtures-files:
+	rm -rf ./upload/adherent/*
+	rm -rf ./upload/news/*
+	rm -rf ./upload/registration/*
+	rm -rf ./upload/sporting/*
 
 
 ##

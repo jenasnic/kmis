@@ -8,7 +8,6 @@ use App\Entity\Adherent;
 use App\Entity\Season;
 use App\Form\AdherentType;
 use App\Repository\AdherentRepository;
-use App\Repository\RegistrationRepository;
 use App\Repository\SeasonRepository;
 use App\Service\Grid\AdherentFilter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,7 +21,6 @@ class AdherentController extends AbstractController
     public function __construct(
         private readonly SeasonRepository $seasonRepository,
         private readonly AdherentRepository $adherentRepository,
-        private readonly RegistrationRepository $registrationRepository,
         private readonly TranslatorInterface $translator,
     ) {
     }
@@ -99,13 +97,9 @@ class AdherentController extends AbstractController
             return $this->redirectToRoute('bo_adherent_list');
         }
 
-        /** @var int $adherentId */
-        $adherentId = $adherent->getId();
-
         return $this->render('back/adherent/edit.html.twig', [
             'form' => $form->createView(),
             'adherent' => $adherent,
-            'registration' => $this->registrationRepository->getForAdherent($adherentId),
         ]);
     }
 

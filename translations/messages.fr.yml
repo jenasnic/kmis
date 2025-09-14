@@ -124,6 +124,9 @@ back.news.list.header.picture: Image
 back.news.list.order.success: Ordre des actualités mis à jour
 back.news.preview.title: Prévisualisation actualité
 
+back.payment.delete.success: Paiement supprimé
+back.payment.edit.success: Paiement mis à jour
+back.payment.edit.title: Paiement
 back.payment.grid.action.new: Ajouter un paiement
 back.payment.grid.header.adherent: Adherent
 back.payment.grid.header.amount: Montant
@@ -133,12 +136,10 @@ back.payment.grid.header.type: Type
 back.payment.grid.info.isSold: Cotisation %year% soldée
 back.payment.grid.info.toPay: 'Reste à régler sur cotisation %year% : %amount% €'
 back.payment.grid.title: Liste des paiements
-back.payment.new.title: Nouveau paiement
+back.payment.list.missingRegistration: L'adhérent n'est pas inscrit.
 back.payment.new.success: Paiement ajouté
-back.payment.edit.title: Paiement
-back.payment.edit.success: Paiement mis à jour
+back.payment.new.title: Nouveau paiement
 back.payment.view.title: Paiement
-back.payment.delete.success: Paiement supprimé
 
 back.priceOption.form.amount: Montant
 back.priceOption.form.label: Nom de la formule
@@ -206,7 +207,7 @@ form.adherent.pictureFile: Photo
 form.adherent.pictureFileHelp: Votre photo est déjà disponible, vous pouvez ainsi laisser ce champ vide ou si vous le souhaitez en charger une nouvelle.
 form.adherent.pseudonym: Pseudo Facebook
 form.adherent.pseudonymHelp: Pour intégrer le <a href="https://www.facebook.com/groups/807864253572677/" target="_blank">groupe Facebook</a> privé du club
-form.adherent.reEnrollmentToNotify: Notification de désinscription
+form.adherent.reEnrollmentToNotify: Notification de réinscription
 form.adherent.reEnrollmentToNotifyHelp: Cocher pour relancer le mail de résincription ou décocher pour ignorer la relance de désinscription.
 form.adherent.street: Adresse
 form.adherent.zipCode: Code postal
@@ -260,7 +261,7 @@ form.newRegistration.licenceDate: Date de la licence
 form.newRegistration.licenceFormFile: Formulaire de demande de licence
 form.newRegistration.licenceNumber: N° de licence
 form.newRegistration.licenceFormFileHelp: Vous pouvez télécharger un exemplaire du formulaire <a href="%licenceLink%" target="_blank">ici</a> ou obtenir un formulaire auprès des membres du bureau.
-form.newRegistration.medicalCertificateFile.default: Certificat médical
+form.newRegistration.medicalCertificateFile: Certificat médical
 form.newRegistration.medicalCertificateFile.forMinor: Certificat médical ou attestation sur l'honneur
 form.newRegistration.medicalCertificateFileHelp: Certificat médical ou attestation sur l’honneur. Pour les informations sur les documents à fournir, consultez la <a href='https://www.ffkarate.fr/espace-licencies/certificat-medical/' target='_blank'>note d’information</a>.
 form.newRegistration.passCitizenFile: Document d'elligibilité au Pass'Sports Citoyen
@@ -376,6 +377,7 @@ front.reEnrollment.header.title: Réinscription
 front.reEnrollment.success: Votre réinscription a bien été prise en compte.<br/>Le KMIS vous remercie et vous dit à bientôt.
 front.reEnrollment.error: Token de réinscription invalide ou adresse email incorrecte.
 front.reEnrollment.expired: Le lien de réinscription n'est plus valide.<br/>Veuillez contacter les membres du bureau pour vous réinscrire.
+front.reEnrollment.noRegistration: Le lien de réinscription n'est plus valide.<br/>Veuillez contacter les membres du bureau pour vous réinscrire.
 front.reEnrollment.noSeason: La nouvelle saison sportive n'a pas encore été ouverte.<br/>Revenez plus tard pour vous réinscrire.
 
 front.sporting.header.title: Disciplines

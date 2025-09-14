@@ -56,7 +56,8 @@ final class AdherentFactory extends PersistentProxyObjectFactory
         );
 
         $pictureFixture = (GenderEnum::MALE === $gender) ? $this->malePicture : $this->femalePicture;
-        $filePath = $this->uploadPath.str_replace('.', '', uniqid('', true)).'.jpg';
+        $fileName = str_replace('.', '', uniqid('', true)).'.jpg';
+        $filePath = $this->uploadPath.Adherent::PICTURE_FOLDER.DIRECTORY_SEPARATOR.$fileName;
         $this->filesystem->copy($pictureFixture, $filePath);
 
         return [
@@ -68,7 +69,7 @@ final class AdherentFactory extends PersistentProxyObjectFactory
             'email' => strtolower($email),
             'address' => AddressFactory::createOne(),
             'pseudonym' => $firstName.substr($lastName, 0, 1),
-            'pictureUrl' => $filePath,
+            'pictureUrl' => $fileName,
         ];
     }
 

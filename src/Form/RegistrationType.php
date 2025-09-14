@@ -10,6 +10,9 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
 
+/**
+ * Registration type used for KMIS only (i.e. BO) => in case of edition or re-enrollment!
+ */
 class RegistrationType extends AbstractRegistrationType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void

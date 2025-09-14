@@ -3,17 +3,14 @@
 namespace App\Domain\Command\Back;
 
 use App\Entity\Registration;
-use App\Enum\FileTypeEnum;
 use App\Repository\RegistrationRepository;
-use App\Service\File\FileCleaner;
-use App\Service\File\FileUploader;
+use App\Service\File\FileManager;
 
 final class SaveRegistrationHandler
 {
     public function __construct(
         private readonly RegistrationRepository $registrationRepository,
-        private readonly FileUploader $fileUploader,
-        private readonly FileCleaner $fileCleaner,
+        private readonly FileManager $fileManager,
     ) {
     }
 
@@ -28,26 +25,22 @@ final class SaveRegistrationHandler
     {
         $medicalCertificateFile = $registration->getMedicalCertificateFile();
         if (null !== $medicalCertificateFile) {
-            $this->fileCleaner->cleanEntity($registration, FileTypeEnum::MEDICAL_CERTIFICATE);
-            $registration->setMedicalCertificateUrl($this->fileUploader->upload($medicalCertificateFile));
+            $this->fileManager->upload($registration, $medicalCertificateFile, 'medicalCertificateUrl');
         }
 
         $licenceFormFile = $registration->getLicenceFormFile();
         if (null !== $licenceFormFile) {
-            $this->fileCleaner->cleanEntity($registration, FileTypeEnum::LICENCE_FORM);
-            $registration->setLicenceFormUrl($this->fileUploader->upload($licenceFormFile));
+            $this->fileManager->upload($registration, $licenceFormFile, 'licenceFormUrl');
         }
 
         $passCitizenFile = $registration->getPassCitizenFile();
         if (null !== $passCitizenFile) {
-            $this->fileCleaner->cleanEntity($registration, FileTypeEnum::PASS_CITIZEN);
-            $registration->setPassCitizenUrl($this->fileUploader->upload($passCitizenFile));
+            $this->fileManager->upload($registration, $passCitizenFile, 'passCitizenUrl');
         }
 
         $passSportFile = $registration->getPassSportFile();
         if (null !== $passSportFile) {
-            $this->fileCleaner->cleanEntity($registration, FileTypeEnum::PASS_SPORT);
-            $registration->setPassSportUrl($this->fileUploader->upload($passSportFile));
+            $this->fileManager->upload($registration, $passSportFile, 'passSportUrl');
         }
     }
 }

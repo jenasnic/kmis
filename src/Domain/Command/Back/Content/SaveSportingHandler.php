@@ -3,17 +3,14 @@
 namespace App\Domain\Command\Back\Content;
 
 use App\Entity\Content\Sporting;
-use App\Enum\FileTypeEnum;
 use App\Repository\Content\SportingRepository;
-use App\Service\File\FileCleaner;
-use App\Service\File\FileUploader;
+use App\Service\File\FileManager;
 
 final class SaveSportingHandler
 {
     public function __construct(
         private readonly SportingRepository $sportingRepository,
-        private readonly FileUploader $fileUploader,
-        private readonly FileCleaner $fileCleaner,
+        private readonly FileManager $fileManager,
     ) {
     }
 
@@ -28,8 +25,7 @@ final class SaveSportingHandler
     {
         $pictureFile = $sporting->getPictureFile();
         if (null !== $pictureFile) {
-            $this->fileCleaner->cleanEntity($sporting, FileTypeEnum::PICTURE);
-            $sporting->setPictureUrl($this->fileUploader->upload($pictureFile, Sporting::PICTURE_FOLDER));
+            $this->fileManager->upload($sporting, $pictureFile, 'pictureUrl');
         }
     }
 }

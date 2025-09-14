@@ -21,8 +21,10 @@ yarn.lock
 
 ###> project ###
 /upload/*
-!/upload/.gitignore
+!/upload/adherent/.gitignore
 !/upload/news/.gitignore
+!/upload/registration/.gitignore
+!/upload/sporting/.gitignore
 ###< upload ###
 
 ###> symfony/webpack-encore-bundle ###

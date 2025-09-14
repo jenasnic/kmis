@@ -6,13 +6,10 @@ use App\Domain\Command\Front\ReEnrollmentCommand;
 use App\Domain\Command\Front\ReEnrollmentHandler;
 use App\Domain\Model\ReEnrollment;
 use App\Entity\ReEnrollmentToken;
-use App\Entity\Registration;
-use App\Enum\FileTypeEnum;
 use App\Form\NewRegistrationType;
 use App\Form\ReEnrollmentType;
 use App\Repository\ReEnrollmentTokenRepository;
-use App\Repository\RegistrationRepository;
-use App\Service\File\FileCleaner;
+use App\Service\File\FileManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -27,7 +24,7 @@ class ReEnrollmentController extends AbstractController
     public function __construct(
         private readonly RequestStack $requestStack,
         private readonly TranslatorInterface $translator,
-        private readonly FileCleaner $fileCleaner,
+        private readonly FileManager $fileManager,
         private readonly ReEnrollmentTokenRepository $reEnrollmentTokenRepository,
     ) {
     }
@@ -59,11 +56,8 @@ class ReEnrollmentController extends AbstractController
     }
 
     #[Route('/reinscription/mise-a-jour', name: 'app_re_enrollment_update')]
-    public function reEnrollmentUpdate(
-        Request $request,
-        RegistrationRepository $registrationRepository,
-        ReEnrollmentHandler $reEnrollmentHandler,
-    ): Response {
+    public function reEnrollmentUpdate(Request $request, ReEnrollmentHandler $reEnrollmentHandler): Response
+    {
         $reEnrollmentToken = $this->getReEnrollmentToken();
         $season = $reEnrollmentToken->getSeason();
 
@@ -73,12 +67,15 @@ class ReEnrollmentController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
-        /** @var int $adherentId */
-        $adherentId = $reEnrollmentToken->getAdherent()->getId();
-        $registration = $registrationRepository->getForAdherent($adherentId);
+        $registration = $reEnrollmentToken->getAdherent()->getRegistration();
+        if (null === $registration) {
+            $this->addFlash('error', $this->translator->trans('front.reEnrollment.noRegistration'));
+
+            return $this->redirectToRoute('app_home');
+        }
 
         $registration->prepareForReEnrollment($reEnrollmentToken->getSeason());
-        $this->removeRegistrationFilesForReEnrollment($registration);
+        $this->fileManager->cleanRegistration($registration);
 
         $formOptions = ['re_enrollment' => true];
 
@@ -124,14 +121,5 @@ class ReEnrollmentController extends AbstractController
         }
 
         return $reEnrollmentToken;
-    }
-
-    protected function removeRegistrationFilesForReEnrollment(Registration $registration): void
-    {
-        // remove useless attached files (should be renewed)
-        $this->fileCleaner->cleanEntity($registration, FileTypeEnum::MEDICAL_CERTIFICATE);
-        $this->fileCleaner->cleanEntity($registration, FileTypeEnum::LICENCE_FORM);
-        $this->fileCleaner->cleanEntity($registration, FileTypeEnum::PASS_CITIZEN);
-        $this->fileCleaner->cleanEntity($registration, FileTypeEnum::PASS_SPORT);
     }
 }

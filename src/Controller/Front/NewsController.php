@@ -4,6 +4,7 @@ namespace App\Controller\Front;
 
 use App\Entity\Content\News;
 use App\Repository\Content\NewsRepository;
+use App\Service\File\FileManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -19,12 +20,14 @@ class NewsController extends AbstractController
     }
 
     #[Route('/image-actualite/{news}', name: 'app_news_picture')]
-    public function picture(News $news): Response
+    public function picture(FileManager $fileManager, News $news): Response
     {
-        if (null === $news->getPictureUrl()) {
+        $file = $fileManager->download($news, 'pictureUrl');
+
+        if (null === $file) {
             throw $this->createNotFoundException();
         }
 
-        return $this->file($news->getPictureUrl());
+        return $this->file($file);
     }
 }

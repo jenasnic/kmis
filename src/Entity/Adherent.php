@@ -13,6 +13,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: AdherentRepository::class)]
 class Adherent
 {
+    public const PICTURE_FOLDER = 'adherent';
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: Types::INTEGER)]
@@ -57,6 +59,9 @@ class Adherent
 
     #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     private ?string $pictureUrl = null;
+
+    #[ORM\OneToOne(targetEntity: Registration::class, mappedBy: 'adherent')]
+    private ?Registration $registration = null;
 
     private ?UploadedFile $pictureFile = null;
 
@@ -201,6 +206,11 @@ class Adherent
         $this->pictureFile = $pictureFile;
 
         return $this;
+    }
+
+    public function getRegistration(): ?Registration
+    {
+        return $this->registration;
     }
 
     public function getFullName(): string

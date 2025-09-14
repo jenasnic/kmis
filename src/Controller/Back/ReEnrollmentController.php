@@ -5,11 +5,10 @@ namespace App\Controller\Back;
 use App\Domain\Command\Front\ReEnrollmentCommand;
 use App\Domain\Command\Front\ReEnrollmentHandler;
 use App\Entity\Registration;
-use App\Enum\FileTypeEnum;
 use App\Form\RegistrationType;
 use App\Repository\ReEnrollmentTokenRepository;
 use App\Repository\SeasonRepository;
-use App\Service\File\FileCleaner;
+use App\Service\File\FileManager;
 use App\Service\Notifier\ReEnrollmentNotifier;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,7 +24,7 @@ class ReEnrollmentController extends AbstractController
         private readonly ReEnrollmentTokenRepository $reEnrollmentTokenRepository,
         private readonly ReEnrollmentNotifier $reEnrollmentNotifier,
         private readonly ReEnrollmentHandler $reEnrollmentHandler,
-        private readonly FileCleaner $fileCleaner,
+        private readonly FileManager $fileManager,
         private readonly int $mailerMaxPacketSize,
     ) {
     }
@@ -49,7 +48,7 @@ class ReEnrollmentController extends AbstractController
         }
 
         $registration->prepareForReEnrollment($season);
-        $this->removeRegistrationFilesForReEnrollment($registration);
+        $this->fileManager->cleanRegistration($registration);
 
         $form = $this->createForm(RegistrationType::class, $registration, $formOptions);
         $form->handleRequest($request);
@@ -91,14 +90,5 @@ class ReEnrollmentController extends AbstractController
         }
 
         return $this->redirectToRoute('bo_season_list', [], Response::HTTP_SEE_OTHER);
-    }
-
-    protected function removeRegistrationFilesForReEnrollment(Registration $registration): void
-    {
-        // remove useless attached files (should be renewed)
-        $this->fileCleaner->cleanEntity($registration, FileTypeEnum::MEDICAL_CERTIFICATE);
-        $this->fileCleaner->cleanEntity($registration, FileTypeEnum::LICENCE_FORM);
-        $this->fileCleaner->cleanEntity($registration, FileTypeEnum::PASS_CITIZEN);
-        $this->fileCleaner->cleanEntity($registration, FileTypeEnum::PASS_SPORT);
     }
 }

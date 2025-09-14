@@ -6,24 +6,24 @@ use App\Entity\Adherent;
 use App\Entity\Content\News;
 use App\Entity\Content\Sporting;
 use App\Entity\Registration;
-use Doctrine\Bundle\DoctrineBundle\EventSubscriber\EventSubscriberInterface;
+use App\Service\File\FileManager;
+use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\ORM\Events;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Doctrine\Persistence\ObjectManager;
 
-class RemoveFileSubscriber implements EventSubscriberInterface
+#[AsDoctrineListener(event: Events::preRemove)]
+#[AsDoctrineListener(event: Events::postRemove)]
+class RemoveFileSubscriber
 {
     /**
-     * @var array<string>
+     * @var array<string|null>
      */
     private array $filesToRemove = [];
 
-    public function getSubscribedEvents(): array
-    {
-        return [
-            Events::preRemove,
-            Events::postRemove,
-        ];
+    public function __construct(
+        private readonly FileManager $fileManager,
+    ) {
     }
 
     /**
@@ -33,31 +33,10 @@ class RemoveFileSubscriber implements EventSubscriberInterface
     {
         $object = $args->getObject();
 
-        if ($object instanceof Adherent && null !== $object->getPictureUrl()) {
-            $this->filesToRemove[] = $object->getPictureUrl();
-        }
+        $this->handleRemovedEntity($object);
 
-        if ($object instanceof News && null !== $object->getPictureUrl()) {
-            $this->filesToRemove[] = $object->getPictureUrl();
-        }
-
-        if ($object instanceof Registration) {
-            if (null !== $object->getMedicalCertificateUrl()) {
-                $this->filesToRemove[] = $object->getMedicalCertificateUrl();
-            }
-            if (null !== $object->getLicenceFormUrl()) {
-                $this->filesToRemove[] = $object->getLicenceFormUrl();
-            }
-            if (null !== $object->getPassCitizenUrl()) {
-                $this->filesToRemove[] = $object->getPassCitizenUrl();
-            }
-            if (null !== $object->getPassSportUrl()) {
-                $this->filesToRemove[] = $object->getPassSportUrl();
-            }
-        }
-
-        if ($object instanceof Sporting && null !== $object->getPictureUrl()) {
-            $this->filesToRemove[] = $object->getPictureUrl();
+        if ($object instanceof Adherent && null !== $object->getRegistration()) {
+            $this->handleRemovedEntity($object->getRegistration());
         }
     }
 
@@ -67,9 +46,39 @@ class RemoveFileSubscriber implements EventSubscriberInterface
     public function postRemove(LifecycleEventArgs $args): void
     {
         foreach ($this->filesToRemove as $filePath) {
-            if (file_exists($filePath)) {
+            if (!empty($filePath) && file_exists($filePath)) {
                 unlink($filePath);
             }
+        }
+    }
+
+    protected function handleRemovedEntity(object $object): void
+    {
+        if ($object instanceof Adherent && null !== $object->getPictureUrl()) {
+            $this->filesToRemove[] = $this->fileManager->resolvePath($object, 'pictureUrl');
+        }
+
+        if ($object instanceof News && null !== $object->getPictureUrl()) {
+            $this->filesToRemove[] = $this->fileManager->resolvePath($object, 'pictureUrl');
+        }
+
+        if ($object instanceof Registration) {
+            if (null !== $object->getMedicalCertificateUrl()) {
+                $this->filesToRemove[] = $this->fileManager->resolvePath($object, 'medicalCertificateUrl');
+            }
+            if (null !== $object->getLicenceFormUrl()) {
+                $this->filesToRemove[] = $this->fileManager->resolvePath($object, 'licenceFormUrl');
+            }
+            if (null !== $object->getPassCitizenUrl()) {
+                $this->filesToRemove[] = $this->fileManager->resolvePath($object, 'passCitizenUrl');
+            }
+            if (null !== $object->getPassSportUrl()) {
+                $this->filesToRemove[] = $this->fileManager->resolvePath($object, 'passSportUrl');
+            }
+        }
+
+        if ($object instanceof Sporting && null !== $object->getPictureUrl()) {
+            $this->filesToRemove[] = $this->fileManager->resolvePath($object, 'pictureUrl');
         }
     }
 }

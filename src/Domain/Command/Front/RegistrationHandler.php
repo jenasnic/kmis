@@ -2,20 +2,22 @@
 
 namespace App\Domain\Command\Front;
 
+use App\Domain\Command\AbstractRegistrationHandler;
 use App\Entity\Registration;
 use App\Repository\RegistrationRepository;
 use App\Service\Email\EmailSender;
-use App\Service\File\FileUploader;
+use App\Service\File\FileManager;
 use SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface;
 
-final class RegistrationHandler
+final class RegistrationHandler extends AbstractRegistrationHandler
 {
     public function __construct(
+        FileManager $fileManager,
         private readonly RegistrationRepository $registrationRepository,
         private readonly VerifyEmailHelperInterface $verifyEmailHelper,
         private readonly EmailSender $emailSender,
-        private readonly FileUploader $fileUploader,
     ) {
+        parent::__construct($fileManager);
     }
 
     public function handle(RegistrationCommand $command): void
@@ -31,31 +33,6 @@ final class RegistrationHandler
         $this->registrationRepository->add($registration, true);
 
         $this->sendConfirmationEmail($registration);
-    }
-
-    private function processUpload(Registration $registration): void
-    {
-        if (null !== $registration->getAdherent()->getPictureFile()) {
-            $registration->getAdherent()->setPictureUrl($this->fileUploader->upload($registration->getAdherent()->getPictureFile()));
-        }
-
-        if (null !== $registration->getMedicalCertificateFile()) {
-            $registration->setMedicalCertificateUrl($this->fileUploader->upload($registration->getMedicalCertificateFile()));
-        }
-
-        if (null !== $registration->getLicenceFormFile()) {
-            $registration->setLicenceFormUrl($this->fileUploader->upload($registration->getLicenceFormFile()));
-        }
-
-        // @todo : check if usePassCitizen is true?
-        if (null !== $registration->getPassCitizenFile()) {
-            $registration->setPassCitizenUrl($this->fileUploader->upload($registration->getPassCitizenFile()));
-        }
-
-        // @todo : check if usePassSport is true?
-        if (null !== $registration->getPassSportFile()) {
-            $registration->setPassSportUrl($this->fileUploader->upload($registration->getPassSportFile()));
-        }
     }
 
     private function sendConfirmationEmail(Registration $registration): void
