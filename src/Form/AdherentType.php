@@ -6,10 +6,10 @@ use App\Entity\Adherent;
 use App\Enum\GenderEnum;
 use App\Form\Type\AddressType;
 use App\Form\Type\BulmaFileType;
+use App\Form\Type\EnumType;
 use App\Form\Type\MaskedType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -40,13 +40,9 @@ class AdherentType extends AbstractType
             ->add('lastName', TextType::class, [
                 'disabled' => $options['re_enrollment'],
             ])
-            ->add('gender', ChoiceType::class, [
+            ->add('gender', EnumType::class, [
                 'disabled' => $options['re_enrollment'],
-                'expanded' => true,
-                'choices' => [
-                    'enum.gender.MALE' => GenderEnum::MALE,
-                    'enum.gender.FEMALE' => GenderEnum::FEMALE,
-                ],
+                'enum' => GenderEnum::class,
             ])
             ->add('birthDate', DateType::class, [
                 'disabled' => $options['re_enrollment'],

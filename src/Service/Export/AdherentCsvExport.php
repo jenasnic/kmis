@@ -83,7 +83,7 @@ class AdherentCsvExport extends AbstractCsvExport
             $emergencyContact,
             $data->getAdherent()->getPseudonym(),
             $data->getAdherent()->getBirthDate()?->format('d/m/Y') ?? '',
-            $this->translator->trans('enum.gender.'.$data->getAdherent()->getGender()),
+            $data->getAdherent()->getGender()?->trans($this->translator) ?? '',
             $data->getAdherent()->getEmail(),
             $data->getAdherent()->getPhone(),
             $data->getAdherent()->getAddress(),

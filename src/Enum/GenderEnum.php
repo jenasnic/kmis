@@ -2,19 +2,20 @@
 
 namespace App\Enum;
 
-class GenderEnum
-{
-    public const MALE = 'MALE';
-    public const FEMALE = 'FEMALE';
+use Symfony\Contracts\Translation\TranslatorInterface;
 
-    /**
-     * @return array<string>
-     */
-    public static function getAll(): array
+enum GenderEnum: string implements TranslatableEnumInterface
+{
+    case MALE = 'MALE';
+    case FEMALE = 'FEMALE';
+
+    public function trans(TranslatorInterface $translator, ?string $locale = null): string
     {
-        return [
-            self::MALE,
-            self::FEMALE,
-        ];
+        return $translator->trans($this->getTranslationKey());
+    }
+
+    public function getTranslationKey(): string
+    {
+        return 'enum.gender.'.$this->name;
     }
 }

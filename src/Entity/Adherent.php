@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Enum\GenderEnum;
 use App\Helper\StringHelper;
 use App\Repository\AdherentRepository;
 use App\ValueObject\Address;
@@ -28,9 +29,9 @@ class Adherent
     #[Assert\NotBlank]
     private ?string $lastName = null;
 
-    #[ORM\Column(type: Types::STRING, length: 55)]
+    #[ORM\Column(type: Types::STRING, length: 55, enumType: GenderEnum::class)]
     #[Assert\NotNull]
-    private ?string $gender = null;
+    private ?GenderEnum $gender = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     #[Assert\NotNull]
@@ -100,12 +101,12 @@ class Adherent
         return $this;
     }
 
-    public function getGender(): ?string
+    public function getGender(): ?GenderEnum
     {
         return $this->gender;
     }
 
-    public function setGender(?string $gender): self
+    public function setGender(?GenderEnum $gender): self
     {
         $this->gender = $gender;
 

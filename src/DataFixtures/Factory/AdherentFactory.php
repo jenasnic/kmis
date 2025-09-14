@@ -43,9 +43,9 @@ final class AdherentFactory extends PersistentProxyObjectFactory
      */
     protected function defaults(): array|callable
     {
-        /** @var string $gender */
-        $gender = $this->faker->randomElement(GenderEnum::getAll());
-        $firstName = $this->faker->firstName(strtolower($gender));
+        /** @var GenderEnum $gender */
+        $gender = $this->faker->randomElement(GenderEnum::cases());
+        $firstName = $this->faker->firstName(strtolower($gender->name));
         $lastName = $this->faker->lastName();
 
         $email = sprintf(

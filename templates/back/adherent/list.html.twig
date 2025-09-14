@@ -87,7 +87,7 @@
         {% block tbody %}
             {% for registration in registrations %}
                 <tr>
-                    <td class="gender gender--{{ registration['gender']|lower }}"><i class="icon-user"></i></td>
+                    <td class="gender gender--{{ registration['gender'].name|lower }}"><i class="icon-user"></i></td>
                     <td class="lastName">{{ registration['lastName'] }}</td>
                     <td class="firstName">{{ registration['firstName'] }}</td>
                     <td>{{ registration['phone'] }}</td>
