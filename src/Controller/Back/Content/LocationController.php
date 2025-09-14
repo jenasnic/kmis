@@ -3,8 +3,8 @@
 namespace App\Controller\Back\Content;
 
 use App\Entity\Content\Location;
-use App\Form\Content\ManagedListType;
 use App\Form\Content\LocationType;
+use App\Form\Content\ManagedListType;
 use App\Repository\Content\LocationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

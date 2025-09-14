@@ -4,9 +4,7 @@ namespace App\Form\Content;
 
 use App\Entity\Content\Calendar;
 use App\Entity\Content\Location;
-use App\Entity\Season;
 use App\Enum\DayOfWeekEnum;
-use App\Form\Payment\PriceOptionType;
 use App\Form\Type\EnumType;
 use App\Repository\Content\LocationRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -35,7 +33,6 @@ class CalendarType extends AbstractType
             ])
         ;
 
-
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
             /** @var Calendar $calendar */
             $calendar = $event->getData();
@@ -52,7 +49,6 @@ class CalendarType extends AbstractType
                 'allow_delete' => true,
             ]);
         });
-
     }
 
     public function configureOptions(OptionsResolver $resolver): void

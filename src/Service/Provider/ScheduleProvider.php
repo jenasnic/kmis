@@ -24,14 +24,16 @@ class ScheduleProvider
 
         $result = [];
         foreach ($schedules as $schedule) {
-            $result[$schedule->getSporting()->getId()][] = $schedule;
+            /** @var int $sportingId */
+            $sportingId = $schedule->getSporting()?->getId();
+            $result[$sportingId][] = $schedule;
         }
 
         return $result;
     }
 
     /**
-     * @return array<array{location: Location, days: array<array{day: DayOfWeekEnum, start: string, end: string}>}>
+     * @return array<int, array{location: Location, days: array<string, array{day: DayOfWeekEnum, start: string, end: string}>}>
      */
     public function forContact(): array
     {
@@ -41,24 +43,33 @@ class ScheduleProvider
         $result = [];
         foreach ($schedules as $schedule) {
             $calendar = $schedule->getCalendar();
-            $locationKey = $calendar->getLocation()->getId();
             $dayKey = $calendar->getDay()->name;
 
-            if (!array_key_exists($locationKey, $result)) {
-                $result[$locationKey] = [
-                    'location' => $calendar->getLocation(),
+            /** @var Location $location */
+            $location = $calendar->getLocation();
+            /** @var int $locationId */
+            $locationId = $location->getId();
+
+            if (!array_key_exists($locationId, $result)) {
+                $result[$locationId] = [
+                    'location' => $location,
                     'days' => [],
                 ];
             }
 
-            if (!array_key_exists($dayKey, $result[$locationKey]['days'])) {
-                $result[$locationKey]['days'][$dayKey] = [
+            /** @var string $start */
+            $start = $schedule->getStart();
+            /** @var string $end */
+            $end = $schedule->getEnd();
+
+            if (!array_key_exists($dayKey, $result[$locationId]['days'])) {
+                $result[$locationId]['days'][$dayKey] = [
                     'day' => $calendar->getDay(),
-                    'start' => $schedule->getStart(),
-                    'end' => $schedule->getEnd(),
+                    'start' => $start,
+                    'end' => $end,
                 ];
             } else {
-                $result[$locationKey]['days'][$dayKey]['end'] = $schedule->getEnd();
+                $result[$locationId]['days'][$dayKey]['end'] = $end;
             }
         }
 

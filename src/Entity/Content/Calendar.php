@@ -17,8 +17,8 @@ class Calendar
     #[ORM\Column(type: Types::INTEGER)]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::INTEGER, nullable: false, enumType: DayOfWeekEnum::class)]
-    private ?DayOfWeekEnum $day = null;
+    #[ORM\Column(type: Types::INTEGER, enumType: DayOfWeekEnum::class)]
+    private DayOfWeekEnum $day;
 
     #[ORM\ManyToOne(targetEntity: Location::class)]
     #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
@@ -33,6 +33,8 @@ class Calendar
 
     public function __construct()
     {
+        $this->day = DayOfWeekEnum::MONDAY;
+
         $this->schedules = new ArrayCollection();
     }
 
@@ -41,12 +43,12 @@ class Calendar
         return $this->id;
     }
 
-    public function getDay(): ?DayOfWeekEnum
+    public function getDay(): DayOfWeekEnum
     {
         return $this->day;
     }
 
-    public function setDay(?DayOfWeekEnum $day): self
+    public function setDay(DayOfWeekEnum $day): self
     {
         $this->day = $day;
 

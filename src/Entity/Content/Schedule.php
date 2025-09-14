@@ -89,12 +89,12 @@ class Schedule
         return $this;
     }
 
-    public function getCalendar(): ?Calendar
+    public function getCalendar(): Calendar
     {
         return $this->calendar;
     }
 
-    public function setCalendar(?Calendar $calendar): self
+    public function setCalendar(Calendar $calendar): self
     {
         $this->calendar = $calendar;
 

@@ -3,17 +3,9 @@
 namespace App\DataFixtures\Content;
 
 use App\DataFixtures\Factory\Content\CalendarFactory;
-use App\DataFixtures\Factory\Content\LocationFactory;
 use App\DataFixtures\Factory\Content\ScheduleFactory;
 use App\DataFixtures\Factory\Content\SportingFactory;
-use App\DataFixtures\Factory\SeasonFactory;
-use App\DataFixtures\Payment\PriceOptionFixtures;
-use App\DataFixtures\PurposeFixtures;
-use App\DataFixtures\SeasonFixtures;
 use App\Entity\Content\Calendar;
-use App\Entity\Content\Location;
-use App\Entity\Season;
-use App\Enum\DayOfWeekEnum;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -43,6 +35,7 @@ class ScheduleFixtures extends Fixture implements DependentFixtureInterface
 
         /** @var Proxy<Calendar> $calendar */
         foreach (CalendarFactory::all() as $calendar) {
+            /** @var array{0: string, 1: string} $time */
             $time = $this->faker->randomElement($times);
 
             ScheduleFactory::createOne([
