@@ -4,7 +4,7 @@ namespace App\Repository\Content;
 
 use App\Entity\Content\Location;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\Order;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -43,7 +43,7 @@ class LocationRepository extends ServiceEntityRepository
         /** @var array<Location> */
         return $this
             ->createQueryBuilder('location')
-            ->orderBy('location.rank', Criteria::ASC)
+            ->orderBy('location.rank', Order::Ascending->value)
             ->getQuery()
             ->getResult()
         ;
@@ -58,7 +58,7 @@ class LocationRepository extends ServiceEntityRepository
         return $this
             ->createQueryBuilder('location')
             ->andWhere('location.active = TRUE')
-            ->orderBy('location.rank', Criteria::ASC)
+            ->orderBy('location.rank', Order::Ascending->value)
             ->getQuery()
             ->getResult()
         ;

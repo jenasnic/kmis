@@ -7,6 +7,7 @@ use App\Entity\Payment\AbstractPayment;
 use App\Entity\Registration;
 use App\Entity\Season;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\Order;
 use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
@@ -68,7 +69,7 @@ class AdherentRepository extends ServiceEntityRepository
                 'payment.season = registration.season AND payment.adherent = adherent'
             )
             ->groupBy('adherent')
-            ->addOrderBy('registration.registeredAt', 'DESC')
+            ->addOrderBy('registration.registeredAt', Order::Descending->value)
             ->andWhere('registration.verified = TRUE')
             ->setParameter('seasonId', $seasonId)
         ;
@@ -93,7 +94,7 @@ class AdherentRepository extends ServiceEntityRepository
             )
             ->innerJoin(Registration::class, 'registration', Join::WITH, 'registration.adherent = adherent')
             ->innerJoin('registration.season', 'season')
-            ->addOrderBy('registration.registeredAt', 'DESC')
+            ->addOrderBy('registration.registeredAt', Order::Descending->value)
         ;
 
         return $queryBuilder;
@@ -114,8 +115,8 @@ class AdherentRepository extends ServiceEntityRepository
                 'adherent.gender',
                 'adherent.pictureUrl',
             )
-            ->addOrderBy('adherent.lastName', 'ASC')
-            ->addOrderBy('adherent.firstName', 'ASC')
+            ->addOrderBy('adherent.lastName', Order::Ascending->value)
+            ->addOrderBy('adherent.firstName', Order::Ascending->value)
         ;
 
         if (null !== $season) {

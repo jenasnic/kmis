@@ -4,7 +4,7 @@ namespace App\Repository\Content;
 
 use App\Entity\Content\Calendar;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\Order;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -44,8 +44,8 @@ class CalendarRepository extends ServiceEntityRepository
         return $this
             ->createQueryBuilder('calendar')
             ->innerJoin('calendar.location', 'location')
-            ->addOrderBy('calendar.day', Criteria::ASC)
-            ->addOrderBy('location.name', Criteria::ASC)
+            ->addOrderBy('calendar.day', Order::Ascending->value)
+            ->addOrderBy('location.name', Order::Ascending->value)
             ->getQuery()
             ->getResult()
         ;

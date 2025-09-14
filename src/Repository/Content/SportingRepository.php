@@ -4,7 +4,7 @@ namespace App\Repository\Content;
 
 use App\Entity\Content\Sporting;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\Order;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -43,7 +43,7 @@ class SportingRepository extends ServiceEntityRepository
         /** @var array<Sporting> */
         return $this
             ->createQueryBuilder('sporting')
-            ->orderBy('sporting.rank', Criteria::ASC)
+            ->orderBy('sporting.rank', Order::Ascending->value)
             ->getQuery()
             ->getResult()
         ;
@@ -58,7 +58,7 @@ class SportingRepository extends ServiceEntityRepository
         return $this
             ->createQueryBuilder('sporting')
             ->andWhere('sporting.active = TRUE')
-            ->orderBy('sporting.rank', Criteria::ASC)
+            ->orderBy('sporting.rank', Order::Ascending->value)
             ->getQuery()
             ->getResult()
         ;

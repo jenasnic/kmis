@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Season;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\Order;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -42,7 +43,7 @@ class SeasonRepository extends ServiceEntityRepository
         /** @var array<Season> */
         return $this
             ->createQueryBuilder('season')
-            ->addOrderBy('season.startDate', 'DESC')
+            ->addOrderBy('season.startDate', Order::Descending->value)
             ->getQuery()
             ->getResult()
         ;

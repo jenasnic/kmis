@@ -4,6 +4,7 @@ namespace App\Repository\Payment;
 
 use App\Entity\Payment\AbstractPayment;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\Order;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -45,7 +46,7 @@ class PaymentRepository extends ServiceEntityRepository
             ->innerJoin('payment.adherent', 'adherent')
             ->andWhere('adherent.id = :adherentId')
             ->setParameter('adherentId', $adherentId)
-            ->addOrderBy('payment.date', 'DESC')
+            ->addOrderBy('payment.date', Order::Descending->value)
             ->getQuery()
             ->getResult()
         ;
@@ -62,7 +63,7 @@ class PaymentRepository extends ServiceEntityRepository
             ->innerJoin('payment.season', 'season')
             ->andWhere('season.id = :seasonId')
             ->setParameter('seasonId', $seasonId)
-            ->addOrderBy('payment.date', 'DESC')
+            ->addOrderBy('payment.date', Order::Descending->value)
             ->getQuery()
             ->getResult()
         ;

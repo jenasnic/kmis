@@ -4,6 +4,7 @@ namespace App\Repository\Content;
 
 use App\Entity\Content\Schedule;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\Order;
 use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -28,9 +29,9 @@ class ScheduleRepository extends ServiceEntityRepository
             ->innerJoin('schedule.sporting', 'sporting', Join::WITH, 'sporting.active = TRUE')
             ->innerJoin('schedule.calendar', 'calendar')
             ->innerJoin('calendar.location', 'location', Join::WITH, 'location.active = TRUE')
-            ->addOrderBy('calendar.day', 'ASC')
-            ->addOrderBy('schedule.start', 'ASC')
-            ->addOrderBy('location.rank', 'ASC')
+            ->addOrderBy('calendar.day', Order::Ascending->value)
+            ->addOrderBy('schedule.start', Order::Ascending->value)
+            ->addOrderBy('location.rank', Order::Ascending->value)
         ;
 
         return $queryBuilder->getQuery()->getResult();
