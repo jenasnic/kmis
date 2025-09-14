@@ -208,7 +208,7 @@ form.adherent.pictureFileHelp: Votre photo est déjà disponible, vous pouvez ai
 form.adherent.pseudonym: Pseudo Facebook
 form.adherent.pseudonymHelp: Pour intégrer le <a href="https://www.facebook.com/groups/807864253572677/" target="_blank">groupe Facebook</a> privé du club
 form.adherent.reEnrollmentToNotify: Notification de réinscription
-form.adherent.reEnrollmentToNotifyHelp: Cocher pour relancer le mail de résincription ou décocher pour ignorer la relance de désinscription.
+form.adherent.reEnrollmentToNotifyHelp: Cocher pour relancer le mail de résincription ou décocher pour ignorer la relance de réinscription.
 form.adherent.street: Adresse
 form.adherent.zipCode: Code postal
 

@@ -33,9 +33,6 @@ class AdherentType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        /** @var bool $forKmis */
-        $forKmis = $options['kmis_version'];
-
         $builder
             ->add('firstName', TextType::class, [
                 'disabled' => $options['re_enrollment'],
@@ -69,7 +66,7 @@ class AdherentType extends AbstractType
             ])
         ;
 
-        if ($forKmis) {
+        if ($options['manage_re_enrollment_notification']) {
             $builder->add('reEnrollmentToNotify', CheckboxType::class, [
                 'required' => false,
                 'help' => 'form.adherent.reEnrollmentToNotifyHelp',
@@ -116,14 +113,16 @@ class AdherentType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefined(['kmis_version', 're_enrollment']);
+        $resolver->setDefined(['kmis_version', 're_enrollment', 'manage_re_enrollment_notification']);
         $resolver->setAllowedTypes('kmis_version', 'bool');
         $resolver->setAllowedTypes('re_enrollment', 'bool');
+        $resolver->setAllowedTypes('manage_re_enrollment_notification', 'bool');
 
         $resolver->setDefaults([
             'data_class' => Adherent::class,
             'label_format' => 'form.adherent.%name%',
             're_enrollment' => false,
+            'manage_re_enrollment_notification' => false,
         ]);
     }
 }
