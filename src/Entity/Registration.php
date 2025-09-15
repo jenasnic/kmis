@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Payment\PriceOption;
+use App\Enum\RegistrationTypeEnum;
 use App\Repository\RegistrationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -62,9 +63,9 @@ class Registration
     #[ORM\Column(type: Types::BOOLEAN)]
     private bool $withLegalRepresentative = false;
 
-    #[ORM\Column(type: Types::STRING, length: 55)]
+    #[ORM\Column(type: Types::STRING, length: 55, enumType: RegistrationTypeEnum::class)]
     #[Assert\NotNull]
-    private ?string $registrationType = null;
+    private ?RegistrationTypeEnum $registrationType = null;
 
     #[ORM\Column(type: Types::BOOLEAN)]
     private bool $reEnrollment = false;
@@ -294,12 +295,12 @@ class Registration
         return $this;
     }
 
-    public function getRegistrationType(): ?string
+    public function getRegistrationType(): ?RegistrationTypeEnum
     {
         return $this->registrationType;
     }
 
-    public function setRegistrationType(?string $registrationType): self
+    public function setRegistrationType(?RegistrationTypeEnum $registrationType): self
     {
         $this->registrationType = $registrationType;
 

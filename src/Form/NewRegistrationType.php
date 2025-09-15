@@ -82,7 +82,7 @@ class NewRegistrationType extends AbstractRegistrationType
                         throw new \LogicException('invalid parent');
                     }
 
-                    /** @var string $registrationType */
+                    /** @var RegistrationTypeEnum $registrationType */
                     $registrationType = $form->getData();
                     if (!in_array($registrationType, [RegistrationTypeEnum::COMPETITOR, RegistrationTypeEnum::MINOR])) {
                         return;
@@ -131,7 +131,7 @@ class NewRegistrationType extends AbstractRegistrationType
     /**
      * @param FormInterface<Registration> $form
      */
-    protected function toggleMedicalCertificate(FormInterface $form, string $registrationType, bool $forKmis): void
+    protected function toggleMedicalCertificate(FormInterface $form, RegistrationTypeEnum $registrationType, bool $forKmis): void
     {
         $fileConstraints = [
             new File([

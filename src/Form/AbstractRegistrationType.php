@@ -7,6 +7,7 @@ use App\Entity\Purpose;
 use App\Entity\Registration;
 use App\Enum\RegistrationTypeEnum;
 use App\Form\Type\BulmaFileType;
+use App\Form\Type\EnumType;
 use App\Repository\PurposeRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -61,14 +62,10 @@ abstract class AbstractRegistrationType extends AbstractType
                 'required' => false,
                 'false_values' => [null, '0', 'false'],
             ])
-            ->add('registrationType', ChoiceType::class, [
+            ->add('registrationType', EnumType::class, [
+                'enum' => RegistrationTypeEnum::class,
                 'label' => false,
                 'expanded' => true,
-                'choices' => [
-                    'enum.registrationType.ADULT' => RegistrationTypeEnum::ADULT,
-                    'enum.registrationType.MINOR' => RegistrationTypeEnum::MINOR,
-                    'enum.registrationType.COMPETITOR' => RegistrationTypeEnum::COMPETITOR,
-                ],
             ])
             ->add('useCCAS', CheckboxType::class, [
                 'required' => false,

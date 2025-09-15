@@ -2,21 +2,21 @@
 
 namespace App\Enum;
 
-class RegistrationTypeEnum
-{
-    public const ADULT = 'ADULT';
-    public const COMPETITOR = 'COMPETITOR';
-    public const MINOR = 'MINOR';
+use Symfony\Contracts\Translation\TranslatorInterface;
 
-    /**
-     * @return array<string>
-     */
-    public static function getAll(): array
+enum RegistrationTypeEnum: string implements TranslatableEnumInterface
+{
+    case ADULT = 'ADULT';
+    case COMPETITOR = 'COMPETITOR';
+    case MINOR = 'MINOR';
+
+    public function trans(TranslatorInterface $translator, ?string $locale = null): string
     {
-        return [
-            self::ADULT,
-            self::COMPETITOR,
-            self::MINOR,
-        ];
+        return $translator->trans($this->getTranslationKey());
+    }
+
+    public function getTranslationKey(): string
+    {
+        return 'enum.registrationType.'.$this->name;
     }
 }

@@ -80,7 +80,7 @@ final class RegistrationFactory extends PersistentProxyObjectFactory
             'privateNote' => $this->faker->text(),
             'purpose' => PurposeFactory::random()->_real(),
             'registeredAt' => $registeredAt,
-            'registrationType' => $this->faker->randomElement(RegistrationTypeEnum::getAll()),
+            'registrationType' => $this->faker->randomElement(RegistrationTypeEnum::cases()),
             'usePassCitizen' => $usePassCitizen,
             'usePassSport' => $usePassSport,
             'verified' => $this->faker->boolean(80),
