@@ -49,12 +49,8 @@ class SeasonRepository extends ServiceEntityRepository
         ;
     }
 
-    public function existForYear(?string $year = null): bool
+    public function existForYear(string $year): bool
     {
-        if (null === $year) {
-            $year = (new \DateTime())->format('Y');
-        }
-
         $queryBuilder = $this->createQueryBuilder('season');
 
         $queryBuilder
@@ -64,19 +60,6 @@ class SeasonRepository extends ServiceEntityRepository
         ;
 
         return $queryBuilder->getQuery()->getSingleScalarResult() > 0;
-    }
-
-    public function getForYear(string $year): ?Season
-    {
-        $queryBuilder = $this->createQueryBuilder('season');
-
-        $queryBuilder
-            ->andWhere('season.label = :year')
-            ->setParameter('year', $year)
-        ;
-
-        /** @var Season|null */
-        return $queryBuilder->getQuery()->getOneOrNullResult();
     }
 
     public function getActiveSeason(): ?Season
