@@ -8,16 +8,23 @@
 
     <div class="navbar-menu">
         <div class="navbar-start">
-            <a href="{{ path('bo_dashboard') }}" class="navbar-item">{{ 'back.menu.dashboard'|trans }}</a>
-            <a href="{{ path('bo_season_list') }}" class="navbar-item">{{ 'back.menu.season'|trans }}</a>
-            <a href="{{ path('bo_adherent_list') }}" class="navbar-item">{{ 'back.menu.adherent'|trans }}</a>
-            <a href="{{ path('bo_adherent_gallery') }}" class="navbar-item">{{ 'back.menu.gallery'|trans }}</a>
-            <a href="{{ path('bo_payment_list_for_season') }}" class="navbar-item">{{ 'back.menu.payment'|trans }}</a>
-            <a href="{{ path('bo_news_list') }}" class="navbar-item">{{ 'back.menu.news'|trans }}</a>
-            <a href="{{ path('bo_sporting_list') }}" class="navbar-item">{{ 'back.menu.sporting'|trans }}</a>
-            <a href="{{ path('bo_location_list') }}" class="navbar-item">{{ 'back.menu.location'|trans }}</a>
-            <a href="{{ path('bo_calendar_list') }}" class="navbar-item">{{ 'back.menu.calendar'|trans }}</a>
-            <a href="{{ path('bo_text') }}" class="navbar-item">{{ 'back.menu.text'|trans }}</a>
+            {{ _self.buildEntryMenu('bo_dashboard', 'back.menu.dashboard') }}
+            {{ _self.buildEntryMenu('bo_season_list', 'back.menu.season') }}
+            {{ _self.buildEntryMenu('bo_adherent_list', 'back.menu.adherent', 'bo_adherent_full_list') }}
+            {{ _self.buildEntryMenu('bo_adherent_gallery', 'back.menu.gallery') }}
+            {{ _self.buildEntryMenu('bo_payment_list_for_season', 'back.menu.payment') }}
+            {{ _self.buildEntryMenu('bo_news_list', 'back.menu.news') }}
+            {{ _self.buildEntryMenu('bo_text', 'back.menu.text') }}
+
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">{{ 'back.menu.configuration'|trans }}</a>
+                <div class="navbar-dropdown">
+                    {{ _self.buildEntryMenu('bo_sporting_list', 'back.menu.sporting') }}
+                    {{ _self.buildEntryMenu('bo_location_list', 'back.menu.location') }}
+                    {{ _self.buildEntryMenu('bo_calendar_list', 'back.menu.calendar') }}
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -33,3 +40,9 @@
     </div>
 
 </nav>
+
+{% macro buildEntryMenu(menuPath, menuLabel, otherMenuPath = null) %}
+    {% set currentPath = app.request.get('_route') %}
+    {% set isActive = currentPath == menuPath or currentPath == otherMenuPath %}
+    <a href="{{ path(menuPath) }}" class="navbar-item{% if isActive %} is-active{% endif %}">{{ menuLabel|trans }}</a>
+{% endmacro %}

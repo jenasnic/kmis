@@ -22,42 +22,21 @@ class AdherentController extends AbstractController
         private readonly SeasonRepository $seasonRepository,
         private readonly AdherentRepository $adherentRepository,
         private readonly TranslatorInterface $translator,
+        private readonly AdherentFilter $adherentFilter,
     ) {
     }
 
-    #[Route('/adherent/liste/{filter}', name: 'bo_adherent_list', methods: ['GET'])]
-    public function list(AdherentFilter $adherentFilter, ?string $filter = null): Response
+    #[Route('/adherent/saison/{season}', name: 'bo_adherent_list', methods: ['GET'])]
+    public function list(Request $request, ?Season $season = null): Response
     {
-        $seasons = $this->seasonRepository->search();
-        $activeSeasons = array_filter($seasons, fn (Season $season) => $season->isActive());
+        if (null === $season) {
+            $season = $this->seasonRepository->getActiveSeason();
+        }
 
-        if (empty($activeSeasons)) {
+        if (null === $season) {
             $this->addFlash('warning', $this->translator->trans('back.season.activate.missingSeason'));
 
             return $this->redirectToRoute('bo_season_list');
-        }
-
-        $activeSeason = array_shift($activeSeasons);
-        /** @var int $activeSeasonId */
-        $activeSeasonId = $activeSeason->getId();
-
-        $queryBuilder = $this->adherentRepository->createSearchQueryBuilder($activeSeasonId);
-
-        $queryBuilder = $adherentFilter->apply($queryBuilder, $filter);
-
-        return $this->render('back/adherent/list.html.twig', [
-            'registrations' => $queryBuilder->getQuery()->getResult(),
-            'currentSeason' => $activeSeason,
-            'seasons' => $seasons,
-            'filters' => $adherentFilter->getFilters(),
-        ]);
-    }
-
-    #[Route('/adherent/saison/{season}', name: 'bo_adherent_by_season_list', methods: ['GET'])]
-    public function listBySeason(Season $season): Response
-    {
-        if ($season->isActive()) {
-            return $this->redirectToRoute('bo_adherent_list');
         }
 
         /** @var int $seasonId */
@@ -65,11 +44,14 @@ class AdherentController extends AbstractController
 
         $queryBuilder = $this->adherentRepository->createSearchQueryBuilder($seasonId);
 
+        $filter = $request->query->getAlpha('filter');
+        $queryBuilder = $this->adherentFilter->apply($queryBuilder, $filter);
+
         return $this->render('back/adherent/list.html.twig', [
             'registrations' => $queryBuilder->getQuery()->getResult(),
             'currentSeason' => $season,
             'seasons' => $this->seasonRepository->search(),
-            'filters' => [],
+            'filters' => $this->adherentFilter->getFilters(),
         ]);
     }
 
