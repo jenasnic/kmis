@@ -1,4 +1,4 @@
-@use '../color';
+@use '../colors';
 @use '../media';
 @use '../icons';
 
@@ -8,7 +8,7 @@ ul.list {
 
     &:before {
       @include icons.icon(icons.$icon-play);
-      color: color.$primary-color;
+      color: colors.$primary-color;
     }
 
     > ul {
@@ -24,7 +24,7 @@ ul.list {
 
         &:before {
           @include icons.icon(icons.$icon-checkmark);
-          color: color.$primary-color;
+          color: colors.$primary-color;
           font-size: 0.8em;
           margin-right: 10px;
         }

@@ -1,0 +1,27 @@
+{#
+@var string title
+@var ?string subTitle
+@var string addLink
+@var string addLabel
+#}
+
+<nav class="level">
+    <div class="level-left">
+        <div>
+            <h1 class="title">{{ title }}</h1>
+            {% if subTitle is defined and subTitle is not null %}
+                <h2 class="subtitle">{{ subTitle }}</h2>
+            {% endif %}
+        </div>
+    </div>
+    <div class="level-right">
+        <div class="level-item">
+            <a href="{{ addLink }}" class="button is-primary">
+                <span>{{ addLabel }}</span>
+                <span class="icon is-small">
+                    <i class="icon-more"></i>
+                </span>
+            </a>
+        </div>
+    </div>
+</nav>

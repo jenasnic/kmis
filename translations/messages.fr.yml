@@ -3,10 +3,10 @@ global.add: Ajouter
 global.back: Retour
 global.browse: Parcourir
 global.cancel: Annuler
-global.confirmVerify: Confirmer la vérification ?
 global.confirmDelete: Confirmer la suppression ?
-global.confirmEnable: Confirmer l'activation ?
 global.confirmDisable: Confirmer la désactivation ?
+global.confirmEnable: Confirmer l'activation ?
+global.confirmVerify: Confirmer la vérification ?
 global.delete: Supprimer
 global.export: Exporter
 global.login: Se connecter
@@ -42,28 +42,30 @@ enum.paymentType.CASH: Espèce
 enum.paymentType.CHECK: Chèque
 enum.paymentType.DISCOUNT: Remise
 enum.paymentType.HELLO_ASSO: HelloAsso
-enum.paymentType.TRANSFER: Virement
 enum.paymentType.PASS: Pass'Sport
+enum.paymentType.TRANSFER: Virement
 
 enum.registrationType.ADULT: Adulte
-enum.registrationType.MINOR: Mineur
 enum.registrationType.COMPETITOR: Compétiteur
+enum.registrationType.MINOR: Mineur
 
 login.password: Mot de passe
 login.title: Connexion
 login.username: Login
 
+back.adherent.delete.success: Adhérent supprimé
+back.adherent.edit.new: Nouvel adhérent
 back.adherent.edit.success: Adhérent mis à jour
 back.adherent.edit.title: Fiche adhérent
-back.adherent.edit.new: Nouvel adhérent
-back.adherent.delete.success: Adhérent supprimé
-back.adherent.list.full: Liste complète
+back.adherent.gallery.title: Trombinoscope
+back.adherent.list.action.add: Nouvelle inscription
+back.adherent.list.action.all.tooltip: Afficher tous les membres, toutes saisons confondues.
 back.adherent.list.count: Adhérent(s)
+back.adherent.list.filter.ALL: Tous
 back.adherent.list.filter.FEMALE: Femmes
 back.adherent.list.filter.MALE: Hommes
 back.adherent.list.filter.YOUNG: Ados
-back.adherent.list.filter.ALL: Tous
-back.adherent.list.action.add: Nouvelle inscription
+back.adherent.list.full: Liste complète
 back.adherent.list.header.email: E-Mail
 back.adherent.list.header.firstName: Prénom
 back.adherent.list.header.lastName: Nom
@@ -72,40 +74,40 @@ back.adherent.list.header.reEnrollment: Réinscription
 back.adherent.list.header.registeredAt: Date insc.
 back.adherent.list.header.season: Saison
 back.adherent.list.header.sold: Cotisation
-back.adherent.list.header.verified: Validation
+back.adherent.list.header.verified: Insc. Validée
+back.adherent.list.title: Liste des adhérents
 back.adherent.tab.adherent: Adherent
 back.adherent.tab.payments: Paiements
 back.adherent.tab.registration: Fiche inscription
 
+back.calendar.delete.success: Planning supprimé
+back.calendar.edit.new: Nouveau planning
 back.calendar.edit.success: Planning mis à jour
 back.calendar.edit.title: Planning
-back.calendar.edit.new: Nouveau planning
+back.calendar.form.addSchedule: Ajouter un horaire
+back.calendar.form.schedule.help: Sélectionnez une discipline OU saisissez un texte libre (possibilité d'inclure des balises HTML).
 back.calendar.form.scheduleTitle: Horaires
-back.calendar.delete.success: Planning supprimé
-back.calendar.list.count: Planning(s)
 back.calendar.list.action.add: Nouveau planning
+back.calendar.list.count: Planning(s)
 back.calendar.list.header.day: Jour
 back.calendar.list.header.location: Lieu
 back.calendar.list.header.schedules: Horaires
-back.calendar.form.addSchedule: Ajouter un horaire
-back.calendar.form.schedule.help: Sélectionnez une discipline OU saisissez un texte libre (possibilité d'inclure des balises HTML).
+back.calendar.list.title: Liste des plannings
 
-back.gallery.title: Trombinoscope
-
+back.location.delete.success: Localisation supprimée
+back.location.edit.new: Nouvelle localisation
 back.location.edit.success: Localisation mise à jour
 back.location.edit.title: Localisation
-back.location.edit.new: Nouvelle localisation
-back.location.delete.success: Localisation supprimée
-back.location.list.count: Localisation(s)
 back.location.list.action.add: Nouvelle localisation
-back.location.list.header.title: Titre
+back.location.list.count: Localisation(s)
 back.location.list.header.active: Activée
+back.location.list.header.title: Titre
 back.location.list.order.success: Ordre des localisations mis à jour
+back.location.list.title: Liste des localisations
 
 back.menu.adherent: Adhérents
 back.menu.calendar: Planning
 back.menu.configuration: Configuration
-back.menu.text: Contenus
 back.menu.dashboard: Dashboard
 back.menu.gallery: Trombinoscope
 back.menu.location: Localisations
@@ -113,17 +115,19 @@ back.menu.news: Actualites
 back.menu.payment: Cotisations
 back.menu.season: Saisons
 back.menu.sporting: Disciplines
+back.menu.text: Contenus
 
+back.news.delete.success: Actualité supprimée
+back.news.edit.new: Nouvelle actualité
 back.news.edit.success: Actualité mise à jour
 back.news.edit.title: Actualité
-back.news.edit.new: Nouvelle actualité
-back.news.delete.success: Actualité supprimée
-back.news.list.count: Actualité(s)
 back.news.list.action.add: Nouvelle actualité
-back.news.list.header.title: Titre
+back.news.list.count: Actualité(s)
 back.news.list.header.active: Publiée
 back.news.list.header.picture: Image
+back.news.list.header.title: Titre
 back.news.list.order.success: Ordre des actualités mis à jour
+back.news.list.title: Liste des actualités
 back.news.preview.title: Prévisualisation actualité
 
 back.payment.delete.success: Paiement supprimé
@@ -146,54 +150,58 @@ back.payment.view.title: Paiement
 back.priceOption.form.amount: Montant
 back.priceOption.form.label: Nom de la formule
 
+back.registration.automaticSend.disableButton: Désactiver les envois automatiques
+back.registration.automaticSend.disableMessage: Les envois automatiques ont été désactivés
+back.registration.automaticSend.enableButton: Activer les envois automatiques
+back.registration.automaticSend.enableMessage: Les envois automatiques ont été activés (5 mails toutes les 30 minutes)
+back.registration.edit.season: Saison
 back.registration.edit.success: Fiche inscription mise à jour
 back.registration.edit.title: Fiche inscription
-back.registration.edit.season: Saison
+back.registration.new.season: Saison
 back.registration.new.success: Nouvelle inscription créée
 back.registration.new.title: Nouvelle inscription
-back.registration.new.season: Saison
-back.registration.reEnrollment.title: Réinscription
-back.registration.reEnrollment.success: Réinscription validée
-back.registration.reEnrollment.error: Vous ne pouvez pas procéder à la réinscription
 back.registration.reEnrollment.clearToken.button: Supprimer les tokens de réinscription expirés
 back.registration.reEnrollment.clearToken.message: Les tokens de réinscription expirés ont été supprimés
+back.registration.reEnrollment.error: Vous ne pouvez pas procéder à la réinscription
 back.registration.reEnrollment.notify.button: Envoyer les prochaines notifications
 back.registration.reEnrollment.notify.confirm: Confirmer l'envoi des notifications
 back.registration.reEnrollment.notify.message: Les mails de réinscription ont bien été envoyés (%count% mails)
-back.registration.automaticSend.enableButton: Activer les envois automatiques
-back.registration.automaticSend.enableMessage: Les envois automatiques ont été activés (5 mails toutes les 30 minutes)
-back.registration.automaticSend.disableButton: Désactiver les envois automatiques
-back.registration.automaticSend.disableMessage: Les envois automatiques ont été désactivés
+back.registration.reEnrollment.success: Réinscription validée
+back.registration.reEnrollment.title: Réinscription
 back.registration.verify.success: Inscription vérifiée
 
-back.season.activate.success: Saison sportive activée
 back.season.activate.missingSeason: Vous devez définir la saison sportive active
-back.season.edit.title: Saison sportive
-back.season.edit.success: Saison sportive mise à jour
+back.season.activate.success: Saison sportive activée
 back.season.edit.confirmActivate: En activant la saison, les adherents recevront un email de réinscription. Êtes-vous sûr de vouloir continuer ?
-back.season.form.help: Les dates de début et fin de la saison sont utilisées pour définir la période d'ouverture des inscriptions. En dehors de cette période, l'entrée de menu "Inscription" ne sera pas affichée.
-back.season.form.startDate: Début
-back.season.form.endDate: Fin
+back.season.edit.success: Saison sportive mise à jour
+back.season.edit.title: Saison sportive
 back.season.form.addPriceOption: Ajouter une formule
-back.season.form.optionTitle: Formules
+back.season.form.endDate: Fin
+back.season.form.help: |
+  Les dates de début et fin de la saison sont utilisées pour définir la période d'ouverture des inscriptions.<br/>
+  En dehors de cette période, l'entrée de menu "<b>Inscription</b>" ne sera pas affichée sur le site.
 back.season.form.licenceLink: Lien de téléchargement du formulaire de licence pour la saison
+back.season.form.optionTitle: Formules
 back.season.form.paymentLink: Lien vers la plate-forme de paiement (hellopass)
+back.season.form.startDate: Début
 back.season.grid.action.add: Nouvelle saison
 back.season.grid.header.active: Active
 back.season.grid.header.endDate: Fin
 back.season.grid.header.label: Saison
 back.season.grid.header.startDate: Début
+back.season.grid.title: Liste des saisons sportives
 back.season.new.alreadyExist: La saison sportive existe déjà pour cette année.
 
+back.sporting.delete.success: Discipline supprimée
+back.sporting.edit.new: Nouvelle discipline
 back.sporting.edit.success: Discipline mise à jour
 back.sporting.edit.title: Discipline
-back.sporting.edit.new: Nouvelle discipline
-back.sporting.delete.success: Discipline supprimée
-back.sporting.list.count: Discipline(s)
 back.sporting.list.action.add: Nouvelle discipline
-back.sporting.list.header.title: Titre
+back.sporting.list.count: Discipline(s)
 back.sporting.list.header.active: Activée
+back.sporting.list.header.title: Titre
 back.sporting.list.order.success: Ordre des disciplines mis à jour
+back.sporting.list.title: Liste des disciplines
 
 back.text.save.success: Contenus mis à jour
 back.text.title: Contenus du site
@@ -219,23 +227,21 @@ form.calendar.day: Jour
 form.calendar.location: Lieu
 form.calendar.schedule: Programmation
 
-form.configurationText.homePresentation: Texte de présentation (page d'acceuil)
 form.configurationText.contact: Texte du formulaire de contact
+form.configurationText.homePresentation: Texte de présentation (page d'acceuil)
 
 form.contact.email: Votre email
 form.contact.message: Message
 form.contact.success: Votre demande a bien été envoyée.
-
-form.documents.label: Documents à fournir
 
 form.emergency.emergency: Personne à contacter en cas d'urgence
 form.emergency.firstName: Prénom
 form.emergency.lastName: Nom
 form.emergency.phone: Téléphone
 
-form.legalRepresentative.legalRepresentative: Représentant légal
 form.legalRepresentative.firstName: Prénom
 form.legalRepresentative.lastName: Nom
+form.legalRepresentative.legalRepresentative: Représentant légal
 
 form.location.active: Actif
 form.location.address: Adresse
@@ -284,36 +290,37 @@ form.news.details: Informations complémentaires
 form.news.pictureFile: Image
 form.news.title: Titre
 
-form.payment.ancv.date: Date
 form.payment.ancv.amount: Montant
 form.payment.ancv.comment: Commentaire
+form.payment.ancv.date: Date
 form.payment.ancv.number: N° ANCV
-form.payment.cash.date: Date
 form.payment.cash.amount: Montant
 form.payment.cash.comment: Commentaire
-form.payment.check.date: Date
+form.payment.cash.date: Date
 form.payment.check.amount: Montant
-form.payment.check.comment: Commentaire
-form.payment.check.number: N° chèque
 form.payment.check.cashingDate: Date d'encaissement
-form.payment.discount.date: Date
+form.payment.check.comment: Commentaire
+form.payment.check.date: Date
+form.payment.check.number: N° chèque
 form.payment.discount.amount: Montant
 form.payment.discount.comment: Commentaire
+form.payment.discount.date: Date
 form.payment.discount.discount: Libellé de la remise
-form.payment.helloAsso.date: Date
 form.payment.helloAsso.amount: Montant
 form.payment.helloAsso.comment: Commentaire
-form.payment.pass.date: Date
+form.payment.helloAsso.date: Date
 form.payment.pass.amount: Montant
 form.payment.pass.comment: Commentaire
+form.payment.pass.date: Date
 form.payment.pass.number: N° Pass'Sport
-form.payment.transfer.date: Date
 form.payment.transfer.amount: Montant
 form.payment.transfer.comment: Commentaire
+form.payment.transfer.date: Date
 form.payment.transfer.label: Libellé
 
 form.registration.comment: Commentaire de l'adhérent
 form.registration.copyrightAuthorization: Droit à l'image
+form.registration.documents.label: Documents à fournir
 form.registration.internalLabel: Informations complémentaires KMIS
 form.registration.licenceDate: Date de la licence
 form.registration.licenceFormFile: Formulaire de demande de licence
@@ -326,20 +333,20 @@ form.registration.privateNote: Notes privée KMIS
 form.registration.purpose: Objectif
 form.registration.reductionCodes: Code de réductions
 form.registration.registeredAt: Date d'inscription
+form.registration.useCCAS: Aide du CCAS (10€)
+form.registration.useCCASHelp: 10 € pour les - de 18 ans résidant à Villers-sous-Saint-Leu
 form.registration.usePassCitizen: Utiliser le Pass'Sports Citoyen (15€)
 form.registration.usePassCitizenHelp: Éligibilité et conditions d’utilisations <a href="https://www.oise.fr/les-pass-citoyens-du-conseil-departemental-de-loise/le-passsports-citoyen" target="_blank">ici</a> (sélectionner discipline "Karaté" et commune du club "Mogneville").
 form.registration.usePassSport: Utiliser le Pass'Sports (70€)
 form.registration.usePassSportHelp: Éligibilité et conditions d’utilisations <a href="https://www.sports.gouv.fr/pratiques-sportives/sports-pour-tous/pass-sport/" target="_blank">ici</a>.
-form.registration.useCCAS: Aide du CCAS (10€)
-form.registration.useCCASHelp: 10 € pour les - de 18 ans résidant à Villers-sous-Saint-Leu
 form.registration.withLegalRepresentative: Dans le cas d'une personne mineur, merci de renseigner le représentant légal
 
 form.reEnrollment.email: Confirmer votre email
 
-form.schedule.start: Début
-form.schedule.end: Fin
 form.schedule.detail: Texte libre
+form.schedule.end: Fin
 form.schedule.sporting: Discipline
+form.schedule.start: Début
 
 form.sporting.active: Publiée
 form.sporting.content: Contenu
@@ -358,8 +365,8 @@ front.home.section.practicalInfo: Infos pratiques
 front.home.section.sporting: Disciplines
 
 front.footer.link.cookie: Gestion des cookies
-front.footer.link.privacy: Protection des données
 front.footer.link.google: Référencement Google gratuit
+front.footer.link.privacy: Protection des données
 
 front.menu.item.contact: Contact
 front.menu.item.home: Accueil
@@ -372,16 +379,16 @@ front.news.header.title: Actualités
 front.privacy.header.title: Protection des données
 
 front.registration.header.title: Inscription
-front.registration.page.title: Formulaire d'inscription
 front.registration.new.noActiveSeason: La période d'inscription n'est pas encore ouverte.
 front.registration.new.success: Merci pour votre inscription.<br/>Vous allez recevoir un email de confirmation pour valider votre inscription.
+front.registration.page.title: Formulaire d'inscription
 front.registration.validation.success: Votre inscription a bien été validée.
 
-front.reEnrollment.header.title: Réinscription
-front.reEnrollment.success: Votre réinscription a bien été prise en compte.<br/>Le KMIS vous remercie et vous dit à bientôt.
 front.reEnrollment.error: Token de réinscription invalide ou adresse email incorrecte.
 front.reEnrollment.expired: Le lien de réinscription n'est plus valide.<br/>Veuillez contacter les membres du bureau pour vous réinscrire.
+front.reEnrollment.header.title: Réinscription
 front.reEnrollment.noRegistration: Le lien de réinscription n'est plus valide.<br/>Veuillez contacter les membres du bureau pour vous réinscrire.
 front.reEnrollment.noSeason: La nouvelle saison sportive n'a pas encore été ouverte.<br/>Revenez plus tard pour vous réinscrire.
+front.reEnrollment.success: Votre réinscription a bien été prise en compte.<br/>Le KMIS vous remercie et vous dit à bientôt.
 
 front.sporting.header.title: Disciplines

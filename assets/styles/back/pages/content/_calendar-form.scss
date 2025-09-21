@@ -1,28 +1,16 @@
-@use '../../bulma/variables' as bulma;
-@use '../../../front/icons';
+@use '../../variables';
 
 .schedule-list {
-  border: 1px solid bulma.$primary;
-  border-radius: 5px;
-  margin-top: 50px;
-  padding: 0 20px 20px 20px;
-
-  .add-item {
-    left: 0;
-    right: unset;
-  }
-
   .collection-type-item {
-    background-color: bulma.$light;
-    border: none;
-    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
 
-    label {
-      color: bulma.$black-bis;
+    span.remove-item {
+      align-self: flex-end;
     }
 
     .schedule-help {
-      border-top: 2px solid bulma.$input-border-color;
+      border-top: 1px solid variables.$color-global-background;
       font-size: 1em;
       font-style: italic;
       padding: 12px 0 7px 0;

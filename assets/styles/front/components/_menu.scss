@@ -1,4 +1,4 @@
-@use '../color';
+@use '../colors';
 @use '../icons';
 @use '../media';
 
@@ -27,7 +27,7 @@
     @include media.below(sm) {
       &.active {
         align-items: center;
-        background-color: rgba(color.$background-dark-color, 0.9);
+        background-color: rgba(colors.$background-dark-color, 0.9);
         display: flex;
         flex-direction: column;
         font-size: 3em;
@@ -47,14 +47,14 @@
       position: relative;
 
       > span, i {
-        color: color.$primary-color;
+        color: colors.$primary-color;
         display: block;
       }
 
       &:hover {
         &:before {
           bottom: 0;
-          box-shadow: 0 5px color.$primary-color;
+          box-shadow: 0 5px colors.$primary-color;
           box-sizing: border-box;
           content: '';
           height: 1px;
@@ -71,7 +71,7 @@
       @include media.above(sm) {
         &:not(:last-child) {
           &:after {
-            background-color: color.$primary-color;
+            background-color: colors.$primary-color;
             content: '';
             height: 100%;
             position: absolute;
@@ -98,7 +98,7 @@
       }
 
       i {
-        color: color.$primary-color;
+        color: colors.$primary-color;
         display: block;
         font-size: 1.2em;
 
@@ -118,7 +118,7 @@
 
     &:before {
       @include icons.icon(icons.$icon-menu);
-      color: color.$primary-color;
+      color: colors.$primary-color;
       cursor: pointer;
       font-size: 3.5em;
     }

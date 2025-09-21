@@ -1,15 +1,15 @@
-@use '../color';
+@use '../colors';
 @use '../icons';
 
 @mixin outline-style {
-  border: 1px solid color.$scorpion;
+  border: 1px solid colors.$scorpion;
   border-radius: 5px;
-  box-shadow: 2px 2px 5px -2px color.$scorpion;
+  box-shadow: 2px 2px 5px -2px colors.$scorpion;
 }
 
 @mixin box-style {
   @include outline-style;
-  background: color.$white;
+  background: colors.$white;
   content: '';
   height: 23px;
   left: 0;
@@ -31,7 +31,7 @@
     &.required {
       &:after {
         content: '*';
-        color: color.$error-color;
+        color: colors.$error-color;
         position: absolute;
         right: 0;
         top: 0;
@@ -78,9 +78,9 @@
 
     .file-cta {
       align-items: center;
-      border-right: 1px solid color.$scorpion;
+      border-right: 1px solid colors.$scorpion;
       display: flex;
-      background-color: color.$background-light-color;
+      background-color: colors.$background-light-color;
       box-sizing: border-box;
       padding: 5px 10px;
 
@@ -125,7 +125,7 @@
 .form-errors {
   > li {
     list-style: none;
-    color: color.$error-color;
+    color: colors.$error-color;
     padding: 5px 0;
   }
 }
@@ -176,7 +176,7 @@ input[type="checkbox"]:checked + label {
     @include icons.icon(icons.$icon-checkmark);
     border: none;
     background: none;
-    color: color.$apple;
+    color: colors.$apple;
     font-size: 1.5rem;
     opacity: 1;
   }
@@ -193,8 +193,8 @@ input[type="radio"]:checked + label {
 
 input[type="radio"]:checked + label {
   &:after {
-    background-color: color.$apple;
-    border-color: color.$apple;
+    background-color: colors.$apple;
+    border-color: colors.$apple;
     border-radius: 100%;
     opacity: 1;
     transform: scale(0.5);
@@ -202,7 +202,7 @@ input[type="radio"]:checked + label {
 }
 
 select {
-  background-color: color.$white;
+  background-color: colors.$white;
 
   &[multiple="multiple"] {
     padding: 0;
@@ -218,13 +218,13 @@ select {
 }
 
 .help-text {
-  color: color.$text-dark-color;
+  color: colors.$text-dark-color;
   font-style: italic;
   padding: 5px 0;
 }
 
 .fieldset {
-  border: 1px solid color.$scorpion;
+  border: 1px solid colors.$scorpion;
   border-radius: 5px;
   margin-bottom: 20px;
   padding: 20px;
@@ -232,7 +232,7 @@ select {
 
   > label {
     position: absolute;
-    background-color: color.$white;
+    background-color: colors.$white;
     left: 20px;
     padding: 0 10px;
     top: -11px;
@@ -248,7 +248,7 @@ select {
 
       &:before {
         @include icons.icon(icons.$icon-checkmark);
-        color: color.$primary-color;
+        color: colors.$primary-color;
         font-size: 0.8em;
         margin-right: 10px;
       }

@@ -19,14 +19,19 @@ class ConfigurationType extends AbstractType
             ->add('value', WysiwygType::class, [
                 'label' => false,
                 'required' => false,
+                'small_size' => $options['small_size'],
             ])
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
+        $resolver->setDefined('small_size');
+        $resolver->setAllowedTypes('small_size', 'bool');
+
         $resolver->setDefaults([
             'data_class' => Configuration::class,
+            'small_size' => false,
         ]);
     }
 }

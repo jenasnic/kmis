@@ -30,7 +30,7 @@ class SportingType extends AbstractType
         $builder
             ->add('name', TextType::class)
             ->add('tagline', TextType::class)
-            ->add('content', WysiwygType::class)
+            ->add('content', WysiwygType::class, ['help' => 'form.wysiwyg.help'])
             ->add('active', CheckboxType::class, ['required' => false])
         ;
 

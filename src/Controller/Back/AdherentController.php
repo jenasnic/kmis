@@ -44,7 +44,7 @@ class AdherentController extends AbstractController
 
         $queryBuilder = $this->adherentRepository->createSearchQueryBuilder($seasonId);
 
-        $filter = $request->query->getAlpha('filter');
+        $filter = $request->query->getAlpha('filter', AdherentFilter::ALL);
         $queryBuilder = $this->adherentFilter->apply($queryBuilder, $filter);
 
         return $this->render('back/adherent/list.html.twig', [
@@ -52,6 +52,7 @@ class AdherentController extends AbstractController
             'currentSeason' => $season,
             'seasons' => $this->seasonRepository->search(),
             'filters' => $this->adherentFilter->getFilters(),
+            'currentFilter' => $filter,
         ]);
     }
 

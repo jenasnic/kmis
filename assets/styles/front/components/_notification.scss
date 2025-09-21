@@ -1,4 +1,4 @@
-@use '../color';
+@use '../colors';
 @use '../icons';
 
 .error-content {
@@ -10,7 +10,7 @@
   width: 100%;
 
   .error-message {
-    color: color.$white;
+    color: colors.$white;
     font-size: 5em;
     font-weight: 700;
     text-transform: uppercase;
@@ -24,14 +24,14 @@
 }
 
 .warning {
-  color: color.$text-dark-color;
+  color: colors.$text-dark-color;
   font-style: italic;
   padding-left: 30px;
   position: relative;
 
   &:before {
     @include icons.icon(icons.$icon-alert);
-    color: color.$primary-color;
+    color: colors.$primary-color;
     font-size: 1.5em;
     left: 0;
     margin-right: 10px;

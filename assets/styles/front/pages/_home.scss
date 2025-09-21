@@ -1,4 +1,4 @@
-@use '../color';
+@use '../colors';
 @use '../icons';
 @use '../media';
 
@@ -12,7 +12,7 @@
   width: 100%;
 
   .swiper-button-prev, .swiper-button-next {
-    color: color.$primary-color;
+    color: colors.$primary-color;
 
     @include media.below(sm) {
       display: none;
@@ -26,7 +26,7 @@
       width: 20px;
 
       &-active {
-        background-color: color.$primary-color;
+        background-color: colors.$primary-color;
       }
     }
   }
@@ -44,7 +44,7 @@
     }
 
     .title {
-      color: color.$text-dark-color;
+      color: colors.$text-dark-color;
       font-size: 3em;
       font-weight: 700;
       line-height: 1.5em;
@@ -84,7 +84,7 @@
 
         > div {
           align-items: center;
-          color: color.$white;
+          color: colors.$white;
           display: flex;
           justify-content: center;
           flex-grow: 1;
@@ -130,9 +130,9 @@
   }
 
   .session {
-    background-color: color.$background-light-color;
+    background-color: colors.$background-light-color;
     border-radius: 25px;
-    box-shadow: 2px 2px 5px -2px color.$scorpion;
+    box-shadow: 2px 2px 5px -2px colors.$scorpion;
     box-sizing: border-box;
     font-size: 1.5em;
     padding: 30px;
@@ -164,7 +164,7 @@
       }
 
       > .address {
-        color: color.$text-light-color;
+        color: colors.$text-light-color;
         font-size: 0.7em;
         font-style: italic;
         padding: 20px 0 10px 0;
@@ -180,7 +180,7 @@
 
         &:before {
           @include icons.icon(icons.$icon-play);
-          color: color.$primary-color;
+          color: colors.$primary-color;
         }
 
         > ul {
@@ -196,7 +196,7 @@
 
             &:before {
               @include icons.icon(icons.$icon-checkmark);
-              color: color.$primary-color;
+              color: colors.$primary-color;
               font-size: 0.8em;
               margin-right: 10px;
             }
@@ -208,11 +208,11 @@
 }
 
 .card {
-  background-color: color.$background-light-color;
+  background-color: colors.$background-light-color;
   border-radius: 25px;
-  box-shadow: 2px 2px 5px -2px color.$scorpion;
+  box-shadow: 2px 2px 5px -2px colors.$scorpion;
   box-sizing: border-box;
-  color: color.$text-dark-color;
+  color: colors.$text-dark-color;
   font-size: 1.5em;
   margin: 0 auto 50px auto;
   max-width: 600px;
@@ -235,7 +235,7 @@
 
         &:before {
           @include icons.icon(icons.$icon-play);
-          color: color.$primary-color;
+          color: colors.$primary-color;
           padding-right: 5px;
         }
       }
@@ -260,13 +260,13 @@
 
         &:before {
           @include icons.icon(icons.$icon-checkmark);
-          color: color.$primary-color;
+          color: colors.$primary-color;
           font-size: 0.8em;
           margin-right: 10px;
         }
 
         i {
-          color: color.$primary-color;
+          color: colors.$primary-color;
         }
       }
     }
@@ -276,7 +276,7 @@
     .card__detail {
       > ul {
         &:first-child {
-          border-right: 1px solid color.$primary-color;
+          border-right: 1px solid colors.$primary-color;
         }
       }
     }

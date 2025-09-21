@@ -7,23 +7,23 @@
         {% endif %}
     </div>
     <div class="level-right">
-        <p class="level-item">
+        <div class="level-item">
             <a href="{{ path('bo_adherent_list') }}" class="button is-outlined">
                 <span>{{ 'global.back'|trans }}</span>
                 <span class="icon"><i class="icon-back"></i></span>
             </a>
-        </p>
+        </div>
         {% if adherent.registration is not null %}
             {% if not adherent.registration.season.active %}
-                <p class="level-item">
+                <div class="level-item">
                     <a href="{{ path('bo_re_enrollment', {'registration': adherent.registration.id}) }}" class="button is-primary">
                         <span>{{ 'global.reEnrollment'|trans }}</span>
                         <span class="icon"><i class="icon-clipboard"></i></span>
                     </a>
-                </p>
+                </div>
             {% endif %}
             {% if not adherent.registration.verified %}
-                <p class="level-item">
+                <div class="level-item">
                     <form
                         data-confirm
                         data-confirm-message="{{ 'global.confirmVerify'|trans }}"
@@ -36,10 +36,10 @@
                             <span class="icon"><i class="icon-checkmark"></i></span>
                         </button>
                     </form>
-                </p>
+                </div>
             {% endif %}
         {% endif %}
-        <p class="level-item">
+        <div class="level-item">
             <form
                 data-confirm
                 data-confirm-message="{{ 'global.confirmDelete'|trans }}"
@@ -52,7 +52,7 @@
                     <span class="icon"><i class="icon-cross"></i></span>
                 </button>
             </form>
-        </p>
+        </div>
     </div>
 </nav>
 

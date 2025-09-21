@@ -2,39 +2,13 @@
 
 {% block body %}
 
-    <nav class="level">
-        <div class="level-left">
-            {% if sporting.id is null %}
-                <h1 class="title">{{ 'back.sporting.edit.new'|trans }}</h1>
-            {% else %}
-                <h1 class="title">{{ 'back.sporting.edit.title'|trans }}</h1>
-            {% endif %}
-        </div>
-        <div class="level-right">
-            <p class="level-item">
-                <a href="{{ path('bo_sporting_list') }}" class="button is-outlined">
-                    <span>{{ 'global.back'|trans }}</span>
-                    <span class="icon"><i class="icon-back"></i></span>
-                </a>
-            </p>
-            {% if sporting.id is not null %}
-                <p class="level-item">
-                    <form
-                        data-confirm
-                        data-confirm-message="{{ 'global.confirmDelete'|trans }}"
-                        action="{{ path('bo_sporting_delete', {'sporting': sporting.id}) }}"
-                        method="POST"
-                    >
-                        <input type="hidden" name="_token" value="{{ csrf_token('delete-'~sporting.id) }}" />
-                        <button type="submit" class="button is-danger">
-                            <span>{{ 'global.delete'|trans }}</span>
-                            <span class="icon"><i class="icon-cross"></i></span>
-                        </button>
-                    </form>
-                </p>
-            {% endif %}
-        </div>
-    </nav>
+    {% embed 'back/components/_form_header.html.twig' with {
+        'title': (sporting.id is null) ? ('back.sporting.edit.new'|trans) : ('back.sporting.edit.title'|trans),
+        'backLink': path('bo_sporting_list'),
+        'deleteAction': (sporting.id is not null) ? path('bo_sporting_delete', {'sporting': sporting.id}) : null,
+        'deleteToken': (sporting.id is not null) ? csrf_token('delete-'~sporting.id) : null
+    } %}
+    {% endembed %}
 
     {{ form_start(form) }}
     <div class="columns">
@@ -54,7 +28,7 @@
     </div>
     <div class="is-flex is-flex-direction-row is-justify-content-flex-end is-align-content-center">
         <div class="block">
-            <button type="submit" class="button is-primary">{{ 'global.validate'|trans }}</button>
+            <button type="submit" class="button is-success">{{ 'global.save'|trans }}</button>
         </div>
     </div>
     {{ form_end(form) }}
