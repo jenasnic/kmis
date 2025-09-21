@@ -227,8 +227,8 @@ form.calendar.day: Jour
 form.calendar.location: Lieu
 form.calendar.schedule: Programmation
 
-form.configurationText.contact: Texte du formulaire de contact
-form.configurationText.homePresentation: Texte de présentation (page d'acceuil)
+form.textConfiguration.contact: Texte du formulaire de contact
+form.textConfiguration.homePresentation: Texte de présentation (page d'acceuil)
 
 form.contact.email: Votre email
 form.contact.message: Message

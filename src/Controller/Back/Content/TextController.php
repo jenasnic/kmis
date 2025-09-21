@@ -2,8 +2,8 @@
 
 namespace App\Controller\Back\Content;
 
-use App\Domain\Model\Content\ConfigurationText;
-use App\Form\Content\ConfigurationTextType;
+use App\Domain\Model\Content\TextConfiguration;
+use App\Form\Content\TextConfigurationType;
 use App\Repository\ConfigurationRepository;
 use App\Service\Configuration\TextManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -25,17 +25,17 @@ class TextController extends AbstractController
     #[Route('/contenus', name: 'bo_text', methods: ['GET', 'POST'])]
     public function text(Request $request): Response
     {
-        $configurationText = new ConfigurationText(
+        $textConfiguration = new TextConfiguration(
             $this->configurationRepository->getOrCreate(TextManager::HOME_PRESENTATION),
             $this->configurationRepository->getOrCreate(TextManager::CONTACT),
         );
 
-        $form = $this->createForm(ConfigurationTextType::class, $configurationText);
+        $form = $this->createForm(TextConfigurationType::class, $textConfiguration);
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
-            $this->entityManager->persist($configurationText->homePresentation);
-            $this->entityManager->persist($configurationText->contact);
+            $this->entityManager->persist($textConfiguration->homePresentation);
+            $this->entityManager->persist($textConfiguration->contact);
             $this->entityManager->flush();
 
             $this->addFlash('info', $this->translator->trans('back.text.save.success'));

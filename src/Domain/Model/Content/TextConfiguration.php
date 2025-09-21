@@ -4,7 +4,7 @@ namespace App\Domain\Model\Content;
 
 use App\Entity\Configuration;
 
-class ConfigurationText
+class TextConfiguration
 {
     public Configuration $homePresentation;
 
