@@ -17,7 +17,12 @@
             {{ _self.buildEntryMenu('bo_text', 'back.menu.text') }}
 
             <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">{{ 'back.menu.configuration'|trans }}</a>
+                {% set isActive =
+                    'bo_sporting_list'|matchCurrentRoute
+                    or 'bo_location_list'|matchCurrentRoute
+                    or 'bo_calendar_list'|matchCurrentRoute
+                %}
+                <a class="navbar-link{% if isActive %} is-active{% endif %}">{{ 'back.menu.configuration'|trans }}</a>
                 <div class="navbar-dropdown">
                     {{ _self.buildEntryMenu('bo_sporting_list', 'back.menu.sporting') }}
                     {{ _self.buildEntryMenu('bo_location_list', 'back.menu.location') }}
@@ -41,8 +46,7 @@
 
 </nav>
 
-{% macro buildEntryMenu(menuPath, menuLabel, otherMenuPath = null) %}
-    {% set currentPath = app.request.get('_route') %}
-    {% set isActive = currentPath == menuPath or currentPath == otherMenuPath %}
+{% macro buildEntryMenu(menuPath, menuLabel) %}
+    {% set isActive = menuPath|matchCurrentRoute %}
     <a href="{{ path(menuPath) }}" class="navbar-item{% if isActive %} is-active{% endif %}">{{ menuLabel|trans }}</a>
 {% endmacro %}
