@@ -42,7 +42,10 @@
     </div>
     <div class="columns">
         <div class="column">
-            {{ form_row(form.priceOptions) }}
+            <div class="fieldset fieldset--price-options">
+                <label>{{ 'back.season.form.optionTitle'|trans }}</label>
+                {{ form_row(form.priceOptions) }}
+            </div>
         </div>
     </div>
     <div class="is-flex is-flex-direction-row is-justify-content-flex-end is-align-content-center">

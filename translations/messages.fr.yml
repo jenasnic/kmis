@@ -80,6 +80,7 @@ back.adherent.tab.registration: Fiche inscription
 back.calendar.edit.success: Planning mis à jour
 back.calendar.edit.title: Planning
 back.calendar.edit.new: Nouveau planning
+back.calendar.form.scheduleTitle: Horaires
 back.calendar.delete.success: Planning supprimé
 back.calendar.list.count: Planning(s)
 back.calendar.list.action.add: Nouveau planning
@@ -103,6 +104,7 @@ back.location.list.order.success: Ordre des localisations mis à jour
 
 back.menu.adherent: Adhérents
 back.menu.calendar: Planning
+back.menu.configuration: Configuration
 back.menu.text: Contenus
 back.menu.dashboard: Dashboard
 back.menu.gallery: Trombinoscope
@@ -173,6 +175,7 @@ back.season.form.help: Les dates de début et fin de la saison sont utilisées p
 back.season.form.startDate: Début
 back.season.form.endDate: Fin
 back.season.form.addPriceOption: Ajouter une formule
+back.season.form.optionTitle: Formules
 back.season.form.licenceLink: Lien de téléchargement du formulaire de licence pour la saison
 back.season.form.paymentLink: Lien vers la plate-forme de paiement (hellopass)
 back.season.grid.action.add: Nouvelle saison
@@ -321,6 +324,7 @@ form.registration.passSportFile: Document d'elligibilité au Pass'sport Citoyen
 form.registration.priceOption: Formule
 form.registration.privateNote: Notes privée KMIS
 form.registration.purpose: Objectif
+form.registration.reductionCodes: Code de réductions
 form.registration.registeredAt: Date d'inscription
 form.registration.usePassCitizen: Utiliser le Pass'Sports Citoyen (15€)
 form.registration.usePassCitizenHelp: Éligibilité et conditions d’utilisations <a href="https://www.oise.fr/les-pass-citoyens-du-conseil-departemental-de-loise/le-passsports-citoyen" target="_blank">ici</a> (sélectionner discipline "Karaté" et commune du club "Mogneville").

@@ -4,8 +4,8 @@ namespace App\Form;
 
 use App\Entity\Season;
 use App\Form\Payment\PriceOptionType;
+use App\Form\Type\BulmaCollectionType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -21,25 +21,17 @@ class SeasonType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('startDate', DateType::class, [
-                'widget' => 'single_text',
-            ])
-            ->add('endDate', DateType::class, [
-                'widget' => 'single_text',
-            ])
-            ->add('paymentLink', TextType::class, [
-                'required' => false,
-            ])
-            ->add('licenceLink', TextType::class, [
-                'required' => false,
-            ])
+            ->add('startDate', DateType::class, ['widget' => 'single_text'])
+            ->add('endDate', DateType::class, ['widget' => 'single_text'])
+            ->add('paymentLink', TextType::class, ['required' => false])
+            ->add('licenceLink', TextType::class, ['required' => false])
         ;
 
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
             /** @var Season $season */
             $season = $event->getData();
 
-            $event->getForm()->add('priceOptions', CollectionType::class, [
+            $event->getForm()->add('priceOptions', BulmaCollectionType::class, [
                 'label' => false,
                 'entry_type' => PriceOptionType::class,
                 'entry_options' => [
@@ -49,6 +41,9 @@ class SeasonType extends AbstractType
                 'block_prefix' => 'season_price_option_list',
                 'allow_add' => true,
                 'allow_delete' => true,
+                'add_label_id' => 'back.season.form.addPriceOption',
+                'collection_css_class' => 'price-option-list',
+                'sortable' => true,
             ]);
         });
     }

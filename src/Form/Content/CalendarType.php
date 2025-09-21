@@ -5,11 +5,11 @@ namespace App\Form\Content;
 use App\Entity\Content\Calendar;
 use App\Entity\Content\Location;
 use App\Enum\DayOfWeekEnum;
+use App\Form\Type\BulmaCollectionType;
 use App\Form\Type\EnumType;
 use App\Repository\Content\LocationRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -37,7 +37,7 @@ class CalendarType extends AbstractType
             /** @var Calendar $calendar */
             $calendar = $event->getData();
 
-            $event->getForm()->add('schedules', CollectionType::class, [
+            $event->getForm()->add('schedules', BulmaCollectionType::class, [
                 'label' => false,
                 'entry_type' => ScheduleType::class,
                 'entry_options' => [
@@ -47,6 +47,9 @@ class CalendarType extends AbstractType
                 'block_prefix' => 'calendar_schedule_list',
                 'allow_add' => true,
                 'allow_delete' => true,
+                'add_label_id' => 'back.calendar.form.addSchedule',
+                'collection_css_class' => 'schedule-list',
+                'remove_button_position' => 'start',
             ]);
         });
     }

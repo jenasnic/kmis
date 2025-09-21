@@ -44,7 +44,12 @@
         <div class="column">{{ form_row(form.location) }}</div>
     </div>
     <div class="columns">
-        <div class="column">{{ form_row(form.schedules) }}</div>
+        <div class="column">
+            <div class="fieldset">
+                <label>{{ 'back.calendar.form.scheduleTitle'|trans }}</label>
+                {{ form_row(form.schedules) }}
+            </div>
+        </div>
     </div>
     <div class="is-flex is-flex-direction-row is-justify-content-flex-end is-align-content-center">
         <div class="block">

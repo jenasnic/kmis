@@ -14,7 +14,7 @@ export class CollectionType {
         this.referenceIndex = options.collection.querySelectorAll('.collection-type-item').length;
         this.options = options;
 
-        if (this.options.collection.dataset.triggerAdd) {
+        if (this.options.collection.hasAttribute('data-trigger-add')) {
             this.initializeTriggerAdd();
         }
 
@@ -27,7 +27,10 @@ export class CollectionType {
 
     initializeTriggerAdd() {
         this.options.trigger = this.options.collection.querySelector('.add-item');
-        this.options.trigger.addEventListener('click', (evt) => {evt.preventDefault(); this.addItem();});
+        this.options.trigger.addEventListener('click', (evt) => {
+            evt.preventDefault();
+            this.addItem();
+        });
     }
 
     addItem() {
@@ -70,7 +73,8 @@ export class CollectionType {
         removeButton.title = this.options.collection.dataset.triggerRemove;
         removeButton.innerHTML = '<i class="icon-cross"></i>';
 
-        item.prepend(removeButton);
+        const prependPosition = ('start' === this.options.collection.dataset.triggerRemovePosition);
+        prependPosition ? item.prepend(removeButton) : item.append(removeButton);
 
         removeButton.addEventListener('click', (evt) => {
             evt.preventDefault();
