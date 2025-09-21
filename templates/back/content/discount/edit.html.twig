@@ -1,0 +1,60 @@
+{% extends 'layout/_back.html.twig' %}
+
+{% block body %}
+
+    <nav class="level">
+        <div class="level-left">
+            <h1 class="title">{{ 'back.discount.title'|trans }}</h1>
+        </div>
+    </nav>
+
+    {{ form_start(form) }}
+
+    <div class="fieldset">
+        <label>{{ 'back.discount.passCitizen.label'|trans }}</label>
+        <div class="columns">
+            <div class="column">{{ form_row(form.enablePassCitizen) }}</div>
+        </div>
+        <div class="columns">
+            <div class="column">{{ form_row(form.passCitizenLabel) }}</div>
+        </div>
+        <div class="columns">
+            <div class="column">{{ form_row(form.passCitizenHelpText) }}</div>
+        </div>
+    </div>
+
+    <div class="fieldset">
+        <label>{{ 'back.discount.passSport.label'|trans }}</label>
+        <div class="columns">
+            <div class="column">{{ form_row(form.enablePassSport) }}</div>
+        </div>
+        <div class="columns">
+            <div class="column">{{ form_row(form.passSportLabel) }}</div>
+        </div>
+        <div class="columns">
+            <div class="column">{{ form_row(form.passSportHelpText) }}</div>
+        </div>
+    </div>
+
+    <div class="fieldset">
+        <label>{{ 'back.discount.ccas.label'|trans }}</label>
+        <div class="columns">
+            <div class="column">{{ form_row(form.enableCCAS) }}</div>
+        </div>
+        <div class="columns">
+            <div class="column">{{ form_row(form.CCASLabel) }}</div>
+        </div>
+        <div class="columns">
+            <div class="column">{{ form_row(form.CCASHelpText) }}</div>
+        </div>
+    </div>
+
+    <div class="is-flex is-flex-direction-row is-justify-content-flex-end is-align-content-center">
+        <div class="block">
+            <button type="submit" class="button is-success">{{ 'global.save'|trans }}</button>
+        </div>
+    </div>
+
+    {{ form_end(form) }}
+
+{% endblock %}

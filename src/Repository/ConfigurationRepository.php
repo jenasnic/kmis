@@ -16,14 +16,30 @@ class ConfigurationRepository extends ServiceEntityRepository
         parent::__construct($registry, Configuration::class);
     }
 
-    public function getOrCreate(string $key): Configuration
+    public function getOrCreate(string $code): Configuration
     {
-        $configuration = $this->find($key);
+        $configuration = $this->find($code);
 
         if (null === $configuration) {
-            $configuration = new Configuration($key);
+            $configuration = new Configuration($code);
         }
 
         return $configuration;
+    }
+
+    /**
+     * @param array<string> $codes
+     *
+     * @return array<Configuration>
+     */
+    public function findIndexedByCode(array $codes): array
+    {
+        $queryBuilder = $this
+            ->createQueryBuilder('configuration', 'configuration.code')
+            ->andWhere('configuration.code IN (:codes)')
+            ->setParameter('codes', $codes)
+        ;
+
+        return $queryBuilder->getQuery()->getResult();
     }
 }

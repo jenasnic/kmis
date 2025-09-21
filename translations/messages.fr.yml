@@ -94,6 +94,12 @@ back.calendar.list.header.location: Lieu
 back.calendar.list.header.schedules: Horaires
 back.calendar.list.title: Liste des plannings
 
+back.discount.save.success: Réductions mises à jour
+back.discount.title: Gestion des réductions
+back.discount.passCitizen.label: Pass'Sports Citoyen
+back.discount.passSport.label: Pass'Sports
+back.discount.ccas.label: Aide du CCAS
+
 back.location.delete.success: Localisation supprimée
 back.location.edit.new: Nouvelle localisation
 back.location.edit.success: Localisation mise à jour
@@ -109,6 +115,7 @@ back.menu.adherent: Adhérents
 back.menu.calendar: Planning
 back.menu.configuration: Configuration
 back.menu.dashboard: Dashboard
+back.menu.discount: Réductions
 back.menu.gallery: Trombinoscope
 back.menu.location: Localisations
 back.menu.news: Actualites
@@ -233,6 +240,16 @@ form.textConfiguration.homePresentation: Texte de présentation (page d'acceuil)
 form.contact.email: Votre email
 form.contact.message: Message
 form.contact.success: Votre demande a bien été envoyée.
+
+form.discountConfiguration.enablePassCitizen: Autoriser le Pass'Sports Citoyen
+form.discountConfiguration.passCitizenLabel: Libellé
+form.discountConfiguration.passCitizenHelpText: Complément d'informations
+form.discountConfiguration.enablePassSport: Autoriser le Pass'Sports
+form.discountConfiguration.passSportLabel: Libellé
+form.discountConfiguration.passSportHelpText: Complément d'informations
+form.discountConfiguration.enableCCAS: Autoriser l'aide du CCAS
+form.discountConfiguration.CCASLabel: Libellé
+form.discountConfiguration.CCASHelpText: Complément d'informations
 
 form.emergency.emergency: Personne à contacter en cas d'urgence
 form.emergency.firstName: Prénom
