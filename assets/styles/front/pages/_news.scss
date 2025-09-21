@@ -1,4 +1,4 @@
-@use '../color';
+@use '../colors';
 @use '../icons';
 @use '../media';
 
@@ -13,7 +13,7 @@
       padding-bottom: 50px;
 
       &:after {
-        background-color: color.$primary-color;
+        background-color: colors.$primary-color;
         bottom: 0;
         content: '';
         height: 1px;
@@ -50,7 +50,7 @@
 
         .news-button {
           align-items: center;
-          background-color: rgba(color.$white, 0.8);
+          background-color: rgba(colors.$white, 0.8);
           cursor: pointer;
           display: flex;
           height: 70px;
@@ -63,7 +63,7 @@
 
           &:before {
             @include icons.icon(icons.$icon-search);
-            color: color.$primary-color;
+            color: colors.$primary-color;
             font-size: 2.2rem;
           }
 
@@ -78,7 +78,7 @@
         }
 
         .news-text {
-          background-color: rgba(color.$white, 0.8);
+          background-color: rgba(colors.$white, 0.8);
           box-sizing: border-box;
           display: flex;
           flex-direction: column;
@@ -145,8 +145,8 @@
       }
 
       &__detail {
-        background-color: color.$background-light-color;
-        border: 1px solid color.$primary-color;
+        background-color: colors.$background-light-color;
+        border: 1px solid colors.$primary-color;
         border-radius: 10px;
         font-size: 1.1em;
         padding: 20px;
@@ -161,7 +161,7 @@
 
           &:before {
             @include icons.icon(icons.$icon-play);
-            color: color.$primary-color;
+            color: colors.$primary-color;
             padding: 0 7px 0 5px;
           }
         }

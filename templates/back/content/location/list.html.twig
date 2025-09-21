@@ -2,23 +2,15 @@
 
 {% block body %}
 
-    <h2 class="subtitle">{{ locationCount }} {{ 'back.location.list.count'|trans }}</h2>
+    {% embed 'back/components/_list_header.html.twig' with {
+        'title': ('back.location.list.title'|trans),
+        'subTitle': (locationCount~' '~('back.location.list.count'|trans)),
+        'addLink': path('bo_location_new'),
+        'addLabel': 'back.location.list.action.add'|trans
+    } %}
+    {% endembed %}
 
     <div data-grid="data-grid">
-
-        <nav class="level">
-            <div class="level-left"></div>
-            <div class="level-right">
-                <p class="level-item">
-                    <a href="{{ path('bo_location_new') }}" class="button is-primary">
-                        <span>{{ 'back.location.list.action.add'|trans }}</span>
-                        <span class="icon is-small">
-                            <i class="icon-more"></i>
-                        </span>
-                    </a>
-                </p>
-            </div>
-        </nav>
 
         {{ form_start(form) }}
 
@@ -57,7 +49,7 @@
 
     <div class="is-flex is-flex-direction-row is-justify-content-flex-end is-align-content-center">
         <div class="block">
-            <button type="submit" class="button is-primary">{{ 'global.save'|trans }}</button>
+            <button type="submit" class="button is-success">{{ 'global.save'|trans }}</button>
         </div>
     </div>
 

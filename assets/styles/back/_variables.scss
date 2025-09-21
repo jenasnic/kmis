@@ -1,0 +1,21 @@
+@use './bulma/variables' as bulma;
+
+$color-global-background: bulma.$grey-darker;
+
+$color-primary: bulma.$primary;
+$color-info: bulma.$blue;
+$color-success: bulma.$green;
+$color-warning: bulma.$warning;
+$color-danger: bulma.$red;
+
+$color-male: #355b73;
+$color-female: #994187;
+
+$color-input-background: hsl(0deg, 0%, 100%);
+$color-input-border: transparent;
+
+$color-wysiwyg-header: bulma.$table-color;
+
+$color-gallery-background: bulma.$table-color;
+
+$radius-input: 4px;

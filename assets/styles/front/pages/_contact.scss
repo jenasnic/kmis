@@ -1,4 +1,4 @@
-@use '../color';
+@use '../colors';
 @use '../icons';
 
 .contact-locations {
@@ -10,7 +10,7 @@
 
     &:before {
       @include icons.icon(icons.$icon-checkmark);
-      color: color.$primary-color;
+      color: colors.$primary-color;
       font-size: 0.8em;
       margin-right: 10px;
     }

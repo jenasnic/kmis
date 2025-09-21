@@ -26,6 +26,14 @@
                     </div>
                 </div>
             </div>
+            <div class="level-right">
+                <p class="level-item">
+                    <a href="{{ path('bo_adherent_list') }}" class="button is-primary">
+                        <span>{{ 'global.back'|trans }}</span>
+                        <span class="icon"><i class="icon-back"></i></span>
+                    </a>
+                </p>
+            </div>
         </nav>
 
         {% embed 'back/components/_table.html.twig' %}
@@ -42,25 +50,25 @@
             </th>
             <th>{{ 'back.adherent.list.header.phone'|trans }}</th>
             <th>{{ 'back.adherent.list.header.email'|trans }}</th>
-            <th>{{ 'back.adherent.list.header.season'|trans }}</th>
-            <th>{{ 'back.adherent.list.header.verified'|trans }}</th>
+            <th class="has-text-centered">{{ 'back.adherent.list.header.season'|trans }}</th>
+            <th class="has-text-centered">{{ 'back.adherent.list.header.verified'|trans }}</th>
             <th></th>
         {% endblock %}
 
         {% block tbody %}
             {% for registration in registrations %}
                 <tr>
-                    <td class="gender gender--{{ registration['gender']|lower }}"><i class="icon-user"></i></td>
+                    <td class="gender gender--{{ registration['gender'].value|lower }}"><i class="icon-user"></i></td>
                     <td class="lastName">{{ registration['lastName'] }}</td>
                     <td class="firstName">{{ registration['firstName'] }}</td>
                     <td>{{ registration['phone'] }}</td>
                     <td class="email">{{ registration['email'] }}</td>
-                    <td>{{ registration['seasonLabel'] }}</td>
-                    <td>
+                    <td class="has-text-centered">{{ registration['seasonLabel'] }}</td>
+                    <td class="has-text-centered">
                         {% if registration['registrationVerified'] %}
-                            <span class="icon has-text-primary"><i class="icon-checkmark"></i></span>
+                            <span class="icon has-text-success"><i class="icon-checkmark"></i></span>
                         {% else %}
-                            <span class="icon has-text-warning"><i class="icon-cross"></i></span>
+                            <span class="icon has-text-danger"><i class="icon-cross"></i></span>
                         {% endif %}
                     </td>
                     <td class="action">

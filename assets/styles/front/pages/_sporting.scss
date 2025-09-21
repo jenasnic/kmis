@@ -1,4 +1,4 @@
-@use '../color';
+@use '../colors';
 @use '../icons';
 @use '../media';
 
@@ -65,8 +65,8 @@
     }
 
     .sporting-reminder {
-      background-color: color.$background-light-color;
-      border: 1px solid color.$primary-color;
+      background-color: colors.$background-light-color;
+      border: 1px solid colors.$primary-color;
       border-radius: 10px;
       font-size: 1.1em;
       padding: 20px;
@@ -81,7 +81,7 @@
 
         &:before {
           @include icons.icon(icons.$icon-play);
-          color: color.$primary-color;
+          color: colors.$primary-color;
           padding: 0 7px 0 5px;
         }
       }

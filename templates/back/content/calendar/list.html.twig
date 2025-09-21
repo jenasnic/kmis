@@ -2,23 +2,15 @@
 
 {% block body %}
 
-    <h2 class="subtitle">{{ calendars|length }} {{ 'back.calendar.list.count'|trans }}</h2>
+    {% embed 'back/components/_list_header.html.twig' with {
+        'title': ('back.calendar.list.title'|trans),
+        'subTitle': (calendars|length~' '~('back.calendar.list.count'|trans)),
+        'addLink': path('bo_calendar_new'),
+        'addLabel': 'back.calendar.list.action.add'|trans
+    } %}
+    {% endembed %}
 
     <div data-grid="data-grid">
-
-        <nav class="level">
-            <div class="level-left"></div>
-            <div class="level-right">
-                <p class="level-item">
-                    <a href="{{ path('bo_calendar_new') }}" class="button is-primary">
-                        <span>{{ 'back.calendar.list.action.add'|trans }}</span>
-                        <span class="icon is-small">
-                            <i class="icon-more"></i>
-                        </span>
-                    </a>
-                </p>
-            </div>
-        </nav>
 
         {% embed 'back/components/_table.html.twig' %}
 

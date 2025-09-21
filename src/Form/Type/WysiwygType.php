@@ -24,7 +24,6 @@ class WysiwygType extends AbstractType
         $resolver->setAllowedTypes('small_size', 'bool');
 
         $resolver->setDefault('required', false);
-        $resolver->setDefault('help', 'form.wysiwyg.help');
     }
 
     public function getParent()

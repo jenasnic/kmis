@@ -4,7 +4,11 @@
 
     {% form_theme form 'back/payment/_form.html.twig' %}
 
-    <h1 class="title">{{ 'back.payment.new.title'|trans }}</h1>
+    {% embed 'back/components/_form_header.html.twig' with {
+        'title': 'back.payment.new.title'|trans,
+        'backLink': path('bo_payment_list_for_adherent', {'adherent': adherent.id})
+    } %}
+    {% endembed %}
 
     <div class="form-wrapper">
         {{ form_start(form) }}
@@ -20,8 +24,7 @@
         </div>
         <div class="is-flex is-flex-direction-row is-justify-content-flex-end is-align-content-center">
             <div class="block">
-                <a href="{{ path('bo_payment_list_for_adherent', {'adherent': adherent.id}) }}" class="button is-outlined">{{ 'global.cancel'|trans }}</a>
-                <button type="submit" class="button is-primary">{{ 'global.validate'|trans }}</button>
+                <button type="submit" class="button is-success">{{ 'global.save'|trans }}</button>
             </div>
         </div>
         {{ form_end(form) }}

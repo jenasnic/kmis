@@ -1,0 +1,48 @@
+{#
+@var string title
+@var ?string subTitle
+@var string backLink
+@var ?string deleteAction
+@var ?string deleteToken
+#}
+
+<nav class="level">
+    <div class="level-left">
+        <div>
+            <h1 class="title">{{ title }}</h1>
+            {% if subTitle is defined and subTitle is not null %}
+                <h2 class="subtitle">{{ subTitle }}</h2>
+            {% endif %}
+        </div>
+    </div>
+    <div class="level-right">
+        <div class="level-item">
+            <a href="{{ backLink }}" class="button is-outlined">
+                <span>{{ 'global.back'|trans }}</span>
+                <span class="icon"><i class="icon-back"></i></span>
+            </a>
+        </div>
+        {% if deleteAction is defined
+            and deleteAction is not null
+            and deleteToken is defined
+            and deleteToken is not null
+        %}
+            <div class="level-item">
+                <form
+                    data-confirm
+                    data-confirm-message="{{ 'global.confirmDelete'|trans }}"
+                    action="{{ deleteAction }}"
+                    method="POST"
+                >
+                    <input type="hidden" name="_token" value="{{ deleteToken }}" />
+                    <button type="submit" class="button is-danger">
+                        <span>{{ 'global.delete'|trans }}</span>
+                        <span class="icon"><i class="icon-cross"></i></span>
+                    </button>
+                </form>
+            </div>
+        {% endif %}
+        {% block rightNav %}{% endblock %}
+    </div>
+</nav>
+

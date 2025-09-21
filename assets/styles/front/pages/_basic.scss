@@ -1,4 +1,4 @@
-@use '../color';
+@use '../colors';
 
 .basic-page {
   align-items: center;
@@ -16,7 +16,7 @@
 
       > form {
         align-items: center;
-        background-color: color.$white;
+        background-color: colors.$white;
         border-radius: 10px;
         display: flex;
         flex-direction: column;

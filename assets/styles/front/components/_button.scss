@@ -1,17 +1,17 @@
-@use '../color';
+@use '../colors';
 
 .link-icon-button, .button {
-  background-color: color.$primary-color;
-  color: color.$white;
+  background-color: colors.$primary-color;
+  color: colors.$white;
   cursor: pointer;
   transition: all 0.1s;
 
   &:hover {
-    box-shadow: 1px 1px 3px color.$background-dark-color;
+    box-shadow: 1px 1px 3px colors.$background-dark-color;
   }
 
   i {
-    color: color.$white;
+    color: colors.$white;
   }
 }
 

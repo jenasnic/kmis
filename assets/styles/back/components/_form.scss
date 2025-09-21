@@ -1,4 +1,5 @@
-@use '../bulma/variables' as bulma;
+@use '../variables';
+@use '../../front/icons';
 
 .form-group {
   > label {
@@ -9,7 +10,7 @@
 
       &:after {
         content: '*';
-        color: bulma.$red;
+        color: variables.$color-danger;
         font-size: 1.5rem;
         line-height: 1.5rem;
         position: absolute;
@@ -30,12 +31,16 @@
   margin-bottom: 20px;
 
   .tox-tinymce {
-    border-color: bulma.$grey-light;
-    border-radius: bulma.$radius;
+    border-color: variables.$color-input-border;
+    border-radius: variables.$radius-input;
     min-height: 300px;
 
+    .tox-toolbar__primary {
+      background-color: variables.$color-wysiwyg-header !important;
+    }
+
     .tox-edit-area__iframe {
-      background-color: bulma.$grey-lighter !important;
+      background-color: variables.$color-input-background !important;
     }
   }
 
@@ -63,7 +68,7 @@
     flex-grow: 1;
 
     .file-name {
-      background-color: bulma.$input-background-color;
+      background-color: variables.$color-input-background;
       flex-grow: 1;
       max-width: none;
     }
@@ -88,40 +93,43 @@
 }
 
 .fieldset {
-  border: 1px solid bulma.$grey;
-  border-radius: 5px;
+  border: 1px solid variables.$color-primary;
+  border-radius: variables.$radius-input;
   margin-bottom: 20px;
   padding: 20px;
   position: relative;
 
   > label {
     position: absolute;
-    background-color: bulma.$body-background-color;
+    background-color: variables.$color-global-background;
     left: 20px;
     padding: 0 10px;
     top: -11px;
   }
 }
 
-[data-collection-type] {
-  position: relative;
-
-  .add-item{
-    position: absolute;
-    top: -50px;
-    right: 0;
-  }
-
-  .remove-item {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-  }
-
+.collection-type {
   .collection-type-item {
-    border: 1px solid bulma.$primary;
-    padding: 10px 70px 10px 10px;
-    position: relative;
+    background-color: variables.$color-primary;
+    border-radius: variables.$radius-input;
+    border: 1px solid variables.$color-input-border;
     margin-top: 20px;
+    padding: 10px;
+  }
+
+  &--sortable {
+    .collection-type-item {
+      padding-left: 60px;
+      position: relative;
+
+      &:before {
+        @include icons.icon(icons.$icon-drag);
+        cursor: pointer;
+        font-size: 24px;
+        left: 15px;
+        position: absolute;
+        top: calc(50% - 12px);
+      }
+    }
   }
 }

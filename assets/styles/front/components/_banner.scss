@@ -1,4 +1,4 @@
-@use '../color';
+@use '../colors';
 @use '../media';
 
 .banner {
@@ -17,17 +17,17 @@
   }
 
   .title-wrapper {
-    color: color.$white;
+    color: colors.$white;
     font-size: 1rem;
     padding: 0 5%;
     text-align: center;
     z-index: 1;
 
     > h1 {
-      color: color.$primary-color;
+      color: colors.$primary-color;
       font-size: 8em;
       line-height: 1em;
-      text-shadow: 2px 2px 4px color.$black;
+      text-shadow: 2px 2px 4px colors.$black;
 
       @include media.below(md) {
         font-size: 6em;
@@ -38,7 +38,7 @@
       background-color: rgba(200, 200, 200, 0.6);
       padding: 20px 50px;
       border-radius: 5px;
-      color: color.$text-default-color;
+      color: colors.$text-default-color;
       font-size: 3em;
     }
   }
@@ -85,7 +85,7 @@
         }
 
         > span {
-          color: color.$primary-color;
+          color: colors.$primary-color;
 
           &.first-line {
             text-transform: uppercase;

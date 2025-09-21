@@ -1,4 +1,4 @@
-@use '../color';
+@use '../colors';
 
 $overlay-transparency: 0.40;
 
@@ -6,7 +6,7 @@ $overlay-transparency: 0.40;
   position: relative;;
 
   &:before {
-    background-color: color.$background-dark-color;
+    background-color: colors.$background-dark-color;
     content: '';
     height: 100%;
     opacity: $overlay-transparency;

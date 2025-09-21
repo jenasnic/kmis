@@ -4,39 +4,13 @@
 
 {% block body %}
 
-    <nav class="level">
-        <div class="level-left">
-            {% if calendar.id is null %}
-                <h1 class="title">{{ 'back.calendar.edit.new'|trans }}</h1>
-            {% else %}
-                <h1 class="title">{{ 'back.calendar.edit.title'|trans }}</h1>
-            {% endif %}
-        </div>
-        <div class="level-right">
-            <p class="level-item">
-                <a href="{{ path('bo_calendar_list') }}" class="button is-outlined">
-                    <span>{{ 'global.back'|trans }}</span>
-                    <span class="icon"><i class="icon-back"></i></span>
-                </a>
-            </p>
-            {% if calendar.id is not null %}
-                <p class="level-item">
-                    <form
-                        data-confirm
-                        data-confirm-message="{{ 'global.confirmDelete'|trans }}"
-                        action="{{ path('bo_calendar_delete', {'calendar': calendar.id}) }}"
-                        method="POST"
-                    >
-                        <input type="hidden" name="_token" value="{{ csrf_token('delete-'~calendar.id) }}" />
-                        <button type="submit" class="button is-danger">
-                            <span>{{ 'global.delete'|trans }}</span>
-                            <span class="icon"><i class="icon-cross"></i></span>
-                        </button>
-                    </form>
-                </p>
-            {% endif %}
-        </div>
-    </nav>
+    {% embed 'back/components/_form_header.html.twig' with {
+        'title': (calendar.id is null) ? ('back.calendar.edit.new'|trans) : ('back.calendar.edit.title'|trans),
+        'backLink': path('bo_calendar_list'),
+        'deleteAction': (calendar.id is not null) ? path('bo_calendar_delete', {'calendar': calendar.id}) : null,
+        'deleteToken': (calendar.id is not null) ? csrf_token('delete-'~calendar.id) : null
+    } %}
+    {% endembed %}
 
     {{ form_start(form) }}
     <div class="columns">
@@ -53,7 +27,7 @@
     </div>
     <div class="is-flex is-flex-direction-row is-justify-content-flex-end is-align-content-center">
         <div class="block">
-            <button type="submit" class="button is-primary">{{ 'global.validate'|trans }}</button>
+            <button type="submit" class="button is-success">{{ 'global.save'|trans }}</button>
         </div>
     </div>
     {{ form_end(form) }}
