@@ -1,0 +1,37 @@
+{% extends 'layout/_back.html.twig' %}
+
+{% form_theme form 'back/content/discount_code/_form.html.twig' %}
+
+{% block body %}
+
+    <nav class="level">
+        <div class="level-left">
+            <h1 class="title">{{ 'back.discountCodeConfiguration.title'|trans }}</h1>
+        </div>
+        <div class="level-right">
+            <div class="level-item">
+                <a href="{{ path('bo_discount_code', {'auto': true}) }}" class="button is-success">
+                    <span>{{ 'back.discountCodeConfiguration.generate'|trans }}</span>
+                    <span class="icon"><i class="icon-cog"></i></span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="notification is-info">{{ 'back.discountCodeConfiguration.help'|trans|raw }}</div>
+
+    {{ form_start(form) }}
+
+    <div class="columns">
+        <div class="column">{{ form_row(form.discountCodes) }}</div>
+    </div>
+
+    <div class="is-flex is-flex-direction-row is-justify-content-flex-end is-align-content-center">
+        <div class="block">
+            <button type="submit" class="button is-success">{{ 'global.save'|trans }}</button>
+        </div>
+    </div>
+
+    {{ form_end(form) }}
+
+{% endblock %}

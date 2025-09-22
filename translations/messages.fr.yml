@@ -45,6 +45,10 @@ enum.paymentType.HELLO_ASSO: HelloAsso
 enum.paymentType.PASS: Pass'Sport
 enum.paymentType.TRANSFER: Virement
 
+enum.refundHelp.PASS_CITIZEN: Pass'Sports Citoyen
+enum.refundHelp.PASS_SPORT: Pass'Sports
+enum.refundHelp.CCAS: Aide du CCAS
+
 enum.registrationType.ADULT: Adulte
 enum.registrationType.COMPETITOR: Compétiteur
 enum.registrationType.MINOR: Mineur
@@ -84,15 +88,20 @@ back.calendar.delete.success: Planning supprimé
 back.calendar.edit.new: Nouveau planning
 back.calendar.edit.success: Planning mis à jour
 back.calendar.edit.title: Planning
-back.calendar.form.addSchedule: Ajouter un horaire
-back.calendar.form.schedule.help: Sélectionnez une discipline OU saisissez un texte libre (possibilité d'inclure des balises HTML).
-back.calendar.form.scheduleTitle: Horaires
 back.calendar.list.action.add: Nouveau planning
 back.calendar.list.count: Planning(s)
 back.calendar.list.header.day: Jour
 back.calendar.list.header.location: Lieu
 back.calendar.list.header.schedules: Horaires
 back.calendar.list.title: Liste des plannings
+
+back.discountCodeConfiguration.save.success: Codes de réduction mis à jour
+back.discountCodeConfiguration.title: Gestion des codes de réductions
+back.discountCodeConfiguration.generate: Générer
+back.discountCodeConfiguration.help: |
+  Vous pouvez saisir ici des codes "HelloPass" en indiquant la remise ou la combinaison de remises pour laquelle le code s'applique;<br/>
+  Vous pouvez utiliser le boutons "Générer" pour créer toutes les combinaisons possibles; il vous suffira ensuite de saisir le code "HelloPass" adéquat pour chacune d'entre elle.<br/>
+  <b>NOTE</b> : seules les remises actives seront prises en compte.
 
 back.location.delete.success: Localisation supprimée
 back.location.edit.new: Nouvelle localisation
@@ -109,6 +118,7 @@ back.menu.adherent: Adhérents
 back.menu.calendar: Planning
 back.menu.configuration: Configuration
 back.menu.dashboard: Dashboard
+back.menu.discountCode: Codes réduction
 back.menu.gallery: Trombinoscope
 back.menu.location: Localisations
 back.menu.news: Actualites
@@ -148,9 +158,6 @@ back.payment.new.success: Paiement ajouté
 back.payment.new.title: Nouveau paiement
 back.payment.view.title: Paiement
 
-back.priceOption.form.amount: Montant
-back.priceOption.form.label: Nom de la formule
-
 back.refundHelp.save.success: Aides/remises mises à jour
 back.refundHelp.title: Gestion des aides et remises
 back.refundHelp.passCitizen.label: Pass'Sports Citoyen
@@ -182,15 +189,6 @@ back.season.activate.success: Saison sportive activée
 back.season.edit.confirmActivate: En activant la saison, les adherents recevront un email de réinscription. Êtes-vous sûr de vouloir continuer ?
 back.season.edit.success: Saison sportive mise à jour
 back.season.edit.title: Saison sportive
-back.season.form.addPriceOption: Ajouter une formule
-back.season.form.endDate: Fin
-back.season.form.help: |
-  Les dates de début et fin de la saison sont utilisées pour définir la période d'ouverture des inscriptions.<br/>
-  En dehors de cette période, l'entrée de menu "<b>Inscription</b>" ne sera pas affichée sur le site.
-back.season.form.licenceLink: Lien de téléchargement du formulaire de licence pour la saison
-back.season.form.optionTitle: Formules
-back.season.form.paymentLink: Lien vers la plate-forme de paiement (hellopass)
-back.season.form.startDate: Début
 back.season.grid.action.add: Nouvelle saison
 back.season.grid.header.active: Active
 back.season.grid.header.endDate: Fin
@@ -230,28 +228,21 @@ form.adherent.reEnrollmentToNotifyHelp: Cocher pour relancer le mail de résincr
 form.adherent.street: Adresse
 form.adherent.zipCode: Code postal
 
+form.calendar.addSchedule: Ajouter un horaire
 form.calendar.day: Jour
 form.calendar.location: Lieu
+form.calendar.schedule.help: Sélectionnez une discipline OU saisissez un texte libre (possibilité d'inclure des balises HTML).
 form.calendar.schedule: Programmation
-
-form.textConfiguration.contact: Texte du formulaire de contact
-form.textConfiguration.homePresentation: Texte de présentation (page d'acceuil)
+form.calendar.scheduleTitle: Horaires
 
 form.contact.email: Votre email
 form.contact.message: Message
 form.contact.success: Votre demande a bien été envoyée.
 
-form.refundHelpConfiguration.ccasEnable: Autoriser l'aide du CCAS
-form.refundHelpConfiguration.ccasHelpText: Complément d'informations
-form.refundHelpConfiguration.ccasLabel: Libellé (case à cocher)
-form.refundHelpConfiguration.passCitizenEnable: Autoriser le Pass'Sports Citoyen
-form.refundHelpConfiguration.passCitizenFileLabel: Libellé (chargement du fichier)
-form.refundHelpConfiguration.passCitizenHelpText: Complément d'informations
-form.refundHelpConfiguration.passCitizenLabel: Libellé (case à cocher)
-form.refundHelpConfiguration.passSportEnable: Autoriser le Pass'Sports
-form.refundHelpConfiguration.passSportFileLabel: Libellé (chargement du fichier)
-form.refundHelpConfiguration.passSportHelpText: Complément d'informations
-form.refundHelpConfiguration.passSportLabel: Libellé (case à cocher)
+form.discountCode.code: Code de réduction
+form.discountCode.refundHelps: Aides concernées
+
+form.discountCodeConfiguration.addCode: Ajouter un code
 
 form.emergency.emergency: Personne à contacter en cas d'urgence
 form.emergency.firstName: Prénom
@@ -332,6 +323,21 @@ form.payment.transfer.comment: Commentaire
 form.payment.transfer.date: Date
 form.payment.transfer.label: Libellé
 
+form.priceOption.amount: Montant
+form.priceOption.label: Nom de la formule
+
+form.refundHelpConfiguration.ccasEnable: Autoriser l'aide du CCAS
+form.refundHelpConfiguration.ccasHelpText: Complément d'informations
+form.refundHelpConfiguration.ccasLabel: Libellé (case à cocher)
+form.refundHelpConfiguration.passCitizenEnable: Autoriser le Pass'Sports Citoyen
+form.refundHelpConfiguration.passCitizenFileLabel: Libellé (chargement du fichier)
+form.refundHelpConfiguration.passCitizenHelpText: Complément d'informations
+form.refundHelpConfiguration.passCitizenLabel: Libellé (case à cocher)
+form.refundHelpConfiguration.passSportEnable: Autoriser le Pass'Sports
+form.refundHelpConfiguration.passSportFileLabel: Libellé (chargement du fichier)
+form.refundHelpConfiguration.passSportHelpText: Complément d'informations
+form.refundHelpConfiguration.passSportLabel: Libellé (case à cocher)
+
 form.registration.comment: Commentaire de l'adhérent
 form.registration.copyrightAuthorization: Droit à l'image
 form.registration.documents.label: Documents à fournir
@@ -354,12 +360,25 @@ form.schedule.end: Fin
 form.schedule.sporting: Discipline
 form.schedule.start: Début
 
+form.season.addPriceOption: Ajouter une formule
+form.season.endDate: Fin
+form.season.help: |
+  Les dates de début et fin de la saison sont utilisées pour définir la période d'ouverture des inscriptions.<br/>
+  En dehors de cette période, l'entrée de menu "<b>Inscription</b>" ne sera pas affichée sur le site.
+form.season.licenceLink: Lien de téléchargement du formulaire de licence pour la saison
+form.season.optionTitle: Formules
+form.season.paymentLink: Lien vers la plate-forme de paiement (hellopass)
+form.season.startDate: Début
+
 form.sporting.active: Publiée
 form.sporting.content: Contenu
 form.sporting.name: Nom
 form.sporting.pictureFile: Image
 form.sporting.tagline: Phrase d'accroche
 form.sporting.taglineHelp: Utilisée dans le diaporama de la page d'accueil
+
+form.textConfiguration.contact: Texte du formulaire de contact
+form.textConfiguration.homePresentation: Texte de présentation (page d'acceuil)
 
 form.wysiwyg.help: Taper 'Enter' pour créer un nouveau paragraphe, 'Shift + Enter' pour réaliser un simple saut de ligne.
 

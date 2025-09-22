@@ -37,7 +37,7 @@ class PriceOptionType extends AbstractType
 
         $resolver->setDefaults([
             'data_class' => PriceOption::class,
-            'label_format' => 'back.priceOption.form.%name%',
+            'label_format' => 'form.priceOption.%name%',
             'empty_data' => null,
         ]);
     }

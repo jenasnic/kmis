@@ -47,7 +47,7 @@ class CalendarType extends AbstractType
                 'block_prefix' => 'calendar_schedule_list',
                 'allow_add' => true,
                 'allow_delete' => true,
-                'add_label_id' => 'back.calendar.form.addSchedule',
+                'add_label_id' => 'form.calendar.addSchedule',
                 'collection_css_class' => 'schedule-list',
                 'remove_button_position' => 'start',
             ]);

@@ -58,6 +58,12 @@ class MenuExtension extends AbstractExtension
             'bo_calendar_new',
             'bo_calendar_edit',
         ],
+        'bo_refund_help' => [
+            'bo_refund_help',
+        ],
+        'bo_discount_code' => [
+            'bo_discount_code',
+        ],
     ];
 
     public function __construct(

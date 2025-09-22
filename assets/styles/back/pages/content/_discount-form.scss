@@ -1,0 +1,12 @@
+@use '../../variables';
+
+.discount-code-list{
+  .collection-type-item {
+    align-items: center;
+    display: flex;
+
+    > .columns {
+      flex-grow: 1;
+    }
+  }
+}
