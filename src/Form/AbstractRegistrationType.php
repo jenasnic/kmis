@@ -9,6 +9,7 @@ use App\Enum\RegistrationTypeEnum;
 use App\Form\Type\BulmaFileType;
 use App\Form\Type\EnumType;
 use App\Repository\PurposeRepository;
+use App\Service\Configuration\DiscountManager;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -30,6 +31,7 @@ use Symfony\Component\Validator\Constraints\NotNull;
 abstract class AbstractRegistrationType extends AbstractType
 {
     public function __construct(
+        protected DiscountManager $discountManager,
         protected RouterInterface $router,
     ) {
     }
@@ -38,6 +40,8 @@ abstract class AbstractRegistrationType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $discountConfiguration = $this->discountManager->getDiscountConfiguration();
+
         $builder
             ->add('comment', TextareaType::class, [
                 'required' => false,
@@ -67,11 +71,16 @@ abstract class AbstractRegistrationType extends AbstractType
                 'label' => false,
                 'expanded' => true,
             ])
-            ->add('useCCAS', CheckboxType::class, [
-                'required' => false,
-                'help' => 'form.registration.useCCASHelp',
-            ])
         ;
+
+        if ($discountConfiguration->ccasEnable) {
+            $builder->add('useCCAS', CheckboxType::class, [
+                'label' => $discountConfiguration->ccasLabel,
+                'required' => false,
+                'help' => $discountConfiguration->ccasHelpText,
+                'help_html' => true,
+            ]);
+        }
 
         $builder->get('withLegalRepresentative')->addEventListener(
             FormEvents::POST_SUBMIT,
@@ -86,7 +95,7 @@ abstract class AbstractRegistrationType extends AbstractType
             }
         );
 
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($discountConfiguration) {
             /** @var Registration $registration */
             $registration = $event->getData();
             $form = $event->getForm();
@@ -101,19 +110,43 @@ abstract class AbstractRegistrationType extends AbstractType
 
             $form->add('priceOption', EntityType::class, $priceOptionOptions);
 
-            $downloadPassCitizenUri = (null !== $registration->getId() && null !== $registration->getPassCitizenUrl())
-                ? $this->router->generate('bo_download_pass_citizen', ['registration' => $registration->getId()])
-                : null
-            ;
-            $downloadPassSportUri = (null !== $registration->getId() && null !== $registration->getPassSportUrl())
-                ? $this->router->generate('bo_download_pass_sport', ['registration' => $registration->getId()])
-                : null
-            ;
-
-            $this->processPassField($form, $registration->isUsePassCitizen(), 'usePassCitizen', 'passCitizenFile', $downloadPassCitizenUri);
-            $this->processPassField($form, $registration->isUsePassSport(), 'usePassSport', 'passSportFile', $downloadPassSportUri);
-
             $this->toggleLegalRepresentative($form, $registration->isWithLegalRepresentative());
+
+            if ($discountConfiguration->passCitizenEnable) {
+                $downloadPassCitizenUri = (null !== $registration->getId() && null !== $registration->getPassCitizenUrl())
+                    ? $this->router->generate('bo_download_pass_citizen', ['registration' => $registration->getId()])
+                    : null
+                ;
+
+                $this->processPassField(
+                    $form,
+                    $registration->isUsePassCitizen(),
+                    'usePassCitizen',
+                    $discountConfiguration->passCitizenLabel,
+                    $discountConfiguration->passCitizenHelpText,
+                    'passCitizenFile',
+                    $discountConfiguration->passCitizenFileLabel,
+                    $downloadPassCitizenUri,
+                );
+            }
+
+            if ($discountConfiguration->passSportEnable) {
+                $downloadPassSportUri = (null !== $registration->getId() && null !== $registration->getPassSportUrl())
+                    ? $this->router->generate('bo_download_pass_sport', ['registration' => $registration->getId()])
+                    : null
+                ;
+
+                $this->processPassField(
+                    $form,
+                    $registration->isUsePassSport(),
+                    'usePassSport',
+                    $discountConfiguration->passSportLabel,
+                    $discountConfiguration->passSportHelpText,
+                    'passSportFile',
+                    $discountConfiguration->passSportFileLabel,
+                    $downloadPassSportUri,
+                );
+            }
         });
     }
 
@@ -143,16 +176,25 @@ abstract class AbstractRegistrationType extends AbstractType
     /**
      * @param FormInterface<Registration> $form
      */
-    protected function processPassField(FormInterface $form, bool $usePass, string $checkboxFieldName, string $uploadFieldName, ?string $downloadUri = null): void
-    {
+    protected function processPassField(
+        FormInterface $form,
+        bool $usePass,
+        string $checkboxFieldName,
+        ?string $label,
+        ?string $helpText,
+        string $uploadFieldName,
+        ?string $fileLabel,
+        ?string $downloadUri = null,
+    ): void {
         $passOptions = [
+            'label' => $label ?? $checkboxFieldName,
             'required' => false,
             'false_values' => [null, '0', 'false'],
             'auto_initialize' => false,
         ];
 
         if ($this->showPassSportHelp()) {
-            $passOptions['help'] = sprintf('form.registration.%sHelp', $checkboxFieldName);
+            $passOptions['help'] = $helpText;
             $passOptions['help_html'] = true;
         }
 
@@ -160,19 +202,19 @@ abstract class AbstractRegistrationType extends AbstractType
 
         $subBuilder->addEventListener(
             FormEvents::POST_SUBMIT,
-            function (FormEvent $event) use ($downloadUri, $uploadFieldName) {
+            function (FormEvent $event) use ($downloadUri, $uploadFieldName, $fileLabel) {
                 $form = $event->getForm();
 
                 if (null === $form->getParent()) {
                     throw new \LogicException('invalid parent');
                 }
 
-                $this->togglePass($form->getParent(), $uploadFieldName, true === $form->getData(), $downloadUri);
+                $this->togglePassFile($form->getParent(), $uploadFieldName, $fileLabel, true === $form->getData(), $downloadUri);
             }
         );
 
         $form->add($subBuilder->getForm());
-        $this->togglePass($form, $uploadFieldName, $usePass, $downloadUri);
+        $this->togglePassFile($form, $uploadFieldName, $fileLabel, $usePass, $downloadUri);
     }
 
     /**
@@ -192,7 +234,7 @@ abstract class AbstractRegistrationType extends AbstractType
     /**
      * @param FormInterface<Registration> $form
      */
-    protected function togglePass(FormInterface $form, string $fieldName, bool $state, ?string $downloadUri = null): void
+    protected function togglePassFile(FormInterface $form, string $fieldName, ?string $label, bool $state, ?string $downloadUri = null): void
     {
         if (!$state) {
             $form->remove($fieldName);
@@ -201,6 +243,7 @@ abstract class AbstractRegistrationType extends AbstractType
         }
 
         $options = [
+            'label' => $label ?? $fieldName,
             'constraints' => [
                 new File([
                     'mimeTypes' => [

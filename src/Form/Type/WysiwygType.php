@@ -15,13 +15,17 @@ class WysiwygType extends AbstractType
 {
     public function buildView(FormView $view, FormInterface $form, array $options): void
     {
-        $view->vars['small_size'] = $options['small_size'] ?? false;
+        $view->vars['size'] = $options['size'] ?? 'large';
+        $view->vars['toolbar'] = $options['toolbar'] ?? '';
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefined('small_size');
-        $resolver->setAllowedTypes('small_size', 'bool');
+        $resolver->setDefined('size');
+        $resolver->setAllowedValues('size', ['large', 'medium', 'small']);
+
+        $resolver->setDefined('toolbar');
+        $resolver->setAllowedTypes('toolbar', 'string');
 
         $resolver->setDefault('required', false);
     }

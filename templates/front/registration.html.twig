@@ -85,31 +85,42 @@
         </div>
         {{ form_row(form.purpose) }}
         {{ form_row(form.priceOption) }}
-        <div class="m-top-3 m-bottom-1">
-            <div class="row col-x1">
-                {{ form_row(form.usePassCitizen, {'attr': {'data-field-update': 'pass-citizen'}}) }}
-            </div>
-            <div data-field-update-target="pass-citizen">
-                {% if form.passCitizenFile is defined %}
-                    <div class="row col-x1 m-bottom-2">
-                        {{ form_row(form.passCitizenFile) }}
+        {% if form.usePassCitizen is defined
+            or form.usePassSport is defined
+            or form.useCCAS is defined
+        %}
+            <div class="m-top-3 m-bottom-1">
+                {% if form.usePassCitizen is defined %}
+                    <div class="row col-x1">
+                        {{ form_row(form.usePassCitizen, {'attr': {'data-field-update': 'pass-citizen'}}) }}
+                    </div>
+                    <div data-field-update-target="pass-citizen">
+                        {% if form.passCitizenFile is defined %}
+                            <div class="row col-x1 m-bottom-2">
+                                {{ form_row(form.passCitizenFile) }}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+                {% if form.usePassSport is defined %}
+                    <div class="row col-x1">
+                        {{ form_row(form.usePassSport, {'attr': {'data-field-update': 'pass-sport'}}) }}
+                    </div>
+                    <div data-field-update-target="pass-sport">
+                        {% if form.passSportFile is defined %}
+                            <div class="row col-x1 m-bottom-2">
+                                {{ form_row(form.passSportFile) }}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+                {% if form.useCCAS is defined %}
+                    <div class="row col-x1">
+                        {{ form_row(form.useCCAS) }}
                     </div>
                 {% endif %}
             </div>
-            <div class="row col-x1">
-                {{ form_row(form.usePassSport, {'attr': {'data-field-update': 'pass-sport'}}) }}
-            </div>
-            <div data-field-update-target="pass-sport">
-                {% if form.passSportFile is defined %}
-                    <div class="row col-x1 m-bottom-2">
-                        {{ form_row(form.passSportFile) }}
-                    </div>
-                {% endif %}
-            </div>
-            <div class="row col-x1">
-                {{ form_row(form.useCCAS) }}
-            </div>
-        </div>
+        {% endif %}
         {{ form_row(form.copyrightAuthorization) }}
         <div class="fieldset agreement-wrapper">
             {{ form_row(form.agreement) }}

@@ -44,9 +44,17 @@
     }
   }
 
+  &--medium {
+    .tox-tinymce {
+      min-height: 170px;
+    }
+  }
+
   &--small {
     .tox-tinymce {
-      min-height: 150px;
+      height: 100px !important;
+      max-height: 100px !important;
+      min-height: 100px !important;
     }
   }
 }
@@ -90,12 +98,18 @@
 .help-text {
   font-style: italic;
   font-size: 0.9em;
+
+  * {
+    font-size: 1em;
+    padding: 0;
+    margin: 0;
+  }
 }
 
 .fieldset {
   border: 1px solid variables.$color-primary;
   border-radius: variables.$radius-input;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   padding: 20px;
   position: relative;
 
