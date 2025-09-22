@@ -4,21 +4,25 @@ namespace App\Domain\Model\Content;
 
 class DiscountConfiguration
 {
-    public bool $enablePassCitizen = false;
+    public bool $passCitizenEnable = false;
 
     public ?string $passCitizenLabel = null;
 
     public ?string $passCitizenHelpText = null;
 
-    public bool $enablePassSport = false;
+    public ?string $passCitizenFileLabel = null;
+
+    public bool $passSportEnable = false;
 
     public ?string $passSportLabel = null;
 
     public ?string $passSportHelpText = null;
 
-    public bool $enableCCAS = false;
+    public ?string $passSportFileLabel = null;
 
-    public ?string $CCASLabel = null;
+    public bool $ccasEnable = false;
 
-    public ?string $CCASHelpText = null;
+    public ?string $ccasLabel = null;
+
+    public ?string $ccasHelpText = null;
 }

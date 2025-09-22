@@ -18,23 +18,25 @@ class DiscountConfigurationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('enablePassCitizen', CheckboxType::class, ['required' => false])
+            ->add('passCitizenEnable', CheckboxType::class, ['required' => false])
             ->add('passCitizenLabel', TextType::class, ['required' => false])
             ->add('passCitizenHelpText', WysiwygType::class, [
                 'required' => false,
                 'size' => 'small',
                 'toolbar' => 'code | bold underline link forecolor',
             ])
-            ->add('enablePassSport', CheckboxType::class, ['required' => false])
+            ->add('passCitizenFileLabel', TextType::class, ['required' => false])
+            ->add('passSportEnable', CheckboxType::class, ['required' => false])
             ->add('passSportLabel', TextType::class, ['required' => false])
             ->add('passSportHelpText', WysiwygType::class, [
                 'required' => false,
                 'size' => 'small',
                 'toolbar' => 'code | bold underline link forecolor',
             ])
-            ->add('enableCCAS', CheckboxType::class, ['required' => false])
-            ->add('CCASLabel', TextType::class, ['required' => false])
-            ->add('CCASHelpText', WysiwygType::class, [
+            ->add('passSportFileLabel', TextType::class, ['required' => false])
+            ->add('ccasEnable', CheckboxType::class, ['required' => false])
+            ->add('ccasLabel', TextType::class, ['required' => false])
+            ->add('ccasHelpText', WysiwygType::class, [
                 'required' => false,
                 'size' => 'small',
                 'toolbar' => 'code | bold underline link forecolor',

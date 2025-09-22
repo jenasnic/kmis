@@ -9,13 +9,15 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class DiscountManager
 {
-    public const PASS_CITIZEN_STATUS = 'PASS_CITIZEN_STATUS';
+    public const PASS_CITIZEN_ENABLE = 'PASS_CITIZEN_ENABLE';
     public const PASS_CITIZEN_LABEL = 'PASS_CITIZEN_LABEL';
     public const PASS_CITIZEN_HELP_TEXT = 'PASS_CITIZEN_HELP_TEXT';
-    public const PASS_SPORT_STATUS = 'PASS_SPORT_STATUS';
+    public const PASS_CITIZEN_FILE_LABEL = 'PASS_CITIZEN_FILE_LABEL';
+    public const PASS_SPORT_ENABLE = 'PASS_SPORT_ENABLE';
     public const PASS_SPORT_LABEL = 'PASS_SPORT_LABEL';
     public const PASS_SPORT_HELP_TEXT = 'PASS_SPORT_HELP_TEXT';
-    public const CCAS_STATUS = 'CCAS_STATUS';
+    public const PASS_SPORT_FILE_LABEL = 'PASS_SPORT_FILE_LABEL';
+    public const CCAS_ENABLE = 'CCAS_ENABLE';
     public const CCAS_LABEL = 'CCAS_LABEL';
     public const CCAS_HELP_TEXT = 'CCAS_HELP_TEXT';
 
@@ -28,43 +30,49 @@ class DiscountManager
     public function getDiscountConfiguration(): DiscountConfiguration
     {
         $configurations = $this->configurationRepository->findIndexedByCode([
-            self::PASS_CITIZEN_STATUS,
+            self::PASS_CITIZEN_ENABLE,
             self::PASS_CITIZEN_LABEL,
             self::PASS_CITIZEN_HELP_TEXT,
-            self::PASS_SPORT_STATUS,
+            self::PASS_CITIZEN_FILE_LABEL,
+            self::PASS_SPORT_ENABLE,
             self::PASS_SPORT_LABEL,
             self::PASS_SPORT_HELP_TEXT,
-            self::CCAS_STATUS,
+            self::PASS_SPORT_FILE_LABEL,
+            self::CCAS_ENABLE,
             self::CCAS_LABEL,
             self::CCAS_HELP_TEXT,
         ]);
 
         $discountConfiguration = new DiscountConfiguration();
 
-        $discountConfiguration->enablePassCitizen = $this->isEnabled($configurations[self::PASS_CITIZEN_STATUS] ?? null);
+        $discountConfiguration->passCitizenEnable = $this->isEnabled($configurations[self::PASS_CITIZEN_ENABLE] ?? null);
         $discountConfiguration->passCitizenLabel = ($configurations[self::PASS_CITIZEN_LABEL] ?? null)?->getValue();
         $discountConfiguration->passCitizenHelpText = ($configurations[self::PASS_CITIZEN_HELP_TEXT] ?? null)?->getValue();
-        $discountConfiguration->enablePassSport = $this->isEnabled($configurations[self::PASS_SPORT_STATUS] ?? null);
+        $discountConfiguration->passCitizenFileLabel = ($configurations[self::PASS_CITIZEN_FILE_LABEL] ?? null)?->getValue();
+        $discountConfiguration->passSportEnable = $this->isEnabled($configurations[self::PASS_SPORT_ENABLE] ?? null);
         $discountConfiguration->passSportLabel = ($configurations[self::PASS_SPORT_LABEL] ?? null)?->getValue();
         $discountConfiguration->passSportHelpText = ($configurations[self::PASS_SPORT_HELP_TEXT] ?? null)?->getValue();
-        $discountConfiguration->enableCCAS = $this->isEnabled($configurations[self::CCAS_STATUS] ?? null);
-        $discountConfiguration->CCASLabel = ($configurations[self::CCAS_LABEL] ?? null)?->getValue();
-        $discountConfiguration->CCASHelpText = ($configurations[self::CCAS_HELP_TEXT] ?? null)?->getValue();
+        $discountConfiguration->passSportFileLabel = ($configurations[self::PASS_SPORT_FILE_LABEL] ?? null)?->getValue();
+        $discountConfiguration->ccasEnable = $this->isEnabled($configurations[self::CCAS_ENABLE] ?? null);
+        $discountConfiguration->ccasLabel = ($configurations[self::CCAS_LABEL] ?? null)?->getValue();
+        $discountConfiguration->ccasHelpText = ($configurations[self::CCAS_HELP_TEXT] ?? null)?->getValue();
 
         return $discountConfiguration;
     }
 
     public function saveDiscountConfiguration(DiscountConfiguration $discountConfiguration): void
     {
-        $this->setEnabled(self::PASS_CITIZEN_STATUS, $discountConfiguration->enablePassCitizen);
+        $this->setEnabled(self::PASS_CITIZEN_ENABLE, $discountConfiguration->passCitizenEnable);
         $this->setText(self::PASS_CITIZEN_LABEL, $discountConfiguration->passCitizenLabel);
         $this->setText(self::PASS_CITIZEN_HELP_TEXT, $discountConfiguration->passCitizenHelpText);
-        $this->setEnabled(self::PASS_SPORT_STATUS, $discountConfiguration->enablePassSport);
+        $this->setText(self::PASS_CITIZEN_FILE_LABEL, $discountConfiguration->passCitizenFileLabel);
+        $this->setEnabled(self::PASS_SPORT_ENABLE, $discountConfiguration->passSportEnable);
         $this->setText(self::PASS_SPORT_LABEL, $discountConfiguration->passSportLabel);
         $this->setText(self::PASS_SPORT_HELP_TEXT, $discountConfiguration->passSportHelpText);
-        $this->setEnabled(self::CCAS_STATUS, $discountConfiguration->enableCCAS);
-        $this->setText(self::CCAS_LABEL, $discountConfiguration->CCASLabel);
-        $this->setText(self::CCAS_HELP_TEXT, $discountConfiguration->CCASHelpText);
+        $this->setText(self::PASS_SPORT_FILE_LABEL, $discountConfiguration->passSportFileLabel);
+        $this->setEnabled(self::CCAS_ENABLE, $discountConfiguration->ccasEnable);
+        $this->setText(self::CCAS_LABEL, $discountConfiguration->ccasLabel);
+        $this->setText(self::CCAS_HELP_TEXT, $discountConfiguration->ccasHelpText);
 
         $this->entityManager->flush();
     }

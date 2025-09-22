@@ -241,15 +241,17 @@ form.contact.email: Votre email
 form.contact.message: Message
 form.contact.success: Votre demande a bien été envoyée.
 
-form.discountConfiguration.enablePassCitizen: Autoriser le Pass'Sports Citoyen
-form.discountConfiguration.passCitizenLabel: Libellé
+form.discountConfiguration.ccasEnable: Autoriser l'aide du CCAS
+form.discountConfiguration.ccasHelpText: Complément d'informations
+form.discountConfiguration.ccasLabel: Libellé (case à cocher)
+form.discountConfiguration.passCitizenEnable: Autoriser le Pass'Sports Citoyen
+form.discountConfiguration.passCitizenFileLabel: Libellé (chargement du fichier)
 form.discountConfiguration.passCitizenHelpText: Complément d'informations
-form.discountConfiguration.enablePassSport: Autoriser le Pass'Sports
-form.discountConfiguration.passSportLabel: Libellé
+form.discountConfiguration.passCitizenLabel: Libellé (case à cocher)
+form.discountConfiguration.passSportEnable: Autoriser le Pass'Sports
+form.discountConfiguration.passSportFileLabel: Libellé (chargement du fichier)
 form.discountConfiguration.passSportHelpText: Complément d'informations
-form.discountConfiguration.enableCCAS: Autoriser l'aide du CCAS
-form.discountConfiguration.CCASLabel: Libellé
-form.discountConfiguration.CCASHelpText: Complément d'informations
+form.discountConfiguration.passSportLabel: Libellé (case à cocher)
 
 form.emergency.emergency: Personne à contacter en cas d'urgence
 form.emergency.firstName: Prénom
@@ -290,12 +292,7 @@ form.newRegistration.licenceFormFileHelp: Vous pouvez télécharger un exemplair
 form.newRegistration.medicalCertificateFile: Certificat médical
 form.newRegistration.medicalCertificateFile.forMinor: Certificat médical ou attestation sur l'honneur
 form.newRegistration.medicalCertificateFileHelp: Certificat médical ou attestation sur l’honneur. Pour les informations sur les documents à fournir, consultez la <a href='https://www.ffkarate.fr/espace-licencies/certificat-medical/' target='_blank'>note d’information</a>.
-form.newRegistration.passCitizenFile: Document d'elligibilité au Pass'Sports Citoyen
-form.newRegistration.passSportFile: Document d'elligibilité au Pass'Sports
 form.newRegistration.privateNote: Notes privée KMIS
-form.newRegistration.usePassCitizen: Utiliser le Pass'Sports Citoyen (15€)
-form.newRegistration.usePassSport: Utiliser le Pass'Sports (70€)
-form.newRegistration.useCCAS: Aide du CCAS (10€)
 form.newRegistration.purpose: Objectif
 form.newRegistration.priceOption: Formule
 form.newRegistration.registeredAt: Inscrit le
@@ -343,19 +340,11 @@ form.registration.licenceDate: Date de la licence
 form.registration.licenceFormFile: Formulaire de demande de licence
 form.registration.licenceNumber: N° de licence
 form.registration.medicalCertificateFile: Certificat médical ou attestation sur l'honneur
-form.registration.passCitizenFile: Document d'elligibilité au Pass'sport
-form.registration.passSportFile: Document d'elligibilité au Pass'sport Citoyen
 form.registration.priceOption: Formule
 form.registration.privateNote: Notes privée KMIS
 form.registration.purpose: Objectif
 form.registration.reductionCodes: Code de réductions
 form.registration.registeredAt: Date d'inscription
-form.registration.useCCAS: Aide du CCAS (10€)
-form.registration.useCCASHelp: 10 € pour les - de 18 ans résidant à Villers-sous-Saint-Leu
-form.registration.usePassCitizen: Utiliser le Pass'Sports Citoyen (15€)
-form.registration.usePassCitizenHelp: Éligibilité et conditions d’utilisations <a href="https://www.oise.fr/les-pass-citoyens-du-conseil-departemental-de-loise/le-passsports-citoyen" target="_blank">ici</a> (sélectionner discipline "Karaté" et commune du club "Mogneville").
-form.registration.usePassSport: Utiliser le Pass'Sports (70€)
-form.registration.usePassSportHelp: Éligibilité et conditions d’utilisations <a href="https://www.sports.gouv.fr/pratiques-sportives/sports-pour-tous/pass-sport/" target="_blank">ici</a>.
 form.registration.withLegalRepresentative: Dans le cas d'une personne mineur, merci de renseigner le représentant légal
 
 form.reEnrollment.email: Confirmer votre email
