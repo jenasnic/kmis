@@ -44,9 +44,17 @@
     }
   }
 
+  &--medium {
+    .tox-tinymce {
+      min-height: 170px;
+    }
+  }
+
   &--small {
     .tox-tinymce {
-      min-height: 150px;
+      height: 100px !important;
+      max-height: 100px !important;
+      min-height: 100px !important;
     }
   }
 }

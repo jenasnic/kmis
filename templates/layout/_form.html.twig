@@ -34,8 +34,8 @@
 {%- endblock textarea_widget -%}
 
 {% block wysiwyg_widget %}
-  <div class="container-wysiwyg{% if small_size %} container-wysiwyg--small{% endif %}">
-    {{ form_widget(form, {attr: {class: 'wysiwyg'}}) }}
+  <div class="container-wysiwyg container-wysiwyg--{{ size }}">
+    {{ form_widget(form, {'attr' : attr|merge({ 'data-wysiwyg': toolbar})}) }}
   </div>
 {% endblock %}
 

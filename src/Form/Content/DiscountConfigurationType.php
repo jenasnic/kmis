@@ -22,19 +22,22 @@ class DiscountConfigurationType extends AbstractType
             ->add('passCitizenLabel', TextType::class, ['required' => false])
             ->add('passCitizenHelpText', WysiwygType::class, [
                 'required' => false,
-                'small_size' => true,
+                'size' => 'small',
+                'toolbar' => 'code | bold underline link forecolor',
             ])
             ->add('enablePassSport', CheckboxType::class, ['required' => false])
             ->add('passSportLabel', TextType::class, ['required' => false])
             ->add('passSportHelpText', WysiwygType::class, [
                 'required' => false,
-                'small_size' => true,
+                'size' => 'small',
+                'toolbar' => 'code | bold underline link forecolor',
             ])
             ->add('enableCCAS', CheckboxType::class, ['required' => false])
             ->add('CCASLabel', TextType::class, ['required' => false])
             ->add('CCASHelpText', WysiwygType::class, [
                 'required' => false,
-                'small_size' => true,
+                'size' => 'small',
+                'toolbar' => 'code | bold underline link forecolor',
             ])
         ;
     }

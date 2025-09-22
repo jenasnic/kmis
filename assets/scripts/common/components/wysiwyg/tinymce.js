@@ -17,13 +17,18 @@ import { stripTags } from './strip-tags';
  * Bind individual tinymce form input
  */
 export const bindWysiwyg = textarea => {
+  const toolbar = textarea.dataset.wysiwyg
+      ? textarea.dataset.wysiwyg
+      : 'code | bold italic underline strikethrough link bullist forecolor | indent outdent | alignleft aligncenter alignright alignjustify | fontsizeselect | testButton'
+  ;
+
   tinyMCE.init({
     target: textarea,
     entity_encoding: 'raw',
     menubar: false,
     statusbar: false,
     plugins: 'code link lists autoresize paste',
-    toolbar: 'code | bold italic underline strikethrough link bullist forecolor | indent outdent | alignleft aligncenter alignright alignjustify | fontsizeselect | testButton',
+    toolbar: toolbar,
     fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt',
     language: 'fr_FR',
     content_style: 'body { font-family: \'Montserrat\', sans-serif; } .wysiwyg-test { border: 1px dotted #222222; padding: 10px; margin-bottom: 5px; }',

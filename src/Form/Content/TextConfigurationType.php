@@ -19,7 +19,7 @@ class TextConfigurationType extends AbstractType
             ->add('homePresentation', ConfigurationType::class, ['required' => false])
             ->add('contact', ConfigurationType::class, [
                 'required' => false,
-                'small_size' => true,
+                'size' => 'medium',
             ])
         ;
     }

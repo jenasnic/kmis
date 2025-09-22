@@ -30,7 +30,7 @@ class NewsType extends AbstractType
         $builder
             ->add('title', TextType::class)
             ->add('content', WysiwygType::class, ['help' => 'form.wysiwyg.help'])
-            ->add('details', WysiwygType::class, ['small_size' => true])
+            ->add('details', WysiwygType::class, ['size' => 'medium'])
             ->add('active', CheckboxType::class, ['required' => false])
         ;
 

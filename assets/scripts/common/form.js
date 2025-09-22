@@ -14,7 +14,7 @@ const mapping = {
   '[data-collection-type]': bindCollectionType,
   '[data-sortable]': bindSortable,
   'form[data-confirm]': bindConfirmForm,
-  'textarea.wysiwyg': bindWysiwyg,
+  'textarea[data-wysiwyg]': bindWysiwyg,
 };
 
 export const bindForm = (element) => {
