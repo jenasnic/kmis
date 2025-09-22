@@ -2,7 +2,7 @@
 
 namespace App\Form\Content;
 
-use App\Domain\Model\Content\DiscountConfiguration;
+use App\Domain\Model\Content\RefundHelpConfiguration;
 use App\Form\Type\WysiwygType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -11,9 +11,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @template-extends AbstractType<DiscountConfiguration>
+ * @template-extends AbstractType<RefundHelpConfiguration>
  */
-class DiscountConfigurationType extends AbstractType
+class RefundHelpConfigurationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -47,8 +47,8 @@ class DiscountConfigurationType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => DiscountConfiguration::class,
-            'label_format' => 'form.discountConfiguration.%name%',
+            'data_class' => RefundHelpConfiguration::class,
+            'label_format' => 'form.refundHelpConfiguration.%name%',
         ]);
     }
 }

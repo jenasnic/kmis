@@ -9,7 +9,7 @@ use App\Enum\RegistrationTypeEnum;
 use App\Form\Type\BulmaFileType;
 use App\Form\Type\EnumType;
 use App\Repository\PurposeRepository;
-use App\Service\Configuration\DiscountManager;
+use App\Service\Configuration\RefundHelpManager;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -31,7 +31,7 @@ use Symfony\Component\Validator\Constraints\NotNull;
 abstract class AbstractRegistrationType extends AbstractType
 {
     public function __construct(
-        protected DiscountManager $discountManager,
+        protected RefundHelpManager $refundHelpManager,
         protected RouterInterface $router,
     ) {
     }
@@ -40,7 +40,7 @@ abstract class AbstractRegistrationType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $discountConfiguration = $this->discountManager->getDiscountConfiguration();
+        $refundHelpConfiguration = $this->refundHelpManager->getRefundHelpConfiguration();
 
         $builder
             ->add('comment', TextareaType::class, [
@@ -73,11 +73,11 @@ abstract class AbstractRegistrationType extends AbstractType
             ])
         ;
 
-        if ($discountConfiguration->ccasEnable) {
+        if ($refundHelpConfiguration->ccasEnable) {
             $builder->add('useCCAS', CheckboxType::class, [
-                'label' => $discountConfiguration->ccasLabel,
+                'label' => $refundHelpConfiguration->ccasLabel,
                 'required' => false,
-                'help' => $discountConfiguration->ccasHelpText,
+                'help' => $refundHelpConfiguration->ccasHelpText,
                 'help_html' => true,
             ]);
         }
@@ -95,7 +95,7 @@ abstract class AbstractRegistrationType extends AbstractType
             }
         );
 
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($discountConfiguration) {
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($refundHelpConfiguration) {
             /** @var Registration $registration */
             $registration = $event->getData();
             $form = $event->getForm();
@@ -112,7 +112,7 @@ abstract class AbstractRegistrationType extends AbstractType
 
             $this->toggleLegalRepresentative($form, $registration->isWithLegalRepresentative());
 
-            if ($discountConfiguration->passCitizenEnable) {
+            if ($refundHelpConfiguration->passCitizenEnable) {
                 $downloadPassCitizenUri = (null !== $registration->getId() && null !== $registration->getPassCitizenUrl())
                     ? $this->router->generate('bo_download_pass_citizen', ['registration' => $registration->getId()])
                     : null
@@ -122,15 +122,15 @@ abstract class AbstractRegistrationType extends AbstractType
                     $form,
                     $registration->isUsePassCitizen(),
                     'usePassCitizen',
-                    $discountConfiguration->passCitizenLabel,
-                    $discountConfiguration->passCitizenHelpText,
+                    $refundHelpConfiguration->passCitizenLabel,
+                    $refundHelpConfiguration->passCitizenHelpText,
                     'passCitizenFile',
-                    $discountConfiguration->passCitizenFileLabel,
+                    $refundHelpConfiguration->passCitizenFileLabel,
                     $downloadPassCitizenUri,
                 );
             }
 
-            if ($discountConfiguration->passSportEnable) {
+            if ($refundHelpConfiguration->passSportEnable) {
                 $downloadPassSportUri = (null !== $registration->getId() && null !== $registration->getPassSportUrl())
                     ? $this->router->generate('bo_download_pass_sport', ['registration' => $registration->getId()])
                     : null
@@ -140,10 +140,10 @@ abstract class AbstractRegistrationType extends AbstractType
                     $form,
                     $registration->isUsePassSport(),
                     'usePassSport',
-                    $discountConfiguration->passSportLabel,
-                    $discountConfiguration->passSportHelpText,
+                    $refundHelpConfiguration->passSportLabel,
+                    $refundHelpConfiguration->passSportHelpText,
                     'passSportFile',
-                    $discountConfiguration->passSportFileLabel,
+                    $refundHelpConfiguration->passSportFileLabel,
                     $downloadPassSportUri,
                 );
             }

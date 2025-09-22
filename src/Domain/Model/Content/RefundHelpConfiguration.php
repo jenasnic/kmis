@@ -2,7 +2,7 @@
 
 namespace App\Domain\Model\Content;
 
-class DiscountConfiguration
+class RefundHelpConfiguration
 {
     public bool $passCitizenEnable = false;
 

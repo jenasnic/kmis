@@ -94,12 +94,6 @@ back.calendar.list.header.location: Lieu
 back.calendar.list.header.schedules: Horaires
 back.calendar.list.title: Liste des plannings
 
-back.discount.save.success: Réductions mises à jour
-back.discount.title: Gestion des réductions
-back.discount.passCitizen.label: Pass'Sports Citoyen
-back.discount.passSport.label: Pass'Sports
-back.discount.ccas.label: Aide du CCAS
-
 back.location.delete.success: Localisation supprimée
 back.location.edit.new: Nouvelle localisation
 back.location.edit.success: Localisation mise à jour
@@ -115,11 +109,11 @@ back.menu.adherent: Adhérents
 back.menu.calendar: Planning
 back.menu.configuration: Configuration
 back.menu.dashboard: Dashboard
-back.menu.discount: Réductions
 back.menu.gallery: Trombinoscope
 back.menu.location: Localisations
 back.menu.news: Actualites
 back.menu.payment: Cotisations
+back.menu.refundHelp: Aides et remises
 back.menu.season: Saisons
 back.menu.sporting: Disciplines
 back.menu.text: Contenus
@@ -156,6 +150,12 @@ back.payment.view.title: Paiement
 
 back.priceOption.form.amount: Montant
 back.priceOption.form.label: Nom de la formule
+
+back.refundHelp.save.success: Aides/remises mises à jour
+back.refundHelp.title: Gestion des aides et remises
+back.refundHelp.passCitizen.label: Pass'Sports Citoyen
+back.refundHelp.passSport.label: Pass'Sports
+back.refundHelp.ccas.label: Aide du CCAS
 
 back.registration.automaticSend.disableButton: Désactiver les envois automatiques
 back.registration.automaticSend.disableMessage: Les envois automatiques ont été désactivés
@@ -241,17 +241,17 @@ form.contact.email: Votre email
 form.contact.message: Message
 form.contact.success: Votre demande a bien été envoyée.
 
-form.discountConfiguration.ccasEnable: Autoriser l'aide du CCAS
-form.discountConfiguration.ccasHelpText: Complément d'informations
-form.discountConfiguration.ccasLabel: Libellé (case à cocher)
-form.discountConfiguration.passCitizenEnable: Autoriser le Pass'Sports Citoyen
-form.discountConfiguration.passCitizenFileLabel: Libellé (chargement du fichier)
-form.discountConfiguration.passCitizenHelpText: Complément d'informations
-form.discountConfiguration.passCitizenLabel: Libellé (case à cocher)
-form.discountConfiguration.passSportEnable: Autoriser le Pass'Sports
-form.discountConfiguration.passSportFileLabel: Libellé (chargement du fichier)
-form.discountConfiguration.passSportHelpText: Complément d'informations
-form.discountConfiguration.passSportLabel: Libellé (case à cocher)
+form.refundHelpConfiguration.ccasEnable: Autoriser l'aide du CCAS
+form.refundHelpConfiguration.ccasHelpText: Complément d'informations
+form.refundHelpConfiguration.ccasLabel: Libellé (case à cocher)
+form.refundHelpConfiguration.passCitizenEnable: Autoriser le Pass'Sports Citoyen
+form.refundHelpConfiguration.passCitizenFileLabel: Libellé (chargement du fichier)
+form.refundHelpConfiguration.passCitizenHelpText: Complément d'informations
+form.refundHelpConfiguration.passCitizenLabel: Libellé (case à cocher)
+form.refundHelpConfiguration.passSportEnable: Autoriser le Pass'Sports
+form.refundHelpConfiguration.passSportFileLabel: Libellé (chargement du fichier)
+form.refundHelpConfiguration.passSportHelpText: Complément d'informations
+form.refundHelpConfiguration.passSportLabel: Libellé (case à cocher)
 
 form.emergency.emergency: Personne à contacter en cas d'urgence
 form.emergency.firstName: Prénom
@@ -343,7 +343,7 @@ form.registration.medicalCertificateFile: Certificat médical ou attestation sur
 form.registration.priceOption: Formule
 form.registration.privateNote: Notes privée KMIS
 form.registration.purpose: Objectif
-form.registration.reductionCodes: Code de réductions
+form.registration.refundHelp: Aides et remises
 form.registration.registeredAt: Date d'inscription
 form.registration.withLegalRepresentative: Dans le cas d'une personne mineur, merci de renseigner le représentant légal
 
