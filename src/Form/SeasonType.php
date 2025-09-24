@@ -41,7 +41,7 @@ class SeasonType extends AbstractType
                 'block_prefix' => 'season_price_option_list',
                 'allow_add' => true,
                 'allow_delete' => true,
-                'add_label_id' => 'back.season.form.addPriceOption',
+                'add_label_id' => 'form.season.label.addPriceOption',
                 'collection_css_class' => 'price-option-list',
                 'sortable' => true,
             ]);
@@ -52,7 +52,7 @@ class SeasonType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Season::class,
-            'label_format' => 'back.season.form.%name%',
+            'label_format' => 'form.season.%name%',
         ]);
     }
 }
