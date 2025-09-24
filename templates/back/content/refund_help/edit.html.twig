@@ -10,44 +10,59 @@
 
     {{ form_start(form) }}
 
-    <div class="fieldset">
-        <label>{{ 'back.refundHelp.passCitizen.label'|trans }}</label>
-        <div class="columns">
-            <div class="column">{{ form_row(form.passCitizenEnable) }}</div>
-        </div>
-        <div class="columns">
-            <div class="column">{{ form_row(form.passCitizenLabel) }}</div>
-            <div class="column">{{ form_row(form.passCitizenFileLabel) }}</div>
-        </div>
-        <div class="columns">
-            <div class="column">{{ form_row(form.passCitizenHelpText) }}</div>
-        </div>
-    </div>
-
-    <div class="fieldset">
-        <label>{{ 'back.refundHelp.passSport.label'|trans }}</label>
-        <div class="columns">
-            <div class="column">{{ form_row(form.passSportEnable) }}</div>
-        </div>
-        <div class="columns">
-            <div class="column">{{ form_row(form.passSportLabel) }}</div>
-            <div class="column">{{ form_row(form.passSportFileLabel) }}</div>
-        </div>
-        <div class="columns">
-            <div class="column">{{ form_row(form.passSportHelpText) }}</div>
+    <div class="columns">
+        <div class="column">
+            <div class="fieldset">
+                <label>{{ 'back.refundHelp.passCitizen.label'|trans }}</label>
+                <div class="columns">
+                    <div class="column">{{ form_row(form.passCitizenEnable) }}</div>
+                </div>
+                <div class="columns">
+                    <div class="column is-one-fifth">{{ form_row(form.passCitizenAmount) }}</div>
+                    <div class="column">{{ form_row(form.passCitizenLabel) }}</div>
+                    <div class="column">{{ form_row(form.passCitizenFileLabel) }}</div>
+                </div>
+                <div class="columns">
+                    <div class="column">{{ form_row(form.passCitizenHelpText) }}</div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="fieldset">
-        <label>{{ 'back.refundHelp.ccas.label'|trans }}</label>
-        <div class="columns">
-            <div class="column">{{ form_row(form.ccasEnable) }}</div>
+    <div class="columns">
+        <div class="column">
+            <div class="fieldset">
+                <label>{{ 'back.refundHelp.passSport.label'|trans }}</label>
+                <div class="columns">
+                    <div class="column">{{ form_row(form.passSportEnable) }}</div>
+                </div>
+                <div class="columns">
+                    <div class="column is-one-fifth">{{ form_row(form.passSportAmount) }}</div>
+                    <div class="column">{{ form_row(form.passSportLabel) }}</div>
+                    <div class="column">{{ form_row(form.passSportFileLabel) }}</div>
+                </div>
+                <div class="columns">
+                    <div class="column">{{ form_row(form.passSportHelpText) }}</div>
+                </div>
+            </div>
         </div>
-        <div class="columns">
-            <div class="column">{{ form_row(form.ccasLabel) }}</div>
-        </div>
-        <div class="columns">
-            <div class="column">{{ form_row(form.ccasHelpText) }}</div>
+    </div>
+
+    <div class="columns">
+        <div class="column">
+            <div class="fieldset">
+                <label>{{ 'back.refundHelp.ccas.label'|trans }}</label>
+                <div class="columns">
+                    <div class="column">{{ form_row(form.ccasEnable) }}</div>
+                </div>
+                <div class="columns">
+                    <div class="column is-one-fifth">{{ form_row(form.ccasAmount) }}</div>
+                    <div class="column">{{ form_row(form.ccasLabel) }}</div>
+                </div>
+                <div class="columns">
+                    <div class="column">{{ form_row(form.ccasHelpText) }}</div>
+                </div>
+            </div>
         </div>
     </div>
 

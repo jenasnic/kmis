@@ -8,6 +8,8 @@ class RefundHelpConfiguration
 
     public ?string $passCitizenLabel = null;
 
+    public ?float $passCitizenAmount = null;
+
     public ?string $passCitizenHelpText = null;
 
     public ?string $passCitizenFileLabel = null;
@@ -16,6 +18,8 @@ class RefundHelpConfiguration
 
     public ?string $passSportLabel = null;
 
+    public ?float $passSportAmount = null;
+
     public ?string $passSportHelpText = null;
 
     public ?string $passSportFileLabel = null;
@@ -23,6 +27,8 @@ class RefundHelpConfiguration
     public bool $ccasEnable = false;
 
     public ?string $ccasLabel = null;
+
+    public ?float $ccasAmount = null;
 
     public ?string $ccasHelpText = null;
 }

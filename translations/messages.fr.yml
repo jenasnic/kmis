@@ -326,13 +326,16 @@ form.payment.transfer.label: Libellé
 form.priceOption.amount: Montant
 form.priceOption.label: Nom de la formule
 
+form.refundHelpConfiguration.ccasAmount: Montant de la remise
 form.refundHelpConfiguration.ccasEnable: Autoriser l'aide du CCAS
 form.refundHelpConfiguration.ccasHelpText: Complément d'informations
 form.refundHelpConfiguration.ccasLabel: Libellé (case à cocher)
+form.refundHelpConfiguration.passCitizenAmount: Montant de la remise
 form.refundHelpConfiguration.passCitizenEnable: Autoriser le Pass'Sports Citoyen
 form.refundHelpConfiguration.passCitizenFileLabel: Libellé (chargement du fichier)
 form.refundHelpConfiguration.passCitizenHelpText: Complément d'informations
 form.refundHelpConfiguration.passCitizenLabel: Libellé (case à cocher)
+form.refundHelpConfiguration.passSportAmount: Montant de la remise
 form.refundHelpConfiguration.passSportEnable: Autoriser le Pass'Sports
 form.refundHelpConfiguration.passSportFileLabel: Libellé (chargement du fichier)
 form.refundHelpConfiguration.passSportHelpText: Complément d'informations
