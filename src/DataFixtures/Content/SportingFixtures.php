@@ -8,15 +8,32 @@ use Doctrine\Persistence\ObjectManager;
 
 class SportingFixtures extends Fixture
 {
-    public const SPORTING_COUNT = 4;
-
     public function load(ObjectManager $manager): void
     {
-        for ($i = self::SPORTING_COUNT; $i > 0; --$i) {
-            SportingFactory::createOne([
-                'active' => true,
-                'rank' => $i,
-            ]);
-        }
+        SportingFactory::createOne([
+            'name' => 'Krav Maga Adultes',
+            'active' => true,
+            'rank' => 1,
+        ]);
+        SportingFactory::createOne([
+            'name' => 'KMix-MMA',
+            'active' => true,
+            'rank' => 2,
+        ]);
+        SportingFactory::createOne([
+            'name' => 'Krav Maga Ados',
+            'active' => true,
+            'rank' => 3,
+        ]);
+        SportingFactory::createOne([
+            'name' => 'Cours Élite',
+            'active' => true,
+            'rank' => 4,
+        ]);
+        SportingFactory::createOne([
+            'name' => 'Cardio Fit',
+            'active' => true,
+            'rank' => 5,
+        ]);
     }
 }

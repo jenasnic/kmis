@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures\Factory\Content;
 
+use App\DataFixtures\Factory\HtmlContentFactory;
 use App\Entity\Content\Sporting;
 use Faker\Factory;
 use Faker\Generator;
@@ -40,8 +41,8 @@ final class SportingFactory extends PersistentProxyObjectFactory
         return [
             'active' => self::faker()->boolean(80),
             'name' => $this->faker->words(2, true),
-            'tagline' => $this->faker->words(6, true),
-            'content' => $this->faker->text(),
+            'tagline' => $this->faker->text(50),
+            'content' => HtmlContentFactory::create(3, 300),
             'pictureUrl' => $fileName,
         ];
     }

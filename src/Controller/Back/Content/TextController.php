@@ -26,8 +26,8 @@ class TextController extends AbstractController
     public function text(Request $request): Response
     {
         $textConfiguration = new TextConfiguration(
-            $this->configurationRepository->getOrCreate(TextManager::HOME_PRESENTATION),
-            $this->configurationRepository->getOrCreate(TextManager::CONTACT),
+            $this->configurationRepository->getOrCreate(TextManager::TEXT_HOME_PRESENTATION),
+            $this->configurationRepository->getOrCreate(TextManager::TEXT_CONTACT),
         );
 
         $form = $this->createForm(TextConfigurationType::class, $textConfiguration);

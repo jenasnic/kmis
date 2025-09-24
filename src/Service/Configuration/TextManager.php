@@ -7,8 +7,8 @@ use App\Repository\ConfigurationRepository;
 
 class TextManager
 {
-    public const HOME_PRESENTATION = 'HOME_PRESENTATION';
-    public const CONTACT = 'CONTACT';
+    public const TEXT_HOME_PRESENTATION = 'TEXT_HOME_PRESENTATION';
+    public const TEXT_CONTACT = 'TEXT_CONTACT';
 
     public function __construct(
         private readonly ConfigurationRepository $configurationRepository,
@@ -18,7 +18,7 @@ class TextManager
     public function getHomePresentation(): ?string
     {
         /** @var Configuration|null $configuration */
-        $configuration = $this->configurationRepository->find(self::HOME_PRESENTATION);
+        $configuration = $this->configurationRepository->find(self::TEXT_HOME_PRESENTATION);
 
         return $configuration?->getValue();
     }
@@ -26,7 +26,7 @@ class TextManager
     public function getContact(): ?string
     {
         /** @var Configuration|null $configuration */
-        $configuration = $this->configurationRepository->find(self::CONTACT);
+        $configuration = $this->configurationRepository->find(self::TEXT_CONTACT);
 
         return $configuration?->getValue();
     }
