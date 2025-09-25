@@ -114,14 +114,42 @@
   }
 }
 
+.card {
+  background-color: colors.$background-light-color;
+  border-radius: 25px;
+  box-shadow: 2px 2px 5px -2px colors.$scorpion;
+  box-sizing: border-box;
+  color: colors.$text-default-color;
+  margin-bottom: 60px;
+  max-width: 600px;
+  padding: 30px;
+
+  &--center {
+    margin: 0 auto 60px auto;
+  }
+
+  @include media.below(md) {
+    width: 100%;
+  }
+
+  @include media.below(sm) {
+    padding: 30px 10px;
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+}
+
 .sessions {
   display: flex;
-  font-size: 1rem;
-  justify-content: center;
-  margin-bottom: 50px;
-  width: 100%;
   flex-wrap: wrap;
-  gap: 50px 60px;
+  gap: 0 60px;
+  justify-content: center;
+  width: 100%;
 
   @include media.below(md) {
     align-items: center;
@@ -130,16 +158,9 @@
   }
 
   .session {
-    background-color: colors.$background-light-color;
-    border-radius: 25px;
-    box-shadow: 2px 2px 5px -2px colors.$scorpion;
-    box-sizing: border-box;
-    font-size: 1.5em;
-    padding: 30px;
     width: calc(50% - 30px);
 
     @include media.below(md) {
-      max-width: 600px;
       width: 100%;
 
       &:not(:last-child) {
@@ -147,25 +168,20 @@
       }
     }
 
-    @include media.below(sm) {
-      padding: 10px;
-    }
-
-    &__city {
+    &__info {
       align-items: center;
       display: flex;
       flex-direction: column;
       justify-content: center;
       margin-bottom: 20px;
 
-      > .name {
-        font-weight: 700;
-        margin-bottom: 20px;
+      >.link-icon-button {
+        font-size: 1.3rem;
       }
 
       > .address {
         color: colors.$text-light-color;
-        font-size: 0.7em;
+        font-size: 1rem;
         font-style: italic;
         padding: 20px 0 10px 0;
         text-align: center;
@@ -173,17 +189,21 @@
     }
 
     &__time {
-      padding-left: 10px;
+      padding-left: 15px;
 
       > li {
-        padding: 5px 10px;
+        font-size: 1.5rem;
+        padding: 5px 0;
 
         &:before {
           @include icons.icon(icons.$icon-play);
           color: colors.$primary-color;
+          font-size: 1em;
+          margin-right: 0;
         }
 
         > ul {
+          margin-bottom: 0;
           padding: 10px 10px 10px 30px;
 
           @include media.below(sm) {
@@ -191,13 +211,13 @@
           }
 
           > li {
-            font-size: 0.7em;
-            padding: 5px 0;
+            font-size: 1rem;
+            padding: 2px 0;
 
             &:before {
               @include icons.icon(icons.$icon-checkmark);
               color: colors.$primary-color;
-              font-size: 0.8em;
+              font-size: 1rem;
               margin-right: 10px;
             }
           }
@@ -207,76 +227,87 @@
   }
 }
 
-.card {
-  background-color: colors.$background-light-color;
-  border-radius: 25px;
-  box-shadow: 2px 2px 5px -2px colors.$scorpion;
-  box-sizing: border-box;
-  color: colors.$text-dark-color;
-  font-size: 1.5em;
-  margin: 0 auto 50px auto;
-  max-width: 600px;
-  padding: 30px 10px;
+.pricing {
+  &__detail {
+    display: flex;
+    justify-content: space-around;
 
-  &__title {
-    font-weight: 700;
-    text-align: center;
+    ul {
+      margin-bottom: 0;
+      padding: 10px 10px 10px 30px;
+
+      @include media.below(sm) {
+        padding: 10px;
+      }
+
+      > li {
+        font-size: 1rem;
+        padding: 2px 0;
+
+        &:before {
+          @include icons.icon(icons.$icon-checkmark);
+          color: colors.$primary-color;
+          font-size: 1rem;
+          margin-right: 10px;
+        }
+      }
+    }
   }
 
   &__note {
-    padding: 20px 10px 10px;
-
     ul {
       li {
-        font-size: 0.7em;
+        font-size: 1rem;
         font-style: italic;
-        padding: 5px 0;
+        padding: 2px 0;
         text-align: center;
 
         &:before {
           @include icons.icon(icons.$icon-play);
           color: colors.$primary-color;
-          padding-right: 5px;
+          margin-right: 5px;
         }
       }
     }
   }
+}
 
-  &__detail {
+.equipment {
+  .card__content {
     display: flex;
     justify-content: space-around;
-    margin-top: 40px;
+    padding-top: 20px;
 
-    > ul {
+    @include media.below(sm) {
+      flex-direction: column;
+    }
+
+    .equipment__detail {
       padding: 0 20px;
 
-      > div {
-        margin-bottom: 10px;
-      }
-
-      > li {
-        font-size: 0.7em;
-        padding: 5px 0;
-
-        &:before {
-          @include icons.icon(icons.$icon-checkmark);
-          color: colors.$primary-color;
-          font-size: 0.8em;
-          margin-right: 10px;
-        }
-
-        i {
-          color: colors.$primary-color;
+      @include media.below(sm) {
+        &:first-child {
+          border-bottom: 1px solid colors.$primary-color;
+          margin-bottom: 20px;
         }
       }
-    }
-  }
 
-  &.equipment {
-    .card__detail {
-      > ul {
+      @include media.above(sm) {
         &:first-child {
           border-right: 1px solid colors.$primary-color;
+        }
+      }
+
+      > div {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+      }
+
+      ul {
+        font-size: 1rem;
+
+        > li {
+          padding: 2px 0;
         }
       }
     }

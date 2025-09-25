@@ -6,7 +6,7 @@
                 <img src="{{ path('app_news_picture', {'news': news.id}) }}" alt="" class="picture" data-aos="zoom-in" data-aos-duration="1200"/>
                 <span class="news-button"></span>
                 <div class="news-text">
-                    <div class="scrollable wysiwyg-content">
+                    <div class="scrollable">
                         {{ news.content|raw }}
                     </div>
                 </div>
@@ -14,7 +14,7 @@
                 {{ news.content|raw }}
             {% endif %}
         </div>
-        <div class="news__detail wysiwyg-content">
+        <div class="news__detail">
             {{ news.details|raw }}
         </div>
     </div>

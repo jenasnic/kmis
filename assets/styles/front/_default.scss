@@ -27,8 +27,8 @@ a {
 }
 
 p {
-  font-size: 1.3em;
-  line-height: 1.8em;
+  font-size: 1.3rem;
+  line-height: 1.8rem;
   margin-bottom: 20px;
 
   &.note {
@@ -45,8 +45,23 @@ h1, h2, h3 {
   font-family: fonts.$text-title-font;
 }
 
-ul, li {
+ul {
+  font-size: 1.3rem;
+  line-height: 1.8rem;
   list-style: none;
+  margin-bottom: 20px;
+
+  li {
+    list-style: none;
+    padding: 5px 0 5px 30px;
+
+    &:before {
+      @include icons.icon(icons.$icon-checkmark);
+      color: colors.$primary-color;
+      font-size: 1rem;
+      margin-right: 10px;
+    }
+  }
 }
 
 @for $i from 1 through 5 {

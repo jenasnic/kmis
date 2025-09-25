@@ -21,7 +21,7 @@
     <div class="section" itemscope itemtype="https://schema.org/Organization">
         <h2 data-aos="zoom-out" data-aos-duration="1000">{{ 'front.contact.page.title'|trans }}</h2>
         {% if contact is not empty %}
-            <div class="wysiwyg-content">{{ contact|raw }}</div>
+            <div>{{ contact|raw }}</div>
         {% endif %}
         <p>
             Vous pouvez aussi nous retrouver :
@@ -51,7 +51,7 @@
                 {% endfor %}
             </ul>
         </p>
-        <div class="contact-form-wrapper">
+        <div class="m-top-4">
             {{ form_start(form) }}
             {{ form_row(form.email) }}
             {{ form_row(form.message, {'attr': {'class': 'large'}}) }}

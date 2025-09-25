@@ -1,26 +1,6 @@
 @use '../colors';
 @use '../icons';
 
-.contact-locations {
-  font-size: 1.3rem;
-  line-height: 1.8rem;
-
-  > li {
-    padding: 5px 0;
-
-    &:before {
-      @include icons.icon(icons.$icon-checkmark);
-      color: colors.$primary-color;
-      font-size: 0.8em;
-      margin-right: 10px;
-    }
-
-    i {
-      font-size: 1.3em;
-    }
-  }
-}
-
-.contact-form-wrapper {
-  margin-top: 40px;
+.icon-location {
+  font-size: 1.5rem;
 }

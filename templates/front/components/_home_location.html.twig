@@ -2,31 +2,38 @@
 @var App\Entity\Content\Location location
 #}
 
-<div class="session">
-    <div class="session__city">
-        <div class="name">{{ location.name }}</div>
-        {% if location.localization is not empty %}
-            <a href="{{ location.localization }}" class="link-icon-button" target="_blank">Localisation <i class="icon-location"></i></a>
-        {% endif %}
-        <div class="address" itemscope itemtype="https://schema.org/PostalAddress">
-            <span itemprop="streetAddress">
-                {{ location.address.street }}
-                {% if location.address.street2 %}<br/>{{ location.address.street2 }}{% endif %}
-            </span><br/>
-            <span itemprop="postalCode">{{ location.address.zipCode }}</span> <span itemprop="addressLocality">{{ location.address.city }}</span>
-            <meta itemprop="addressRegion" content="Oise" />
+{% embed 'front/components/_card.html.twig' with {
+    'title': location.name,
+    'center': false,
+    'cssClass': 'session'
+} %}
+    {% block info %}
+        <div class="session__info">
+            {% if location.localization is not empty %}
+                <a href="{{ location.localization }}" class="link-icon-button" target="_blank">Localisation <i class="icon-location"></i></a>
+            {% endif %}
+            <div class="address" itemscope itemtype="https://schema.org/PostalAddress">
+                <span itemprop="streetAddress">
+                    {{ location.address.street }}
+                    {% if location.address.street2 %}<br/>{{ location.address.street2 }}{% endif %}
+                </span><br/>
+                <span itemprop="postalCode">{{ location.address.zipCode }}</span> <span itemprop="addressLocality">{{ location.address.city }}</span>
+                <meta itemprop="addressRegion" content="Oise" />
+            </div>
         </div>
-    </div>
-    <ul class="session__time">
-    {% for calendar in location.calendars %}
-        <li>
-            {{ calendar.day|trans }}
-            <ul>
-            {% for schedule in calendar.schedules %}
-                <li>{{ schedule.displaySchedule(true) }}</li>
+    {% endblock %}
+    {% block content %}
+        <ul class="session__time">
+            {% for calendar in location.calendars %}
+                <li>
+                    {{ calendar.day|trans }}
+                    <ul>
+                        {% for schedule in calendar.schedules %}
+                            <li>{{ schedule.displaySchedule(true)|raw }}</li>
+                        {% endfor %}
+                    </ul>
+                </li>
             {% endfor %}
-            </ul>
-        </li>
-    {% endfor %}
-    </ul>
-</div>
+        </ul>
+    {% endblock %}
+{% endembed %}

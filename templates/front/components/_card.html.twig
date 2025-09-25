@@ -1,0 +1,13 @@
+{#
+@var string title
+@var bool center
+@var ?string cssClass
+#}
+
+<div class="card{% if center %} card--center{% endif %}{% if cssClass is defined %} {{ cssClass }}{% endif %}">
+    <div class="card__title">{{ title }}</div>
+    {% block info %}{% endblock %}
+    <div class="card__content">
+        {% block content %}{% endblock %}
+    </div>
+</div>
