@@ -13,7 +13,7 @@ use App\Entity\Payment\CashPayment;
 use App\Entity\Payment\CheckPayment;
 use App\Entity\Payment\DiscountPayment;
 use App\Entity\Payment\HelloAssoPayment;
-use App\Entity\Payment\PassPayment;
+use App\Entity\Payment\RefundHelpPayment;
 use App\Entity\Payment\TransferPayment;
 use App\Entity\Season;
 use App\Enum\PaymentTypeEnum;
@@ -23,7 +23,7 @@ use App\Form\Payment\CheckPaymentType;
 use App\Form\Payment\DiscountPaymentType;
 use App\Form\Payment\HelloAssoPaymentType;
 use App\Form\Payment\NewPaymentType;
-use App\Form\Payment\PassPaymentType;
+use App\Form\Payment\RefundHelpPaymentType;
 use App\Form\Payment\TransferPaymentType;
 use App\Helper\FloatHelper;
 use App\Repository\Payment\PaymentRepository;
@@ -209,7 +209,7 @@ class PaymentController extends AbstractController
             $payment instanceof CheckPayment => CheckPaymentType::class,
             $payment instanceof DiscountPayment => DiscountPaymentType::class,
             $payment instanceof HelloAssoPayment => HelloAssoPaymentType::class,
-            $payment instanceof PassPayment => PassPaymentType::class,
+            $payment instanceof RefundHelpPayment => RefundHelpPaymentType::class,
             $payment instanceof TransferPayment => TransferPaymentType::class,
             default => throw new \LogicException('unknown payment type'),
         };
@@ -248,7 +248,7 @@ class PaymentController extends AbstractController
             PaymentTypeEnum::CASH => $this->createForm(CashPaymentType::class, $payment, $options),
             PaymentTypeEnum::CHECK => $this->createForm(CheckPaymentType::class, $payment, $options),
             PaymentTypeEnum::HELLO_ASSO => $this->createForm(HelloAssoPaymentType::class, $payment, $options),
-            PaymentTypeEnum::PASS => $this->createForm(PassPaymentType::class, $payment, $options),
+            PaymentTypeEnum::REFUND_HELP => $this->createForm(RefundHelpPaymentType::class, $payment, $options),
             PaymentTypeEnum::TRANSFER => $this->createForm(TransferPaymentType::class, $payment, $options),
             default => throw new \LogicException('invalid payment type'),
         };

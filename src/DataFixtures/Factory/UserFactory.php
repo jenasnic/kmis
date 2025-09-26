@@ -48,7 +48,7 @@ final class UserFactory extends PersistentProxyObjectFactory
             ++$this->counter
         );
 
-        $enabled = self::faker()->boolean(80);
+        $enabled = $this->faker->boolean(80);
 
         return [
             'email' => strtolower($email),

@@ -2,21 +2,24 @@
 
 namespace App\DataFixtures\Payment;
 
+use App\DataFixtures\ConfigurationFixtures;
 use App\DataFixtures\Factory\Payment\AncvPaymentFactory;
 use App\DataFixtures\Factory\Payment\CashPaymentFactory;
 use App\DataFixtures\Factory\Payment\CheckPaymentFactory;
 use App\DataFixtures\Factory\Payment\HelloAssoPaymentFactory;
-use App\DataFixtures\Factory\Payment\PassPaymentFactory;
+use App\DataFixtures\Factory\Payment\RefundHelpPaymentFactory;
 use App\DataFixtures\Factory\Payment\TransferPaymentFactory;
 use App\DataFixtures\Factory\RegistrationFactory;
 use App\DataFixtures\Factory\SeasonFactory;
 use App\DataFixtures\RegistrationFixtures;
 use App\DataFixtures\SeasonFixtures;
+use App\Domain\Model\Content\RefundHelpConfiguration;
 use App\Entity\Payment\PriceOption;
 use App\Entity\Registration;
 use App\Entity\Season;
-use App\Enum\DiscountCodeEnum;
+use App\Enum\RefundHelpEnum;
 use App\Helper\FloatHelper;
+use App\Service\Configuration\RefundHelpManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -28,13 +31,16 @@ class PaymentFixtures extends Fixture implements DependentFixtureInterface
 {
     private Generator $faker;
 
-    public function __construct()
-    {
+    public function __construct(
+        private readonly RefundHelpManager $refundHelpManager,
+    ) {
         $this->faker = Factory::create('fr_FR');
     }
 
     public function load(ObjectManager $manager): void
     {
+        $refundHelpConfiguration = $this->refundHelpManager->getRefundHelpConfiguration();
+
         /** @var array<Proxy<Registration>> $registrations */
         $registrations = RegistrationFactory::all();
         /** @var array<Proxy<Season>> $seasons */
@@ -48,12 +54,12 @@ class PaymentFixtures extends Fixture implements DependentFixtureInterface
 
                 if ($season->getId() === $registration->getSeason()->getId()) {
                     $soldPayment = !$season->isActive() || $this->faker->boolean(60);
-                    $this->createPaymentsForSeason($registration, $season, $soldPayment);
+                    $this->createPaymentsForSeason($registration, $season, $soldPayment, $refundHelpConfiguration);
                 } elseif (
                     $registration->isReEnrollment()
                     && (int) $season->getLabel() === (int) $registration->getSeason()->getLabel() - 1
                 ) {
-                    $this->createPaymentsForSeason($registration, $season, true);
+                    $this->createPaymentsForSeason($registration, $season, true, $refundHelpConfiguration);
                 }
             }
         }
@@ -65,12 +71,13 @@ class PaymentFixtures extends Fixture implements DependentFixtureInterface
     public function getDependencies(): array
     {
         return [
+            ConfigurationFixtures::class,
             RegistrationFixtures::class,
             SeasonFixtures::class,
         ];
     }
 
-    protected function createPaymentsForSeason(Registration $registration, Season $season, bool $sold): void
+    protected function createPaymentsForSeason(Registration $registration, Season $season, bool $sold, RefundHelpConfiguration $refundHelpConfiguration): void
     {
         /** @var PriceOption $priceOption */
         $priceOption = $registration->getPriceOption();
@@ -86,18 +93,43 @@ class PaymentFixtures extends Fixture implements DependentFixtureInterface
             'date' => $paymentDate,
         ];
 
-        if ($registration->isUseCCAS()) {
-            $discountAmount = DiscountCodeEnum::getDiscountAmount(DiscountCodeEnum::CCAS);
+        if ($registration->isUsePassCitizen()) {
+            $discountAmount = $refundHelpConfiguration->passCitizenAmount;
             $amount -= $discountAmount;
             $paymentAttributes['amount'] = $discountAmount;
-            PassPaymentFactory::createOne($paymentAttributes);
+            RefundHelpPaymentFactory::createOne(array_merge(
+                $paymentAttributes,
+                [
+                    'refundHelp' => RefundHelpEnum::PASS_CITIZEN,
+                    'reference' => 'PASS-'.$this->faker->numberBetween(1000, 9999),
+                ],
+            ));
         }
 
         if ($registration->isUsePassSport()) {
-            $discountAmount = DiscountCodeEnum::getDiscountAmount(DiscountCodeEnum::PASS_SPORT);
+            $discountAmount = $refundHelpConfiguration->passSportAmount;
             $amount -= $discountAmount;
             $paymentAttributes['amount'] = $discountAmount;
-            PassPaymentFactory::createOne($paymentAttributes);
+            RefundHelpPaymentFactory::createOne(array_merge(
+                $paymentAttributes,
+                [
+                    'refundHelp' => RefundHelpEnum::PASS_SPORT,
+                    'reference' => 'PASS-'.$this->faker->numberBetween(1000, 9999),
+                ],
+            ));
+        }
+
+        if ($registration->isUseCCAS()) {
+            $discountAmount = $refundHelpConfiguration->ccasAmount;
+            $amount -= $discountAmount;
+            $paymentAttributes['amount'] = $discountAmount;
+            RefundHelpPaymentFactory::createOne(array_merge(
+                $paymentAttributes,
+                [
+                    'refundHelp' => RefundHelpEnum::CCAS,
+                    'reference' => 'CCAS-'.$this->faker->numberBetween(1000, 9999),
+                ],
+            ));
         }
 
         if ($this->faker->boolean(20)) {

@@ -5,7 +5,7 @@ namespace App\Service\Export;
 use App\Entity\Payment\AbstractPayment;
 use App\Entity\Payment\AncvPayment;
 use App\Entity\Payment\CheckPayment;
-use App\Entity\Payment\PassPayment;
+use App\Entity\Payment\RefundHelpPayment;
 use App\Entity\Payment\TransferPayment;
 use App\Entity\Season;
 use App\Repository\Payment\PaymentRepository;
@@ -41,7 +41,7 @@ class PaymentCsvExport extends AbstractCsvExport
             'Adhérent',
             'N° ANCV',
             'N° Chèque',
-            'N° Pass',
+            'Remise (type + référence)',
             'Libellé virement',
         ];
     }
@@ -66,7 +66,7 @@ class PaymentCsvExport extends AbstractCsvExport
             $data->getAdherent()->getFullName(),
             ($data instanceof AncvPayment) ? $data->getNumber() : '',
             ($data instanceof CheckPayment) ? $data->getNumber() : '',
-            ($data instanceof PassPayment) ? $data->getNumber() : '',
+            ($data instanceof RefundHelpPayment) ? $this->buildRefundHelpMethodReference($data) : '',
             ($data instanceof TransferPayment) ? $data->getLabel() : '',
         ];
 
@@ -76,5 +76,18 @@ class PaymentCsvExport extends AbstractCsvExport
     protected function getFilename(): string
     {
         return 'liste_paiements_kmis.csv';
+    }
+
+    private function buildRefundHelpMethodReference(RefundHelpPayment $refundHelpPayment): string
+    {
+        $type = $refundHelpPayment->getRefundHelp()?->trans($this->translator);
+        if (null === $type) {
+            $type = '???';
+        }
+
+        return empty($refundHelpPayment->getReference())
+            ? $type
+            : sprintf('%s - %s', $type, $refundHelpPayment->getReference())
+        ;
     }
 }

@@ -11,7 +11,7 @@ enum PaymentTypeEnum: string implements TranslatableEnumInterface
     case CHECK = 'CHECK';
     case DISCOUNT = 'DISCOUNT';
     case HELLO_ASSO = 'HELLO_ASSO';
-    case PASS = 'PASS';
+    case REFUND_HELP = 'REFUND_HELP';
     case TRANSFER = 'TRANSFER';
 
     public function trans(TranslatorInterface $translator, ?string $locale = null): string

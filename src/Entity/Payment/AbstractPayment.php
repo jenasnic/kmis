@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     'check' => CheckPayment::class,
     'discount' => DiscountPayment::class,
     'hello_asso' => HelloAssoPayment::class,
-    'pass' => PassPayment::class,
+    'refund_help' => RefundHelpPayment::class,
     'transfer' => TransferPayment::class,
 ])]
 #[ORM\Table(name: 'payment')]

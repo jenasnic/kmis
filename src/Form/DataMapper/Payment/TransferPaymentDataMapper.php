@@ -46,22 +46,22 @@ class TransferPaymentDataMapper implements DataMapperInterface
         try {
             if (null === $viewData) {
                 $viewData = new TransferPayment($this->adherent, $this->season);
+            }
 
-                /** @var float|null $amount */
-                $amount = $forms['amount']->getData();
-                /** @var \DateTime|null $date */
-                $date = $forms['date']->getData();
-                /** @var string|null $comment */
-                $comment = $forms['comment']->getData();
-                /** @var string|null $label */
-                $label = $forms['label']->getData();
+            /** @var float|null $amount */
+            $amount = $forms['amount']->getData();
+            /** @var \DateTime|null $date */
+            $date = $forms['date']->getData();
+            /** @var string|null $comment */
+            $comment = $forms['comment']->getData();
+            /** @var string|null $label */
+            $label = $forms['label']->getData();
 
-                $viewData->setAmount($amount);
-                $viewData->setComment($comment);
-                $viewData->setLabel($label);
-                if (null !== $date) {
-                    $viewData->setDate($date);
-                }
+            $viewData->setAmount($amount);
+            $viewData->setComment($comment);
+            $viewData->setLabel($label);
+            if (null !== $date) {
+                $viewData->setDate($date);
             }
         } catch (\Exception $e) {
             throw new TransformationFailedException('Unable to map data for transfer payment', 0, $e);

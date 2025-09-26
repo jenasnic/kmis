@@ -53,17 +53,17 @@ class RefundHelpManager
 
         $refundHelpConfiguration->passCitizenEnable = $this->isEnabled($configurations[self::REFUND_HELP_PASS_CITIZEN_ENABLE] ?? null);
         $refundHelpConfiguration->passCitizenLabel = ($configurations[self::REFUND_HELP_PASS_CITIZEN_LABEL] ?? null)?->getValue();
-        $refundHelpConfiguration->passCitizenAmount = floatval(($configurations[self::REFUND_HELP_PASS_CITIZEN_AMOUNT] ?? null)?->getValue());
+        $refundHelpConfiguration->passCitizenAmount = intval(($configurations[self::REFUND_HELP_PASS_CITIZEN_AMOUNT] ?? null)?->getValue());
         $refundHelpConfiguration->passCitizenHelpText = ($configurations[self::REFUND_HELP_PASS_CITIZEN_HELP_TEXT] ?? null)?->getValue();
         $refundHelpConfiguration->passCitizenFileLabel = ($configurations[self::REFUND_HELP_PASS_CITIZEN_FILE_LABEL] ?? null)?->getValue();
         $refundHelpConfiguration->passSportEnable = $this->isEnabled($configurations[self::REFUND_HELP_PASS_SPORT_ENABLE] ?? null);
         $refundHelpConfiguration->passSportLabel = ($configurations[self::REFUND_HELP_PASS_SPORT_LABEL] ?? null)?->getValue();
-        $refundHelpConfiguration->passSportAmount = floatval(($configurations[self::REFUND_HELP_PASS_SPORT_AMOUNT] ?? null)?->getValue());
+        $refundHelpConfiguration->passSportAmount = intval(($configurations[self::REFUND_HELP_PASS_SPORT_AMOUNT] ?? null)?->getValue());
         $refundHelpConfiguration->passSportHelpText = ($configurations[self::REFUND_HELP_PASS_SPORT_HELP_TEXT] ?? null)?->getValue();
         $refundHelpConfiguration->passSportFileLabel = ($configurations[self::REFUND_HELP_PASS_SPORT_FILE_LABEL] ?? null)?->getValue();
         $refundHelpConfiguration->ccasEnable = $this->isEnabled($configurations[self::REFUND_HELP_CCAS_ENABLE] ?? null);
         $refundHelpConfiguration->ccasLabel = ($configurations[self::REFUND_HELP_CCAS_LABEL] ?? null)?->getValue();
-        $refundHelpConfiguration->ccasAmount = floatval(($configurations[self::REFUND_HELP_CCAS_AMOUNT] ?? null)?->getValue());
+        $refundHelpConfiguration->ccasAmount = intval(($configurations[self::REFUND_HELP_CCAS_AMOUNT] ?? null)?->getValue());
         $refundHelpConfiguration->ccasHelpText = ($configurations[self::REFUND_HELP_CCAS_HELP_TEXT] ?? null)?->getValue();
 
         return $refundHelpConfiguration;

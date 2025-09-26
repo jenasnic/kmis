@@ -34,7 +34,7 @@ class NewPaymentType extends AbstractType
                 'enum.paymentType.HELLO_ASSO' => HelloAssoPaymentType::class,
                 'enum.paymentType.TRANSFER' => TransferPaymentType::class,
                 'enum.paymentType.ANCV' => AncvPaymentType::class,
-                'enum.paymentType.PASS' => PassPaymentType::class,
+                'enum.paymentType.REFUND_HELP' => RefundHelpPaymentType::class,
                 'enum.paymentType.DISCOUNT' => DiscountPaymentType::class,
             ],
         ]);

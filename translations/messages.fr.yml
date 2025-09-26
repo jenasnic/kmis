@@ -33,16 +33,12 @@ enum.dayOfWeek.SUNDAY: Dimanche
 enum.gender.FEMALE: Femme
 enum.gender.MALE: Homme
 
-enum.passSport.PASS_CITIZEN: Pass'sport (15€)
-enum.passSport.PASS_SPORT: Pass'sport (50€)
-enum.passSport.BOTH: Double pass (70€)
-
 enum.paymentType.ANCV: Chèque ANCV
 enum.paymentType.CASH: Espèce
 enum.paymentType.CHECK: Chèque
-enum.paymentType.DISCOUNT: Remise
+enum.paymentType.DISCOUNT: Réduction
 enum.paymentType.HELLO_ASSO: HelloAsso
-enum.paymentType.PASS: Pass'Sport
+enum.paymentType.REFUND_HELP: Aide/remise
 enum.paymentType.TRANSFER: Virement
 
 enum.refundHelp.PASS_CITIZEN: Pass'Sports Citoyen
@@ -314,10 +310,12 @@ form.payment.discount.discount: Libellé de la remise
 form.payment.helloAsso.amount: Montant
 form.payment.helloAsso.comment: Commentaire
 form.payment.helloAsso.date: Date
-form.payment.pass.amount: Montant
-form.payment.pass.comment: Commentaire
-form.payment.pass.date: Date
-form.payment.pass.number: N° Pass'Sport
+form.payment.refundHelp.amount: Montant
+form.payment.refundHelp.comment: Commentaire
+form.payment.refundHelp.date: Date
+form.payment.refundHelp.reference: Référence
+form.payment.refundHelp.referenceHelp: "Saisissez la référence relative au remboursement si elle existe (ex : numéro du Pass'Sport...)"
+form.payment.refundHelp.refundHelp: Type de remise
 form.payment.transfer.amount: Montant
 form.payment.transfer.comment: Commentaire
 form.payment.transfer.date: Date
