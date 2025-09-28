@@ -24,10 +24,6 @@ class ConfigurationFixtures extends Fixture
             'ENABLED',
         ));
         $manager->persist(new Configuration(
-            RefundHelpManager::REFUND_HELP_PASS_CITIZEN_LABEL,
-            'Pass\'Sports Citoyen',
-        ));
-        $manager->persist(new Configuration(
             RefundHelpManager::REFUND_HELP_PASS_CITIZEN_AMOUNT,
             '15',
         ));
@@ -36,16 +32,8 @@ class ConfigurationFixtures extends Fixture
             'Éligibilité et conditions d’utilisations sur le site de l\'Oise...',
         ));
         $manager->persist(new Configuration(
-            RefundHelpManager::REFUND_HELP_PASS_CITIZEN_FILE_LABEL,
-            'Document d\'elligibilité au Pass\'Sports Citoyen',
-        ));
-        $manager->persist(new Configuration(
             RefundHelpManager::REFUND_HELP_PASS_SPORT_ENABLE,
             'ENABLED',
-        ));
-        $manager->persist(new Configuration(
-            RefundHelpManager::REFUND_HELP_PASS_SPORT_LABEL,
-            'Utiliser le Pass\'Sports',
         ));
         $manager->persist(new Configuration(
             RefundHelpManager::REFUND_HELP_PASS_SPORT_AMOUNT,
@@ -56,16 +44,8 @@ class ConfigurationFixtures extends Fixture
             'Éligibilité et conditions d’utilisations sur le site sports.gouv.fr',
         ));
         $manager->persist(new Configuration(
-            RefundHelpManager::REFUND_HELP_PASS_SPORT_FILE_LABEL,
-            'Document d\'elligibilité au Pass\'Sports',
-        ));
-        $manager->persist(new Configuration(
             RefundHelpManager::REFUND_HELP_CCAS_ENABLE,
             'DISABLED',
-        ));
-        $manager->persist(new Configuration(
-            RefundHelpManager::REFUND_HELP_CCAS_LABEL,
-            'Aide du CCAS',
         ));
         $manager->persist(new Configuration(
             RefundHelpManager::REFUND_HELP_CCAS_AMOUNT,

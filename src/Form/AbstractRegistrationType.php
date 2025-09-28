@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Payment\PriceOption;
 use App\Entity\Purpose;
 use App\Entity\Registration;
+use App\Enum\RefundHelpEnum;
 use App\Enum\RegistrationTypeEnum;
 use App\Form\Type\BulmaFileType;
 use App\Form\Type\EnumType;
@@ -75,7 +76,7 @@ abstract class AbstractRegistrationType extends AbstractType
 
         if ($refundHelpConfiguration->ccasEnable) {
             $builder->add('useCCAS', CheckboxType::class, [
-                'label' => $refundHelpConfiguration->ccasLabel,
+                'label' => $this->refundHelpManager->getLabel(RefundHelpEnum::CCAS),
                 'required' => false,
                 'help' => $refundHelpConfiguration->ccasHelpText,
                 'help_html' => true,
@@ -122,10 +123,9 @@ abstract class AbstractRegistrationType extends AbstractType
                     $form,
                     $registration->isUsePassCitizen(),
                     'usePassCitizen',
-                    $refundHelpConfiguration->passCitizenLabel,
+                    $this->refundHelpManager->getLabel(RefundHelpEnum::PASS_CITIZEN),
                     $refundHelpConfiguration->passCitizenHelpText,
                     'passCitizenFile',
-                    $refundHelpConfiguration->passCitizenFileLabel,
                     $downloadPassCitizenUri,
                 );
             }
@@ -140,10 +140,9 @@ abstract class AbstractRegistrationType extends AbstractType
                     $form,
                     $registration->isUsePassSport(),
                     'usePassSport',
-                    $refundHelpConfiguration->passSportLabel,
+                    $this->refundHelpManager->getLabel(RefundHelpEnum::PASS_SPORT),
                     $refundHelpConfiguration->passSportHelpText,
                     'passSportFile',
-                    $refundHelpConfiguration->passSportFileLabel,
                     $downloadPassSportUri,
                 );
             }
@@ -183,7 +182,6 @@ abstract class AbstractRegistrationType extends AbstractType
         ?string $label,
         ?string $helpText,
         string $uploadFieldName,
-        ?string $fileLabel,
         ?string $downloadUri = null,
     ): void {
         $passOptions = [
@@ -202,19 +200,19 @@ abstract class AbstractRegistrationType extends AbstractType
 
         $subBuilder->addEventListener(
             FormEvents::POST_SUBMIT,
-            function (FormEvent $event) use ($downloadUri, $uploadFieldName, $fileLabel) {
+            function (FormEvent $event) use ($downloadUri, $uploadFieldName) {
                 $form = $event->getForm();
 
                 if (null === $form->getParent()) {
                     throw new \LogicException('invalid parent');
                 }
 
-                $this->togglePassFile($form->getParent(), $uploadFieldName, $fileLabel, true === $form->getData(), $downloadUri);
+                $this->togglePassFile($form->getParent(), $uploadFieldName, true === $form->getData(), $downloadUri);
             }
         );
 
         $form->add($subBuilder->getForm());
-        $this->togglePassFile($form, $uploadFieldName, $fileLabel, $usePass, $downloadUri);
+        $this->togglePassFile($form, $uploadFieldName, $usePass, $downloadUri);
     }
 
     /**
@@ -234,7 +232,7 @@ abstract class AbstractRegistrationType extends AbstractType
     /**
      * @param FormInterface<Registration> $form
      */
-    protected function togglePassFile(FormInterface $form, string $fieldName, ?string $label, bool $state, ?string $downloadUri = null): void
+    protected function togglePassFile(FormInterface $form, string $fieldName, bool $state, ?string $downloadUri = null): void
     {
         if (!$state) {
             $form->remove($fieldName);
@@ -243,7 +241,6 @@ abstract class AbstractRegistrationType extends AbstractType
         }
 
         $options = [
-            'label' => $label ?? $fieldName,
             'constraints' => [
                 new File([
                     'mimeTypes' => [

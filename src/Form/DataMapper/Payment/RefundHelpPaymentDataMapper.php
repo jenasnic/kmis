@@ -2,11 +2,11 @@
 
 namespace App\Form\DataMapper\Payment;
 
-use App\Domain\Model\Content\RefundHelpConfiguration;
 use App\Entity\Adherent;
 use App\Entity\Payment\RefundHelpPayment;
 use App\Entity\Season;
 use App\Enum\RefundHelpEnum;
+use App\Service\Configuration\RefundHelpManager;
 use Symfony\Component\Form\DataMapperInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 use Symfony\Component\Form\FormInterface;
@@ -14,7 +14,7 @@ use Symfony\Component\Form\FormInterface;
 class RefundHelpPaymentDataMapper implements DataMapperInterface
 {
     public function __construct(
-        private readonly RefundHelpConfiguration $refundHelpConfiguration,
+        private readonly RefundHelpManager $refundHelpManager,
         private readonly Adherent $adherent,
         private readonly Season $season,
     ) {
@@ -66,7 +66,7 @@ class RefundHelpPaymentDataMapper implements DataMapperInterface
             if (null !== $refundHelp) {
                 $refundHelpEnum = RefundHelpEnum::tryFrom($refundHelp);
                 if (null !== $refundHelpEnum) {
-                    $amount = $this->refundHelpConfiguration->getAmount($refundHelpEnum);
+                    $amount = $this->refundHelpManager->getAmount($refundHelpEnum);
                 }
             }
 

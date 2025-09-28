@@ -95,9 +95,9 @@ back.discountCodeConfiguration.save.success: Codes de réduction mis à jour
 back.discountCodeConfiguration.title: Gestion des codes de réductions
 back.discountCodeConfiguration.generate: Générer
 back.discountCodeConfiguration.help: |
-  Vous pouvez saisir ici des codes "HelloPass" en indiquant la remise ou la combinaison de remises pour laquelle le code s'applique;<br/>
+  Vous pouvez saisir ici des codes "HelloPass" en indiquant la remise ou la combinaison de remises pour laquelle le code s'applique.<br/>
   Vous pouvez utiliser le boutons "Générer" pour créer toutes les combinaisons possibles; il vous suffira ensuite de saisir le code "HelloPass" adéquat pour chacune d'entre elle.<br/>
-  <b>NOTE</b> : seules les remises actives seront prises en compte.
+  <b>NOTE</b> : seules les remises actives seront prises en compte dans la génération des combinaisons.
 
 back.location.delete.success: Localisation supprimée
 back.location.edit.new: Nouvelle localisation
@@ -274,14 +274,16 @@ form.newRegistration.comment: Commentaire (problème de santé ou autre)
 form.newRegistration.copyrightAuthorization: J’autorise le club KMIS à reproduire et communiquer mon image prise dans le cadre de ses activités, sous toutes formes et tous supports.
 form.newRegistration.licenceDate: Date de la licence
 form.newRegistration.licenceFormFile: Formulaire de demande de licence
-form.newRegistration.licenceNumber: N° de licence
 form.newRegistration.licenceFormFileHelp: Vous pouvez télécharger un exemplaire du formulaire <a href="%licenceLink%" target="_blank">ici</a> ou obtenir un formulaire auprès des membres du bureau.
-form.newRegistration.medicalCertificateFile: Certificat médical
+form.newRegistration.licenceNumber: N° de licence
 form.newRegistration.medicalCertificateFile.forMinor: Certificat médical ou attestation sur l'honneur
+form.newRegistration.medicalCertificateFile: Certificat médical
 form.newRegistration.medicalCertificateFileHelp: Certificat médical ou attestation sur l’honneur. Pour les informations sur les documents à fournir, consultez la <a href='https://www.ffkarate.fr/espace-licencies/certificat-medical/' target='_blank'>note d’information</a>.
+form.newRegistration.passCitizenFile: Document d'elligibilité au Pass'Sports Citoyen
+form.newRegistration.passSportFile: Document d'elligibilité au Pass'Sports
+form.newRegistration.priceOption: Formule
 form.newRegistration.privateNote: Notes privée KMIS
 form.newRegistration.purpose: Objectif
-form.newRegistration.priceOption: Formule
 form.newRegistration.registeredAt: Inscrit le
 form.newRegistration.withLegalRepresentative: Dans le cas d'une personne mineure, merci de renseigner le représentant légal
 
@@ -327,17 +329,12 @@ form.priceOption.label: Nom de la formule
 form.refundHelpConfiguration.ccasAmount: Montant de la remise
 form.refundHelpConfiguration.ccasEnable: Autoriser l'aide du CCAS
 form.refundHelpConfiguration.ccasHelpText: Complément d'informations
-form.refundHelpConfiguration.ccasLabel: Libellé (case à cocher)
 form.refundHelpConfiguration.passCitizenAmount: Montant de la remise
 form.refundHelpConfiguration.passCitizenEnable: Autoriser le Pass'Sports Citoyen
-form.refundHelpConfiguration.passCitizenFileLabel: Libellé (chargement du fichier)
 form.refundHelpConfiguration.passCitizenHelpText: Complément d'informations
-form.refundHelpConfiguration.passCitizenLabel: Libellé (case à cocher)
 form.refundHelpConfiguration.passSportAmount: Montant de la remise
 form.refundHelpConfiguration.passSportEnable: Autoriser le Pass'Sports
-form.refundHelpConfiguration.passSportFileLabel: Libellé (chargement du fichier)
 form.refundHelpConfiguration.passSportHelpText: Complément d'informations
-form.refundHelpConfiguration.passSportLabel: Libellé (case à cocher)
 
 form.registration.comment: Commentaire de l'adhérent
 form.registration.copyrightAuthorization: Droit à l'image
@@ -347,6 +344,8 @@ form.registration.licenceDate: Date de la licence
 form.registration.licenceFormFile: Formulaire de demande de licence
 form.registration.licenceNumber: N° de licence
 form.registration.medicalCertificateFile: Certificat médical ou attestation sur l'honneur
+form.registration.passCitizenFile: Document d'elligibilité au Pass'Sports Citoyen
+form.registration.passSportFile: Document d'elligibilité au Pass'Sports
 form.registration.priceOption: Formule
 form.registration.privateNote: Notes privée KMIS
 form.registration.purpose: Objectif

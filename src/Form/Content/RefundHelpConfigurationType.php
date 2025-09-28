@@ -7,7 +7,6 @@ use App\Form\Type\MaskedType;
 use App\Form\Type\WysiwygType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -20,7 +19,6 @@ class RefundHelpConfigurationType extends AbstractType
     {
         $builder
             ->add('passCitizenEnable', CheckboxType::class, ['required' => false])
-            ->add('passCitizenLabel', TextType::class, ['required' => false])
             ->add('passCitizenAmount', MaskedType::class, [
                 'required' => false,
                 'is_numeric' => true,
@@ -31,9 +29,7 @@ class RefundHelpConfigurationType extends AbstractType
                 'size' => 'small',
                 'toolbar' => 'code | bold underline link forecolor',
             ])
-            ->add('passCitizenFileLabel', TextType::class, ['required' => false])
             ->add('passSportEnable', CheckboxType::class, ['required' => false])
-            ->add('passSportLabel', TextType::class, ['required' => false])
             ->add('passSportAmount', MaskedType::class, [
                 'required' => false,
                 'is_numeric' => true,
@@ -44,9 +40,7 @@ class RefundHelpConfigurationType extends AbstractType
                 'size' => 'small',
                 'toolbar' => 'code | bold underline link forecolor',
             ])
-            ->add('passSportFileLabel', TextType::class, ['required' => false])
             ->add('ccasEnable', CheckboxType::class, ['required' => false])
-            ->add('ccasLabel', TextType::class, ['required' => false])
             ->add('ccasAmount', MaskedType::class, [
                 'required' => false,
                 'is_numeric' => true,

@@ -13,7 +13,6 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @template-extends AbstractPaymentType<RefundHelpPayment>
@@ -21,7 +20,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class RefundHelpPaymentType extends AbstractPaymentType
 {
     public function __construct(
-        private readonly TranslatorInterface $translator,
         private readonly RefundHelpManager $refundHelpManager,
     ) {
     }
@@ -34,7 +32,16 @@ class RefundHelpPaymentType extends AbstractPaymentType
             ->remove('amount')
             ->add('refundHelp', ChoiceType::class, [
                 'expanded' => true,
-                'choices' => $this->buildChoices(),
+                'choices' => array_reduce(
+                    RefundHelpEnum::cases(),
+                    function (array $acc, RefundHelpEnum $refundHelpEnum) {
+                        $label = $this->refundHelpManager->getLabel($refundHelpEnum);
+                        $acc[$label] = $refundHelpEnum->value;
+
+                        return $acc;
+                    },
+                    [],
+                ),
             ])
             ->add('reference', TextType::class, [
                 'required' => false,
@@ -55,30 +62,6 @@ class RefundHelpPaymentType extends AbstractPaymentType
 
     protected function getDataMapper(Adherent $adherent, Season $season): DataMapperInterface
     {
-        $refundHelpConfiguration = $this->refundHelpManager->getRefundHelpConfiguration();
-
-        return new RefundHelpPaymentDataMapper($refundHelpConfiguration, $adherent, $season);
-    }
-
-    /**
-     * @return array<string, string>
-     */
-    private function buildChoices(): array
-    {
-        $refundHelpConfiguration = $this->refundHelpManager->getRefundHelpConfiguration();
-
-        $result = [];
-        foreach (RefundHelpEnum::cases() as $refundHelp) {
-            $amount = $refundHelpConfiguration->getAmount($refundHelp);
-            if (empty($amount)) {
-                continue;
-            }
-
-            $label = sprintf('%s (%d €)', $refundHelp->trans($this->translator), $amount);
-
-            $result[$label] = $refundHelp->value;
-        }
-
-        return $result;
+        return new RefundHelpPaymentDataMapper($this->refundHelpManager, $adherent, $season);
     }
 }
