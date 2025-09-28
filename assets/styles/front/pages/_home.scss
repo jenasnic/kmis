@@ -214,6 +214,12 @@
             font-size: 1rem;
             padding: 2px 0;
 
+            p {
+              display: inline;
+              font-size: 1rem;
+              margin-bottom: 0;
+            }
+
             &:before {
               @include icons.icon(icons.$icon-checkmark);
               color: colors.$primary-color;
@@ -261,6 +267,12 @@
         font-style: italic;
         padding: 2px 0;
         text-align: center;
+
+        p {
+          display: inline;
+          font-size: 1rem;
+          margin-bottom: 0;
+        }
 
         &:before {
           @include icons.icon(icons.$icon-play);

@@ -58,14 +58,13 @@
                         {% endfor %}
                     </ul>
                 </div>
-                <div class="pricing__note">
-                    <ul>
-                        <li>
-                            Ados : 10-14/15 ans / Adultes : à partir de 15/16 ans<br/>
-                            (Licence FFKDA 39 € incluse)
-                        </li>
-                    </ul>
-                </div>
+                {% if pricingNote is not empty %}
+                    <div class="pricing__note">
+                        <ul>
+                            <li>{{ pricingNote|raw }}</li>
+                        </ul>
+                    </div>
+                {% endif %}
             {% endblock %}
         {% endembed %}
 

@@ -25,6 +25,7 @@ class HomeController extends AbstractController
         return $this->render('front/home.html.twig', [
             'homePresentation' => $textManager->getHomePresentation(),
             'priceOptions' => $priceOptions,
+            'pricingNote' => $activeSeason?->getPricingNote(),
             'sportings' => $sportingRepository->findOrdered(),
             'locations' => $locationRepository->findOrdered(),
         ]);

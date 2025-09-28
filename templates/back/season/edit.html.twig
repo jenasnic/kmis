@@ -50,6 +50,11 @@
     </div>
     <div class="columns">
         <div class="column">
+            {{ form_row(form.pricingNote) }}
+        </div>
+    </div>
+    <div class="columns">
+        <div class="column">
             <div class="fieldset fieldset--price-options">
                 <label>{{ 'form.season.optionTitle'|trans }}</label>
                 {{ form_row(form.priceOptions) }}

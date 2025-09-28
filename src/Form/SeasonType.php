@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Season;
 use App\Form\Payment\PriceOptionType;
 use App\Form\Type\BulmaCollectionType;
+use App\Form\Type\WysiwygType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -25,6 +26,11 @@ class SeasonType extends AbstractType
             ->add('endDate', DateType::class, ['widget' => 'single_text'])
             ->add('paymentLink', TextType::class, ['required' => false])
             ->add('licenceLink', TextType::class, ['required' => false])
+            ->add('pricingNote', WysiwygType::class, [
+                'required' => false,
+                'size' => 'small',
+                'toolbar' => 'code | bold underline link forecolor',
+            ])
         ;
 
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {

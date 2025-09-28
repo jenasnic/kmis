@@ -368,6 +368,7 @@ form.season.help: |
 form.season.licenceLink: Lien de téléchargement du formulaire de licence pour la saison
 form.season.optionTitle: Formules
 form.season.paymentLink: Lien vers la plate-forme de paiement (hellopass)
+form.season.pricingNote: Infos complémentaires
 form.season.startDate: Début
 
 form.sporting.active: Publiée

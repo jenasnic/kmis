@@ -7,9 +7,9 @@ use App\Entity\Payment\RefundHelpPayment;
 use App\Entity\Season;
 use App\Enum\RefundHelpEnum;
 use App\Form\DataMapper\Payment\RefundHelpPaymentDataMapper;
+use App\Form\Type\EnumType;
 use App\Service\Configuration\RefundHelpManager;
 use Symfony\Component\Form\DataMapperInterface;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -30,18 +30,12 @@ class RefundHelpPaymentType extends AbstractPaymentType
 
         $builder
             ->remove('amount')
-            ->add('refundHelp', ChoiceType::class, [
+            ->add('refundHelp', EnumType::class, [
+                'enum' => RefundHelpEnum::class,
                 'expanded' => true,
-                'choices' => array_reduce(
-                    RefundHelpEnum::cases(),
-                    function (array $acc, RefundHelpEnum $refundHelpEnum) {
-                        $label = $this->refundHelpManager->getLabel($refundHelpEnum);
-                        $acc[$label] = $refundHelpEnum->value;
-
-                        return $acc;
-                    },
-                    [],
-                ),
+                'choice_label' => function (RefundHelpEnum $choice) {
+                    return $this->refundHelpManager->getLabel($choice);
+                },
             ])
             ->add('reference', TextType::class, [
                 'required' => false,

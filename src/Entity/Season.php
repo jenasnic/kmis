@@ -38,6 +38,9 @@ class Season
     #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     private ?string $licenceLink = null;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $pricingNote = null;
+
     /**
      * @var Collection<int, PriceOption>
      */
@@ -107,6 +110,18 @@ class Season
     public function setPaymentLink(?string $paymentLink): self
     {
         $this->paymentLink = $paymentLink;
+
+        return $this;
+    }
+
+    public function getPricingNote(): ?string
+    {
+        return $this->pricingNote;
+    }
+
+    public function setPricingNote(?string $pricingNote): self
+    {
+        $this->pricingNote = $pricingNote;
 
         return $this;
     }
