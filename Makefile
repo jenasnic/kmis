@@ -127,3 +127,18 @@ fixcs:
 .PHONY: phpstan
 phpstan:
 	$(DOCKER_USER) $(PHPSTAN_BIN) analyse src --configuration='./phpstan.neon'
+
+
+##
+## Recovery
+##---------------------------------------------------------------------------
+
+recovery:
+	$(DOCKER_USER) $(SYMFONY_BIN) doctrine:database:drop --force
+	$(DOCKER_USER) $(SYMFONY_BIN) doctrine:database:create
+	docker-compose exec -T db mysql -u root -proot kmis < ~/Workspace/db/kmis_prod_250928.sql
+	rm -f ./upload/adherent/*
+	rm -f ./upload/news/*
+	rm -f ./upload/registration/*
+	rm -f ./upload/sporting/*
+	tar -xf upload_prod_250928.tar
