@@ -2,7 +2,8 @@
 
 namespace App\Domain\Command\Front;
 
-use App\Enum\DiscountCodeEnum;
+use App\Service\Configuration\DiscountManager;
+use App\Service\Configuration\RefundHelpManager;
 use App\Service\Email\EmailBuilder;
 use App\Service\Email\EmailSender;
 use Doctrine\ORM\EntityManagerInterface;
@@ -14,6 +15,8 @@ final class ConfirmRegistrationHandler
     public function __construct(
         private readonly VerifyEmailHelperInterface $verifyEmailHelper,
         private readonly EntityManagerInterface $entityManager,
+        private readonly RefundHelpManager $refundHelpManager,
+        private readonly DiscountManager $discountManager,
         private readonly EmailBuilder $emailBuilder,
         private readonly EmailSender $emailSender,
     ) {
@@ -44,20 +47,20 @@ final class ConfirmRegistrationHandler
 
         $this->entityManager->flush();
 
-        /** @var string $adherentEmail */
-        $adherentEmail = $registration->getAdherent()->getEmail();
-        $discountCode = DiscountCodeEnum::getDiscountCode($registration);
+        $discountCode = $this->discountManager->getDiscountCode($registration);
+        $refundHelpAmount = $this->refundHelpManager->getRefundHelpAmount($registration);
 
         /** @var float $amountToPay */
         $amountToPay = $registration->getPriceOption()?->getAmount();
-        if (null !== $discountCode) {
-            $amountToPay -= DiscountCodeEnum::getDiscountAmount($discountCode);
-        }
+        $amountToPay -= $refundHelpAmount;
+
+        /** @var string $adherentEmail */
+        $adherentEmail = $registration->getAdherent()->getEmail();
 
         $email = $this->emailBuilder
             ->useTemplate('email/registration_confirmed.html.twig', [
                 'registration' => $command->registration,
-                'discountCode' => $discountCode,
+                'discountCode' => $discountCode?->getCode(),
                 'amountToPay' => $amountToPay,
                 'paymentLink' => $registration->getSeason()->getPaymentLink(),
             ])

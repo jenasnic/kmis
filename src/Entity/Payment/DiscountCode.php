@@ -64,15 +64,27 @@ class DiscountCode
     }
 
     /**
-     * @param array<RefundHelpEnum> $refundHelpEnums
+     * @param array<RefundHelpEnum> $refundHelps
      */
-    public static function create(string $code, array $refundHelpEnums): self
+    public function matchRefundHelps(array $refundHelps): bool
+    {
+        $stringifyRefundHelps = array_map(fn (RefundHelpEnum $refundHelp) => $refundHelp->value, $refundHelps);
+
+        $diffs = array_diff($stringifyRefundHelps, $this->refundHelps);
+
+        return 0 === count($diffs);
+    }
+
+    /**
+     * @param array<RefundHelpEnum> $refundHelps
+     */
+    public static function create(string $code, array $refundHelps): self
     {
         $refundHelpCode = new self();
         $refundHelpCode->setCode($code);
 
-        foreach ($refundHelpEnums as $refundHelpEnum) {
-            $refundHelpCode->addRefundHelp($refundHelpEnum);
+        foreach ($refundHelps as $refundHelp) {
+            $refundHelpCode->addRefundHelp($refundHelp);
         }
 
         return $refundHelpCode;

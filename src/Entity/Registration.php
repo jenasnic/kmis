@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Payment\PriceOption;
+use App\Enum\RefundHelpEnum;
 use App\Enum\RegistrationTypeEnum;
 use App\Repository\RegistrationRepository;
 use Doctrine\DBAL\Types\Types;
@@ -449,6 +450,28 @@ class Registration
         $this->passSportFile = $passSportFile;
 
         return $this;
+    }
+
+    /**
+     * @return array<RefundHelpEnum>
+     */
+    public function getRefundHelps(): array
+    {
+        $refundHelps = [];
+
+        if ($this->isUsePassCitizen()) {
+            $refundHelps[] = RefundHelpEnum::PASS_CITIZEN;
+        }
+
+        if ($this->isUsePassSport()) {
+            $refundHelps[] = RefundHelpEnum::PASS_SPORT;
+        }
+
+        if ($this->isUseCCAS()) {
+            $refundHelps[] = RefundHelpEnum::CCAS;
+        }
+
+        return $refundHelps;
     }
 
     public function prepareForReEnrollment(Season $season): void
