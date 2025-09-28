@@ -46,15 +46,13 @@
 
   &--medium {
     .tox-tinymce {
-      min-height: 170px;
+      min-height: 200px;
     }
   }
 
   &--small {
     .tox-tinymce {
-      height: 100px !important;
-      max-height: 100px !important;
-      min-height: 100px !important;
+      min-height: 140px;
     }
   }
 }

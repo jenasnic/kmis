@@ -148,7 +148,7 @@
         background-color: colors.$background-light-color;
         border: 1px solid colors.$primary-color;
         border-radius: 10px;
-        font-size: 1.1em;
+        font-size: 1rem;
         padding: 20px;
         margin: 20px 0;
 
@@ -156,7 +156,8 @@
           padding: 20px 10px;
         }
 
-        > p {
+        p {
+          font-size: 1rem;
           padding: 5px 0;
 
           &:before {
@@ -165,6 +166,18 @@
             padding: 0 7px 0 5px;
           }
         }
+
+        ul {
+          > li {
+            font-size: 1rem;
+            padding: 0;
+          }
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+
       }
     }
   }
