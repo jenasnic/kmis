@@ -2,11 +2,11 @@
 
 {% block body %}
 
-    <h1 class="title">{{ 'back.adherent.gallery.title'|trans }}</h1>
+    <h1 class="title has-text-centered">{{ 'back.adherent.gallery.title'|trans }}</h1>
 
     {% if seasons|length > 0 %}
         <nav class="level">
-            <div class="level-left">
+            <div class="level-left mx-auto mb-5">
                 {% for season in seasons %}
                     <div class="level-item">
                         {% if currentSeason is not null and season.id == currentSeason.id %}
@@ -29,7 +29,7 @@
             {% if adherent['pictureUrl'] is not null %}
                 <img src="{{ path('bo_download_picture', {'adherent': adherent['id']}) }}" alt="{{ adherent['firstName'] ~ ' ' ~ adherent['lastName'] }}"/>
             {% else %}
-                <img src="{{ asset('build/images/picture_' ~ (adherent['gender']|lower) ~ '.png') }}" alt="{{ adherent['firstName'] ~ ' ' ~ adherent['lastName'] }}"/>
+                <img src="{{ asset('build/images/picture_' ~ (adherent['gender'].name|lower) ~ '.png') }}" alt="{{ adherent['firstName'] ~ ' ' ~ adherent['lastName'] }}"/>
             {% endif %}
             </div>
             <div class="firstName">{{ adherent['firstName'] }}</div>

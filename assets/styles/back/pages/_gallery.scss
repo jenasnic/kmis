@@ -3,15 +3,16 @@
 .gallery {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 
   .gallery__adherent {
     border-radius: variables.$radius-input;
-    padding: 20px;
+    padding: 10px;
     margin: 10px;
     transition-duration: 0.3s;
 
     &:hover {
-      transform: scale(1.1);
+      transform: scale(1.05);
     }
 
     &--male {
@@ -23,9 +24,9 @@
     }
 
     > .picture {
-      height: 150px;
+      height: 200px;
       margin-bottom: 10px;
-      width: 120px;
+      width: 160px;
 
       > img {
         height: 100%;
