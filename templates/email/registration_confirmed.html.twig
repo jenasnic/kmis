@@ -11,7 +11,7 @@ Bonjour {{ registration.adherent.getFullName() }},<br/>
         <li>
             Utiliser la plateforme <a href="{{ paymentLink }}" target="_blank">HelloAsso</a>
             {%- if discountCode is not null %}
-                (pour bénéficier de votre réduction Pass'Sport, utiliser le code de réduction "{{ discountCode }}")
+                (pour bénéficier de votre réduction "{{ refundHelps }}", utiliser le code de réduction "{{ discountCode }}")
             {%- endif %}.
         </li>
     {% endif %}
@@ -39,7 +39,7 @@ Pour régler votre cotisation {{ registration.season.getDisplayLabel() }} d'un m
 - Effectuer un virement en précisant votre nom/prénom (RIB disponible ici : {{ absolute_url('/iban_kmis.pdf') }}.
 {%- if paymentLink is not empty -%}
 - Utiliser la plateforme HelloAsso à l'adresse suivante : {{ paymentLink }}
-  {%- if discountCode is not null %} (pour bénéficier de votre réduction Pass'Sport, utiliser le code de réduction "{{ discountCode }}"){%- endif %}.
+  {%- if discountCode is not null %} (pour bénéficier de votre réduction "{{ refundHelps }}", utiliser le code de réduction "{{ discountCode }}"){%- endif %}.
 {%- endif -%}
 
 Information Assurance aux licenciés

@@ -32,7 +32,7 @@ class RefundHelpPaymentDataMapper implements DataMapperInterface
 
         $forms = iterator_to_array($forms);
 
-        $forms['refundHelp']->setData($viewData->getRefundHelp()?->value);
+        $forms['refundHelp']->setData($viewData->getRefundHelp());
         $forms['date']->setData($viewData->getDate());
         $forms['comment']->setData($viewData->getComment());
         $forms['reference']->setData($viewData->getReference());
@@ -51,7 +51,7 @@ class RefundHelpPaymentDataMapper implements DataMapperInterface
                 $viewData = new RefundHelpPayment($this->adherent, $this->season);
             }
 
-            /** @var string|null $refundHelp */
+            /** @var RefundHelpEnum|null $refundHelp */
             $refundHelp = $forms['refundHelp']->getData();
             /** @var \DateTime|null $date */
             $date = $forms['date']->getData();
@@ -60,17 +60,9 @@ class RefundHelpPaymentDataMapper implements DataMapperInterface
             /** @var string|null $reference */
             $reference = $forms['reference']->getData();
 
-            $amount = null;
-            $refundHelpEnum = null;
+            $amount = (null !== $refundHelp) ? $this->refundHelpManager->getAmount($refundHelp) : null;
 
-            if (null !== $refundHelp) {
-                $refundHelpEnum = RefundHelpEnum::tryFrom($refundHelp);
-                if (null !== $refundHelpEnum) {
-                    $amount = $this->refundHelpManager->getAmount($refundHelpEnum);
-                }
-            }
-
-            $viewData->setRefundHelp($refundHelpEnum);
+            $viewData->setRefundHelp($refundHelp);
             $viewData->setAmount($amount);
             $viewData->setComment($comment);
             $viewData->setReference($reference);

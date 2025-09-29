@@ -3,12 +3,14 @@
 namespace App\Domain\Command\Front;
 
 use App\Domain\Command\AbstractRegistrationHandler;
+use App\Enum\RefundHelpEnum;
 use App\Service\Configuration\DiscountManager;
 use App\Service\Configuration\RefundHelpManager;
 use App\Service\Email\EmailBuilder;
 use App\Service\Email\EmailSender;
 use App\Service\File\FileManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 final class ReEnrollmentHandler extends AbstractRegistrationHandler
 {
@@ -17,6 +19,7 @@ final class ReEnrollmentHandler extends AbstractRegistrationHandler
         private readonly EntityManagerInterface $entityManager,
         private readonly RefundHelpManager $refundHelpManager,
         private readonly DiscountManager $discountManager,
+        private readonly TranslatorInterface $translator,
         private readonly EmailBuilder $emailBuilder,
         private readonly EmailSender $emailSender,
     ) {
@@ -47,9 +50,12 @@ final class ReEnrollmentHandler extends AbstractRegistrationHandler
             /** @var string $adherentEmail */
             $adherentEmail = $registration->getAdherent()->getEmail();
 
+            $refundHelps = array_map(fn (RefundHelpEnum $refundHelp) => $refundHelp->trans($this->translator), $registration->getRefundHelps());
+
             $email = $this->emailBuilder
                 ->useTemplate('email/re_enrollment_confirmed.html.twig', [
                     'registration' => $registration,
+                    'refundHelps' => implode('+', $refundHelps),
                     'discountCode' => $discountCode?->getCode(),
                     'amountToPay' => $amountToPay,
                     'paymentLink' => $registration->getSeason()->getPaymentLink(),

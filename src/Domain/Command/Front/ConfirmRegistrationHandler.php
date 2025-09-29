@@ -2,11 +2,13 @@
 
 namespace App\Domain\Command\Front;
 
+use App\Enum\RefundHelpEnum;
 use App\Service\Configuration\DiscountManager;
 use App\Service\Configuration\RefundHelpManager;
 use App\Service\Email\EmailBuilder;
 use App\Service\Email\EmailSender;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 use SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface;
 
@@ -17,6 +19,7 @@ final class ConfirmRegistrationHandler
         private readonly EntityManagerInterface $entityManager,
         private readonly RefundHelpManager $refundHelpManager,
         private readonly DiscountManager $discountManager,
+        private readonly TranslatorInterface $translator,
         private readonly EmailBuilder $emailBuilder,
         private readonly EmailSender $emailSender,
     ) {
@@ -57,9 +60,12 @@ final class ConfirmRegistrationHandler
         /** @var string $adherentEmail */
         $adherentEmail = $registration->getAdherent()->getEmail();
 
+        $refundHelps = array_map(fn (RefundHelpEnum $refundHelp) => $refundHelp->trans($this->translator), $registration->getRefundHelps());
+
         $email = $this->emailBuilder
             ->useTemplate('email/registration_confirmed.html.twig', [
-                'registration' => $command->registration,
+                'registration' => $registration,
+                'refundHelps' => implode('+', $refundHelps),
                 'discountCode' => $discountCode?->getCode(),
                 'amountToPay' => $amountToPay,
                 'paymentLink' => $registration->getSeason()->getPaymentLink(),
