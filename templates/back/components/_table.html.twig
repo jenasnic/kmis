@@ -1,4 +1,4 @@
-<div class="table-container">
+<div{% if tableId is defined %} id="{{ tableId }}"{% endif %} class="table-container">
     <table class="table is-striped is-hoverable is-fullwidth">
         <thead>
             <tr>

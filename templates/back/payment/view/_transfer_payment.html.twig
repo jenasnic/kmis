@@ -1,0 +1,10 @@
+{% extends 'back/payment/view/_template.html.twig' %}
+
+{% block detail %}
+    <div class="columns">
+        <div class="column">
+            <span class="has-text-weight-bold">{{ 'back.payment.preview.transfer'|trans }}</span>
+            <span>{{ payment.label }}</span>
+        </div>
+    </div>
+{% endblock %}

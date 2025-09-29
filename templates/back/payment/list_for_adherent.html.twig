@@ -26,18 +26,18 @@
     <nav class="level">
         <div class="level-left"></div>
         <div class="level-right">
-            <p class="level-item">
+            <div class="level-item">
                 <a href="{{ path('bo_payment_new', {'adherent': adherent.id}) }}" class="button is-primary">
                     <span>{{ 'back.payment.grid.action.new'|trans }}</span>
                     <span class="icon is-small">
                         <i class="icon-more"></i>
                     </span>
                 </a>
-            </p>
+            </div>
         </div>
     </nav>
 
-    {% embed 'back/components/_table.html.twig' %}
+    {% embed 'back/components/_table.html.twig' with {'tableId': 'payment-list-table'} %}
 
         {% block thead %}
             <th>{{ 'back.payment.grid.header.date'|trans }}</th>
@@ -55,9 +55,9 @@
                     <td>{{ payment.paymentType|trans }}</td>
                     <td>{{ payment.season.getDisplayLabel() }}</td>
                     <td class="action">
-                        <a href="{{ path('bo_payment_view', {'payment': payment.id}) }}" class="button is-info">
+                        <button type="button" class="button is-info" data-preview-url="{{ path('bo_payment_view', {'payment': payment.id}) }}">
                             <span class="icon"><i class="icon-eye"></i></span>
-                        </a>
+                        </button>
                         <a href="{{ path('bo_payment_edit', {'payment': payment.id}) }}" class="button is-primary">
                             <span class="icon"><i class="icon-pencil"></i></span>
                         </a>
@@ -67,5 +67,13 @@
         {% endblock %}
 
     {% endembed %}
+
+    <div id="modal-payment-preview" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div id="modal-payment-content"></div>
+        </div>
+        <button class="modal-close is-large"></button>
+    </div>
 
 {% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'back/payment/view/_template.html.twig' %}
+
+{% block detail %}
+    <div class="columns">
+        <div class="column">
+            <span class="has-text-weight-bold">{{ 'back.payment.preview.refundHelpReference'|trans }}</span>
+            <span>{{ payment.reference }}</span>
+        </div>
+        <div class="column">
+            <span class="has-text-weight-bold">{{ 'back.payment.preview.refundHelpType'|trans }}</span>
+            <span>{{ payment.refundHelp|trans }}</span>
+        </div>
+    </div>
+{% endblock %}
