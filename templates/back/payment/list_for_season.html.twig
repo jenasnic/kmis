@@ -20,7 +20,7 @@
             <div class="level-left">
                 <div class="level-item">
                     <div class="field has-addons">
-                        <p class="control has-icons-left">
+                        <div class="control has-icons-left">
                             <input
                                 id="input-search-id"
                                 class="search input"
@@ -32,23 +32,23 @@
                             <span class="icon is-small is-left">
                                 <i class="icon-search"></i>
                             </span>
-                        </p>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="level-right">
-                <p class="level-item">
+                <div class="level-item">
                     <a href="{{ path('bo_export_payment', {'season': currentSeason.id}) }}" target="_blank" class="button is-success">
                         <span>{{ 'global.export'|trans }}</span>
                         <span class="icon is-small">
                             <i class="icon-export"></i>
                         </span>
                     </a>
-                </p>
+                </div>
             </div>
         </nav>
 
-        {% embed 'back/components/_table.html.twig' %}
+        {% embed 'back/components/_table.html.twig' with {'tableId': 'payment-list-table'} %}
 
             {% block thead %}
                 <th>
@@ -72,9 +72,9 @@
                         <td>{{ payment.amount|number_format(2, ',' , ' ') }}</td>
                         <td class="adherent">{{ payment.adherent.fullName }}</td>
                         <td class="action">
-                            <a href="{{ path('bo_payment_view_for_season', {'payment': payment.id}) }}" class="button is-info">
+                            <button type="button" class="button is-info" data-preview-url="{{ path('bo_payment_view', {'payment': payment.id}) }}">
                                 <span class="icon"><i class="icon-eye"></i></span>
-                            </a>
+                            </button>
                             <a href="{{ path('bo_payment_edit_for_season', {'payment': payment.id}) }}" class="button is-primary">
                                 <span class="icon"><i class="icon-pencil"></i></span>
                             </a>
@@ -85,6 +85,14 @@
 
         {% endembed %}
 
+    </div>
+
+    <div id="modal-payment-preview" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div id="modal-payment-content"></div>
+        </div>
+        <button class="modal-close is-large"></button>
     </div>
 
 {% endblock %}

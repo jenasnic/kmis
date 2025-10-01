@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table(name: 'payment_ancv')]
 class AncvPayment extends AbstractPayment
 {
-    #[ORM\Column(type: Types::STRING, length: 55)]
+    #[ORM\Column(type: Types::STRING, length: 255)]
     #[Assert\NotBlank]
     private ?string $number = null;
 

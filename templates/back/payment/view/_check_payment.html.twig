@@ -1,0 +1,16 @@
+{% extends 'back/payment/view/_template.html.twig' %}
+
+{% block detail %}
+    <div class="columns">
+        <div class="column">
+            <span class="has-text-weight-bold">{{ 'back.payment.preview.checkNumber'|trans }}</span>
+            <span>{{ payment.number }}</span>
+        </div>
+        {% if payment.cashingDate is not null %}
+            <div class="column">
+                <span class="has-text-weight-bold">{{ 'back.payment.preview.checkCashingDate'|trans }}</span>
+                <span>{{ payment.cashingDate|date('d/m/Y') }}</span>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

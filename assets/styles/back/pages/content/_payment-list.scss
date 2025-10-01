@@ -1,0 +1,11 @@
+@use '../../variables';
+
+#modal-payment-content {
+  background-color: variables.$color-input-background;
+  color: variables.$color-input-text;
+  padding: 40px;
+
+  h1 {
+    color: variables.$color-input-text;
+  }
+}

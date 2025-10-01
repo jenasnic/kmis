@@ -1,0 +1,27 @@
+{#
+@var App\Entity\Payment\AbstractPayment payment
+#}
+
+<h1 class="title">{{ 'back.payment.preview.title'|trans }} - {{ payment.paymentType|trans }}</h1>
+
+<div class="columns">
+    <div class="column">
+        <span class="has-text-weight-bold">{{ 'back.payment.preview.date'|trans }}</span>
+        <span>{{ payment.date|date('d/m/Y') }}</span>
+    </div>
+    <div class="column">
+        <span class="has-text-weight-bold">{{ 'back.payment.preview.amount'|trans }}</span>
+        <span>{{ payment.amount|number_format(2, ',' , ' ') }}</span>
+    </div>
+</div>
+
+{% block detail %}{% endblock %}
+
+{% if payment.comment is not empty %}
+    <div class="columns">
+        <div class="column">
+            <div class="has-text-weight-bold mb-5">{{ 'back.payment.preview.comment'|trans }}</div>
+            <div class="is-italic">{{ payment.comment|nl2br }}</div>
+        </div>
+    </div>
+{% endif %}

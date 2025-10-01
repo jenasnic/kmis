@@ -33,7 +33,6 @@ class MenuExtension extends AbstractExtension
         'bo_payment_list_for_season' => [
             'bo_payment_list_for_season',
             'bo_payment_edit_for_season',
-            'bo_payment_view_for_season',
         ],
         'bo_news_list' => [
             'bo_news_list',

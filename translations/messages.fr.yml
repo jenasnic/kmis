@@ -13,7 +13,6 @@ global.login: Se connecter
 global.logout: Se déconnecter
 global.more: En savoir plus
 global.no: Non
-global.preview: Prévisualiser
 global.reEnrollment: Réinscrire
 global.save: Enregistrer
 global.search: Rechercher
@@ -152,7 +151,18 @@ back.payment.grid.title: Liste des paiements
 back.payment.list.missingRegistration: L'adhérent n'est pas inscrit.
 back.payment.new.success: Paiement ajouté
 back.payment.new.title: Nouveau paiement
-back.payment.view.title: Paiement
+
+back.payment.preview.amount: 'Montant :'
+back.payment.preview.ancv: 'N° ANCV :'
+back.payment.preview.checkCashingDate: "Date d'encaissement :"
+back.payment.preview.checkNumber: 'N° chèque :'
+back.payment.preview.comment: 'Commentaire :'
+back.payment.preview.date: 'Date :'
+back.payment.preview.discount: 'Libellé de la remise :'
+back.payment.preview.refundHelpReference: 'Référence :'
+back.payment.preview.refundHelpType: 'Type de remise :'
+back.payment.preview.title: Paiement
+back.payment.preview.transfer: 'Motif :'
 
 back.refundHelp.save.success: Aides/remises mises à jour
 back.refundHelp.title: Gestion des aides et remises
@@ -321,7 +331,7 @@ form.payment.refundHelp.refundHelp: Type de remise
 form.payment.transfer.amount: Montant
 form.payment.transfer.comment: Commentaire
 form.payment.transfer.date: Date
-form.payment.transfer.label: Libellé
+form.payment.transfer.label: Motif
 
 form.priceOption.amount: Montant
 form.priceOption.label: Nom de la formule

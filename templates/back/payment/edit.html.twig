@@ -7,7 +7,9 @@
     {% embed 'back/components/_form_header.html.twig' with {
         'title': 'back.payment.edit.title'|trans,
         'subTitle': payment.paymentType|trans,
-        'backLink': backLink
+        'backLink': backLink,
+        'deleteAction': deleteLink,
+        'deleteToken': (payment.id is not null) ? csrf_token('delete-'~payment.id) : null
     } %}
     {% endembed %}
 
