@@ -1,0 +1,38 @@
+{#
+@phpstan-import-type _ChartDataType from App\Twig\ChartExtension
+@var array<_ChartDataType> chartData
+#}
+
+<div class="chart">
+
+    <div class="chart__graphic">
+        <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="100" fill="none"></circle>
+            {% set x1 = 200 %}
+            {% set y1 = 100 %}
+            {% for chartPoint in chartData %}
+                {% set x2 = 100 + 100*chartPoint['x'] %}
+                {% set y2 = 100 - 100*chartPoint['y'] %}
+                <path
+                    data-legende="{{ chartPoint['identifier'] }}"
+                    class="graphic-part"
+                    d="M100,100 L{{ x1 }},{{ y1 }} A100,100 0 {{ chartPoint['large'] ? 1 : 0 }},0 {{ x2 }},{{ y2 }} Z" fill="{{ chartPoint['color'] }}"
+                ></path>
+                {% set x1 = x2 %}
+                {% set y1 = y2 %}
+            {% endfor %}
+        </svg>
+    </div>
+
+    <div class="chart__legend">
+        {% for chartPoint in chartData %}
+            <div class="legend">
+                <span class="legend__color" style="background-color: {{ chartPoint['color'] }}"></span>
+                <span class="has-text-weight-bold">{{ chartPoint['percent'] }}%</span>
+                {{ chartPoint['label'] }}
+                <span class="is-italic">({{ chartPoint['value'] }})</span>
+            </div>
+        {% endfor %}
+    </div>
+
+</div>

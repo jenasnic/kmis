@@ -1,0 +1,39 @@
+{#
+@var string barLabel
+@var int value1
+@var color color1
+@var string legend1
+@var int value2
+@var color color2
+@var string legend2
+@var ?string unit
+#}
+
+<div class="bar">
+
+    {% set total = value1 + value2 %}
+    {% set percent1 = (100 * value1 / total)|number_format %}
+    {% set percent2 = (100 * value2 / total)|number_format %}
+
+    <div class="bar__graphic">
+        <div class="bar__graphic-part" style="width: {{ percent1 }}%; background-color: {{ color1 }}"></div>
+        <div class="bar__graphic-part" style="width: {{ percent2 }}%; background-color: {{ color2 }}"></div>
+        <div class="bar__graphic-label">{{ barLabel }}</div>
+    </div>
+
+    <div class="bar__legend">
+        <div class="legend">
+            <span class="legend__color" style="background-color: {{ color1 }}"></span>
+            <span class="has-text-weight-bold">{{ percent1 }}%</span>
+            {{ legend1 }}
+            <span class="is-italic">({{ value1|number_format(0, '.', ' ') }}{% if unit is defined %}{{ unit }}{% endif %})</span>
+        </div>
+        <div class="legend">
+            <span class="legend__color" style="background-color: {{ color2 }}"></span>
+            <span class="has-text-weight-bold">{{ percent2 }}%</span>
+            {{ legend2 }}
+            <span class="is-italic">({{ value2|number_format(0, '.', ' ') }}{% if unit is defined %}{{ unit }}{% endif %})</span>
+        </div>
+    </div>
+
+</div>

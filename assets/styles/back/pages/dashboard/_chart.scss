@@ -1,0 +1,28 @@
+.chart {
+  align-items: center;
+  display: flex;
+  gap: 50px;
+  justify-content: center;
+
+  &__graphic {}
+
+  &__legend {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    .legend {
+      padding-left: 35px;
+      position: relative;
+
+      &__color {
+        border-radius: 100%;
+        height: 20px;
+        left: 0;
+        position: absolute;
+        top: 2px;
+        width: 20px;
+      }
+    }
+  }
+}

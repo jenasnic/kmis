@@ -90,6 +90,18 @@ back.calendar.list.header.location: Lieu
 back.calendar.list.header.schedules: Horaires
 back.calendar.list.title: Liste des plannings
 
+back.dashboard.noSeason: |
+  Aucune saison n'a été activée pour le moment.<br/>
+  Vous devez d'abord activer une saison en cliquant <a href="%seasonLink%">ici</a>.
+back.dashboard.receipt.not_paid: Reste à payer
+back.dashboard.receipt.paid: Montant payé
+back.dashboard.receipt.total: 'Montant total : %amount%€'
+back.dashboard.receipt: Recettes
+back.dashboard.registration.female: Femmes
+back.dashboard.registration.male: Hommes
+back.dashboard.registration.total: "Nb d'inscriptions : %count%"
+back.dashboard.registration: Incriptions
+
 back.discountCodeConfiguration.save.success: Codes de réduction mis à jour
 back.discountCodeConfiguration.title: Gestion des codes de réductions
 back.discountCodeConfiguration.generate: Générer

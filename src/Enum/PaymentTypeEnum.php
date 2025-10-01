@@ -6,13 +6,13 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 enum PaymentTypeEnum: string implements TranslatableEnumInterface
 {
-    case ANCV = 'ANCV';
-    case CASH = 'CASH';
-    case CHECK = 'CHECK';
-    case DISCOUNT = 'DISCOUNT';
-    case HELLO_ASSO = 'HELLO_ASSO';
-    case REFUND_HELP = 'REFUND_HELP';
-    case TRANSFER = 'TRANSFER';
+    case ANCV = 'ancv';
+    case CASH = 'cash';
+    case CHECK = 'check';
+    case DISCOUNT = 'discount';
+    case HELLO_ASSO = 'hello_asso';
+    case REFUND_HELP = 'refund_help';
+    case TRANSFER = 'transfer';
 
     public function trans(TranslatorInterface $translator, ?string $locale = null): string
     {
