@@ -46,6 +46,10 @@ class RegistrationRepository extends ServiceEntityRepository
         $queryBuilder
             ->innerJoin('registration.purpose', 'purpose')
             ->innerJoin('registration.adherent', 'adherent')
+            ->innerJoin('registration.season', 'season')
+            ->addOrderBy('season.label', Order::Descending->value)
+            ->addOrderBy('adherent.lastName', Order::Ascending->value)
+            ->addOrderBy('adherent.firstName', Order::Ascending->value)
         ;
 
         /** @var Registration $item */
