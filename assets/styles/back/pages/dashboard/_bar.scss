@@ -1,0 +1,45 @@
+.bar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 50px;
+
+  &__graphic {
+    display: flex;
+    height: 35px;
+    position: relative;
+    width: 100%;
+
+    .bar__graphic-part {
+      height: 100%;
+    }
+
+    .bar__graphic-label {
+      color: #FFFFFF;
+      height: 100%;
+      line-height: 35px;
+      position: absolute;
+      text-align: center;
+      width: 100%;
+    }
+  }
+
+  &__legend {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+
+    .legend {
+      padding-left: 35px;
+      position: relative;
+
+      &__color {
+        height: 20px;
+        left: 0;
+        position: absolute;
+        top: 2px;
+        width: 20px;
+      }
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{% extends 'layout/_back.html.twig' %}
+
+{% block body %}
+
+    {% if season is null %}
+        <div class="notification is-info">{{ 'back.dashboard.noSeason'|trans({'%seasonLink%': path('bo_season_list')})|raw }}</div>
+    {% else %}
+        <div class="columns">
+            <div class="column is-half">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-header-title">{{ 'back.dashboard.receipt'|trans }}</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="content">
+                            {% include 'back/dashboard/_bar.html.twig' with {
+                                'barLabel': 'back.dashboard.receipt.total'|trans({'%amount%': receipt['toPay']|number_format(0, '.', ' ')}),
+                                'value1': receipt['paid'],
+                                'color1': '#44A838',
+                                'legend1': 'back.dashboard.receipt.paid'|trans,
+                                'value2': receipt['toPay'] - receipt['paid'],
+                                'color2': '#A83844',
+                                'legend2': 'back.dashboard.receipt.not_paid'|trans,
+                                'unit': '€',
+                            } %}
+                            {% set colors = ['#3844A8', '#A86538', '#38A865', '#A8387E', '#6538A8', '#7EA838', '#387EA8', '#A83844', '#44A838'] %}
+                            {% include 'back/dashboard/_chart.html.twig' with {
+                                'chartData': getChartData(receipt['paymentDistribution'], 'type', 'label', 'count', colors)
+                            } %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-half">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-header-title">{{ 'back.dashboard.registration'|trans }}</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="content">
+                            {% set totalRegistration = registration['genderDistribution'][0]['count'] + registration['genderDistribution'][1]['count'] %}
+                            {% include 'back/dashboard/_bar.html.twig' with {
+                                'barLabel': 'back.dashboard.registration.total'|trans({'%count%': totalRegistration}),
+                                'value1': registration['genderDistribution'][0]['count'],
+                                'color1': '#387EA8',
+                                'legend1': 'back.dashboard.registration.male'|trans,
+                                'value2': registration['genderDistribution'][1]['count'],
+                                'color2': '#A8387E',
+                                'legend2': 'back.dashboard.registration.female'|trans,
+                            } %}
+                            {% set colors = ['#38A865', '#A8387E', '#6538A8', '#7EA838', '#387EA8', '#A83844', '#44A838', '#3844A8', '#A86538'] %}
+                            {% include 'back/dashboard/_chart.html.twig' with {
+                                'chartData': getChartData(registration['pricingOptionDistribution'], 'id', 'priceOption', 'count', colors)
+                            } %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endif %}
+
+{% endblock %}
