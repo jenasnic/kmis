@@ -2,6 +2,7 @@
 
 namespace App\Service\Factory;
 
+use App\Entity\Payment\PriceOption;
 use App\Entity\Season;
 use App\Exception\SeasonAlreadyDefinedException;
 use App\Repository\SeasonRepository;
@@ -28,6 +29,18 @@ class SeasonFactory
 
         $season->setStartDate(new \DateTime(sprintf('%s-09-01', $currentYear)));
         $season->setEndDate(new \DateTime(sprintf('%s-08-31', (int) $currentYear + 1)));
+
+        // Recover data from current active season
+        $activeSeason = $this->seasonRepository->getActiveSeason();
+        if (null !== $activeSeason) {
+            $season->setPricingNote($activeSeason->getPricingNote());
+            foreach ($activeSeason->getPriceOptions() as $option) {
+                $newOption = new PriceOption($option->getLabel(), $option->getAmount(), $season);
+                $newOption->setRank($option->getRank());
+
+                $season->addPriceOption($newOption);
+            }
+        }
 
         return $season;
     }

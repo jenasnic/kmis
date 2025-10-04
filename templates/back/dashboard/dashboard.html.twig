@@ -5,6 +5,9 @@
     {% if season is null %}
         <div class="notification is-info">{{ 'back.dashboard.noSeason'|trans({'%seasonLink%': path('bo_season_list')})|raw }}</div>
     {% else %}
+
+        <h1 class="title has-text-centered">{{ season.displayLabel }}</h1>
+
         <div class="columns">
             <div class="column is-half">
                 <div class="card">
