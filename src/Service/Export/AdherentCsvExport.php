@@ -45,8 +45,9 @@ class AdherentCsvExport extends AbstractCsvExport
             'Date licence',
             'Saison',
             'Formule',
-            'Pass 15',
-            'Pass 50',
+            'Pass Citoyen',
+            'Pass Sport',
+            'Aide CCAS',
         ];
     }
 
@@ -96,6 +97,7 @@ class AdherentCsvExport extends AbstractCsvExport
             $data->getPriceOption()?->getLabel(),
             $data->isUsePassCitizen() ? $this->translator->trans('global.yes') : $this->translator->trans('global.no'),
             $data->isUsePassSport() ? $this->translator->trans('global.yes') : $this->translator->trans('global.no'),
+            $data->isUseCCAS() ? $this->translator->trans('global.yes') : $this->translator->trans('global.no'),
         ];
 
         return $line;
