@@ -6,14 +6,14 @@ use App\Service\Email\EmailSender;
 use Symfony\Component\HttpFoundation\RateLimiter\AbstractRequestRateLimiter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\RateLimiter\RateLimit;
-use Symfony\Component\RateLimiter\RateLimiterFactory;
+use Symfony\Component\RateLimiter\RateLimiterFactoryInterface;
 use Symfony\Component\Security\Http\SecurityRequestAttributes;
 
 class LoginRateLimiter extends AbstractRequestRateLimiter
 {
     public function __construct(
-        private readonly RateLimiterFactory $loginLimiter,
-        private readonly RateLimiterFactory $emailLimiter,
+        private readonly RateLimiterFactoryInterface $loginLimiter,
+        private readonly RateLimiterFactoryInterface $emailLimiter,
         private readonly EmailSender $emailSender,
         private readonly string $mailerContact,
     ) {
