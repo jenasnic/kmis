@@ -21,13 +21,14 @@
                 <div class="level-item">
                     <div class="field has-addons">
                         <div class="control has-icons-left">
+                            {% set dataSearch = ['type', 'adherent', { name: 'date', attr: 'data-payment-date' },] %}
                             <input
                                 id="input-search-id"
                                 class="search input"
                                 type="text"
                                 autofocus="autofocus"
                                 placeholder="{{ 'global.search'|trans }}"
-                                data-search='["type", "adherent"]'
+                                data-search="{{ dataSearch|json_encode }}"
                             />
                             <span class="icon is-small is-left">
                                 <i class="icon-search"></i>
@@ -51,23 +52,26 @@
         {% embed 'back/components/_table.html.twig' with {'tableId': 'payment-list-table'} %}
 
             {% block thead %}
-                <th>
+                <th class="sortable">
                     {{ 'back.payment.grid.header.date'|trans }}
                     <div class="sort" data-sort="date"></div>
                 </th>
-                <th>
+                <th class="sortable">
                     {{ 'back.payment.grid.header.type'|trans }}
-                    <div class="sort" data-sort="lastName"></div>
+                    <div class="sort" data-sort="type"></div>
                 </th>
                 <th>{{ 'back.payment.grid.header.amount'|trans }}</th>
-                <th>{{ 'back.payment.grid.header.adherent'|trans }}</th>
+                <th class="sortable">
+                    {{ 'back.payment.grid.header.adherent'|trans }}
+                    <div class="sort" data-sort="adherent"></div>
+                </th>
                 <th></th>
             {% endblock %}
 
             {% block tbody %}
                 {% for payment in payments %}
                     <tr>
-                        <td>{{ payment.date|date('d/m/Y') }}</td>
+                        <td class="date" data-payment-date="{{ payment.date|date('Ymd') }}">{{ payment.date|date('d/m/Y') }}</td>
                         <td class="type">{{ payment.paymentType|trans }}</td>
                         <td>{{ payment.amount|number_format(2, ',' , ' ') }}</td>
                         <td class="adherent">{{ payment.adherent.fullName }}</td>

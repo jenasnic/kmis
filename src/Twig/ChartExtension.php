@@ -40,6 +40,11 @@ class ChartExtension extends AbstractExtension
         $angle = $colorPicker = 0;
 
         $result = [];
+        if (0 === $total) {
+            // Should never occur but prevent division per 0!
+            return [];
+        }
+
         foreach ($data as $item) {
             // @phpstan-ignore-next-line
             $valueAngle = (float) 360 * $item[$valueKey] / $total;

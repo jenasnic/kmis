@@ -23,10 +23,10 @@ class Location
     #[ORM\Embedded(class: Address::class)]
     private ?Address $address = null;
 
-    #[ORM\Column(type: Types::DECIMAL, nullable: true)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 20, scale: 16, nullable: true)]
     private ?string $latitude = null;
 
-    #[ORM\Column(type: Types::DECIMAL, nullable: true)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 20, scale: 16, nullable: true)]
     private ?string $longitude = null;
 
     #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]

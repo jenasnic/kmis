@@ -6,6 +6,10 @@
       th {
         position: relative;
 
+        &.sortable {
+          padding-left: 30px;
+        }
+
         .sort {
           cursor: pointer;
           height: 20px;
@@ -13,7 +17,7 @@
           position: absolute;
           text-align: center;
           top: calc(50% - 10px);
-          right: 0;
+          left: 5px;
           width: 20px;
 
           &:after {

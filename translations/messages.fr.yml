@@ -187,6 +187,8 @@ back.registration.automaticSend.disableMessage: Les envois automatiques ont ét�
 back.registration.automaticSend.enableButton: Activer les envois automatiques
 back.registration.automaticSend.enableMessage: Les envois automatiques ont été activés (5 mails toutes les 30 minutes)
 back.registration.edit.season: Saison
+back.registration.edit.subTitle: Inscrit le %date%
+back.registration.edit.subTitle.info: (première inscription le %date%)
 back.registration.edit.success: Fiche inscription mise à jour
 back.registration.edit.title: Fiche inscription
 back.registration.new.season: Saison

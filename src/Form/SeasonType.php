@@ -47,7 +47,7 @@ class SeasonType extends AbstractType
                 'block_prefix' => 'season_price_option_list',
                 'allow_add' => true,
                 'allow_delete' => true,
-                'add_label_id' => 'form.season.label.addPriceOption',
+                'add_label_id' => 'form.season.addPriceOption',
                 'collection_css_class' => 'price-option-list',
                 'sortable' => true,
             ]);

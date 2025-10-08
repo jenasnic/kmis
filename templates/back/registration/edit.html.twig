@@ -17,6 +17,12 @@
             'adherent': registration.adherent,
         } %}
         <h1 class="title">{{ 'back.registration.edit.title'|trans }} - {{ 'back.registration.edit.season'|trans }} {{ registration.season.getDisplayLabel() }}</h1>
+        <h2 class="subtitle">
+            {{ 'back.registration.edit.subTitle'|trans({'%date%': registration.registeredAt|date('d/m/Y')}) }}
+            {% if registration.registeredAt != registration.firstRegisteredAt %}
+                <span class="is-italic">{{ 'back.registration.edit.subTitle.info'|trans({'%date%': registration.firstRegisteredAt|date('d/m/Y')}) }}</span>
+            {% endif %}
+        </h2>
     {% endif %}
 
     {{ form_start(form) }}
