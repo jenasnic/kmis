@@ -55,6 +55,9 @@ class Registration
     private bool $useCCAS = false;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private \DateTime $firstRegisteredAt;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private \DateTime $registeredAt;
 
     #[ORM\Column(type: Types::BOOLEAN)]
@@ -114,6 +117,7 @@ class Registration
     {
         $this->adherent = $adherent;
         $this->season = $season;
+        $this->firstRegisteredAt = new \DateTime();
         $this->registeredAt = new \DateTime();
     }
 
@@ -250,6 +254,18 @@ class Registration
     public function setUseCCAS(bool $useCCAS): self
     {
         $this->useCCAS = $useCCAS;
+
+        return $this;
+    }
+
+    public function getFirstRegisteredAt(): \DateTime
+    {
+        return $this->firstRegisteredAt;
+    }
+
+    public function setFirstRegisteredAt(\DateTime $firstRegisteredAt): Registration
+    {
+        $this->firstRegisteredAt = $firstRegisteredAt;
 
         return $this;
     }
@@ -483,5 +499,6 @@ class Registration
         $this->setLicenceDate(null);
         $this->setPriceOption(null);
         $this->setReEnrollment(true);
+        $this->setRegisteredAt(new \DateTime());
     }
 }

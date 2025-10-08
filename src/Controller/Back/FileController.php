@@ -104,8 +104,8 @@ class FileController extends AbstractController
 
         $fileName = strtolower(sprintf(
             '%s_%s_%s',
-            $this->slugger->slug($firstName),
             $this->slugger->slug($lastName),
+            $this->slugger->slug($firstName),
             $suffix,
         ));
 
