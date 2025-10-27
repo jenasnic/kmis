@@ -68,6 +68,10 @@ class DiscountCode
      */
     public function matchRefundHelps(array $refundHelps): bool
     {
+        if (empty($refundHelps)) {
+            return false;
+        }
+
         $stringifyRefundHelps = array_map(fn (RefundHelpEnum $refundHelp) => $refundHelp->value, $refundHelps);
 
         $diffs = array_diff($stringifyRefundHelps, $this->refundHelps);
