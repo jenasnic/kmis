@@ -86,6 +86,7 @@ class RegistrationRepository extends ServiceEntityRepository
             ->addSelect('COUNT(adherent.gender) AS count')
             ->innerJoin('registration.adherent', 'adherent')
             ->innerJoin('registration.season', 'season')
+            ->orderBy('adherent.gender', Order::Descending->value)
             ->groupBy('adherent.gender')
             ->andWhere('season.id = :seasonId')
             ->setParameter('seasonId', $seasonId)

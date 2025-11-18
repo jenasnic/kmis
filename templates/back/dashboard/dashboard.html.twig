@@ -46,10 +46,10 @@
                                 'barLabel': 'back.dashboard.registration.total'|trans({'%count%': totalRegistration}),
                                 'value1': registration['genderDistribution'][0]['count'],
                                 'color1': '#387EA8',
-                                'legend1': 'back.dashboard.registration.male'|trans,
+                                'legend1': registration['genderDistribution'][0]['gender']|trans,
                                 'value2': registration['genderDistribution'][1]['count'],
                                 'color2': '#A8387E',
-                                'legend2': 'back.dashboard.registration.female'|trans,
+                                'legend2': registration['genderDistribution'][1]['gender']|trans,
                             } %}
                             {% set colors = ['#38A865', '#A8387E', '#6538A8', '#7EA838', '#387EA8', '#A83844', '#44A838', '#3844A8', '#A86538'] %}
                             {% include 'back/dashboard/_chart.html.twig' with {
