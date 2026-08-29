@@ -136,6 +136,8 @@ class NewRegistrationType extends AbstractRegistrationType
     protected function toggleMedicalCertificate(FormInterface $form, ?RegistrationTypeEnum $registrationType, bool $forKmis): void
     {
         if (!in_array($registrationType, [RegistrationTypeEnum::COMPETITOR, RegistrationTypeEnum::MINOR])) {
+            $form->remove('medicalCertificateFile');
+
             return;
         }
 
