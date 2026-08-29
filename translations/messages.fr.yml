@@ -291,7 +291,7 @@ form.newRegistration.agreement: |
   Je certifie que les renseignements figurant sur le formulaire d'inscription sont exacts et complets.<br/>
   J'ai bien pris connaissance que : <ul>
   <li>L'adhésion au club entraîne obligatoirement la prise de la licence FFKDA</li>
-  <li>L'adhésion au club KMIS implique l’acceptation des <a href="/statuts_kmis.pdf" target="_blank">statuts</a></li>
+  <li>L'adhésion au club KMIS implique l’acceptation des status (disponibles sur simple demande)</li>
   <li>Tout titulaire d’une licence fédérale s’engage à respecter les Statuts et Règlements de la FFK</li>
   </ul>
 form.newRegistration.comment: Commentaire (problème de santé ou autre)
