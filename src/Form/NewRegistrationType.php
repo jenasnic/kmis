@@ -25,6 +25,9 @@ class NewRegistrationType extends AbstractRegistrationType
         /** @var bool $forKmis */
         $forKmis = $options['kmis_version'];
 
+        /** @var bool $isReEnrollment */
+        $isReEnrollment = $options['re_enrollment'];
+
         $fileConstraints = [
             new File([
                 'mimeTypes' => [
@@ -37,24 +40,24 @@ class NewRegistrationType extends AbstractRegistrationType
             ]),
         ];
 
-        if (!$forKmis) {
+        if (!$forKmis && !$isReEnrollment) {
             $fileConstraints[] = new NotNull();
         }
 
         $builder
             ->add('adherent', AdherentType::class, [
-                're_enrollment' => $options['re_enrollment'],
+                're_enrollment' => $isReEnrollment,
                 'kmis_version' => $forKmis,
             ])
         ;
 
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($fileConstraints, $forKmis) {
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($fileConstraints, $forKmis, $isReEnrollment) {
             /** @var Registration $registration */
             $registration = $event->getData();
             $form = $event->getForm();
 
             $fieldOptions = [
-                'required' => !$forKmis,
+                'required' => !($forKmis || $isReEnrollment),
                 'constraints' => $fileConstraints,
             ];
 
@@ -65,6 +68,8 @@ class NewRegistrationType extends AbstractRegistrationType
             }
 
             $form->add('licenceFormFile', BulmaFileType::class, $fieldOptions);
+
+            $this->toggleMedicalCertificate($form, $registration->getRegistrationType(), $forKmis);
         });
 
         if ($forKmis) {
@@ -82,11 +87,8 @@ class NewRegistrationType extends AbstractRegistrationType
                         throw new \LogicException('invalid parent');
                     }
 
-                    /** @var RegistrationTypeEnum $registrationType */
+                    /** @var RegistrationTypeEnum|null $registrationType */
                     $registrationType = $form->getData();
-                    if (!in_array($registrationType, [RegistrationTypeEnum::COMPETITOR, RegistrationTypeEnum::MINOR])) {
-                        return;
-                    }
 
                     $this->toggleMedicalCertificate($form->getParent(), $registrationType, $forKmis);
                 }
@@ -131,8 +133,12 @@ class NewRegistrationType extends AbstractRegistrationType
     /**
      * @param FormInterface<Registration> $form
      */
-    protected function toggleMedicalCertificate(FormInterface $form, RegistrationTypeEnum $registrationType, bool $forKmis): void
+    protected function toggleMedicalCertificate(FormInterface $form, ?RegistrationTypeEnum $registrationType, bool $forKmis): void
     {
+        if (!in_array($registrationType, [RegistrationTypeEnum::COMPETITOR, RegistrationTypeEnum::MINOR])) {
+            return;
+        }
+
         $fileConstraints = [
             new File([
                 'mimeTypes' => [
