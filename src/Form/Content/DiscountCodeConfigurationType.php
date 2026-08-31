@@ -21,7 +21,10 @@ class DiscountCodeConfigurationType extends AbstractType
             ->add('discountCodes', BulmaCollectionType::class, [
                 'label' => false,
                 'entry_type' => DiscountCodeType::class,
-                'entry_options' => ['label' => false],
+                'entry_options' => [
+                    'label' => false,
+                    'discount_codes' => [],
+                ],
                 'block_prefix' => 'discount_code_list',
                 'allow_add' => true,
                 'allow_delete' => true,

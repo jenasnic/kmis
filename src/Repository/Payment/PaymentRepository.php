@@ -94,7 +94,7 @@ class PaymentRepository extends ServiceEntityRepository
         ;
 
         /** @var float */
-        return $queryBuilder->getQuery()->getSingleScalarResult();
+        return $queryBuilder->getQuery()->getSingleScalarResult() ?? 0.0;
     }
 
     /**

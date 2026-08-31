@@ -72,7 +72,7 @@ class ReEnrollmentController extends AbstractController
     public function reEnrollmentNotify(Request $request): Response
     {
         if ($this->isCsrfTokenValid('re_enrollment_notify', (string) $request->request->get('_token'))) {
-            $emailSentCount = $this->reEnrollmentNotifier->notify($this->mailerMaxPacketSize);
+            $emailSentCount = $this->reEnrollmentNotifier->notifyPacket($this->mailerMaxPacketSize);
 
             $this->addFlash('info', $this->translator->trans('back.registration.reEnrollment.notify.message', ['%count%' => $emailSentCount]));
         }

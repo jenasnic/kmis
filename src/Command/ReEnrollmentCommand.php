@@ -2,6 +2,7 @@
 
 namespace App\Command;
 
+use App\Repository\AdherentRepository;
 use App\Repository\SeasonRepository;
 use App\Service\Configuration\AutomaticSendManager;
 use App\Service\Notifier\ReEnrollmentNotifier;
@@ -17,6 +18,7 @@ final class ReEnrollmentCommand extends Command
 {
     public function __construct(
         private readonly AutomaticSendManager $automaticSendManager,
+        private readonly AdherentRepository $adherentRepository,
         private readonly SeasonRepository $seasonRepository,
         private readonly ReEnrollmentNotifier $reEnrollmentNotifier,
         private readonly int $mailerMaxPacketSize,
@@ -29,12 +31,43 @@ final class ReEnrollmentCommand extends Command
         $this
             ->setDescription('Send re-enrollment email to adherent (use max packet size define in .env to avoid "Mails peer session limit").')
             ->addArgument('limit', InputArgument::OPTIONAL, 'Limit on sent emails to avoid "Mails peer session limit" error (override MAILER_MAX_PACKET_SIZE from .env).')
+            ->addArgument('adherent', InputArgument::OPTIONAL, 'Specific adherent email we want to sent re-enrollment email).')
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
+
+        $adherent = null;
+
+        if ($input->hasArgument('adherent')) {
+            /** @var string|null $adherentEmail */
+            $adherentEmail = $input->getArgument('adherent');
+
+            if (!is_string($adherentEmail)) {
+                $io->success('Invalid adherent email.');
+
+                return self::FAILURE;
+            }
+
+            $adherent = $this->adherentRepository->findOneBy([
+                'email' => $adherentEmail,
+                'reEnrollmentToNotify' => true,
+            ]);
+
+            if (null === $adherent) {
+                $io->success('Unknown adherent.');
+
+                return self::FAILURE;
+            }
+        }
+
+        if (null !== $adherent) {
+            $result = $this->reEnrollmentNotifier->notifyAdherent($adherent);
+
+            return $result ? self::SUCCESS : self::FAILURE;
+        }
 
         if (!$this->automaticSendManager->isAutomaticSendEnable()) {
             $io->warning('Automatic enrollment notification is disabled.');
@@ -54,7 +87,7 @@ final class ReEnrollmentCommand extends Command
                 return self::FAILURE;
             }
 
-            $count = $this->reEnrollmentNotifier->notify($limit);
+            $count = $this->reEnrollmentNotifier->notifyPacket($limit);
 
             $io->success(sprintf('%d re-enrollment emails sent!', $count));
         } catch (\Exception $e) {

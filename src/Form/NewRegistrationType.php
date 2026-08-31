@@ -69,31 +69,24 @@ class NewRegistrationType extends AbstractRegistrationType
 
             $form->add('licenceFormFile', BulmaFileType::class, $fieldOptions);
 
-            $this->toggleMedicalCertificate($form, $registration->getRegistrationType(), $forKmis);
+            $this->toggleMedicalCertificate($form, $registration->getRegistrationType(), $forKmis, $isReEnrollment);
         });
 
-        if ($forKmis) {
-            $builder->add('medicalCertificateFile', BulmaFileType::class, [
-                'required' => false,
-                'constraints' => $fileConstraints,
-            ]);
-        } else {
-            $builder->get('registrationType')->addEventListener(
-                FormEvents::POST_SUBMIT,
-                function (FormEvent $event) use ($forKmis) {
-                    $form = $event->getForm();
+        $builder->get('registrationType')->addEventListener(
+            FormEvents::POST_SUBMIT,
+            function (FormEvent $event) use ($forKmis, $isReEnrollment) {
+                $form = $event->getForm();
 
-                    if (null === $form->getParent()) {
-                        throw new \LogicException('invalid parent');
-                    }
-
-                    /** @var RegistrationTypeEnum|null $registrationType */
-                    $registrationType = $form->getData();
-
-                    $this->toggleMedicalCertificate($form->getParent(), $registrationType, $forKmis);
+                if (null === $form->getParent()) {
+                    throw new \LogicException('invalid parent');
                 }
-            );
-        }
+
+                /** @var RegistrationTypeEnum|null $registrationType */
+                $registrationType = $form->getData();
+
+                $this->toggleMedicalCertificate($form->getParent(), $registrationType, $forKmis, $isReEnrollment);
+            }
+        );
 
         if ($forKmis) {
             $this->addInternalFields($builder, $options);
@@ -133,13 +126,21 @@ class NewRegistrationType extends AbstractRegistrationType
     /**
      * @param FormInterface<Registration> $form
      */
-    protected function toggleMedicalCertificate(FormInterface $form, ?RegistrationTypeEnum $registrationType, bool $forKmis): void
+    protected function toggleMedicalCertificate(FormInterface $form, ?RegistrationTypeEnum $registrationType, bool $forKmis, bool $isReEnrollment): void
     {
-        if (!in_array($registrationType, [RegistrationTypeEnum::COMPETITOR, RegistrationTypeEnum::MINOR])) {
+        if (RegistrationTypeEnum::ADULT === $registrationType) {
             $form->remove('medicalCertificateFile');
 
             return;
         }
+
+        $isForMinor = RegistrationTypeEnum::MINOR === $registrationType;
+
+        $medicalCertificateOptions = [
+            'label' => $isForMinor ? 'form.newRegistration.medicalCertificateFile.forMinor' : 'form.newRegistration.medicalCertificateFile',
+            'help' => $isForMinor ? 'form.newRegistration.medicalCertificateFileHelp' : null,
+            'help_html' => true,
+        ];
 
         $fileConstraints = [
             new File([
@@ -153,15 +154,29 @@ class NewRegistrationType extends AbstractRegistrationType
             ]),
         ];
 
-        if (!$forKmis) {
-            $fileConstraints[] = new NotNull();
-        }
+        if (in_array($registrationType, [RegistrationTypeEnum::COMPETITOR, RegistrationTypeEnum::MINOR])) {
+            if ($forKmis) {
+                $options = array_merge($medicalCertificateOptions, [
+                    'required' => false,
+                    'constraints' => $fileConstraints,
+                ]);
 
-        $isForMinor = RegistrationTypeEnum::MINOR === $registrationType;
+                $form->add('medicalCertificateFile', BulmaFileType::class, $options);
+            } else {
+                $options = array_merge($medicalCertificateOptions, [
+                    'required' => !$isReEnrollment,
+                    'constraints' => !$isReEnrollment ? array_merge($fileConstraints, [new NotNull()]) : $fileConstraints,
+                ]);
+
+                $form->add('medicalCertificateFile', BulmaFileType::class, $options);
+            }
+
+            return;
+        }
 
         $form->add('medicalCertificateFile', BulmaFileType::class, [
             'label' => $isForMinor ? 'form.newRegistration.medicalCertificateFile.forMinor' : 'form.newRegistration.medicalCertificateFile',
-            'required' => !$forKmis,
+            'required' => !$forKmis && !$isReEnrollment,
             'constraints' => $fileConstraints,
             'help' => (!$forKmis && $isForMinor) ? 'form.newRegistration.medicalCertificateFileHelp' : null,
             'help_html' => true,
