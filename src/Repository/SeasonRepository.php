@@ -2,9 +2,11 @@
 
 namespace App\Repository;
 
+use App\Entity\Registration;
 use App\Entity\Season;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Order;
+use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -71,5 +73,17 @@ class SeasonRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult()
         ;
+    }
+
+    public function hasRegistration(int $seasonId): bool
+    {
+        $queryBuilder = $this->createQueryBuilder('season')
+            ->innerJoin(Registration::class, 'registration', Join::WITH, 'registration.season = season')
+            ->andWhere('season.id = :seasonId')
+            ->setParameter('seasonId', $seasonId)
+            ->select('COUNT(registration)')
+        ;
+
+        return $queryBuilder->getQuery()->getSingleScalarResult() > 0;
     }
 }

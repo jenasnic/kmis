@@ -93,6 +93,9 @@ back.calendar.list.title: Liste des plannings
 back.dashboard.noSeason: |
   Aucune saison n'a été activée pour le moment.<br/>
   Vous devez d'abord activer une saison en cliquant <a href="%seasonLink%">ici</a>.
+back.dashboard.noRegistration: |
+  Aucune inscription n'a été validée pour le moment.<br/>
+  Vous devez d'abord attendre une inscription ou une ré-inscription
 back.dashboard.receipt.not_paid: Reste à payer
 back.dashboard.receipt.paid: Montant payé
 back.dashboard.receipt.total: 'Montant total : %amount%€'

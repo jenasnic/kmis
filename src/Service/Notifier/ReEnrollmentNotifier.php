@@ -2,6 +2,8 @@
 
 namespace App\Service\Notifier;
 
+use App\Entity\Adherent;
+use App\Entity\Season;
 use App\Repository\AdherentRepository;
 use App\Repository\SeasonRepository;
 use App\Service\Email\EmailSender;
@@ -24,7 +26,7 @@ class ReEnrollmentNotifier
      *
      * @return int Number of re-enrollment emails sent
      */
-    public function notify(int $limit = 0): int
+    public function notifyPacket(int $limit = 0): int
     {
         $season = $this->seasonRepository->getActiveSeason();
 
@@ -36,27 +38,44 @@ class ReEnrollmentNotifier
 
         $emailSentCount = 0;
         foreach ($adherents as $adherent) {
-            $token = $this->reEnrollmentTokenFactory->create($adherent, $season);
-            $adherent->setReEnrollmentToNotify(false);
-            $this->entityManager->persist($token);
-            $this->entityManager->flush();
-
-            /** @var string $adherentEmail */
-            $adherentEmail = $adherent->getEmail();
-
-            $this->emailSender->send(
-                'email/re_enrollment.html.twig',
-                $adherentEmail,
-                [
-                    'adherent' => $adherent,
-                    'token' => $token,
-                    'season' => $season,
-                ]
-            );
-
+            $this->_notifyAdherentForSeason($adherent, $season);
             ++$emailSentCount;
         }
 
         return $emailSentCount;
+    }
+
+    public function notifyAdherent(Adherent $adherent): bool
+    {
+        $season = $this->seasonRepository->getActiveSeason();
+
+        if (null === $season) {
+            return false;
+        }
+
+        $this->_notifyAdherentForSeason($adherent, $season);
+
+        return true;
+    }
+
+    protected function _notifyAdherentForSeason(Adherent $adherent, Season $season): void
+    {
+        $token = $this->reEnrollmentTokenFactory->create($adherent, $season);
+        $adherent->setReEnrollmentToNotify(false);
+        $this->entityManager->persist($token);
+        $this->entityManager->flush();
+
+        /** @var string $adherentEmail */
+        $adherentEmail = $adherent->getEmail();
+
+        $this->emailSender->send(
+            'email/re_enrollment.html.twig',
+            $adherentEmail,
+            [
+                'adherent' => $adherent,
+                'token' => $token,
+                'season' => $season,
+            ]
+        );
     }
 }

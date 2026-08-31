@@ -4,6 +4,8 @@
 
     {% if season is null %}
         <div class="notification is-info">{{ 'back.dashboard.noSeason'|trans({'%seasonLink%': path('bo_season_list')})|raw }}</div>
+    {% elseif not hasRegistration %}
+        <div class="notification is-info">{{ 'back.dashboard.noRegistration'|trans|raw }}</div>
     {% else %}
 
         <h1 class="title has-text-centered">{{ season.displayLabel }}</h1>
@@ -41,15 +43,15 @@
                     </div>
                     <div class="card-content">
                         <div class="content">
-                            {% set totalRegistration = registration['genderDistribution'][0]['count'] + registration['genderDistribution'][1]['count'] %}
+                            {% set totalRegistration = (registration['genderDistribution'][0]['count'])|default(0) + (registration['genderDistribution'][1]['count'])|default(0) %}
                             {% include 'back/dashboard/_bar.html.twig' with {
                                 'barLabel': 'back.dashboard.registration.total'|trans({'%count%': totalRegistration}),
-                                'value1': registration['genderDistribution'][0]['count'],
+                                'value1': (registration['genderDistribution'][0]['count'])|default(0),
                                 'color1': '#387EA8',
-                                'legend1': registration['genderDistribution'][0]['gender']|trans,
-                                'value2': registration['genderDistribution'][1]['count'],
+                                'legend1': (registration['genderDistribution'][0]['gender']|default(null) ? registration['genderDistribution'][0]['gender']|trans : '-'),
+                                'value2': (registration['genderDistribution'][1]['count'])|default(0),
                                 'color2': '#A8387E',
-                                'legend2': registration['genderDistribution'][1]['gender']|trans,
+                                'legend2': (registration['genderDistribution'][1]['gender']|default(null) ? registration['genderDistribution'][1]['gender']|trans : '-'),
                             } %}
                             {% set colors = ['#38A865', '#A8387E', '#6538A8', '#7EA838', '#387EA8', '#A83844', '#44A838', '#3844A8', '#A86538'] %}
                             {% include 'back/dashboard/_chart.html.twig' with {

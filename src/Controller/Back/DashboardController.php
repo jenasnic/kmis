@@ -22,6 +22,7 @@ class DashboardController extends AbstractController
         $season = $this->seasonRepository->getActiveSeason();
 
         $receipt = $registration = [];
+        $hasRegistration = false;
 
         if (null !== $season) {
             /** @var int $seasonId */
@@ -29,12 +30,14 @@ class DashboardController extends AbstractController
 
             $receipt = $this->statisticsProvider->getReceipt($seasonId);
             $registration = $this->statisticsProvider->getRegistration($seasonId);
+            $hasRegistration = $this->seasonRepository->hasRegistration($seasonId);
         }
 
         return $this->render('back/dashboard/dashboard.html.twig', [
             'season' => $season,
             'receipt' => $receipt,
             'registration' => $registration,
+            'hasRegistration' => $hasRegistration,
         ]);
     }
 }

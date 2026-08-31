@@ -1,6 +1,11 @@
 import List from 'list.js';
 
 export const bindGrid = (element) => {
+  const count = element.querySelector('[data-list]').children.length;
+    if (0 === count) {
+      return;
+    }
+
   const searchInput = element.querySelector('#input-search-id');
   if (searchInput) {
     new List(element, {
