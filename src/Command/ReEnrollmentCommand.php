@@ -8,8 +8,9 @@ use App\Service\Configuration\AutomaticSendManager;
 use App\Service\Notifier\ReEnrollmentNotifier;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Exception\InvalidArgumentException;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
@@ -30,8 +31,8 @@ final class ReEnrollmentCommand extends Command
     {
         $this
             ->setDescription('Send re-enrollment email to adherent (use max packet size define in .env to avoid "Mails peer session limit").')
-            ->addArgument('limit', InputArgument::OPTIONAL, 'Limit on sent emails to avoid "Mails peer session limit" error (override MAILER_MAX_PACKET_SIZE from .env).')
-            ->addArgument('adherent', InputArgument::OPTIONAL, 'Specific adherent email we want to sent re-enrollment email).')
+            ->addOption('limit', null, InputOption::VALUE_REQUIRED, 'Limit on sent emails to avoid "Mails peer session limit" error (override MAILER_MAX_PACKET_SIZE from .env).')
+            ->addOption('adherent', null, InputOption::VALUE_REQUIRED, 'Specific adherent email we want to sent re-enrollment email.')
         ;
     }
 
@@ -39,31 +40,24 @@ final class ReEnrollmentCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
-        $adherent = null;
+        /** @var string|null $limitOption */
+        $limitOption = $input->getOption('limit');
+        /** @var string|null $adherentEmail */
+        $adherentEmail = $input->getOption('adherent');
 
-        if ($input->hasArgument('adherent')) {
-            /** @var string|null $adherentEmail */
-            $adherentEmail = $input->getArgument('adherent');
-
-            if (!is_string($adherentEmail)) {
-                $io->success('Invalid adherent email.');
-
-                return self::FAILURE;
-            }
-
-            $adherent = $this->adherentRepository->findOneBy([
-                'email' => $adherentEmail,
-                'reEnrollmentToNotify' => true,
-            ]);
-
-            if (null === $adherent) {
-                $io->success('Unknown adherent.');
-
-                return self::FAILURE;
-            }
+        if (null !== $limitOption && null !== $adherentEmail) {
+            throw new InvalidArgumentException('You cannot use "--limit" and "--adherent" options at the same time.');
         }
 
-        if (null !== $adherent) {
+        if (null !== $adherentEmail) {
+            $adherent = $this->adherentRepository->findOneBy(['email' => $adherentEmail]);
+
+            if (null === $adherent) {
+                $io->error('Unknown adherent.');
+
+                return self::FAILURE;
+            }
+
             $result = $this->reEnrollmentNotifier->notifyAdherent($adherent);
 
             return $result ? self::SUCCESS : self::FAILURE;
@@ -75,8 +69,7 @@ final class ReEnrollmentCommand extends Command
             return self::INVALID;
         }
 
-        /** @var int $limit */
-        $limit = $input->getArgument('limit') ?? $this->mailerMaxPacketSize;
+        $limit = null !== $limitOption ? (int) $limitOption : $this->mailerMaxPacketSize;
 
         try {
             $season = $this->seasonRepository->getActiveSeason();
